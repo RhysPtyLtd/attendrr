@@ -7,6 +7,7 @@ class ClubsController < ApplicationController
   def create
   	@club = Club.new(club_params)
   	if @club.save
+      log_in @club
       flash[:success] = "#{@club.name} successfully created. Welcome to Class Master!"
   		redirect_to @club
   	else

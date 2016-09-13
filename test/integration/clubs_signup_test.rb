@@ -26,6 +26,7 @@ class ClubsSignupTest < ActionDispatch::IntegrationTest
 		follow_redirect!
 		assert_template 'clubs/show'
 		assert_not flash.empty?
+		assert is_logged_in? # is_logged_in? comes from the test/test_helper.rb file
 	end
 
 end
