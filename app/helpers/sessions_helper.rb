@@ -5,9 +5,24 @@ module SessionsHelper
 		session[:club_id] = club.id
 	end
 
-	# Returns the current logged-in club (if any)
+	# Remembers a club in a persistent session
+	def remember(club)
+		club.remember
+		cookies.permanent.signed[:club_id] = club.id
+		cookies.permanent[:remember_token] = club.remember_token
+	end
+
+	# Returns the club corresponding to the remember token cookie
 	def current_club
-		@current_club ||= Club.find_by(id: session[:club_id])
+		if (club_id = session[:club_id])
+			@current_club ||= Club.find_by(id: club_id)
+		elsif (club_id = cookies.signed[:club_id])
+			club = Club.find_by(id: club_id)
+			if club && club.authenticated?(cookies[:remember_token])
+				log_in club
+				@current_club = club
+			end
+		end
 	end
 
 	# Returns true if the club is logged in, false otherwise
@@ -15,8 +30,16 @@ module SessionsHelper
 		!current_club.nil?
 	end
 
+	# Forgets a persistent session
+	def forget(club)
+		club.forget
+		cookies.delete(:club_id)
+		cookies.delete(:remember_token)
+	end
+
 	# Logs out the current user
 	def log_out
+		forget(current_club)
 		session.delete(:club_id)
 		@current_club = nil
 	end
