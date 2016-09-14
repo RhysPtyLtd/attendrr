@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
   	if @club && @club.authenticate(params[:session][:password])
   		log_in @club
       params[:session][:remember_me] == '1' ? remember(@club) : forget(@club)
-  		redirect_to @club
+  		redirect_back_or @club
   	else
   		flash.now[:danger] = 'Invalid email/password combination'
   		render 'new'

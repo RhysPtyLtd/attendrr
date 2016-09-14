@@ -1,0 +1,10 @@
+<% provide(:title, 'All clubs') %>
+<h1>All clubs</h1>
+
+<%= will_paginate %>
+
+<ul class="clubs">
+	<%= render @clubs %> <!-- Iterates over the @clubs collection and renders the _club.html.erb partial for each -->
+</ul>
+
+<%= will_paginate %>
