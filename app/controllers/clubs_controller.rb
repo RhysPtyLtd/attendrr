@@ -1,10 +1,11 @@
 class ClubsController < ApplicationController
   before_action :logged_in_club, only: [:edit, :update, :destroy]
-  before_action :correct_club, only: [:edit, :update]
-  before_action :admin_club, only: [:index, :destroy]
+  before_action :correct_club, only: [:edit, :update, :show]
+  before_action :admin_club, only: [:destroy]
+  before_action :admin_club_index, only: [:index]
 
   def index
-    @clubs = Club.paginate(page: params[:page]) # This is the paginated version of 'Club.all'
+    
   end
 
   def new
@@ -66,11 +67,17 @@ class ClubsController < ApplicationController
     # Confirms correct club is logged in
     def correct_club
       @club = Club.find(params[:id])
-      redirect_to(root_url) unless current_club?(@club)
+      redirect_to(root_url) unless current_club?(@club) || current_club.admin?
     end
 
-    # Confirms admin club
+    # Confirms admin
     def admin_club
+      redirect_to(root_url) unless current_club && current_club.admin?
+    end
+
+    # Confirms admin for index
+    def admin_club_index
+      @clubs = Club.paginate(page: params[:page]) # This is the paginated version of 'Club.all'
       redirect_to(root_url) unless current_club && current_club.admin?
     end
 

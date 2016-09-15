@@ -7,9 +7,27 @@ class ClubsControllerTest < ActionDispatch::IntegrationTest
 		@other_club = clubs(:henrys)
 	end
 
-  test "should redirect index when not logged in" do # Change to redirect index when not admin
+  test "should redirect index when not logged in" do
     get clubs_path
     assert_redirected_to root_url
+  end
+
+  test "should redirect index when not logged in as admin" do
+    log_in_as(@other_club)
+    get clubs_path
+    assert_redirected_to root_url
+  end
+
+  test "should show index when logged in as admin" do
+    log_in_as(@club)
+    get clubs_path
+    assert_response :success
+  end
+
+  test "should get club show page when logged in as club" do
+    log_in_as(@other_club)
+    get club_path(@other_club)
+    assert_response :success
   end
 
   test "should get new" do
