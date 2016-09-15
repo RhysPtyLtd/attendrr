@@ -1,7 +1,7 @@
 class ClubsController < ApplicationController
-  before_action :logged_in_club, only: [:edit, :index, :update, :destroy] # Change :index to only admin
+  before_action :logged_in_club, only: [:edit, :update, :destroy]
   before_action :correct_club, only: [:edit, :update]
-  before_action :admin_club, only: :destroy
+  before_action :admin_club, only: [:index, :destroy]
 
   def index
     @clubs = Club.paginate(page: params[:page]) # This is the paginated version of 'Club.all'
@@ -47,7 +47,9 @@ class ClubsController < ApplicationController
   private
 
   	def club_params
-  		params.require(:club).permit(:name, :email, :password, :password_confirmation)
+  		params.require(:club).permit(:name, :email, :password, :password_confirmation, :address_line_1, :address_line_2,
+                                   :city, :state, :postcode, :country, :phone1, :phone2, :owner_first_name, 
+                                   :owner_last_name)
   	end
 
     # Before filters
@@ -69,7 +71,7 @@ class ClubsController < ApplicationController
 
     # Confirms admin club
     def admin_club
-      redirect_to(root_url) unless current_club.admin?
+      redirect_to(root_url) unless current_club && current_club.admin?
     end
 
 end

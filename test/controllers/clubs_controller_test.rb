@@ -3,13 +3,13 @@ require 'test_helper'
 class ClubsControllerTest < ActionDispatch::IntegrationTest
 
 	def setup
-		@club = clubs(:michael)
-		@other_club = clubs(:archer)
+		@club = clubs(:kapow)
+		@other_club = clubs(:henrys)
 	end
 
   test "should redirect index when not logged in" do # Change to redirect index when not admin
     get clubs_path
-    assert_redirected_to login_url
+    assert_redirected_to root_url
   end
 
   test "should get new" do

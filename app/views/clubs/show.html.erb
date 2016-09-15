@@ -6,6 +6,16 @@
 				<!-- Can put image with class 'clublogo' here. CSS rules already defined. Replace 'gravatar' with 'clublogo' -->
 				<%= @club.name %>
 			</h1>
+			<p>
+				Owner: <%= @club.owner_first_name  %> <%= @club.owner_last_name %><br>
+				Address: <% if @club.address_line_2? %><%= @club.address_line_2 %><br><% end %>
+				<%= @club.address_line_1 %><br>
+				<%= @club.city %><br>
+				<%= @club.state %> <%= @club.postcode %><br>
+				<%= @club.country %><br>
+				Phone: <%= @club.phone1 %><br>
+				<% if @club.phone2? %>Secondary phone: <%= @club.phone2 %><% end %>
+			</p>
 		</section>
 	</aside>
 </div>

@@ -1,29 +1,69 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-michael:
-  name: Michael Example
-  email: michael@example.com
+kapow:
+  name: Kapow Karate!
+  email: kapow@example.com
   password_digest: <%= Club.digest('password') %>
   admin: true
+  address_line_1: 67 Sportsman Ave.
+  city: Horsham
+  state: NSW
+  postcode: 4321
+  country: Australia
+  phone1: 07654321
+  owner_first_name: Gregory
+  owner_last_name: Egg
 
-archer:
-  name: Sterling Archer
+henrys:
+  name: Henry's Kungfu
   email: duchess@example.gov
   password_digest: <%= Club.digest('password') %>
+  address_line_1: 67 Sportsman Ave.
+  city: Horsham
+  state: NSW
+  postcode: 4321
+  country: Australia
+  phone1: 07654321
+  owner_first_name: Gregory
+  owner_last_name: Egg
 
 lana:
   name: Lana Kane
   email: hands@example.gov
   password_digest: <%= Club.digest('password') %>
+  address_line_1: 67 Sportsman Ave.
+  city: Horsham
+  state: NSW
+  postcode: 4321
+  country: Australia
+  phone1: 07654321
+  owner_first_name: Gregory
+  owner_last_name: Egg
 
 malory:
   name: Malory Archer
   email: boss@example.gov
   password_digest: <%= Club.digest('password') %>
+  address_line_1: 67 Sportsman Ave.
+  city: Horsham
+  state: NSW
+  postcode: 4321
+  country: Australia
+  phone1: 07654321
+  owner_first_name: Gregory
+  owner_last_name: Egg
 
 <% 30.times do |n| %>
-user_<%= n %>:
+club_<%= n %>:
   name:  <%= "Club #{n}" %>
   email: <%= "club-#{n}@example.com" %>
   password_digest: <%= Club.digest('password') %>
+  address_line_1: <%= "#{n} Street St." %>
+  city: Horsham
+  state: NSW
+  postcode: 4321
+  country: Australia
+  phone1: 07654321
+  owner_first_name: Gregory
+  owner_last_name: Egg
 <% end %>

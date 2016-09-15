@@ -3,7 +3,7 @@ require 'test_helper'
 class ClubsEditTest < ActionDispatch::IntegrationTest
   
 	def setup
-		@club = clubs(:michael)
+		@club = clubs(:kapow)
 	end
 
 	test "unsuccessful edit" do
@@ -15,7 +15,7 @@ class ClubsEditTest < ActionDispatch::IntegrationTest
 		                                          password: "foo",
 		                                          password_confirmation: "bar" } }
 		assert_template 'clubs/edit'
-		assert_select 'div.alert', "The form contains 4 errors"
+		assert_select 'div.alert'
 	end
 
 	test "successful edit" do 
@@ -26,8 +26,16 @@ class ClubsEditTest < ActionDispatch::IntegrationTest
 		email = "foo@bar.com"
 		patch club_path(@club), params: { club: { name: name,
 										  		  email: email,
-										  		  password: "",
-										  		  password_confirmation: "" } }
+										  		  password: "password", 
+			             						  password_confirmation: "password", 
+			             						  address_line_1: "123 Street St.", 
+			             						  city: "Hometown",
+			             						  state: "VIC", 
+			             						  postcode: 1234, 
+			             						  country: "Turkmenistan", 
+			             						  phone1: "985764345",
+			             						  owner_first_name: "Greg", 
+			             						  owner_last_name: "Egg" } }
 		assert_not flash.empty?
 		assert_redirected_to @club
 		@club.reload
@@ -44,7 +52,15 @@ class ClubsEditTest < ActionDispatch::IntegrationTest
 		patch club_path(@club), params: { club: { name: name,
 												  email: email,
 												  password: "",
-												  password_confirmation: "" } }
+												  password_confirmation: "",
+			             					      address_line_1: "123 Street St.", 
+			             					      city: "Hometown",
+			             						  state: "VIC", 
+			             						  postcode: 1234, 
+			             						  country: "Turkmenistan", 
+			             						  phone1: "985764345",
+			             						  owner_first_name: "Greg", 
+			             						  owner_last_name: "Egg" } }
 		assert_not flash.empty?
 		assert_redirected_to @club
 		@club.reload

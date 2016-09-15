@@ -10,16 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914131501) do
+ActiveRecord::Schema.define(version: 20160915053204) do
 
   create_table "clubs", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.string   "password_digest"
     t.string   "remember_digest"
-    t.boolean  "admin",           default: false
+    t.boolean  "admin",            default: false
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "postcode"
+    t.string   "country"
+    t.string   "phone1"
+    t.string   "phone2"
+    t.string   "owner_first_name"
+    t.string   "owner_last_name"
     t.index ["email"], name: "index_clubs_on_email", unique: true
   end
 

@@ -3,7 +3,7 @@ require 'test_helper'
 class ClubsLoginTest < ActionDispatch::IntegrationTest
 
 	def setup
-		@club = clubs(:michael)
+		@club = clubs(:kapow)
 	end
   
 	test "login with invalid information" do 

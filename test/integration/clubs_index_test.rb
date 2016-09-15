@@ -3,8 +3,8 @@ require 'test_helper'
 class ClubsIndexTest < ActionDispatch::IntegrationTest
 
   def setup
-    @admin     = clubs(:michael)
-    @non_admin = clubs(:archer)
+    @admin     = clubs(:kapow)
+    @non_admin = clubs(:henrys)
   end
 
   test "index as admin including pagination and delete links" do

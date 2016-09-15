@@ -4,7 +4,9 @@ class ClubTest < ActiveSupport::TestCase
   
 	def setup
 		@club = Club.new(name: "Example Club", email: "club@example.com", password: "password", 
-			             password_confirmation: "password")
+			             password_confirmation: "password", address_line_1: "123 Street St.", city: "Hometown",
+			             state: "VIC", postcode: 1234, country: "Turkmenistan", phone1: "985764345",
+			             owner_first_name: "Greg", owner_last_name: "Egg")
 	end
 
 	test "should be valid" do 

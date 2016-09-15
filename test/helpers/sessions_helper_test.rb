@@ -3,7 +3,7 @@ require 'test_helper'
 class SessionsHelperTest < ActionView::TestCase
 
 	def setup
-		@club = clubs(:michael)
+		@club = clubs(:kapow)
 		remember(@club)
 	end
 
