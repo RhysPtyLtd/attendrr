@@ -53,7 +53,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
   end
 
   test "layout links with admin login" do
-    log_in_as(@club)
+    log_in_as(@admin)
     get root_path
     assert_template 'static_pages/home'
     assert_select "a[href=?]", root_path, count: 2
@@ -62,8 +62,8 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", contact_path
     assert_select "a[href=?]", logout_path
     assert_select "a[href=?]", clubs_path
-    assert_select "a[href=?]", club_path(@club)
-    assert_select "a[href=?]", edit_club_path(@club)
+    assert_select "a[href=?]", club_path(@admin)
+    assert_select "a[href=?]", edit_club_path(@admin)
     get contact_path
     assert_select "title", full_title("Contact")
     get signup_path
