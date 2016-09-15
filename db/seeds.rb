@@ -4,7 +4,7 @@ if Rails.env.production?
                password: "password",
                password_confirmation: "password",
                address_line_1: "30 Sportsman Ave.", 
-               address_line_2: "Unit 67"
+               address_line_2: "Unit 67",
                city: "Mermaid Beach",
                state: "QLD", 
                postcode: 4218, 
@@ -25,8 +25,7 @@ if Rails.env.production?
                country: "China", 
                phone1: "0409586943",
                owner_first_name: "Henry", 
-               owner_last_name: "Lin"
-               )
+               owner_last_name: "Lin")
 else
   Club.create!(name: "Kapow Karate!",
                email: "tester@classmaster.com",
@@ -53,8 +52,7 @@ else
                country: "China", 
                phone1: "0409586943",
                owner_first_name: "Henry", 
-               owner_last_name: "Lin"
-               )
+               owner_last_name: "Lin")
 
   99.times do |n|
     name  = Faker::Company.name
