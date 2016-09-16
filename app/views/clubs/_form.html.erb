@@ -1,46 +1,46 @@
 <%= form_for(@club) do |f| %>
 	<%= render 'shared/error_messages', object: @user %>
 
-	<%= f.label :name, "Club name" %>
+	<%= f.label :name, "Club name" %>*
 	<%= f.text_field :name, class: 'form-control' %>
 
-	<%= f.label :owner_first_name %>
+	<%= f.label :owner_first_name %>*
 	<%= f.text_field :owner_first_name, class: 'form-control' %>
 
-	<%= f.label :owner_last_name %>
+	<%= f.label :owner_last_name %>*
 	<%= f.text_field :owner_last_name, class: 'form-control' %>
 
-	<%= f.label :email %>
+	<%= f.label :email %>*
 	<%= f.email_field :email, class: 'form-control' %>
 
-	<%= f.label :address_line_1 %>
+	<%= f.label :address_line_1 %>* Street address, P.O. box, company name, etc.
 	<%= f.text_field :address_line_1, class: 'form-control' %>
 
-	<%= f.label :address_line_2 %>
+	<%= f.label :address_line_2 %> Apartment, suite, unit, building, floor, etc.
 	<%= f.text_field :address_line_2, class: 'form-control' %>
 
-	<%= f.label :city %>
+	<%= f.label :city %>*
 	<%= f.text_field :city, class: 'form-control' %>
 
-	<%= f.label :state %>
+	<%= f.label :state %>*
 	<%= f.text_field :state, class: 'form-control' %>
 
-	<%= f.label :postcode %>
+	<%= f.label :postcode %>*
 	<%= f.number_field :postcode, class: 'form-control' %>
 
-	<%= f.label :country %>
+	<%= f.label :country %>*
 	<%= f.text_field :country, class: 'form-control' %>
 
-	<%= f.label :phone1 %>
+	<%= f.label :phone1, "Primary phone" %>*
 	<%= f.phone_field :phone1, class: 'form-control' %>
 
-	<%= f.label :phone2 %>
+	<%= f.label :phone2, "Secondary phone" %>
 	<%= f.phone_field :phone2, class: 'form-control' %>
 
-	<%= f.label :password %>
+	<%= f.label :password %>*
 	<%= f.password_field :password, class: 'form-control' %>
 
-	<%= f.label :password_confirmation, "Confirm password" %>
+	<%= f.label :password_confirmation, "Confirm password" %>*
 	<%= f.password_field :password_confirmation, class: 'form-control' %>
 
 	<%= f.submit yield(:button_text), class: "btn btn-primary" %>

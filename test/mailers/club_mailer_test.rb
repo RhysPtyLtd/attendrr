@@ -14,4 +14,15 @@ class ClubMailerTest < ActionMailer::TestCase
     assert_match CGI.escape(club.email), mail.body.encoded
   end
 
+  test "password_reset" do
+    club = clubs(:kapow)
+    club.reset_token = Club.new_token
+    mail = ClubMailer.password_reset(club)
+    assert_equal "Password reset", mail.subject
+    assert_equal [club.email], mail.to
+    assert_equal ["noreply@classmaster.com"], mail.from
+    assert_match club.reset_token, mail.body.encoded
+    assert_match CGI.escape(club.email), mail.body.encoded
+  end
+
 end

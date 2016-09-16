@@ -42,7 +42,7 @@ module SessionsHelper
 		cookies.delete(:remember_token)
 	end
 
-	# Logs out the current user
+	# Logs out the current club
 	def log_out
 		forget(current_club)
 		session.delete(:club_id)
