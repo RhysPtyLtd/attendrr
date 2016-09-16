@@ -28,7 +28,7 @@ class PasswordResetsController < ApplicationController
       render 'edit'
     elsif @club.update_attributes(club_params)
       log_in @club
-      @club.update_attributes(:reset_digest, nil)
+      @club.update_attribute(:reset_digest, nil)
       flash[:success] = "Password has been reset"
       redirect_to @club
     else
