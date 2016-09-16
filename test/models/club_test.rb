@@ -74,7 +74,7 @@ class ClubTest < ActiveSupport::TestCase
 	end
 
   test "authenticated? should return false for club with nil digest" do
-    assert_not @club.authenticated?('')
+    assert_not @club.authenticated?(:remember, '')
   end
 
 end

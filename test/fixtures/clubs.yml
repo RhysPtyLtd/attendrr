@@ -13,6 +13,8 @@ kapow:
   phone1: 07654321
   owner_first_name: Gregory
   owner_last_name: Egg
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 henrys:
   name: Henry's Kungfu
@@ -26,6 +28,8 @@ henrys:
   phone1: 07654321
   owner_first_name: Gregory
   owner_last_name: Egg
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 lana:
   name: Lana Kane
@@ -39,6 +43,8 @@ lana:
   phone1: 07654321
   owner_first_name: Gregory
   owner_last_name: Egg
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 malory:
   name: Malory Archer
@@ -52,6 +58,8 @@ malory:
   phone1: 07654321
   owner_first_name: Gregory
   owner_last_name: Egg
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 <% 30.times do |n| %>
 club_<%= n %>:
@@ -66,4 +74,6 @@ club_<%= n %>:
   phone1: 07654321
   owner_first_name: Gregory
   owner_last_name: Egg
+  activated: true
+  activated_at: <%= Time.zone.now %>
 <% end %>

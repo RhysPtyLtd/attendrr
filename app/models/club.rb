@@ -1,5 +1,6 @@
 class Club < ApplicationRecord
-	attr_accessor :remember_token
+	attr_accessor :remember_token, :activation_token
+    before_create :create_activation_digest
 	before_save { email.downcase! }
     before_save { state.upcase! }
     #before_save { owner_first_name.capitalize_name }
@@ -40,14 +41,33 @@ class Club < ApplicationRecord
     end
 
     # Returns true if the given token matches the digest
-    def authenticated?(remember_token)
-    	return false if remember_digest.nil?
-    	BCrypt::Password.new(remember_digest).is_password?(remember_token)
+    def authenticated?(attribute, token)
+        digest = send("#{attribute}_digest")
+        return false if digest.nil?
+        BCrypt::Password.new(digest).is_password?(token)
     end
 
     # Forgets a club
     def forget
     	update_attribute(:remember_digest, nil)
     end
+
+    # Activates an account
+    def activate
+        update_columns(activated: true, activated_at: Time.zone.now)
+    end
+
+    # Sends activation email
+    def send_activation_email
+        ClubMailer.account_activation(self).deliver_now
+    end
+
+    private
+
+        # Creates and assigns the activation token and digest
+        def create_activation_digest
+            self.activation_token = Club.new_token
+            self.activation_digest = Club.digest(activation_token)
+        end
 
 end

@@ -15,9 +15,9 @@ class ClubsController < ApplicationController
   def create
   	@club = Club.new(club_params)
   	if @club.save
-      log_in @club
-      flash[:success] = "#{@club.name} successfully created. Welcome to Class Master!"
-  		redirect_to @club
+      @club.send_activation_email
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to root_url
   	else
   		render 'new'
   	end

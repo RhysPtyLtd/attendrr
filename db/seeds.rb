@@ -12,7 +12,9 @@ if Rails.env.production?
                phone1: "0421793832",
                owner_first_name: "Rhys", 
                owner_last_name: "Phillips",
-               admin: true)
+               admin: true,
+               activated: true,
+               activated_at: Time.zone.now)
 
   Club.create!(name: "Henry's Kungfu",
                email: "henry@kungfu.com",
@@ -25,7 +27,9 @@ if Rails.env.production?
                country: "China", 
                phone1: "0409586943",
                owner_first_name: "Henry", 
-               owner_last_name: "Lin")
+               owner_last_name: "Lin",
+               activated: true,
+               activated_at: Time.zone.now)
 else
   Club.create!(name: "Kapow Karate!",
                email: "tester@classmaster.com",
@@ -39,7 +43,9 @@ else
                phone1: "985764345",
                owner_first_name: "Greg", 
                owner_last_name: "Egg",
-               admin: true)
+               admin: true,
+               activated: true,
+               activated_at: Time.zone.now)
 
   Club.create!(name: "Henry's Kungfu",
                email: "henry@kungfu.com",
@@ -52,7 +58,9 @@ else
                country: "China", 
                phone1: "0409586943",
                owner_first_name: "Henry", 
-               owner_last_name: "Lin")
+               owner_last_name: "Lin",
+               activated: true,
+               activated_at: Time.zone.now)
 
   99.times do |n|
     name  = Faker::Company.name
@@ -79,6 +87,8 @@ else
                  country: country,
                  phone1: phone1,
                  owner_first_name: owner_first_name,
-                 owner_last_name: owner_last_name)
+                 owner_last_name: owner_last_name,
+                 activated: true,
+                 activated_at: Time.zone.now)
   end
 end

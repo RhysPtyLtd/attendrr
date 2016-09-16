@@ -6,9 +6,16 @@ class SessionsController < ApplicationController
   def create
   	@club = Club.find_by(email: params[:session][:email].downcase)
   	if @club && @club.authenticate(params[:session][:password])
-  		log_in @club
-      params[:session][:remember_me] == '1' ? remember(@club) : forget(@club)
-  		redirect_back_or @club
+      if @club.activated?
+    		log_in @club
+        params[:session][:remember_me] == '1' ? remember(@club) : forget(@club)
+    		redirect_back_or @club
+      else
+        message = "Account not activated. "
+        message += "Check your email for the activation link."
+        flash[:warning] = message
+        redirect_to root_url
+      end
   	else
   		flash.now[:danger] = 'Invalid email/password combination'
   		render 'new'

@@ -23,7 +23,7 @@ module SessionsHelper
 			@current_club ||= Club.find_by(id: club_id)
 		elsif (club_id = cookies.signed[:club_id])
 			club = Club.find_by(id: club_id)
-			if club && club.authenticated?(cookies[:remember_token])
+			if club && club.authenticated?(:remember, cookies[:remember_token])
 				log_in club
 				@current_club = club
 			end

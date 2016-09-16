@@ -8,6 +8,7 @@
 			</h1>
 			<p>
 				Owner: <%= @club.owner_first_name  %> <%= @club.owner_last_name %><br>
+				Email: <%= @club.email %><br>
 				Address: <% if @club.address_line_2? %><%= @club.address_line_2 %><br><% end %>
 				<%= @club.address_line_1 %><br>
 				<%= @club.city %><br>
