@@ -1,0 +1,3 @@
+<%= @student.first_name %>
+<%= @student.club.name %>
+<%= link_to "Delete", @student, method: :delete, data: { confirm: "Please note: only delete students that were entered erroneously. To remove a student that is no longer active follow the 'deactivate' link. Are you sure you want to delete this student?"} %>

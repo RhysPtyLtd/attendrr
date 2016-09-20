@@ -77,4 +77,20 @@ class ClubTest < ActiveSupport::TestCase
     assert_not @club.authenticated?(:remember, '')
   end
 
+  test "associated students should be destroyed" do 
+  	@club.save
+  	@club.students.create!(first_name: "Grinkler",
+	  						 last_name: "Nash",
+	  						 email: "grink@thesink.com",
+	  						 address_line_1: "10 Street St.",
+	  						 city: "Hometown",
+	  						 postcode: 1234,
+	  						 state: "ACT",
+	  						 phone1: "0596878543",
+	  						 dob: Date.new(1990, 10, 26))
+  	assert_difference 'Student.count', -1 do 
+  		@club.destroy
+  	end
+  end
+
 end

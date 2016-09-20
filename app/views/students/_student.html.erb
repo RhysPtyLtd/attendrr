@@ -1,0 +1,8 @@
+<li id="student-<%= student.id %>">
+	<span class="details">
+		<%= student.first_name %> <%= student.last_name %><br>
+		DOB: <%= student.dob %><br>
+		Email: <%= student.email %><br>
+		Member since <%= time_ago_in_words(student.created_at) %> ago.
+	</span>
+</li>

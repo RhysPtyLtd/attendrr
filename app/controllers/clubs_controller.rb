@@ -1,11 +1,10 @@
 class ClubsController < ApplicationController
-  before_action :logged_in_club, only: [:edit, :update, :destroy]
+  before_action :logged_in_user, only: [:edit, :update, :destroy]
   before_action :correct_club, only: [:edit, :update, :show]
   before_action :admin_club, only: [:destroy]
   before_action :admin_club_index, only: [:index]
 
   def index
-    
   end
 
   def new
@@ -25,6 +24,7 @@ class ClubsController < ApplicationController
 
   def show
   	@club = Club.find(params[:id])
+    @students = @club.students.paginate(page: params[:page])
   end
 
   def edit
@@ -50,19 +50,10 @@ class ClubsController < ApplicationController
   	def club_params
   		params.require(:club).permit(:name, :email, :password, :password_confirmation, :address_line_1, :address_line_2,
                                    :city, :state, :postcode, :country, :phone1, :phone2, :owner_first_name, 
-                                   :owner_last_name)
+                                   :owner_last_name, :picture)
   	end
 
     # Before filters
-
-    # Confirms logged-in clubs
-    def logged_in_club
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
 
     # Confirms correct club is logged in
     def correct_club

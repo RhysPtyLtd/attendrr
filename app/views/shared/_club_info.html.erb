@@ -1,0 +1,3 @@
+<h1><%= current_club.name %></h1>
+<span><%= link_to "view my club", current_club %></span>
+<span><%= pluralize(current_club.students.count, "student") %></span>

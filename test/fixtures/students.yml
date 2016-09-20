@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+bob:
+  club: kapow
+  first_name: Bob
+  last_name: Jones
+  email: bob@email.com
+  address_line_1: 123 Street St.
+  city: Horsham
+  state: VIC
+  postcode: 1234
+  phone1: 0968796854
+  dob: 1960-2-17
+
+hank:
+  club: kapow
+  first_name: Hank
+  last_name: McCoy
+  email: beast@xmen.com
+  address_line_1: 123 Street St.
+  city: Horsham
+  state: VIC
+  postcode: 1234
+  phone1: 0968796854
+  dob: 1960-2-17

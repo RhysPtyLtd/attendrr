@@ -91,4 +91,27 @@ else
                  activated: true,
                  activated_at: Time.zone.now)
   end
+
+  99.times do |n|
+    club_id = Faker::Number.between(1, 2)
+    first_name = Faker::Name.first_name
+    last_name = Faker::Name.last_name
+    address_line_1 = Faker::Address.street_address
+    city = Faker::Address.city
+    state = Faker::Address.state
+    postcode = Faker::Address.postcode
+    phone1 = Faker::PhoneNumber.phone_number
+    dob = Faker::Date.between(100.years.ago, 6.years.ago)
+    email = Faker::Internet.email(first_name)
+    Student.create!(club_id: club_id,
+                    first_name: first_name,
+                    last_name: last_name,
+                    address_line_1: address_line_1,
+                    city: city,
+                    state: state,
+                    postcode: postcode,
+                    phone1: phone1,
+                    dob: dob,
+                    email: email)
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160916095846) do
+ActiveRecord::Schema.define(version: 20160919122105) do
 
   create_table "clubs", force: :cascade do |t|
     t.string   "name"
@@ -35,7 +35,31 @@ ActiveRecord::Schema.define(version: 20160916095846) do
     t.datetime "activated_at"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
+    t.string   "picture"
     t.index ["email"], name: "index_clubs_on_email", unique: true
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.integer  "club_id"
+    t.string   "email"
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "postcode"
+    t.string   "phone1"
+    t.string   "phone2"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "parent1_first_name"
+    t.string   "parent1_last_name"
+    t.string   "parent2_first_name"
+    t.string   "parent2_last_name"
+    t.date     "dob"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "picture"
+    t.index ["club_id"], name: "index_students_on_club_id"
   end
 
 end

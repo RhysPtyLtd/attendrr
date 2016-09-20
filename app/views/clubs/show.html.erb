@@ -4,6 +4,7 @@
 		<section class="club_info">
 			<h1>
 				<!-- Can put image with class 'clublogo' here. CSS rules already defined. Replace 'gravatar' with 'clublogo' -->
+				<%= image_tag @club.picture.url if @club.picture? %>
 				<%= @club.name %>
 			</h1>
 			<p>
@@ -16,6 +17,7 @@
 				<%= @club.country %><br>
 				Phone: <%= @club.phone1 %><br>
 				<% if @club.phone2? %>Secondary phone: <%= @club.phone2 %><% end %>
+				Students: <%= link_to(@club.students.count, students_path) %>
 			</p>
 		</section>
 	</aside>

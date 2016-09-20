@@ -1,4 +1,6 @@
 class Club < ApplicationRecord
+    has_many :students, dependent: :destroy
+    mount_uploader :picture, PictureUploader
 	attr_accessor :remember_token, :activation_token, :reset_token
     before_create :create_activation_digest
 	before_save { email.downcase! }
@@ -21,6 +23,7 @@ class Club < ApplicationRecord
     validates :phone1, presence: true, length: { maximum: 25, minimum: 8 }
     validates :owner_first_name, presence: true, length: { maximum: 200 }
     validates :owner_last_name, presence: true, length: { maximum: 200 }
+    validate :picture_size
 
 	# Returns the hash digest of the given string. This is a CLASS METHOD.
 	def Club.digest(string)
