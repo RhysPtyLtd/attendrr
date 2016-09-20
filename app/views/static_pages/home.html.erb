@@ -1,4 +1,4 @@
-<% if !current_user.nil? %>
+<% if logged_in? %>
 	<%= render 'logged_in' %>
 <% else %>
 	<%= render 'logged_out' %>
