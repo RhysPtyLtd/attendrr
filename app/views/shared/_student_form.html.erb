@@ -8,7 +8,7 @@
 	<%= f.text_field :last_name, class: 'form-control' %>
 
 	<%= f.label :dob, "Date of birth" %>*
-	<%= f.date_select :dob, {order: [:day, :month, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 90, end_year: Date.today.year}, class: 'form-control' %>
+	<%= f.date_select :dob, {order: [:day, :month, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year, end_year: Date.today.year - 90}, class: 'form-control' %>
 
 	<%= f.label :email %>*
 	<%= f.email_field :email, class: 'form-control' %>
@@ -45,11 +45,13 @@
 
 	<%= f.label :parent2_last_name, "Parent 2 last name" %>
 	<%= f.text_field :parent2_last_name, class: 'form-control' %>
-	</div>
-	<%= f.submit "Create", class: "btn btn-primary" %>
+
 	<span class="picture">
+		<%= f.label :picture, "Attach student picture" %>
 		<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
 	</span>
+	</div>
+	<%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>
 
 <!-- JQuery. Ensures files size is < 5MB client-side -->

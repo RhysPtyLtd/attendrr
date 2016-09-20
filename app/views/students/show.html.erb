@@ -1,3 +1,25 @@
-<%= @student.first_name %>
-<%= @student.club.name %>
+<%= @student.first_name %> <%= @student.last_name %><br>
+<%= image_tag @student.picture.url if @student.picture? %>
+<%= @student.club.name %><br>
+<%= @student.email %><br>
+Address:<br>
+<%= @student.address_line_1 %><br>
+<% if @student.address_line_2? %>
+	<%= @student.address_line_2 %><br>
+<% end %>
+<%= @student.city %><br>
+<%= @student.state %><br>
+<%= @student.postcode %><br>
+Primary phone: <%= @student.phone1 %><br>
+<% if @student.phone2? %>
+	Secondary phone: <%= @student.phone2 %><br>
+<% end %>
+Date of birth: <%= @student.dob %><br>
+<% if @student.parent1_first_name? %>
+	Parent/guardian 1: <%= @student.parent1_first_name %> <%= @student.parent1_last_name %><br>
+<% end %>
+<% if @student.parent2_first_name? && @student.parent2_last_name? %>
+	Parent/guardian 2: <%= @student.parent2_first_name %> <%= @student.parent2_last_name %><br><br>
+<% end %>
+<%= link_to "Edit student details", edit_student_path %><br>
 <%= link_to "Delete", @student, method: :delete, data: { confirm: "Please note: only delete students that were entered erroneously. To remove a student that is no longer active follow the 'deactivate' link. Are you sure you want to delete this student?"} %>

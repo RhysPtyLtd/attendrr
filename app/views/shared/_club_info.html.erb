@@ -1,3 +1,5 @@
 <h1><%= current_club.name %></h1>
-<span><%= link_to "view my club", current_club %></span>
-<span><%= pluralize(current_club.students.count, "student") %></span>
+<%= image_tag current_club.picture.url if current_club.picture? %>
+<span><%= link_to "View club details", current_club %></span>
+<span><%= link_to("Create new student", new_student_path) %></span>
+<span>Students: <%= link_to current_club.students.count, students_path %></span>

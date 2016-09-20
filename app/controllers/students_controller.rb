@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-	before_action :logged_in_user, only: [:create, :destroy]
+	before_action :logged_in_user, only: [:create, :destroy, :new, :edit, :update]
 	before_action :correct_club, only: [:index, :show, :destroy] # Currently does nothing??
 
 	def index
@@ -25,7 +25,21 @@ class StudentsController < ApplicationController
 			flash[:success] = "Student created!"
 			redirect_to root_url
 		else
-			render 'static_pages/home'
+			render 'new'
+		end
+	end
+
+	def edit
+		@student = current_club.students.find_by(id: params[:id])	
+	end
+
+	def update
+		@student = current_club.students.find_by(id: params[:id])
+		if @student.update_attributes(student_params)
+			flash[:success] = "Student details updated"
+			redirect_to @student
+		else
+			render 'edit'
 		end
 	end
 
