@@ -1,0 +1,14 @@
+<%= form_for(@activity) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<div class="field">
+		<%= f.label :name, "Class name" %>*
+		<%= f.text_field :name, class: 'form-control' %>
+
+		<%= f.label :active, "Status" %><br>
+		<%= f.label :active, "Activated", :value => "true" %>
+		<%= f.radio_button :active, true, :checked => true %>
+		<%= f.label :active, "Deactivated", :value => "false" %>
+		<%= f.radio_button :active, false %>
+	</div>
+	<%= f.submit "Create class", class: "btn btn-primary" %>
+<% end %>

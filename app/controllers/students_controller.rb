@@ -23,7 +23,7 @@ class StudentsController < ApplicationController
 		@student = current_club.students.build(student_params)
 		if @student.save
 			flash[:success] = "Student created!"
-			redirect_to root_url
+			redirect_to student_path(@student)
 		else
 			render 'new'
 		end
@@ -64,14 +64,5 @@ class StudentsController < ApplicationController
 		end
 
 		# Before filters
-
-		# Confirms correct club is logged in
-	    def correct_club
-	      if @club = current_club
-	      	redirect_to(root_url) unless current_club?(@club) || current_club.admin?
-	      else
-	      	redirect_to(root_url)
-	      end
-	    end
 
 end

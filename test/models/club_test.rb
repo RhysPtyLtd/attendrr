@@ -93,4 +93,12 @@ class ClubTest < ActiveSupport::TestCase
   	end
   end
 
+  test "associated activities should be destroyed" do 
+  	@club.save
+  	@club.activities.create!(name: "Boxing", active: true)
+  	assert_difference 'Activity.count', -1 do 
+  		@club.destroy
+  	end
+  end
+
 end

@@ -1,5 +1,6 @@
 class Club < ApplicationRecord
     has_many :students, dependent: :destroy
+    has_many :activities, dependent: :destroy
     mount_uploader :picture, PictureUploader
 	attr_accessor :remember_token, :activation_token, :reset_token
     before_create :create_activation_digest
