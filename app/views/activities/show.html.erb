@@ -1,3 +1,14 @@
 <h1><%= @activity.name %></h1>
 
-<%= link_to "Edit class details", edit_activity_path(@activity) %>
+<% if @activity.timeslots.any? %>
+	Class times:<br>
+	<li>
+	<% @activity.timeslots.where(active: true).each do |t| %>
+			<ul><%= Date::DAYNAMES[t.day] %> <%= t.time_start.strftime("%I:%M") %>-<%= t.time_end.strftime("%I:%M") %></ul>
+	<% end %>
+	</li>
+<% else %>
+	<%= link_to "(Add timetable for this class)", edit_activity_path(@activity) %><br>
+<% end %>
+
+<%= link_to "Change/add class details", edit_activity_path(@activity) %><br>

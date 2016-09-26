@@ -4,11 +4,16 @@
 		<%= f.label :name, "Class name" %>*
 		<%= f.text_field :name, class: 'form-control' %>
 
-		<%= f.label :active, "Status" %><br>
-		<%= f.label :active, "Activated", :value => "true" %>
-		<%= f.radio_button :active, true, :checked => true %>
-		<%= f.label :active, "Deactivated", :value => "false" %>
-		<%= f.radio_button :active, false %>
+			<%= f.fields_for :timeslots do |timeslots_form| %>
+					<%= timeslots_form.label :time_start, "Start time" %>
+					<%= timeslots_form.time_select :time_start %>
+
+					<%= timeslots_form.label :time_end, "End time" %>
+					<%= timeslots_form.time_select :time_end %>
+
+					<%= timeslots_form.label :day %>
+					<%= timeslots_form.select :day, (0..6).map {|d| [Date::DAYNAMES[d], d]} %>
+			<% end %>
 	</div>
 	<%= f.submit "Create class", class: "btn btn-primary" %>
 <% end %>

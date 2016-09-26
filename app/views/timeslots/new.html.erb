@@ -1,0 +1,14 @@
+<%= form_for(@timeslot) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<div class="field">
+		<%= f.label :time_start, "Start time" %>
+		<%= f.time_select :time_start %>
+
+		<%= f.label :time_end, "End time" %>
+		<%= f.time_select :time_end %>
+
+		<%= f.label :day %>
+		<%= f.select :day, (0..6).map {|d| [Date::DAYNAMES[d], d]} %>
+	</div>
+	<%= f.submit "Add timeslot", class: "btn btn-primary" %>
+<% end %>

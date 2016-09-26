@@ -1,15 +1,29 @@
+<h1><%= @activity.name %></h1>
+
+<% @activity.timeslots.where(active: true).each do |t| %>
+	<%= Date::DAYNAMES[t.day] %> <%= t.time_start.strftime("%I:%M") %>-<%= t.time_end.strftime("%I:%M") %><br>
+<% end %>
+
 <%= form_for(@activity) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 	<div class="field">
-		<%= f.label :name, "Class name" %>*
-		<%= f.text_field :name, class: 'form-control' %>
+		<%= f.fields_for :timeslots, @activity.timeslots.build do |timeslots_form| %>
+			<%= timeslots_form.label :time_start, "Start time" %>
+			<%= timeslots_form.time_select :time_start %>
 
-		<%= f.label :active, "Status" %><br>
-		<%= f.label :active, "Activated", :value => "true" %>
-		<%= f.radio_button :active, true, :checked => true	 %>
-		<%= f.label :active, "Deactivated", :value => "false" %>
-		<%= f.radio_button :active, false %>
+			<%= timeslots_form.label :time_end, "End time" %>
+			<%= timeslots_form.time_select :time_end %>
+
+			<%= timeslots_form.label :day %>
+			<%= timeslots_form.select :day, (0..6).map {|d| [Date::DAYNAMES[d], d]} %>
+		<% end %>
 	</div>
-	<%= f.submit "Edit details", class: "btn btn-primary" %>
+	<%= f.submit "Create class", class: "btn btn-primary" %>
 <% end %>
-<%= link_to "Delete class", @activity, method: :delete, data: { confirm: "Please note: only delete classes that were entered erroneously. To remove a class that is no longer active select the 'deactivate' button. Are you sure you want to delete this class?"} %>
+
+
+
+<%= link_to "Deactivate this class", activity_path(@activity, :activity => { :active => false }),
+									 :method => :put, data: { :confirm => "Are you sure?" }, class: "btn btn-primary"  %><br> 
+
+<%= link_to "Delete this class", @activity, method: :delete, data: { confirm: "Please note: only delete classes that were entered erroneously. To remove a class that is no longer active select the 'deactivate' button. Are you sure you want to delete this class?" }, class: "btn btn-primary" %>

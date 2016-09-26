@@ -1,0 +1,10 @@
+<!-- Timeslots appear on this page for "deletion" (deactivation) -->
+<h3>Timeslots will appear here for "deletion" (deactivation)</h3>
+
+<% @timeslots.each do |t| %>
+	<% if t.active? %>
+		<%= Date::DAYNAMES[t.day] %> <%= t.time_start.strftime("%I:%M") %>-<%= t.time_end.strftime("%I:%M") %> <%= link_to "Remove", timeslot_path(t, :t => { :active => false }), :method => :put, :confirm => "Are you sure?" %><br>
+	<% end %>
+<% end %>
+
+<!-- THIS PAGE DOESN'T WORK -->  
