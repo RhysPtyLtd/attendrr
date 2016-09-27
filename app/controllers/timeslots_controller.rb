@@ -22,10 +22,18 @@ class TimeslotsController < ApplicationController
 	end
 
 	def edit
+		@timeslot = Timeslot.find_by(params[:id])
 	end
 
 	# SOLVE THIS THINGER
 	def update
+		@timeslot = Timeslot.find(params[:id])
+		@timeslot.toggle!(:active)
+		@activity = @timeslot.activity
+		if @timeslot.update_attributes(timeslot_params)
+			flash[:success] = "Class details updated"
+			redirect_to edit_activity_path(@activity)
+		end
 	end
 
 	private

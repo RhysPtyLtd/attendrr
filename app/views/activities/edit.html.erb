@@ -1,7 +1,8 @@
 <h1><%= @activity.name %></h1>
 
 <% @activity.timeslots.where(active: true).each do |t| %>
-	<%= Date::DAYNAMES[t.day] %> <%= t.time_start.strftime("%I:%M") %>-<%= t.time_end.strftime("%I:%M") %><br>
+	<%= Date::DAYNAMES[t.day] %> <%= t.time_start.strftime("%I:%M") %>-<%= t.time_end.strftime("%I:%M") %> 
+	<%= link_to "Delete this time slot", timeslot_path(t, timeslot: {active: false}), method: :put, data: { confirm: "Are you sure?" } %><br>
 <% end %>
 
 <%= form_for(@activity) do |f| %>
