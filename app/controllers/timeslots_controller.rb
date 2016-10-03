@@ -16,16 +16,10 @@ class TimeslotsController < ApplicationController
 		end
 	end
 
-	def index
-		@activity = Activity.find_by(params[:id])
-		@timeslots = @activity.timeslots.all
-	end
-
 	def edit
 		@timeslot = Timeslot.find_by(params[:id])
 	end
 
-	# SOLVE THIS THINGER
 	def update
 		@timeslot = Timeslot.find(params[:id])
 		@timeslot.toggle!(:active)

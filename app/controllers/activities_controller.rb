@@ -5,11 +5,11 @@ class ActivitiesController < ApplicationController
 	def new
 		@activity = Activity.new
 		@activity.timeslots.build
+		@activity.ranks.build
 	end
 
 	def create
 		@activity = current_club.activities.build(activity_params)
-		#@activity.timeslots.first.activity_id = @activity.id
 		if @activity.save
 			flash[:success] = "New class created!"
 			redirect_to activities_path
@@ -69,7 +69,11 @@ class ActivitiesController < ApplicationController
 																	   :time_start,
 																	   :time_end,
 																	   :day,
-																	   :active])
+																	   :active],
+											 :ranks_attributes => [:id,
+											 					   :name,
+											 					   :position,
+											 					   :active])
 		end
 
 end
