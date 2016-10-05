@@ -4,6 +4,9 @@ class StudentTest < ActiveSupport::TestCase
 	 
 	def setup
 	  @club = clubs(:kapow)
+	  @payment_plan = @club.payment_plans.build(name: "Gold",
+	  											frequency: "Weekly",
+	  											price: 130)
 	  @student = @club.students.build(first_name: "Grinkler", 
 	  						 club_id: @club.id,
 	  						 last_name: "Nash",
@@ -13,7 +16,8 @@ class StudentTest < ActiveSupport::TestCase
 	  						 postcode: 1234,
 	  						 state: "ACT",
 	  						 phone1: "0596878543",
-	  						 dob: Date.new(1990, 10, 26))
+	  						 dob: Date.new(1990, 10, 26),
+	  						 payment_plan_id: @payment_plan.id)
 	end
 
 	test "should be valid" do 

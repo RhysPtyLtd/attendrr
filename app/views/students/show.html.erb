@@ -21,5 +21,6 @@ Date of birth: <%= @student.dob %><br>
 <% if @student.parent2_first_name? && @student.parent2_last_name? %>
 	Parent/guardian 2: <%= @student.parent2_first_name %> <%= @student.parent2_last_name %><br><br>
 <% end %>
+Payment plan: <%= @student.payment_plan.name %><br>
 <%= link_to "Edit student details", edit_student_path %><br>
 <%= link_to "Delete", @student, method: :delete, data: { confirm: "Please note: only delete students that were entered erroneously. To remove a student that is no longer active follow the 'deactivate' link. Are you sure you want to delete this student?"} %>

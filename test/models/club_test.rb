@@ -87,7 +87,8 @@ class ClubTest < ActiveSupport::TestCase
 	  						 postcode: 1234,
 	  						 state: "ACT",
 	  						 phone1: "0596878543",
-	  						 dob: Date.new(1990, 10, 26))
+	  						 dob: Date.new(1990, 10, 26),
+	  						 payment_plan_id: 1)
   	assert_difference 'Student.count', -1 do 
   		@club.destroy
   	end

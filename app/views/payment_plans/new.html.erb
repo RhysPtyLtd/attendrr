@@ -1,0 +1,22 @@
+<% @club.payment_plans.where(active: true).where.not(name: 'Prospect').each do |pp| %>
+	<%= pp.name %> <%= link_to "Delete this rank", payment_plan_path(pp, payment_plan: { active: false }), method: :put, data: { confirm: "Are you sure?" } %><br>
+<% end %>
+
+<%= form_for(@payment_plan) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<div class="field">
+	<%= f.label :name %>*
+	<%= f.text_field :name, class: 'form-control' %>
+
+	<%= f.label :price %>*
+	<%= f.number_field :price, step: "0.01" %>
+
+	<%= f.label :frequency %>*
+	<%= f.select :frequency, options_for_select([['Weekly'], ['2-weekly'], ['Monthly'], ['6-monthly'], ['Yearly'], ['Per class']]), class: 'form-control' %>
+
+	<%= f.label :classes_amount %>
+	Per <%= f.number_field :classes_amount, class: 'form-control' %> classes
+
+	</div>
+	<%= f.submit "Create payment plan", class: "btn btn-primary" %>
+<% end %>

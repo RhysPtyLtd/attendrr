@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160927020505) do
+ActiveRecord::Schema.define(version: 20161004091108) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "name"
@@ -48,6 +48,18 @@ ActiveRecord::Schema.define(version: 20160927020505) do
     t.index ["email"], name: "index_clubs_on_email", unique: true
   end
 
+  create_table "payment_plans", force: :cascade do |t|
+    t.integer  "club_id"
+    t.string   "name"
+    t.decimal  "price",          precision: 8, scale: 2
+    t.string   "frequency"
+    t.boolean  "active",                                 default: true
+    t.integer  "classes_amount"
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
+    t.index ["club_id"], name: "index_payment_plans_on_club_id"
+  end
+
   create_table "ranks", force: :cascade do |t|
     t.string   "name"
     t.integer  "position"
@@ -78,6 +90,7 @@ ActiveRecord::Schema.define(version: 20160927020505) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "picture"
+    t.integer  "payment_plan_id"
     t.index ["club_id"], name: "index_students_on_club_id"
   end
 

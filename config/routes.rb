@@ -15,4 +15,5 @@ Rails.application.routes.draw do
     resources :activities
     resources :timeslots
     resources :ranks
+    resources :payment_plans
 end

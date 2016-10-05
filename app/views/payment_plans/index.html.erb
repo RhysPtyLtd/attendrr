@@ -1,0 +1,9 @@
+<% @payment_plans.where(active: true).where.not(name: 'Prospect').each do |pp| %>
+	<%= pp.name %><br>
+	<% if pp.frequency == 'Per class' %>
+		<%= number_to_currency(pp.price, unit: "$") %> per <%= pluralize(pp.classes_amount, "class") %>
+	<% else %>
+		<%= number_to_currency(pp.price, unit: "$") %> per <%= pp.frequency %>
+	<% end %>
+	<br>
+<% end %>
