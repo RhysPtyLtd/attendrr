@@ -26,7 +26,7 @@ class Club < ApplicationRecord
     validates :owner_first_name, presence: true, length: { maximum: 200 }
     validates :owner_last_name, presence: true, length: { maximum: 200 }
     validate :picture_size
-    after_save :build_prospect_plan
+    after_create :build_prospect_plan
 
 	# Returns the hash digest of the given string. This is a CLASS METHOD.
 	def Club.digest(string)
@@ -92,9 +92,9 @@ class Club < ApplicationRecord
             self.activation_digest = Club.digest(activation_token)
         end
 
-    # Creates default payment plan for new students
-    def build_prospect_plan
-        payment_plans.create(name: "Prospect", price: 0, frequency: "Per class", classes_amount: 1)
-    end
+        # Creates default payment plan for new students
+        def build_prospect_plan
+            self.payment_plans.create(name: "Prospect", price: 0, frequency: "Per class", classes_amount: 1)
+        end
 
 end

@@ -1,6 +1,6 @@
 class Student < ApplicationRecord
   belongs_to :club
-  belongs_to :payment_plan
+  belongs_to :payment_plan, optional: true
   default_scope -> { order(:last_name) }
   mount_uploader :picture, PictureUploader
   validates :club_id, presence: true
@@ -14,7 +14,7 @@ class Student < ApplicationRecord
   validates :phone1, presence: true
   validates :dob, presence: true
   validate :picture_size
-  before_create :assign_prospect
+  before_save :assign_prospect
 
   private
 
