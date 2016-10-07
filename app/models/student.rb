@@ -14,7 +14,7 @@ class Student < ApplicationRecord
   validates :phone1, presence: true
   validates :dob, presence: true
   validate :picture_size
-  before_save :assign_prospect
+  before_create :assign_prospect
 
   private
 
