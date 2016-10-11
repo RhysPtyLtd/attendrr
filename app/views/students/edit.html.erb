@@ -35,18 +35,6 @@
 	<%= f.label :phone2, "Secondary phone" %>
 	<%= f.phone_field :phone2, class: 'form-control' %>
 
-	<%= f.label :parent1_first_name, "Parent 1 first name" %>(*Required if under 18)
-	<%= f.text_field :parent1_first_name, class: 'form-control' %>
-
-	<%= f.label :parent1_last_name, "Parent 1 last name" %>(*Required if under 18)
-	<%= f.text_field :parent1_last_name, class: 'form-control' %>
-
-	<%= f.label :parent2_first_name, "Parent 2 first name" %>
-	<%= f.text_field :parent2_first_name, class: 'form-control' %>
-
-	<%= f.label :parent2_last_name, "Parent 2 last name" %>
-	<%= f.text_field :parent2_last_name, class: 'form-control' %>
-
 	<%= f.label :payment_plan_id, "Payment plan" %>
 	<%= f.collection_select(:payment_plan_id, @student.club.payment_plans, :id, :name) %>
 
