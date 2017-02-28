@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161004091108) do
+ActiveRecord::Schema.define(version: 20170227220840) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 20161004091108) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.index ["club_id"], name: "index_activities_on_club_id"
+  end
+
+  create_table "belts", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "rank_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rank_id"], name: "index_belts_on_rank_id"
+    t.index ["student_id"], name: "index_belts_on_student_id"
   end
 
   create_table "clubs", force: :cascade do |t|
@@ -82,15 +91,14 @@ ActiveRecord::Schema.define(version: 20161004091108) do
     t.string   "phone2"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "parent1_first_name"
-    t.string   "parent1_last_name"
-    t.string   "parent2_first_name"
-    t.string   "parent2_last_name"
     t.date     "dob"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "picture"
     t.integer  "payment_plan_id"
+    t.         "activity"
+    t.integer  "activity_id"
+    t.index ["activity_id"], name: "index_students_on_activity_id"
     t.index ["club_id"], name: "index_students_on_club_id"
   end
 
