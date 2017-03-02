@@ -15,8 +15,8 @@ Primary phone: <%= @student.phone1 %><br>
 	Secondary phone: <%= @student.phone2 %><br>
 <% end %>
 Date of birth: <%= @student.dob %><br>
-<% @student.ranks.each do |r| %>
-	<%= r.activity.name %><br>
+<% @student_activities.each do |r| %>
+	<%= r %><br>
 <% end %>
 Payment plan: <%= @student.payment_plan.name %><br>
 <%= link_to "Edit student details", edit_student_path %><br>

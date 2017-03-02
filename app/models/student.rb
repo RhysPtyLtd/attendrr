@@ -18,6 +18,14 @@ class Student < ApplicationRecord
   has_many :student_ranks
   has_many :ranks, through: :student_ranks
 
+  def student_activities
+    unique_activities = []
+    self.ranks.each do |r|
+      unique_activities << r.activity.name
+    end
+    unique_activities.uniq
+  end
+
   private
 
     def assign_prospect
