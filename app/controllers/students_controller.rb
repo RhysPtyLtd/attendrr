@@ -30,7 +30,8 @@ class StudentsController < ApplicationController
 	end
 
 	def edit
-		@student = current_club.students.find_by(id: params[:id])	
+		@student = current_club.students.find_by(id: params[:id])
+		@activities = current_club.activities.all	
 	end
 
 	def update
@@ -60,7 +61,7 @@ class StudentsController < ApplicationController
 			params.require(:student).permit(:email, :address_line_1, :address_line_2, :city, :state, :postcode, 
 											:phone1, :phone2, :first_name, :last_name, :parent1_first_name,
 											:parent1_last_name, :parent2_first_name, :parent2_last_name, :dob,
-											:picture, :payment_plan_id)
+											:picture, :payment_plan_id, rank_ids: [])
 		end
 
 		# Before filters

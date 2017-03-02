@@ -15,6 +15,8 @@ class Student < ApplicationRecord
   validates :dob, presence: true
   validate :picture_size
   before_create :assign_prospect
+  has_many :student_ranks
+  has_many :ranks, through: :student_ranks
 
   private
 
@@ -23,4 +25,3 @@ class Student < ApplicationRecord
     end
 
 end
-
