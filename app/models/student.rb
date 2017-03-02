@@ -19,11 +19,9 @@ class Student < ApplicationRecord
   has_many :ranks, through: :student_ranks
 
   def student_activities
-    unique_activities = []
-    self.ranks.each do |r|
+    self.ranks.each_with_object([]) do |r, unique_activities|
       unique_activities << r.activity.name
-    end
-    unique_activities.uniq
+    end.uniq
   end
 
   private
