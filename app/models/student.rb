@@ -19,12 +19,14 @@ class Student < ApplicationRecord
   has_many :ranks, through: :student_ranks
 
   def student_activities
-    self.ranks.each_with_object([]) do |r, unique_activities|
-      unique_activities << r.activity.name
-    end.uniq
+    activities.map(&:name).uniq
   end
 
   private
+
+    def activities
+      self.ranks.map(&:activity)
+    end
 
     def assign_prospect
       self.payment_plan = self.club.payment_plans.first

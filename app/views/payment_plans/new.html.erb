@@ -1,5 +1,5 @@
 <% @club.payment_plans.where(active: true).where.not(name: 'Prospect').each do |pp| %>
-	<%= pp.name %> <%= link_to "Delete this rank", payment_plan_path(pp, payment_plan: { active: false }), method: :put, data: { confirm: "Are you sure?" } %><br>
+	<%= pp.name %> <%= link_to "Delete this plan", payment_plan_path(pp, payment_plan: { active: false }), method: :put, data: { confirm: "Are you sure?" } %><br>
 <% end %>
 
 <%= form_for(@payment_plan) do |f| %>
