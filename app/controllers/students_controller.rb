@@ -14,6 +14,7 @@ class StudentsController < ApplicationController
 		@student = current_club.students.find_by(id: params[:id])
 		redirect_to root_url if @student.nil?
 		@student_activities = @student.student_activities
+		@first_ranks_of_activities = @student.first_ranks_of_activities
 	end
 
 	def new
@@ -32,7 +33,8 @@ class StudentsController < ApplicationController
 
 	def edit
 		@student = current_club.students.find_by(id: params[:id])
-		@activities = current_club.activities.all	
+		@activities = current_club.activities.all
+		@ranks = Rank.all.where(active: true)
 	end
 
 	def update

@@ -19,12 +19,28 @@ class Student < ApplicationRecord
   has_many :ranks, through: :student_ranks
 
   def student_activities
-    activities.map(&:name).uniq
+    activitys.map(&:name).uniq
   end
+
+  def first_ranks_of_activities
+    first_ranks = []
+    club_activities.each do |ca|
+      ca.ranks.each do |r|
+        if r.position == 0
+          first_ranks << r
+        end
+      end
+    end
+    first_ranks
+  end  
 
   private
 
-    def activities
+    def club_activities
+      self.club.activities
+    end
+ 
+    def activitys
       self.ranks.map(&:activity)
     end
 
