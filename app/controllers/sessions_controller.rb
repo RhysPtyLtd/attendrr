@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       if @club.activated?
     		log_in @club
         params[:session][:remember_me] == '1' ? remember(@club) : forget(@club)
-    		redirect_back_or @club
+    		redirect_back_or root_url
       else
         message = "Account not activated. "
         message += "Check your email for the activation link."

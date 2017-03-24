@@ -23,16 +23,8 @@ class Student < ApplicationRecord
   end
 
   def first_ranks_of_activities
-    first_ranks = []
-    club_activities.each do |ca|
-      ca.ranks.each do |r|
-        if r.position == 0
-          first_ranks << r
-        end
-      end
-    end
-    first_ranks
-  end  
+    club_activities.map { |a| a.ranks.select{ |r| r.position == 0  }}.flatten
+  end
 
   private
 

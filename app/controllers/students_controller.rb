@@ -34,7 +34,7 @@ class StudentsController < ApplicationController
 	def edit
 		@student = current_club.students.find_by(id: params[:id])
 		@activities = current_club.activities.all
-		@ranks = Rank.all.where(active: true)
+		@ranks = @student.first_ranks_of_activities
 	end
 
 	def update
