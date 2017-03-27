@@ -22,6 +22,10 @@ class Student < ApplicationRecord
     activitys.map(&:name).uniq
   end
 
+  def club_ranks
+    club_activities.map{ |a| a.ranks}.flatten
+  end
+
   def first_ranks_of_activities
     club_activities.map { |a| a.ranks.select{ |r| r.position == 0  }}.flatten
   end

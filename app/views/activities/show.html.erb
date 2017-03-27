@@ -11,10 +11,10 @@
 	<%= link_to "(Add timetable for this class)", edit_activity_path(@activity) %><br>
 <% end %>
 
-<% if @activity.ranks.where(active: true).any? %>
+<% if @activity.ranks.any? %>
 	Ranks:<br>
 	<li>
-	<% @activity.ranks.where(active: true).each do |r| %>
+	<% @activity.ranks.each do |r| %>
 			<ul><%= r.name %></ul>
 	<% end %>
 	</li>

@@ -41,7 +41,7 @@
 	<%= hidden_field_tag "student[rank_ids][]", nil %>
 	<% @ranks.each do |rank| %>
 		<%= check_box_tag "student[rank_ids][]", rank.id, f.object.ranks.include?(rank) %>
-		<%= rank.activity.name %><br>
+		<%= rank.name %><br>
 	<% end %>
 
 	<span class="picture">
