@@ -19,6 +19,7 @@ class StudentsController < ApplicationController
 
 	def new
 		@student = Student.new
+		@first_ranks = current_club.first_ranks_of_activities
 	end
 
 	def create

@@ -26,6 +26,10 @@ class Student < ApplicationRecord
     club_activities.map { |a| a.ranks.select{ |r| r.position == 0  }}.flatten
   end
 
+  def current_ranks
+    # all ranks where active == true
+  end
+
   private
 
     def club_activities
