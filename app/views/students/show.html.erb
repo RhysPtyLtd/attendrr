@@ -17,8 +17,8 @@ Primary phone: <%= @student.phone1 %><br>
 Date of birth: <%= @student.dob %><br>
 Classes:
 <% if @student.student_activities.any? %>
-	<% @student_activities.each do |a| %>
-		<li><%= a %> (student's rank)</li>
+	<% @student.student_ranks.where(:active => true).each do |r| %>
+		<li><%= r.rank.activity.name %> (<%= r.rank.name %>)</li>
 	<% end %>
 <% else %>
 	<li>None</li>
@@ -27,6 +27,3 @@ Payment plan: <%= @student.payment_plan.name %><br>
 <%= link_to "Edit student details", edit_student_path %><br>
 <%= link_to "Delete", @student, method: :delete, data: { confirm: "Please note: only delete students that were entered erroneously. To remove a student that is no longer active follow the 'deactivate' link. Are you sure you want to delete this student?"} %><br>
 
-<% @student.student_ranks.where(:active => true).each do |r| %>
-	<%= r.rank.name %><br>
-<% end %>

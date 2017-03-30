@@ -40,6 +40,7 @@ class StudentsController < ApplicationController
 
 	def update
 		@student = current_club.students.find_by(id: params[:id])
+		@ranks = @student.club_ranks
 		if @student.update_attributes(student_params)
 			flash[:success] = "Student details updated"
 			redirect_to @student
