@@ -6,3 +6,7 @@ class Rank < ApplicationRecord
   has_many :student_ranks
   has_many :students, through: :student_ranks
 end
+
+	def activity_name
+        self.activity.name
+    end

@@ -34,11 +34,7 @@
 	<%= f.label :phone2, "Secondary phone" %>
 	<%= f.phone_field :phone2, class: 'form-control' %>
 
-	<%= hidden_field_tag "student[rank_ids][]", nil %>
-	<% @first_ranks.each do |rank| %>
-		<%= check_box_tag "student[rank_ids][]", rank.id, f.object.ranks.include?(rank) %>
-		<%= rank.activity.name %><br>
-	<% end %>
+	<%= collection_select(:rank, :id, @first_ranks, :id, :activity_name, :include_blank => "Select class") %>
 
 	<span class="picture">
 		<%= f.label :picture, "Attach student picture" %>
