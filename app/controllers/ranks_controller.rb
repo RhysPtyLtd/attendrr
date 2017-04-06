@@ -24,7 +24,6 @@ class RanksController < ApplicationController
 
 	def update
 		@rank = Rank.find(params[:id])
-		@rank.toggle!(:active)
 		@activity = @rank.activity
 		if @rank.update_attributes(ranks_params)
 			flash[:success] = "Class details updated"

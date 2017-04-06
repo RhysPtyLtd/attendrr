@@ -34,7 +34,9 @@
 	<%= f.label :phone2, "Secondary phone" %>
 	<%= f.phone_field :phone2, class: 'form-control' %>
 
-	<%= collection_select(:rank, :id, @first_ranks, :id, :activity_name, :include_blank => "Select class") %>
+	<%= f.fields_for :student_rank do |sr| %>
+		<%= sr.collection_select(:rank_id, @first_ranks, :id, :activity_name, :include_blank => "Select class") %>
+	<% end %>
 
 	<span class="picture">
 		<%= f.label :picture, "Attach student picture" %>
@@ -53,3 +55,7 @@
     }
   });
 </script>
+
+<% @first_ranks.each do |fr| %>
+	<%= fr.name %> | <%= fr.activity.name %> <%= fr.position %><br>
+<% end %>

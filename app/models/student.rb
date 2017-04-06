@@ -17,6 +17,7 @@ class Student < ApplicationRecord
   before_create :assign_prospect
   has_many :student_ranks
   has_many :ranks, through: :student_ranks
+  accepts_nested_attributes_for :student_ranks
 
   def student_activities
     activitys.map(&:name).uniq
