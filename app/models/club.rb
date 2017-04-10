@@ -28,10 +28,6 @@ class Club < ApplicationRecord
     validate :picture_size
     after_create :build_prospect_plan
 
-    def first_ranks_of_activities
-      club_activities.map { |a| a.ranks.select{ |r| r.position == 0  }}.flatten
-    end
-
 	# Returns the hash digest of the given string. This is a CLASS METHOD.
 	def Club.digest(string)
 		cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -89,10 +85,6 @@ class Club < ApplicationRecord
     end
 
     private
-
-        def club_activities
-            self.activities
-        end
 
         # Creates and assigns the activation token and digest
         def create_activation_digest

@@ -12,9 +12,10 @@ class StudentsController < ApplicationController
 
 	def show
 		@student = current_club.students.find_by(id: params[:id])
-		redirect_to root_url if @student.nil?
 		@student_activities = @student.student_activities
 		@first_ranks_of_activities = @student.first_ranks_of_activities
+		redirect_to root_url if @student.nil?
+		
 	end
 
 	def new
@@ -57,7 +58,7 @@ class StudentsController < ApplicationController
 		else
 			@student.destroy
 			flash[:success] = "Student deleted"
-			redirect_to request.referrer || root_url
+			redirect_to students_path
 		end
 	end
 
