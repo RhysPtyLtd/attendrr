@@ -1,5 +1,62 @@
 <h1>Create new student</h1>
-<% provide(:button_text, 'Create student') %>
-<section class="student_form">
-	<%= render 'shared/student_form' %>
-</section>
+<%= form_for(@student, html: { multipart: true }) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<div class="field">
+	<%= f.label :first_name %>*
+	<%= f.text_field :first_name, class: 'form-control' %>
+
+	<%= f.label :last_name %>*
+	<%= f.text_field :last_name, class: 'form-control' %>
+
+	<%= f.label :dob, "Date of birth" %>*
+	<%= f.date_select :dob, {order: [:day, :month, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year, end_year: Date.today.year - 90}, class: 'form-control' %>
+
+	<%= f.label :email %>*
+	<%= f.email_field :email, class: 'form-control' %>
+
+	<%= f.label :address_line_1 %>* Street address, P.O. box, company name, etc.
+	<%= f.text_field :address_line_1, class: 'form-control' %>
+
+	<%= f.label :address_line_2 %> Apartment, suite, unit, building, floor, etc.
+	<%= f.text_field :address_line_2, class: 'form-control' %>
+
+	<%= f.label :city %>*
+	<%= f.text_field :city, class: 'form-control' %>
+
+	<%= f.label :state %>*
+	<%= f.text_field :state, class: 'form-control' %>
+
+	<%= f.label :postcode %>*
+	<%= f.number_field :postcode, class: 'form-control' %>
+
+	<%= f.label :phone1, "Primary phone" %>*
+	<%= f.phone_field :phone1, class: 'form-control' %>
+
+	<%= f.label :phone2, "Secondary phone" %>
+	<%= f.phone_field :phone2, class: 'form-control' %>
+
+	<%= f.fields_for :student_rank do |sr| %>
+		<%= sr.collection_select(:rank_id, @first_ranks, :id, :activity_name, :include_blank => "Select class") %>
+	<% end %>
+
+	<span class="picture">
+		<%= f.label :picture, "Attach student picture" %>
+		<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+	</span>
+	</div>
+	<%= f.submit "Submit student details", class: "btn btn-primary" %>
+<% end %>
+
+<!-- JQuery. Ensures files size is < 5MB client-side -->
+<script type="text/javascript">
+  $('#student_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('Maximum file size is 5MB. Please choose a smaller file.');
+    }
+  });
+</script>
+
+<% @first_ranks.each do |fr| %>
+	<%= fr.name %> | <%= fr.activity.name %> <%= fr.position %><br>
+<% end %>
