@@ -1,4 +1,5 @@
-<%= form_for(@activity) do |f| %>
+
+<%=  nested_form_for(@activity) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 	<div class="field">
 		<%= f.label :name, "Class name" %>*
@@ -6,14 +7,54 @@
 
 			<%= f.fields_for :timeslots do |timeslots_form| %>
 					<%= timeslots_form.label :time_start, "Start time" %>
-					<%= timeslots_form.time_select :time_start %>
+					<div class='input-group date datetimepicker3' id = "testing" >
+						<%= timeslots_form.text_field :time_start,:value => (Time.zone.now).to_time.strftime('%H:%M'),class: 'form-control'  %>
+						<span class="input-group-addon" >
+                        	<span class="glyphicon glyphicon-time"></span>
+                    	</span>
+					
+					</div>
 
 					<%= timeslots_form.label :time_end, "End time" %>
-					<%= timeslots_form.time_select :time_end %>
-
+					<div class='input-group date datetimepicker3' >
+						<%= timeslots_form.text_field :time_end,:value => (Time.zone.now).to_time.strftime('%H:%M'),class: 'form-control'  %>
+						<span class="input-group-addon">
+                        	<span class="glyphicon glyphicon-time"></span>
+                    	</span>
+					</div>	
 					<%= timeslots_form.label :day %>
-					<%= timeslots_form.select :day, (0..6).map {|d| [Date::DAYNAMES[d], d]} %>
+					<%= timeslots_form.select :day, (0..6).map {|d| [Date::DAYNAMES[d], d]}, {}, { :class => 'form-control' } %>
+					<%= timeslots_form.label :schedule %>
+					<div class='input-group date datetimepicker4' >
+						<%= timeslots_form.text_field :schedule,class: 'form-control'  %>
+						<span class="input-group-addon">
+                        	<span class="glyphicon glyphicon-calendar"></span>
+                    	</span>
+					</div>
+					<%= timeslots_form.link_to_remove "Remove this timeslot" %>
 			<% end %>
+			<%= f.link_to_add "Add a timeslot", :timeslots%>
 	</div>
 	<%= f.submit "Create class", class: "btn btn-primary" %>
 <% end %>
+
+<script type="text/javascript">
+	$(function () {
+                $('.datetimepicker3').datetimepicker({
+        			format: 'HH:mm'
+                });
+                $('.datetimepicker4').datetimepicker({
+                	format: 'DD/MM/YYYY'
+                });
+               $("#new_activity").on("click", ".datetimepicker3", function(event){
+               	$(this).datetimepicker({
+        			format: 'HH:mm'
+                }).datetimepicker( "show" );
+				}); 
+               $("#new_activity").on("click", ".datetimepicker4", function(event){
+               	$(this).datetimepicker({
+               		format: 'DD/MM/YYYY'
+               	}).datetimepicker( "show" );
+				});
+            });
+</script>

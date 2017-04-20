@@ -12,7 +12,11 @@ Rails.application.routes.draw do
     resources :account_activations, only: [:edit]
     resources :password_resets, only: [:new, :create, :edit, :update]
     resources :students
-    resources :activities
+    resources :activities do 
+        collection do
+            get 'scheduled_classes'
+        end
+    end
     resources :timeslots
     resources :ranks
     resources :payment_plans

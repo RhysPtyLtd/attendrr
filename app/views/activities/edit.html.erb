@@ -17,6 +17,8 @@
 
 			<%= timeslots_form.label :day %>
 			<%= timeslots_form.select :day, (0..6).map {|d| [Date::DAYNAMES[d], d]} %>
+			<%= timeslots_form.label :year %>
+					<%= timeslots_form.select :year, ((Time.zone.now.year - 30)..(Time.zone.now.year + 10)).to_a.reverse, {:selected => Time.zone.now.year},{ :class => 'form-control' } %>
 		<% end %>
 	</div>
 	<%= f.submit "Add this timeslot", class: "btn btn-primary" %>

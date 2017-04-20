@@ -61,6 +61,16 @@ class ActivitiesController < ApplicationController
 		end
 	end
 
+	def scheduled_classes
+		if params[:search].present?
+			date_find = params[:search].to_date
+		else
+			date_find = Date.today
+		end
+		@activity = current_club.activities.joins(:timeslots).where('DATE(timeslots.schedule) = ?', date_find).includes(:timeslots)
+		@schedule_date = @activity.first.timeslots.first.schedule if @activity.present?
+	end
+
 	private
 
 		def activity_params
@@ -69,7 +79,8 @@ class ActivitiesController < ApplicationController
 																	   :time_start,
 																	   :time_end,
 																	   :day,
-																	   :active],
+																	   :active,
+																	   :schedule],
 											 :ranks_attributes => [:id,
 											 					   :name,
 											 					   :position,

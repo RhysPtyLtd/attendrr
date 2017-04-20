@@ -33,7 +33,7 @@ class TimeslotsController < ApplicationController
 	private
 
 	def timeslot_params
-		params.require(:timeslot).permit(:time_start, :time_end, :day, :active)
+		params.require(:timeslot).permit(:time_start, :time_end, :day, :active,:schedule)
 	end
 
 end
