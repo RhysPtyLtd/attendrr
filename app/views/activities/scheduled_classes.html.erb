@@ -1,10 +1,8 @@
 <div class="container-fluid text-center bg-grey">
-	
- 	<% if @activity.present? %>	
- 	<h4><%= @schedule_date.strftime("%A, #{@schedule_date.day.ordinalize} %B %Y")%></h4>
+	<h4><%= @date_find.strftime("%A, #{@date_find.day.ordinalize} %B %Y")%></h4>
 	<%= form_tag(scheduled_classes_activities_path, :method => "get", id: "search-form",class: "center-block") do %>
 	<div class="row center-block">
-	<div class="col-lg-6 center-block">
+	<div class="col-lg-6 col-lg-offset-3">
 	    <div class="input-group">
 	      <%= search_field_tag :search, params[:search], class: 'form-control', placeholder: (Time.zone.now).strftime('%d/%m/%y'),id: 'datetimepicker4',required: true %>
 	      <span class="input-group-btn">
@@ -16,22 +14,29 @@
 	 </div><!-- /.col-lg-6 -->
 	 </div>
 	<% end %><br>
+ 	<% if @activity.present? %>	
  	<div class="row text-center">
  		<% @activity.each do |activity| %> 
  			<% activity.timeslots.each do |timeslot| %>	
+ 				<%= link_to attendance_students_path do %>
 			    <div class="col-sm-4">
-			      <div class="thumbnail">
+			      <div class="thumbnail hoverDiv">
 			        
 			        <p><strong><%= activity.name %></strong></p>
 			        <p><%= timeslot.time_start.strftime("%I:%M%P")%> - <%= timeslot.time_end.strftime("%I:%M%P")%></p>
 			      </div>
 			    </div>
+			    <% end %>
 			<% end %>  
 		<% end %> 
 	</div>	 
 	<% else %>
 		<p>There is no class on this date</p>
 	<% end %>  
+	<ul class="pager">
+	  <li class="previous"><%= link_to(@prev_data.strftime("<< %A, #{@prev_data.day.ordinalize} %B %Y"), scheduled_classes_activities_path(search: @prev_data)) %></li>
+	  <li class="next"><%= link_to(@next_data.strftime("%A, #{@next_data.day.ordinalize} %B %Y >>"), scheduled_classes_activities_path(search: @next_data)) %></li>
+	</ul>
 </div>
 
 <script type="text/javascript">

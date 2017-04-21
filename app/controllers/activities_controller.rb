@@ -63,12 +63,18 @@ class ActivitiesController < ApplicationController
 
 	def scheduled_classes
 		if params[:search].present?
-			date_find = params[:search].to_date
+			@date_find = params[:search].to_date
+			@prev_data = Date.parse(params[:search]).prev_day
+			@next_data = Date.parse(params[:search]).next_day
 		else
-			date_find = Date.today
+			@date_find = Date.today
+			@prev_data = @date_find.prev_day
+			@next_data = @date_find.next_day
 		end
-		@activity = current_club.activities.joins(:timeslots).where('DATE(timeslots.schedule) = ?', date_find).includes(:timeslots)
-		@schedule_date = @activity.first.timeslots.first.schedule if @activity.present?
+		day_find = @date_find.strftime('%w').to_i
+		# @activity = current_club.activities.joins(:timeslots).where('DATE(timeslots.schedule) = ?', date_find).includes(:timeslots)
+		@activity = current_club.activities.joins(:timeslots).where('timeslots.day = ? AND activities.active = ? AND DATE(activities.created_at) <= ?', day_find,true,@date_find).includes(:timeslots)
+		
 	end
 
 	private

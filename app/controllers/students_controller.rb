@@ -61,6 +61,11 @@ class StudentsController < ApplicationController
 			redirect_to students_path
 		end
 	end
+	def attendance
+		@student = current_club.students.all
+		puts "_______________________________"
+		puts @student.count
+	end
 
 	private
 

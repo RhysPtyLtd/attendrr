@@ -24,13 +24,7 @@
 					</div>	
 					<%= timeslots_form.label :day %>
 					<%= timeslots_form.select :day, (0..6).map {|d| [Date::DAYNAMES[d], d]}, {}, { :class => 'form-control' } %>
-					<%= timeslots_form.label :schedule %>
-					<div class='input-group date datetimepicker4' >
-						<%= timeslots_form.text_field :schedule,class: 'form-control'  %>
-						<span class="input-group-addon">
-                        	<span class="glyphicon glyphicon-calendar"></span>
-                    	</span>
-					</div>
+					
 					<%= timeslots_form.link_to_remove "Remove this timeslot" %>
 			<% end %>
 			<%= f.link_to_add "Add a timeslot", :timeslots%>
