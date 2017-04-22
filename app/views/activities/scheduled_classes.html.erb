@@ -18,7 +18,7 @@
  	<div class="row text-center">
  		<% @activity.each do |activity| %> 
  			<% activity.timeslots.each do |timeslot| %>	
- 				<%= link_to attendance_students_path do %>
+ 				<%= link_to attendance_students_path(date_slot: @date_find,activity_id: activity.id,timeslot_id: timeslot.id) do %>
 			    <div class="col-sm-4">
 			      <div class="thumbnail hoverDiv">
 			        

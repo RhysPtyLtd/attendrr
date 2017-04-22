@@ -18,6 +18,7 @@ class Student < ApplicationRecord
   has_many :student_ranks
   has_many :ranks, through: :student_ranks
   accepts_nested_attributes_for :student_ranks
+  has_many :attendances
 
   def student_activities
     activitys.map(&:name).uniq

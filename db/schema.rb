@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420071751) do
+ActiveRecord::Schema.define(version: 20170422060836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,19 @@ ActiveRecord::Schema.define(version: 20170420071751) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.index ["club_id"], name: "index_activities_on_club_id", using: :btree
+  end
+
+  create_table "attendances", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "activity_id"
+    t.integer  "timeslot_id"
+    t.datetime "attended_on"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.boolean  "attended"
+    t.index ["activity_id"], name: "index_attendances_on_activity_id", using: :btree
+    t.index ["student_id"], name: "index_attendances_on_student_id", using: :btree
+    t.index ["timeslot_id"], name: "index_attendances_on_timeslot_id", using: :btree
   end
 
   create_table "clubs", force: :cascade do |t|
@@ -115,6 +128,9 @@ ActiveRecord::Schema.define(version: 20170420071751) do
   end
 
   add_foreign_key "activities", "clubs"
+  add_foreign_key "attendances", "activities"
+  add_foreign_key "attendances", "students"
+  add_foreign_key "attendances", "timeslots"
   add_foreign_key "payment_plans", "clubs"
   add_foreign_key "ranks", "activities"
   add_foreign_key "student_ranks", "ranks"

@@ -5,4 +5,5 @@ class Timeslot < ApplicationRecord
 	validates :day, presence: true
 	#validates :activity_id, presence: true
 	default_scope -> { order(day: :asc) }
+	has_many :attendances
 end

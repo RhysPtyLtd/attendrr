@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student: one
+  activity: one
+  timeslot: one
+  attended_on: 2017-04-22 11:31:04
+
+two:
+  student: two
+  activity: two
+  timeslot: two
+  attended_on: 2017-04-22 11:31:04

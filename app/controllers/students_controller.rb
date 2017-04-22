@@ -62,9 +62,31 @@ class StudentsController < ApplicationController
 		end
 	end
 	def attendance
-		@student = current_club.students.all
-		puts "_______________________________"
-		puts @student.count
+		if params[:search].present?
+			@date_find = params[:search].to_date
+			@prev_data = Date.parse(params[:search]).prev_day
+			@next_data = Date.parse(params[:search]).next_day
+		else
+			@date_find = Date.today
+			@prev_data = @date_find.prev_day
+			@next_data = @date_find.next_day
+		end
+		if params[:s_id].present?
+			attendance = current_club.students.find(params[:s_id]).attendances.new
+			attendance.attended_on = params[:date_slot]
+			attendance.activity_id = params[:activity_id]
+			attendance.timeslot_id = params[:timeslot_id]
+			attendance.attended = true
+			attendance.save
+		end	
+		@student_absent = current_club.students.left_outer_joins(:attendances).where( attendances: { id: nil} )
+		
+		@student_present = current_club.students.left_outer_joins(:attendances).where.not( attendances: { id: nil } )
+		
+		respond_to do |format|
+		  format.html 	
+		  format.js
+		end
 	end
 
 	private
