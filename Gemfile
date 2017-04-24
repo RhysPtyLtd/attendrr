@@ -18,6 +18,7 @@ gem 'jbuilder',     '2.4.1'
 gem "nested_form"
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
+gem "select2-rails"
 
 group :development, :test do
   gem 'sqlite3', '1.3.11'

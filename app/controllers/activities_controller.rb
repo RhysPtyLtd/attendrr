@@ -9,7 +9,7 @@ class ActivitiesController < ApplicationController
 	end
 
 	def create
-		@activity = current_club.activities.build(activity_params)
+		@activity = current_club.activities.new(activity_params)
 		if @activity.save
 			flash[:success] = "New class created!"
 			redirect_to activities_path
