@@ -1,22 +1,6 @@
 <div class="row text-center center-block">
-	<h4><%= @date_find.strftime("%A, #{@date_find.day.ordinalize} %B %Y")%></h4>
-	<%= form_tag(attendance_students_path, :method => "get", id: "search-form",class: "center-block") do %>
-	<div class="row center-block">
-	<div class="col-lg-6 col-lg-offset-3">
-	    <div class="input-group">
-	      <%= search_field_tag :search, params[:search], class: 'form-control', placeholder: @date_find.strftime('%d/%m/%y'),id: 'datetimepicker4',required: true %>
-	      <%= hidden_field_tag :date_slot, params[:date_slot] %>
-	      <%= hidden_field_tag :activity_id, params[:activity_id] %>
-	      <%= hidden_field_tag :timeslot_id, params[:timeslot_id] %>
-	      <span class="input-group-btn">
-	      <%= content_tag :button ,:type => :submit, :class => 'btn btn-default' do %>
-	      	Go!
-	      <% end %>
-	      </span>
-	    </div><!-- /input-group -->
-	 </div><!-- /.col-lg-6 -->
-	 </div>
-	<% end %><br>
+	<h4><%= link_to(@date_find.strftime("%A, #{@date_find.day.ordinalize} %B %Y"), scheduled_classes_activities_path) %></h4>
+
   <div class="col-sm-4 col-sm-offset-2" id="absent">
     <%= render 'absent_student' %>
   </div>
@@ -25,10 +9,7 @@
   </div>
   
 </div>
-<ul class="pager">
-	  <li class="previous"><%= link_to(@prev_data.strftime("<< %A, #{@prev_data.day.ordinalize} %B %Y"), attendance_students_path(search: @prev_data,date_slot: params[:date_slot],activity_id: params[:activity_id],timeslot_id: params[:timeslot_id])) %></li>
-	  <li class="next"><%= link_to(@next_data.strftime("%A, #{@next_data.day.ordinalize} %B %Y >>"), attendance_students_path(search: @next_data,date_slot: params[:date_slot],activity_id: params[:activity_id],timeslot_id: params[:timeslot_id])) %></li>
-	</ul>
+
 <script type="text/javascript">
     $(function () {
         $('#datetimepicker4').datetimepicker({
