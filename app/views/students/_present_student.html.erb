@@ -1,7 +1,7 @@
 <div class="thumbnail">
     <div class="scroll-area2">
     <% @student_present.each do |student| %>
-      <p><strong><%= student.first_name + " " + student.last_name %></strong></p>
+      <p><strong><%= link_to(student.first_name + " " + student.last_name, attendance_students_path(s_id: student.id,date_slot: params[:date_slot],activity_id: params[:activity_id],timeslot_id: params[:timeslot_id],remove_attendance: true), :remote => true,:style=>'color:#FFFFFF;') %></strong></p>
     <% end %>
     </div>
     </div>

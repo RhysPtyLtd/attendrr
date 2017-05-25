@@ -77,11 +77,11 @@ class StudentsController < ApplicationController
 			@prev_data = Date.parse(params[:search]) - 7.days
 			@next_data = Date.parse(params[:search])+ 7.days
 		else
-			@date_find = Date.today
+			@date_find = params[:date_slot].present? ? Date.parse(params[:date_slot]) : Date.today
 			@prev_data = @date_find - 7.days
 			@next_data = @date_find + 7.days
 		end
-		if params[:s_id].present?
+		if params[:s_id].present? && !params[:remove_attendance].present?
 			attendance = current_club.students.find(params[:s_id]).attendances.new
 			attendance.attended_on = @date_find
 			attendance.activity_id = params[:activity_id]
@@ -89,6 +89,10 @@ class StudentsController < ApplicationController
 			attendance.attended = true
 			attendance.save
 		end	
+		if params[:remove_attendance].present?
+			attendance = Attendance.where(timeslot_id: params[:timeslot_id],attended_on: @date_find,student_id: params[:s_id]).first
+			attendance.destroy
+		end
 		activity = Activity.find(params[:activity_id])
 		rank_ids = activity.ranks.all.pluck(:id)
 		student_for_attendance = current_club.students.student_for_attendance(rank_ids)
