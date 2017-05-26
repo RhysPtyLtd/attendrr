@@ -103,6 +103,10 @@ class StudentsController < ApplicationController
 		  format.js
 		end
 	end
+	def schedule_classes
+		@student = Student.find_by(id: params[:id])
+		@activity = @student.all_acitivities.uniq
+	end
 
 	private
 

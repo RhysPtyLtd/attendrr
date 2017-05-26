@@ -1,0 +1,28 @@
+<div class="container-fluid text-center bg-grey">
+	<h4><span style="font-family: serif; font-size: xx-large;"><u>LIST OF CLASSES</u></span></h4>
+	
+ 	<% if @activity.present? %>	
+ 	<div class="row text-center" style="background: #524f4f; margin-top: 23px;">
+ 		<% @activity.each do |activity| %> 	
+ 				<%= link_to "#" do %>
+			    <div class="col-sm-4" style="padding-top: 15px;">
+			      <div class="thumbnail hoverDiv" style="max-height: 118px; overflow-y: scroll;">
+			        
+			        <p><strong><%= activity.name %></strong></p>
+			        <p style="text-align: left;margin-left: 25px;">Time slots:</p>
+			        <% activity.timeslots.each do |timeslot| %>
+			        <p style="text-align: left;margin-left: 25px;"><%= timeslot.time_start.strftime("%I:%M%P")%> - <%= timeslot.time_end.strftime("%I:%M%P")%></p>
+			        <% end %>
+			      </div>
+			    </div>
+			    <% end %>  
+		<% end %> 
+	</div>	 
+	<% else %>
+		<p>There is no class assigned</p>
+	<% end %>  
+	<ul class="pager">
+	  <li class="previous"><%= link_to("<<  Back", student_path(@student)) %></li>
+	</ul>
+</div>
+

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :students do
         collection do
             get 'attendance'
+            get 'schedule_classes'
         end
     end
     resources :activities do 

@@ -26,6 +26,10 @@ class Student < ApplicationRecord
     activitys.map(&:name).uniq
   end
 
+  def all_acitivities
+    activitys
+  end
+
   def club_ranks
     club_activities.map{ |a| a.ranks}.flatten
   end
