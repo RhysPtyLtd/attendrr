@@ -10,8 +10,18 @@
 			        
 			        <p><strong><%= activity.name %></strong></p>
 			        <p style="text-align: left;margin-left: 25px;">Time slots:</p>
+			        <ol>
 			        <% activity.timeslots.each do |timeslot| %>
-			        <p style="text-align: left;margin-left: 25px;"><%= timeslot.time_start.strftime("%I:%M%P")%> - <%= timeslot.time_end.strftime("%I:%M%P")%></p>
+			        <li style="margin-left: 25px;"><p style="text-align: left;"><%= timeslot.time_start.strftime("%I:%M%P")%> - <%= timeslot.time_end.strftime("%I:%M%P")%></p></li>
+			        <% end %>
+			        </ol>
+			        <% if activity.ranks.any? %>
+			        <p style="text-align: left;margin-left: 25px;">All Ranks:</p>
+			        <ol>
+			        <% activity.ranks.each do |rank| %>
+			        	<li style="margin-left: 25px;"><p style="text-align: left;margin-left: 25px;"><%= rank.name %></p></li>
+			        <% end %>
+			        </ol>
 			        <% end %>
 			      </div>
 			    </div>
