@@ -4,7 +4,7 @@
  	<% if @activity.present? %>	
  	<div class="row text-center" style="background: #524f4f; margin-top: 23px;">
  		<% @activity.each do |activity| %> 	
- 				<%= link_to "#" do %>
+ 				<%= link_to student_attendance_students_path(student_id: @student.id,activity_id: activity.id), :title => "Click to see attendance for #{activity.name}" do %>
 			    <div class="col-sm-4" style="padding-top: 15px;">
 			      <div class="thumbnail hoverDiv" style="max-height: 118px; overflow-y: scroll;">
 			        
@@ -32,7 +32,7 @@
 		<p>There is no class assigned</p>
 	<% end %>  
 	<ul class="pager">
-	  <li class="previous"><%= link_to("<<  Back", student_path(@student)) %></li>
+	  <li class="previous"><%= link_to("<<  Back", student_path(@student),:title => "Back to student #{@student.first_name} #{@student.last_name} page") %></li>
 	</ul>
 </div>
 

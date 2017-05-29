@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+	require 'students_datable'
 	before_action :logged_in_user, only: [:create, :destroy, :new, :edit, :update]
 	before_action :correct_club, only: [:index, :show, :destroy] # Currently does nothing??
 
@@ -106,6 +107,17 @@ class StudentsController < ApplicationController
 	def schedule_classes
 		@student = Student.find_by(id: params[:id])
 		@activity = @student.all_acitivities.uniq
+	end
+
+	def student_attendance
+		# @attendance = Attendance.where(student_id: params[:student_id],activity_id: params[:activity_id])
+		# @attendance.each do |a|
+		# 	puts a.id
+		# end
+		respond_to do |format|
+	    	format.html
+	    	format.json { render json: AttendanceDatatable.new(view_context) }
+	  	end
 	end
 
 	private
