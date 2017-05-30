@@ -13,10 +13,11 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require dataTables/jquery.dataTables
+//= require turbolinks
 //= require bootstrap
 //= require jquery_nested_form
 //= require moment
 //= require bootstrap-datetimepicker
 //= require select2
-//= require dataTables/jquery.dataTables
 //= require_tree .

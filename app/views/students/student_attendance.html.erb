@@ -1,4 +1,5 @@
-<table id="products" class="display" data-source="<%= student_attendance_students_url(student_id: params[:student_id],activity_id: params[:activity_id],format: "json") %>">
+<div class="table-responsive">
+<table id="products" class="table table-striped table-bordered" cellspacing="0" width="100%" data-source="<%= student_attendance_students_url(student_id: params[:student_id],activity_id: params[:activity_id],format: "json") %>">
   <thead>
     <tr>
       <th>Class Name</th>
@@ -10,3 +11,37 @@
   <tbody>
   </tbody>
 </table>
+</div>
+
+<script type="text/javascript">
+	$(document).on("turbolinks:load",function() {
+    $('#products').DataTable( {
+    	sPaginationType: "full_numbers",
+    	bJQueryUI: true,
+    	bProcessing: true,
+    	bServerSide: true,
+    	bFilter: false,
+    	sAjaxSource: $('#products').data('source'),
+        initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? val : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        }
+    } );
+} );
+</script>

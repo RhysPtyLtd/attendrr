@@ -32,10 +32,11 @@ private
   end
 
   def fetch_attendance
-    attendance = Attendance.where(student_id: params[:student_id],activity_id: params[:activity_id]).order("#{sort_column} #{sort_direction}")
+    attendance = Attendance.joins(:activity, :timeslot).where(student_id: params[:student_id],activity_id: params[:activity_id]).order("#{sort_column} #{sort_direction}")
     attendance = attendance.page(page).per_page(per_page)
     if params[:sSearch].present?
-      attendance = Attendance.where(student_id: params[:student_id],activity_id: params[:activity_id]).order("#{sort_column} #{sort_direction}")
+      # attendance = attendance.where("attended_on like :search", search: "%#{params[:sSearch]}%")
+      attendance = Attendance.joins(:activity, :timeslot).where(student_id: params[:student_id],activity_id: params[:activity_id]).order("#{sort_column} #{sort_direction}")
     end
     attendance
   end
@@ -49,7 +50,7 @@ private
   end
 
   def sort_column
-    columns = %w[id category released_on price]
+    columns = %w[activities.name timeslots.time_start timeslots.time_end attended_on]
     columns[params[:iSortCol_0].to_i]
   end
 
