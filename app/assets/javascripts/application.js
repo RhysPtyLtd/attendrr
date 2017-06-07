@@ -21,3 +21,39 @@
 //= require bootstrap-datetimepicker
 //= require select2
 //= require_tree .
+
+$(document).on("turbolinks:load",function() {
+   var dataTable = $('#products').DataTable( {
+    	sPaginationType: "full_numbers",
+    	bJQueryUI: true,
+    	bProcessing: true,
+    	bServerSide: true,
+    	
+    	sAjaxSource: $('#products').data('source'),
+        initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? val : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        }
+    } );
+    document.addEventListener("turbolinks:before-cache", function() {
+	  if ($('#products').length == 1) {
+	  	dataTable.destroy();
+	  }
+	});
+} );
