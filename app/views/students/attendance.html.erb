@@ -1,6 +1,5 @@
 <div class="row text-center center-block">
-	<h4><%= link_to(@date_find.strftime("%A, #{@date_find.day.ordinalize} %B %Y"), scheduled_classes_activities_path) %></h4>
-
+	<h4><%= link_to(@date_find.strftime("%A, #{@date_find.day.ordinalize} %B %Y"), scheduled_classes_activities_path(search: @date_find)) %></h4>
   <div class="col-sm-4 col-sm-offset-2" id="absent">
     <%= render 'absent_student' %>
   </div>
