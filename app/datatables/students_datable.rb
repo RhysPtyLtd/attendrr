@@ -8,7 +8,7 @@ class AttendanceDatatable
   def as_json(options = {})
     {
       sEcho: params[:sEcho].to_i,
-      iTotalRecords: Attendance.where(student_id: params[:student_id],activity_id: params[:activity_id]).count,
+      iTotalRecords: Attendance.where(student_id: params[:student_id]).count,
       iTotalDisplayRecords: attendance.total_entries,
       aaData: data
     }
@@ -32,11 +32,11 @@ private
   end
 
   def fetch_attendance
-    attendance = Attendance.joins(:activity, :timeslot).where(student_id: params[:student_id],activity_id: params[:activity_id]).order("#{sort_column} #{sort_direction}")
+    attendance = Attendance.joins(:activity, :timeslot).where(student_id: params[:student_id]).order("#{sort_column} #{sort_direction}")
     attendance = attendance.page(page).per_page(per_page)
     if params[:sSearch].present?
       # attendance = attendance.where("attended_on like :search", search: "%#{params[:sSearch]}%")
-      attendance = Attendance.joins(:activity, :timeslot).where(student_id: params[:student_id],activity_id: params[:activity_id]).order("#{sort_column} #{sort_direction}")
+      attendance = Attendance.joins(:activity, :timeslot).where(student_id: params[:student_id]).order("#{sort_column} #{sort_direction}")
     end
     if params[:sSearch_1].present?
       start_time = params[:sSearch_1].to_time.strftime('%H:%M:%S')
