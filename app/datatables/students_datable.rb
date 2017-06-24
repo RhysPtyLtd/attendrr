@@ -38,6 +38,9 @@ private
       # attendance = attendance.where("attended_on like :search", search: "%#{params[:sSearch]}%")
       attendance = Attendance.joins(:activity, :timeslot).where(student_id: params[:student_id]).order("#{sort_column} #{sort_direction}")
     end
+    if params[:sSearch_0].present?
+      attendance = attendance.where("activities.name = (?)", params[:sSearch_0])
+    end
     if params[:sSearch_1].present?
       start_time = params[:sSearch_1].to_time.strftime('%H:%M:%S')
       attendance = attendance.where("timeslots.time_start = (?)", start_time)
