@@ -20,8 +20,8 @@ private
     attendance.map do |atten|
       [
         ERB::Util.h(atten.activity.name),
-        ERB::Util.h(atten.timeslot.time_start.strftime("%I:%M%P")),
-        ERB::Util.h(atten.timeslot.time_end.strftime("%I:%M%P")),
+        ERB::Util.h(atten.timeslot.time_start.strftime("%I:%M%P") + " - " + atten.timeslot.time_end.strftime("%I:%M%P")),
+        ERB::Util.h(Date::DAYNAMES[atten.timeslot.day]),
         ERB::Util.h(atten.attended_on.strftime('%d/%m/%y'))
       ]
     end
@@ -42,12 +42,19 @@ private
       attendance = attendance.where("activities.name = (?)", params[:sSearch_0])
     end
     if params[:sSearch_1].present?
-      start_time = params[:sSearch_1].to_time.strftime('%H:%M:%S')
-      attendance = attendance.where("timeslots.time_start = (?)", start_time)
+      extract_start = params[:sSearch_1].split(//).first(7).join
+      extract_end = params[:sSearch_1].split(//).last(7).join
+      start_time = extract_start.to_time.strftime('%H:%M:%S')
+      end_time = extract_end.to_time.strftime('%H:%M:%S')
+      attendance = attendance.where("timeslots.time_start = (?) AND timeslots.time_start = (?)", start_time,end_time)
     end
+    # if params[:sSearch_2].present?
+    #   end_time = params[:sSearch_2].to_time.strftime('%H:%M:%S')
+    #   attendance = attendance.where("timeslots.time_end = (?)", end_time)
+    # end
     if params[:sSearch_2].present?
-      end_time = params[:sSearch_2].to_time.strftime('%H:%M:%S')
-      attendance = attendance.where("timeslots.time_end = (?)", end_time)
+      timeslot_day = DateTime.parse(params[:sSearch_2]).wday
+      attendance = attendance.where("timeslots.day = (?)", timeslot_day)
     end
     if params[:sSearch_3].present?
       attenance_on = DateTime.strptime(params[:sSearch_3].gsub(/\\/, ""), '%d/%m/%y')
@@ -65,7 +72,7 @@ private
   end
 
   def sort_column
-    columns = %w[activities.name timeslots.time_start timeslots.time_end attended_on]
+    columns = %w[activities.name timeslots.time_start timeslots.time_end timeslots.day attended_on]
     columns[params[:iSortCol_0].to_i]
   end
 
