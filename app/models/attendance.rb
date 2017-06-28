@@ -4,6 +4,6 @@ class Attendance < ApplicationRecord
   belongs_to :timeslot
 
   def find_rank
-  	self.student.rank.where()
+  	ranks_student = self.student.rank.where(activity_id: student.activity.id)
   end
 end
