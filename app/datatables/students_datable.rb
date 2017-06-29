@@ -32,7 +32,19 @@ private
   end
 
   def fetch_attendance
-    attendance = Attendance.joins(:activity, :timeslot).where(student_id: params[:student_id]).order("#{sort_column} #{sort_direction}")
+    puts "-----------------------"
+    puts params[:from_date]
+    puts params[:to_date]
+    puts params[:student_id]
+    if params[:from_date].present? && params[:to_date].present?
+      # from_date = DateTime.strptime(params[:from_date], '%d/%m/%y')
+      from_date = Date.parse(params[:from_date])
+      # to_date = DateTime.strptime(params[:to_date], '%d/%m/%y')
+      to_date = Date.parse(params[:to_date])
+      attendance = Attendance.joins(:activity, :timeslot).where(student_id: params[:student_id],attended_on: from_date..to_date).order("#{sort_column} #{sort_direction}")
+    else
+      attendance = Attendance.joins(:activity, :timeslot).where(student_id: params[:student_id]).order("#{sort_column} #{sort_direction}")
+    end
     attendance = attendance.page(page).per_page(per_page)
     if params[:sSearch].present?
       # attendance = attendance.where("attended_on like :search", search: "%#{params[:sSearch]}%")
