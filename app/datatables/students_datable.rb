@@ -20,6 +20,7 @@ private
     attendance.map do |atten|
       [
         ERB::Util.h(atten.activity.name),
+        ERB::Util.h(atten.find_rank),
         ERB::Util.h(atten.timeslot.time_start.strftime("%I:%M%P") + " - " + atten.timeslot.time_end.strftime("%I:%M%P")),
         ERB::Util.h(Date::DAYNAMES[atten.timeslot.day]),
         ERB::Util.h(atten.attended_on.strftime('%d/%m/%y'))
@@ -53,9 +54,9 @@ private
     if params[:sSearch_0].present?
       attendance = attendance.where("activities.name = (?)", params[:sSearch_0])
     end
-    if params[:sSearch_1].present?
-      extract_start = params[:sSearch_1].split(//).first(7).join
-      extract_end = params[:sSearch_1].split(//).last(7).join
+    if params[:sSearch_2].present?
+      extract_start = params[:sSearch_2].split(//).first(7).join
+      extract_end = params[:sSearch_2].split(//).last(7).join
       start_time = extract_start.to_time.strftime('%H:%M:%S')
       end_time = extract_end.to_time.strftime('%H:%M:%S')
       attendance = attendance.where("timeslots.time_start = (?) AND timeslots.time_start = (?)", start_time,end_time)
@@ -64,12 +65,12 @@ private
     #   end_time = params[:sSearch_2].to_time.strftime('%H:%M:%S')
     #   attendance = attendance.where("timeslots.time_end = (?)", end_time)
     # end
-    if params[:sSearch_2].present?
-      timeslot_day = DateTime.parse(params[:sSearch_2]).wday
+    if params[:sSearch_3].present?
+      timeslot_day = DateTime.parse(params[:sSearch_3]).wday
       attendance = attendance.where("timeslots.day = (?)", timeslot_day)
     end
-    if params[:sSearch_3].present?
-      attenance_on = DateTime.strptime(params[:sSearch_3].gsub(/\\/, ""), '%d/%m/%y')
+    if params[:sSearch_4].present?
+      attenance_on = DateTime.strptime(params[:sSearch_4].gsub(/\\/, ""), '%d/%m/%y')
       attendance = attendance.where("attended_on = (?)", attenance_on)
     end
     attendance

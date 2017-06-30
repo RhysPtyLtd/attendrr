@@ -4,6 +4,12 @@ class Attendance < ApplicationRecord
   belongs_to :timeslot
 
   def find_rank
-  	ranks_student = self.student.rank.where(activity_id: student.activity.id)
+  	rank_name = self.student.ranks.where(activity_id: self.activity.id).first.name
+  	self.student.ranks.where(activity_id: self.activity.id).order("created_at desc").each do |rank|
+  		if rank.created_at > self.attended_on
+  			rank_name = rank.name 
+  		end
+  	end
+  	rank_name
   end
 end
