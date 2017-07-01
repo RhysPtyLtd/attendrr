@@ -33,14 +33,8 @@ private
   end
 
   def fetch_attendance
-    puts "-----------------------"
-    puts params[:from_date]
-    puts params[:to_date]
-    puts params[:student_id]
     if params[:from_date].present? && params[:to_date].present?
-      # from_date = DateTime.strptime(params[:from_date], '%d/%m/%y')
       from_date = Date.parse(params[:from_date])
-      # to_date = DateTime.strptime(params[:to_date], '%d/%m/%y')
       to_date = Date.parse(params[:to_date])
       attendance = Attendance.joins(:activity, :timeslot).where(student_id: params[:student_id],attended_on: from_date..to_date).order("#{sort_column} #{sort_direction}")
     else
@@ -48,11 +42,15 @@ private
     end
     attendance = attendance.page(page).per_page(per_page)
     if params[:sSearch].present?
-      # attendance = attendance.where("attended_on like :search", search: "%#{params[:sSearch]}%")
       attendance = Attendance.joins(:activity, :timeslot).where(student_id: params[:student_id]).order("#{sort_column} #{sort_direction}")
     end
     if params[:sSearch_0].present?
       attendance = attendance.where("activities.name = (?)", params[:sSearch_0])
+    end
+    if params[:sSearch_1].present?
+      # attendance = attendance.where("activities.name = (?)", params[:sSearch_0])
+      # attendance = attendance.select{|a| a.find_rank == params[:sSearch_1]}
+      # attendance = attendance.includes(student: :ranks).where(ranks: {activity_id: } )
     end
     if params[:sSearch_2].present?
       extract_start = params[:sSearch_2].split(//).first(7).join
@@ -61,10 +59,6 @@ private
       end_time = extract_end.to_time.strftime('%H:%M:%S')
       attendance = attendance.where("timeslots.time_start = (?) AND timeslots.time_start = (?)", start_time,end_time)
     end
-    # if params[:sSearch_2].present?
-    #   end_time = params[:sSearch_2].to_time.strftime('%H:%M:%S')
-    #   attendance = attendance.where("timeslots.time_end = (?)", end_time)
-    # end
     if params[:sSearch_3].present?
       timeslot_day = DateTime.parse(params[:sSearch_3]).wday
       attendance = attendance.where("timeslots.day = (?)", timeslot_day)
