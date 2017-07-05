@@ -28,6 +28,9 @@ $(document).on("turbolinks:load",function() {
     	bJQueryUI: true,
     	bProcessing: true,
     	bServerSide: true,
+         "language": {
+          "infoFiltered": ""
+       },
     	
     	sAjaxSource: $('#products').data('source'),
         initComplete: function () {
