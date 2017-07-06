@@ -34,7 +34,7 @@ $(document).on("turbolinks:load",function() {
     	
     	sAjaxSource: $('#products').data('source'),
         initComplete: function () {
-            this.api().columns().every( function () {
+            this.api().columns([0,1,2,3]).every( function () {
                 var column = this;
                 var select = $('<select><option value="">All</option></select>')
                     .appendTo( $(column.footer()).empty() )
