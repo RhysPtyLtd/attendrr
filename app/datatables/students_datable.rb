@@ -48,9 +48,10 @@ private
       attendance = attendance.where("activities.name = (?)", params[:sSearch_0])
     end
     if params[:sSearch_1].present?
-      # attendance = attendance.where("activities.name = (?)", params[:sSearch_0])
-      # attendance = attendance.select{|a| a.find_rank == params[:sSearch_1]}
-      # attendance = attendance.includes(student: :ranks).where(ranks: {activity_id: } )
+      attendance1 = Attendance.joins(:activity, :timeslot).where(student_id: params[:student_id]).order("#{sort_column} #{sort_direction}")
+      attendance1 = attendance1.select{|a|a.find_rank == params[:sSearch_1]}
+      attendance_id = attendance1.pluck(:id)
+      attendance = attendance.where(id: attendance_id)
     end
     if params[:sSearch_2].present?
       extract_start = params[:sSearch_2].split(//).first(7).join
