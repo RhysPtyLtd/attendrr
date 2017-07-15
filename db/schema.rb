@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 20170422060836) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "activities", force: :cascade do |t|
     t.string   "name"
     t.boolean  "active",     default: true
     t.integer  "club_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.index ["club_id"], name: "index_activities_on_club_id"
+    t.index ["club_id"], name: "index_activities_on_club_id", using: :btree
   end
 
   create_table "attendances", force: :cascade do |t|
@@ -29,9 +32,9 @@ ActiveRecord::Schema.define(version: 20170422060836) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.boolean  "attended"
-    t.index ["activity_id"], name: "index_attendances_on_activity_id"
-    t.index ["student_id"], name: "index_attendances_on_student_id"
-    t.index ["timeslot_id"], name: "index_attendances_on_timeslot_id"
+    t.index ["activity_id"], name: "index_attendances_on_activity_id", using: :btree
+    t.index ["student_id"], name: "index_attendances_on_student_id", using: :btree
+    t.index ["timeslot_id"], name: "index_attendances_on_timeslot_id", using: :btree
   end
 
   create_table "clubs", force: :cascade do |t|
@@ -58,7 +61,7 @@ ActiveRecord::Schema.define(version: 20170422060836) do
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
     t.string   "picture"
-    t.index ["email"], name: "index_clubs_on_email", unique: true
+    t.index ["email"], name: "index_clubs_on_email", unique: true, using: :btree
   end
 
   create_table "payment_plans", force: :cascade do |t|
@@ -70,7 +73,7 @@ ActiveRecord::Schema.define(version: 20170422060836) do
     t.integer  "classes_amount"
     t.datetime "created_at",                                            null: false
     t.datetime "updated_at",                                            null: false
-    t.index ["club_id"], name: "index_payment_plans_on_club_id"
+    t.index ["club_id"], name: "index_payment_plans_on_club_id", using: :btree
   end
 
   create_table "ranks", force: :cascade do |t|
@@ -79,7 +82,7 @@ ActiveRecord::Schema.define(version: 20170422060836) do
     t.integer  "activity_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["activity_id"], name: "index_ranks_on_activity_id"
+    t.index ["activity_id"], name: "index_ranks_on_activity_id", using: :btree
   end
 
   create_table "student_ranks", force: :cascade do |t|
@@ -88,8 +91,8 @@ ActiveRecord::Schema.define(version: 20170422060836) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.boolean  "active",     default: true
-    t.index ["rank_id"], name: "index_student_ranks_on_rank_id"
-    t.index ["student_id"], name: "index_student_ranks_on_student_id"
+    t.index ["rank_id"], name: "index_student_ranks_on_rank_id", using: :btree
+    t.index ["student_id"], name: "index_student_ranks_on_student_id", using: :btree
   end
 
   create_table "students", force: :cascade do |t|
@@ -109,7 +112,7 @@ ActiveRecord::Schema.define(version: 20170422060836) do
     t.datetime "updated_at",      null: false
     t.string   "picture"
     t.integer  "payment_plan_id"
-    t.index ["club_id"], name: "index_students_on_club_id"
+    t.index ["club_id"], name: "index_students_on_club_id", using: :btree
   end
 
   create_table "timeslots", force: :cascade do |t|
@@ -121,7 +124,17 @@ ActiveRecord::Schema.define(version: 20170422060836) do
     t.datetime "updated_at",                 null: false
     t.boolean  "active",      default: true
     t.datetime "schedule"
-    t.index ["activity_id"], name: "index_timeslots_on_activity_id"
+    t.index ["activity_id"], name: "index_timeslots_on_activity_id", using: :btree
   end
 
+  add_foreign_key "activities", "clubs"
+  add_foreign_key "attendances", "activities"
+  add_foreign_key "attendances", "students"
+  add_foreign_key "attendances", "timeslots"
+  add_foreign_key "payment_plans", "clubs"
+  add_foreign_key "ranks", "activities"
+  add_foreign_key "student_ranks", "ranks"
+  add_foreign_key "student_ranks", "students"
+  add_foreign_key "students", "clubs"
+  add_foreign_key "timeslots", "activities"
 end

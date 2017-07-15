@@ -24,7 +24,7 @@ gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
 group :development, :test do
-  gem 'sqlite3', '1.3.11'
+  gem 'pg', '0.18.4'
   gem 'byebug',  '9.0.0', platform: :mri
   gem 'faker', '1.6.3'
 end
