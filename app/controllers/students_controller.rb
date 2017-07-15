@@ -58,6 +58,7 @@ class StudentsController < ApplicationController
 			flash[:success] = "Student details updated"
 			redirect_to @student
 		else
+			@activities = current_club.activities.all
 			render 'edit'
 		end
 	end
