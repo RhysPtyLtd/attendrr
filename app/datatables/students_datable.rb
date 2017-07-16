@@ -58,7 +58,7 @@ private
       extract_end = params[:sSearch_2].split(//).last(7).join
       start_time = extract_start.to_time.strftime('%H:%M:%S')
       end_time = extract_end.to_time.strftime('%H:%M:%S')
-      attendance = attendance.where("timeslots.time_start = (?) AND timeslots.time_start = (?)", start_time,end_time)
+      attendance = attendance.where("timeslots.time_start = (?) AND timeslots.time_end = (?)", start_time,end_time)
     end
     if params[:sSearch_3].present?
       timeslot_day = DateTime.parse(params[:sSearch_3]).wday
