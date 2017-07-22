@@ -16,9 +16,10 @@ Rails.application.routes.draw do
             get 'attendance'
             get 'schedule_classes'
             get 'student_attendance'
+						get 'prospectplan'
         end
     end
-    resources :activities do 
+    resources :activities do
         collection do
             get 'scheduled_classes'
         end
