@@ -1,0 +1,70 @@
+<table  id="prospectplan" class="display" cellspacing="0" width="100%">
+
+  <thead>
+    <tr>
+      <th>Name</th>
+			<th>Club Name</th>
+
+    </tr>
+  </thead>
+	<tfoot>
+		<th>Name</th>
+		<th>Club Name</th>
+	</tfoot>
+  <tbody>
+    <% @students1.each do |s| %>
+      <tr>
+        <td><%= link_to s.first_name + " " + s.last_name, student_path(s) %><br></td>
+				<td><%= s.club.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<script type="text/javascript">
+$(document).ready( function () {
+
+var prospectplanstudent =  $('#prospectplan').DataTable( {
+				"bJQueryUI": true,
+       "sPaginationType": "full_numbers",
+       "bDestroy": true,
+       "bSort": true,
+       "bFilter": true,
+			 "bSearching" :true,
+
+  } );
+	// $('#prospectplan').DataTable({
+  //     'paging'      : true,
+  //     'lengthChange': false,
+  //     'searching'   : false,
+  //     'ordering'    : true,
+  //     'info'        : true,
+  //     'autoWidth'   : false
+  //   })
+} );
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+	// Setup - add a text input to each footer cell
+	$('#prospectplan tfoot th').each( function () {
+			var title = $(this).text();
+			$(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+	} );
+
+	// DataTable
+	var table = $('#prospectplan').DataTable();
+
+	// Apply the search
+	table.columns().every( function () {
+			var that = this;
+
+			$( 'input', this.footer() ).on( 'keyup change', function () {
+					if ( that.search() !== this.value ) {
+							that
+									.search( this.value )
+									.draw();
+					}
+			} );
+	} );
+} );
+
+</script>
