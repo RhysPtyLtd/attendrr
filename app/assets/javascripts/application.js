@@ -31,7 +31,7 @@ $(document).on("turbolinks:load",function() {
          "language": {
           "infoFiltered": ""
        },
-    	
+
     	sAjaxSource: $('#products').data('source'),
         initComplete: function () {
             this.api().columns([0,1,2,3]).every( function () {
@@ -42,12 +42,12 @@ $(document).on("turbolinks:load",function() {
                         var val = $.fn.dataTable.util.escapeRegex(
                             $(this).val()
                         );
- 
+
                         column
                             .search( val ? val : '', true, false )
                             .draw();
                     } );
- 
+
                 column.data().unique().sort().each( function ( d, j ) {
                     select.append( '<option value="'+d+'">'+d+'</option>' )
                 } );
@@ -57,6 +57,10 @@ $(document).on("turbolinks:load",function() {
     document.addEventListener("turbolinks:before-cache", function() {
 	  if ($('#products').length == 1) {
 	  	dataTable.destroy();
+	  }
+    if ($('#prospectplan').length == 1) {
+      alert("hi")
+	  	prospectplanstudent.destroy();
 	  }
 	});
 } );

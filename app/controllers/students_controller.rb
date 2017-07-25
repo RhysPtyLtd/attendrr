@@ -6,6 +6,8 @@ class StudentsController < ApplicationController
 	def index
 		if @club = current_club
 			@students = @club.students.all
+			# @items = Item.paginate :page => params[:page], :per_page => 5
+
 
 		else
 			redirect_to root_url
@@ -123,6 +125,7 @@ class StudentsController < ApplicationController
 	end
 	def prospectplan
 			@students1=Student.where('payment_plan_id= 1')
+
 	end
 	private
 
