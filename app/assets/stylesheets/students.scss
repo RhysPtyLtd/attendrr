@@ -14,6 +14,9 @@
   background-color:red;
 }
 
-// .dataTables_filter{
-// 	display: none;
-//  }
+ .dataTables_filter{
+	display: none;
+ }
+#prospectplan_wrapper .dataTables_filter{
+	display: block;
+ }

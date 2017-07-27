@@ -3,7 +3,7 @@
 <span><%= link_to "View club details", current_club %></span>
 <span>Students: <%= link_to current_club.students.count, students_path %>
 <% s = Student.where(payment_plan_id: 1) %>
-<%= link_to "(#{s.count}"" " "Prospects)",prospectplan_students_path %> </span>
+(<%= s.count %> <%= link_to "Prospects",prospectplan_students_path %> ) </span>
 <span><%= link_to("Add new student", new_student_path) %></span>
 <span>Classes: <%= link_to current_club.activities.where(active: true).count, activities_path %></span>
 <span><%= link_to("Add new class", new_activity_path) %></span>

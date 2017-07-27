@@ -58,9 +58,5 @@ $(document).on("turbolinks:load",function() {
 	  if ($('#products').length == 1) {
 	  	dataTable.destroy();
 	  }
-    if ($('#prospectplan').length == 1) {
-      alert("hi")
-	  	prospectplanstudent.destroy();
-	  }
 	});
 } );
