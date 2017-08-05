@@ -1,0 +1,40 @@
+<h4 style="text-align: center;"><span style="font-family: serif; font-size: xx-large;"><u>STUDENT LIST (PROSPECT)</u></span></h4>
+
+<table  id="prospectplan" class="display" cellspacing="0" width="100%">
+
+  <thead>
+    <tr>
+      <th>Name</th>
+			<th>Club Name</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @students1.each do |s| %>
+      <tr>
+        <td><%= link_to s.first_name + " " + s.last_name, student_path(s) %><br></td>
+				<td><%= s.club.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<script type="text/javascript">
+$(document).ready( function () {
+
+var prospectplanstudent =  $('#prospectplan').DataTable( {
+	   "bJQueryUI": true,
+       "sPaginationType": "full_numbers",
+       "bDestroy": true,
+       "bSort": true,
+       "bFilter": true,
+	   "bSearching" :true,
+
+  } );
+  document.addEventListener("turbolinks:before-cache", function() {
+    if ($('#prospectplan').length == 1) {
+	  	prospectplanstudent.destroy();
+	  }
+	});
+} );
+</script>
+

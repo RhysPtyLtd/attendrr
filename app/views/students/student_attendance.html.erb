@@ -13,7 +13,7 @@
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                   </span>
-                </div>    
+                </div>
               </div>
               <div class="form-group" style="margin-bottom: 15px;margin-top: 10px;">
                 <label for="pwd">To:</label>
@@ -22,7 +22,7 @@
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                   </span>
-                </div>  
+                </div>
               </div>
               <%= hidden_field_tag :student_id,params[:student_id]%>
               <button type="submit" class="btn btn-default" style="margin-bottom: 15px;margin-top: 10px;">Submit</button>
@@ -41,19 +41,19 @@
                 <label for="email">Class:</label>
                  <div class='input-group date'>
                   <%= text_field_tag :class_name,params[:class_name],class: "form-control" %>
-                </div>    
+                </div>
               </div>
               <div class="form-group" style="margin-bottom: 15px;margin-top: 10px;">
                 <label for="pwd">Rank:</label>
                 <div class='input-group date' >
                   <%= text_field_tag :rank_name,params[:rank_name],class: "form-control"%>
-                </div>  
+                </div>
               </div>
               <div class="form-group" style="margin-bottom: 15px;margin-top: 10px;">
                 <label for="pwd">Day:</label>
                 <div class='input-group date' >
                   <%= select_tag :search_day,options_for_select([["Select" , "" ]]+(0..6).map {|d| [Date::DAYNAMES[d], d]},:selected=>params[:search_day]),class: "form-control"%>
-                </div>  
+                </div>
               </div>
               <div class="form-group" style="margin-bottom: 15px;margin-top: 10px;">
                 <label for="pwd">Date:</label>
@@ -62,7 +62,7 @@
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                   </span>
-                </div>  
+                </div>
               </div>
               <%= hidden_field_tag :student_id,params[:student_id]%>
               <button type="submit" class="btn btn-default" style="margin-bottom: 15px;margin-top: 10px;">Submit</button>
@@ -72,7 +72,7 @@
               </div>
           </div>
     </div> -->
-  
+
 <div class="table-responsive">
 <table id="products" class="table table-striped table-bordered" cellspacing="0" width="100%" data-source="<%= student_attendance_students_url(student_id: params[:student_id],activity_id: params[:activity_id],format: "json",from_date: params[:from_date],to_date: params[:to_date]) %>">
   <thead>

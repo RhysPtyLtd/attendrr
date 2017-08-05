@@ -6,6 +6,9 @@ class StudentsController < ApplicationController
 	def index
 		if @club = current_club
 			@students = @club.students.all
+			# @items = Item.paginate :page => params[:page], :per_page => 5
+
+
 		else
 			redirect_to root_url
 		end
@@ -16,7 +19,7 @@ class StudentsController < ApplicationController
 		@student_activities = @student.student_activities
 		@first_ranks_of_activities = @student.first_ranks_of_activities
 		redirect_to root_url if @student.nil?
-		
+
 	end
 
 	def new
@@ -90,7 +93,7 @@ class StudentsController < ApplicationController
 			attendance.timeslot_id = params[:timeslot_id]
 			attendance.attended = true
 			attendance.save
-		end	
+		end
 		if params[:remove_attendance].present?
 			attendance = Attendance.where(timeslot_id: params[:timeslot_id],attended_on: @date_find,student_id: params[:s_id]).first
 			attendance.destroy
@@ -101,7 +104,7 @@ class StudentsController < ApplicationController
 		@student_present = student_for_attendance.left_outer_joins(:attendances).where( attendances: { timeslot_id: params[:timeslot_id],attended_on: @date_find } )
 		@student_absent = student_for_attendance - @student_present
 		respond_to do |format|
-		  format.html 	
+		  format.html
 		  format.js
 		end
 	end
@@ -120,13 +123,16 @@ class StudentsController < ApplicationController
 	    	format.json { render json: AttendanceDatatable.new(view_context) }
 	  	end
 	end
+	def prospectplan
+			@students1=Student.where('payment_plan_id= 1')
 
+	end
 	private
 
 		def student_params
-			params.require(:student).permit(:email, :address_line_1, :address_line_2, :city, :state, :postcode, 
+			params.require(:student).permit(:email, :address_line_1, :address_line_2, :city, :state, :postcode,
 											:phone1, :phone2, :first_name, :last_name, :dob,
-											:picture, :payment_plan_id, :student_rank, rank_ids: [], 
+											:picture, :payment_plan_id, :student_rank, rank_ids: [],
 											student_ranks_attributes: [:student_id, :rank_id, :active])
 		end
 
