@@ -1,7 +1,7 @@
 class StudentsController < ApplicationController
 	require 'students_datable'
 	before_action :logged_in_user, only: [:create, :destroy, :new, :edit, :update]
-	before_action :correct_club, only: [:index, :show, :destroy] # Currently does nothing??
+	before_action :correct_club, only: [:index, :show, :destroy,:prospectplan] # Currently does nothing??
 
 	def index
 		if @club = current_club
@@ -123,9 +123,12 @@ class StudentsController < ApplicationController
 	    	format.json { render json: AttendanceDatatable.new(view_context) }
 	  	end
 	end
-	def prospectplan
-			@students1=Student.where('payment_plan_id= 1')
-
+	def prospects
+		if @club = current_club
+			@students = @club.students.includes(:payment_plan).where(payment_plans: {name: 'Prospect'})
+		else
+			redirect_to root_url
+		end
 	end
 	private
 
