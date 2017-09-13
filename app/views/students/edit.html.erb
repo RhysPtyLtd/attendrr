@@ -36,7 +36,7 @@
 	<%= f.phone_field :phone2, class: 'form-control' %>
 
 	<%= f.label :payment_plan_id, "Payment plan" %>
-	<%= f.collection_select(:payment_plan_id, @student.club.payment_plans, :id, :name) %>
+	<%= f.collection_select(:payment_plan_id, @student.club.payment_plans.where(active: true), :id, :name) %>
 
 	<%= hidden_field_tag "student[rank_ids][]", nil %>
 	<% @activities.each do |activity| %>
