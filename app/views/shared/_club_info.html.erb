@@ -7,5 +7,4 @@
 <span>Classes: <%= link_to current_club.activities.where(active: true).count, activities_path %></span>
 <span><%= link_to("Add new class", new_activity_path) %></span>
 <span>Payment plans: <%= link_to current_club.payment_plans.where(active: true).count, payment_plans_path %></span>
-<span><%= link_to("Add/remove payment plan", new_payment_plan_path) %></span>
 <span><%= link_to("Scheduled classes", scheduled_classes_activities_path) %></span>
