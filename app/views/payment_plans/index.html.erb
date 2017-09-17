@@ -8,7 +8,8 @@
 		<% end %>
 	<% end %>
 	<% if pp.name != 'Prospect' %>
-		<%= link_to "Delete", payment_plan_path(pp, payment_plan: { active: false }), method: :put, data: { confirm: "Are you sure?" } %> | Edit<br>
+		<%= link_to "Delete", payment_plan_path(pp, payment_plan: { active: false }), method: :put, data: { confirm: "Are you sure?" } %> | 
+		<%= link_to "Edit", edit_payment_plan_path(pp) %><br>
 	<% end %>
 <% end %>
 

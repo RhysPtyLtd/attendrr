@@ -21,13 +21,17 @@ class PaymentPlansController < ApplicationController
 		@payment_plans = current_club.payment_plans.all 
 	end
 
+	def edit
+		@payment_plan = current_club.payment_plans.find_by(id: params[:id])
+	end
+
 	def update
 		@payment_plan = current_club.payment_plans.find_by(id: params[:id])
 		if @payment_plan.update_attributes(payment_plan_params)
 			flash[:sucess] = "Payment plans updated!"
-			redirect_to new_payment_plan_path
+			redirect_to action: "index"
 		else
-			render 'new'
+			render 'edit'
 		end
 	end
 
