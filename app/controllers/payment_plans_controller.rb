@@ -28,7 +28,7 @@ class PaymentPlansController < ApplicationController
 	def update
 		@payment_plan = current_club.payment_plans.find_by(id: params[:id])
 		if @payment_plan.update_attributes(payment_plan_params)
-			flash[:sucess] = "Payment plans updated!"
+			flash[:sucess] = "Payment plan updated!"
 			redirect_to action: "index"
 		else
 			render 'edit'
