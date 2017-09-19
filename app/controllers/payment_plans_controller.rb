@@ -11,7 +11,7 @@ class PaymentPlansController < ApplicationController
 		@payment_plan = current_club.payment_plans.build(payment_plan_params)
 		if @payment_plan.save
 			flash[:success] = "Payment plan created"
-			redirect_to root_url
+			redirect_to action: "index"
 		else
 			render 'new'
 		end
@@ -28,7 +28,7 @@ class PaymentPlansController < ApplicationController
 	def update
 		@payment_plan = current_club.payment_plans.find_by(id: params[:id])
 		if @payment_plan.update_attributes(payment_plan_params)
-			flash[:sucess] = "Payment plan updated!"
+			flash[:success] = "Payment plan updated!"
 			redirect_to action: "index"
 		else
 			render 'edit'
