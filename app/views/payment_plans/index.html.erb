@@ -1,5 +1,5 @@
 <% @payment_plans.where(active: true).each do |pp| %>
-	<%= pp.name %> (X members)<br>
+	<%= pp.name %> (<%= pp.students.count %> members)<br>
 	<% if pp.name != 'Prospect' %>
 		<% if pp.frequency == 'Per class' %>
 			<%= number_to_currency(pp.price, unit: "$") %> per <%= pluralize(pp.classes_amount, "class") %>

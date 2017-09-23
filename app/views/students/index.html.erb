@@ -1,9 +1,8 @@
 <% @students.each do |s| %>
 	<ul>
 		<li>
-			<%= link_to s.first_name + " " + s.last_name, student_path(s) %><br>
+			<%= link_to s.last_name + ", " + s.first_name, student_path(s) %><br>
 			<%= image_tag s.picture.url if s.picture? %>
-			<%= s.club.name %>
 		</li>
 	</ul>
 <% end %>
