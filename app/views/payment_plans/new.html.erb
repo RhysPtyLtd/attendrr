@@ -8,10 +8,7 @@
 	<%= f.number_field :price, step: "0.01" %>
 
 	<%= f.label :frequency %>*
-	<%= f.select :frequency, options_for_select([['Weekly'], ['2-weekly'], ['Monthly'], ['6-monthly'], ['Yearly'], ['Per class']]), class: 'form-control' %>
-
-	<%= f.label :classes_amount %>
-	Per <%= f.number_field :classes_amount, class: 'form-control' %>
+	<%= f.select :frequency, options_for_select([['Weekly'], ['2-weekly'], ['Monthly'], ['6-monthly'], ['Yearly']]), class: 'form-control' %>
 
 	</div>
 	<%= f.submit "Create payment plan", class: "btn btn-primary" %>
