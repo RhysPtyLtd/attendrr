@@ -4,10 +4,10 @@
 <% end %>
 <%= @student.email %><br>
 Address:<br>
-<%= @student.address_line_1 %><br>
 <% if @student.address_line_2? %>
-	<%= @student.address_line_2 %><br>
-<% end %>
+	<%= @student.address_line_2 %> /
+	<% end %>
+<%=@student.address_line_1 %><br>
 <%= @student.city %><br>
 <%= @student.state %><br>
 <%= @student.postcode %><br>

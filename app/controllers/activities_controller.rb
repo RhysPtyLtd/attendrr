@@ -12,7 +12,7 @@ class ActivitiesController < ApplicationController
 		@activity = current_club.activities.new(activity_params)
 		if @activity.save
 			flash[:success] = "New class created!"
-			redirect_to activities_path
+			redirect_to activity_path(@activity)
 		else
 			render 'new'
 		end
@@ -30,7 +30,7 @@ class ActivitiesController < ApplicationController
 	def update
 		@activity = current_club.activities.find_by(id: params[:id])
 		if @activity.update_attributes(activity_params)
-			flash[:sucess] = "Class updated!"
+			flash[:success] = "Class updated!"
 			redirect_to edit_activity_path(@activity)
 		else
 			render 'edit'

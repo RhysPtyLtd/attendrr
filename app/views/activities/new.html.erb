@@ -12,7 +12,6 @@
 						<span class="input-group-addon" >
                         	<span class="glyphicon glyphicon-time"></span>
                     	</span>
-					
 					</div>
 
 					<%= timeslots_form.label :time_end, "End time" %>
@@ -21,13 +20,23 @@
 						<span class="input-group-addon">
                         	<span class="glyphicon glyphicon-time"></span>
                     	</span>
-					</div>	
+					</div>
+					
 					<%= timeslots_form.label :day %>
 					<%= timeslots_form.select :day, (0..6).map {|d| [Date::DAYNAMES[d], d]}, {}, { :class => 'form-control' } %>
 					
 					<%= timeslots_form.link_to_remove "Remove this timeslot" %>
 			<% end %>
-			<%= f.link_to_add "Add a timeslot", :timeslots%>
+			<%= f.link_to_add "Add another timeslot", :timeslots%><br>
+
+			<%= fields_for :ranks do |ranks_form| %>
+				<%= ranks_form.label :name, "Rank name" %>
+				<%= ranks_form.text_field :name, class: 'form-control' %> 
+
+				<%= ranks_form.label :position, "Position" %>
+				<%= ranks_form.select :position, (1..@activity.ranks.count+1) %>
+			<% end %>
+
 	</div>
 	<%= f.submit "Create class", class: "btn btn-primary" %>
 <% end %>

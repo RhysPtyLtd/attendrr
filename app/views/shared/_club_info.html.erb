@@ -3,7 +3,7 @@
 <span><%= link_to "View club details", current_club %></span>
 
 <span>Students: <%= link_to current_club.students.count, students_path %>
-(<%= @total_prospects %> <%= link_to "Prospects",prospects_students_path %> ) </span>
+(<%= link_to pluralize(@total_prospects, 'prospect'),prospects_students_path %> ) </span>
 <span><%= link_to("Add new student", new_student_path) %></span>
 
 <span>Classes: <%= link_to current_club.activities.where(active: true).count, activities_path %></span>
