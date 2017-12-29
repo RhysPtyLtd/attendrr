@@ -15,7 +15,13 @@ Primary phone: <%= @student.phone1 %><br>
 <% if @student.phone2? %>
 	Secondary phone: <%= @student.phone2 %><br>
 <% end %>
-Date of birth: <%= @student.dob %><br>
+Date of birth: <%= @student.dob.strftime("%d/%m/%Y") %> (<%= ((Date.today - @student.dob) / 365).to_i %> years old)<br>
+<% if @student.parent1? %>
+	Parent/guardian 1: <%= @student.parent1 %><br>
+<% end %>
+<% if @student.parent2? %>
+	Parent/guardian 2: <%= @student.parent2 %><br>
+<% end %>
 Classes:
 <% if @student.student_activities.any? %>
 	<% @student.student_ranks.where(:active => true).each do |r| %>

@@ -35,6 +35,12 @@
 	<%= f.label :phone2, "Secondary phone" %>
 	<%= f.phone_field :phone2, class: 'form-control' %>
 
+	<%= f.label :parent1, "Parent/guardian 1" %>
+	<%= f.text_field :parent1, class: 'form-control' %>
+
+	<%= f.label :parent2, "Parent/guardian 2" %>
+	<%= f.text_field :parent2, class: 'form-control' %>
+
 	<%= f.label :payment_plan_id, "Payment plan" %>
 	<%= f.collection_select(:payment_plan_id, @student.club.payment_plans.where(active: true), :id, :name) %>
 
