@@ -21,9 +21,9 @@ Date of birth: <%= @student.dob.strftime("%d/%m/%Y") %> (<%= ((Date.today - @stu
 <% end %>
 <% if @student.parent2? %>
 	Parent/guardian 2: <%= @student.parent2 %><br>
+<% end %>
 <% if @student.size? %>
 	Size: <%= @student.size %><br>
-<% end %>
 <% end %>
 Classes:
 <% if @student.student_activities.any? %>
