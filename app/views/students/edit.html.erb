@@ -44,6 +44,9 @@
 	<%= f.label :size %>
 	<%= f.text_field :size, class: 'form-control' %>
 
+	<%= f.label :notes %>
+	<%= f.text_field :notes, class: 'form-control' %>
+
 	<%= f.label :payment_plan_id, "Payment plan" %>
 	<%= f.collection_select(:payment_plan_id, @student.club.payment_plans.where(active: true), :id, :name) %>
 

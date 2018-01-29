@@ -34,6 +34,10 @@ Classes:
 	<li>None</li>
 <% end %>
 Payment plan: <%= @student.payment_plan.name %><br>
+<% if @student.notes? %>
+	<u>Notes:</u> <br>
+	<i><%= @student.notes %></i><br>
+<% end %>
 <%= link_to "Attendance", student_attendance_students_path(student_id: params[:id]) %><br>
 <%= link_to "Edit student details", edit_student_path %><br>
 <%= link_to "Delete", @student, method: :delete, data: { confirm: "Please note: only delete students that were entered erroneously. To remove a student that is no longer active follow the 'deactivate' link. Are you sure you want to delete this student?"} %><br>
