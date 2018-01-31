@@ -40,6 +40,12 @@
 
 	<%= f.label :parent2, "Parent/guardian 2" %>
 	<%= f.text_field :parent2, class: 'form-control' %>
+
+	<%= f.label :size %>
+	<%= f.text_field :size, class: 'form-control' %>
+
+	<%= f.label :notes %>
+	<%= f.text_field :notes, class: 'form-control' %>
 	
 	<%= collection_select :rank_ids, :id, @first_ranks, :id, :activity_name,{:multiple => true},{:multiple => true,id: "activity-display"} %>
 	<span class="picture">
@@ -67,5 +73,5 @@
 </script>
 
 <% @first_ranks.each do |fr| %>
-	<%= fr.name %> | <%= fr.activity.name %> <%= fr.position %><br>
+	<%= fr.name %> | <%= fr.activity.name %> | <%= fr.position %><br>
 <% end %>
