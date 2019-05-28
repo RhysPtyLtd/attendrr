@@ -1,3 +1,4 @@
+<% provide(:title, @student.first_name) %>
 <%= link_to "<< Back to Students", students_path %><br>
 <b><%= @student.first_name %> <%= @student.last_name %></b><br>
 <% if @student.picture? %>
