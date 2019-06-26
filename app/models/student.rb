@@ -17,6 +17,8 @@ class Student < ApplicationRecord
   validates :phone1, presence: true
   validates :dob, presence: true
   validate :picture_size
+  before_save { email.downcase! }
+  before_save { state.upcase! }
   before_create :assign_prospect
   has_many :student_ranks, dependent: :destroy
   has_many :ranks, through: :student_ranks
