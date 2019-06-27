@@ -16,7 +16,7 @@ class Club < ApplicationRecord
 					  format: { with: VALID_EMAIL_REGEX },
 					  uniqueness: { case_sensitive: false }
 	has_secure_password
-	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true # Dont know why ts allow_nil is here
     validates :address_line_1, presence: true, length: { maximum: 200 }
     validates :city, presence: true, length: { maximum: 200 }
     validates :state, presence: true, length: { maximum: 200 }
