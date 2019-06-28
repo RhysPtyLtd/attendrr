@@ -19,7 +19,6 @@ class StudentsController < ApplicationController
 		@student_activities = @student.student_activities
 		@first_ranks_of_activities = @student.first_ranks_of_activities
 		redirect_to root_url if @student.nil?
-
 	end
 
 	def new
