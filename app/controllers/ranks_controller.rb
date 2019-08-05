@@ -13,8 +13,6 @@ class RanksController < ApplicationController
 		if @rank.save
 			flash[:success] = "New rank added"
 			redirect_to activity_path(@activity)
-		else
-			render 'new'
 		end
 	end
 
@@ -34,7 +32,7 @@ class RanksController < ApplicationController
 	private
 
 	def ranks_params
-		params.require(:rank).permit(:name, :active)
+		params.require(:rank).permit(:name)
 	end
 
 end

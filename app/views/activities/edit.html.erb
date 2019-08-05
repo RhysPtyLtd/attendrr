@@ -25,7 +25,7 @@
 <% end %>
 
 <% @activity.ranks.each do |r| %>
-	<%= r.name %> <%= link_to "Delete this rank", rank_path(r, rank: { active: false }), method: :put, data: { confirm: "Are you sure?" } %><br>
+	<%= r.position %>. <%= r.name %> <%= link_to "Delete this rank", rank_path(r, rank: { active: false }), method: :put, data: { confirm: "Are you sure?" } %><br>
 <% end %>
 
 <%= form_for(@activity) do |f| %>
@@ -34,9 +34,6 @@
 		<%= f.fields_for :ranks, @activity.ranks.build do |ranks_form| %>
 			<%= ranks_form.label :name, "Rank" %>
 			<%= ranks_form.text_field :name %>
-
-			<%= ranks_form.label :position, "Position" %>
-			<%= ranks_form.select :position, (1..@activity.ranks.count+1) %>
 		<% end %>
 	</div>
 	<%= f.submit "Add new rank", class: "btn btn-primary" %>
