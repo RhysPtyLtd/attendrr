@@ -24,8 +24,8 @@
 	<%= f.submit "Add this timeslot", class: "btn btn-primary" %>
 <% end %>
 
-<% @activity.ranks.each do |r| %>
-	<%= r.position %>. <%= r.name %> <%= link_to "Delete this rank", rank_path(r, rank: { active: false }), method: :put, data: { confirm: "Are you sure?" } %><br>
+<% @active_ranks.each do |r| %>
+	<%= r.position %>. <%= r.name %> <%= link_to "Delete this rank", rank_path(r, rank: {active: false}), method: :put, data: { confirm: "Are you sure?" } %><br>
 <% end %>
 
 <%= form_for(@activity) do |f| %>

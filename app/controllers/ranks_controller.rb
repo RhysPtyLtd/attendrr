@@ -32,7 +32,7 @@ class RanksController < ApplicationController
 	private
 
 	def ranks_params
-		params.require(:rank).permit(:name)
+		params.require(:rank).permit(:name, :active)
 	end
 
 end
