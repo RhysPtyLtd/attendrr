@@ -20,6 +20,7 @@ class ActivitiesController < ApplicationController
 
 	def edit
 		@activity = current_club.activities.find_by(id: params[:id])
+		@active_ranks = @activity.ranks.where(active: true)
 		if !@activity.active?
 			redirect_to activities_path
 		else
@@ -74,6 +75,7 @@ class ActivitiesController < ApplicationController
 		day_find = @date_find.strftime('%w').to_i
 		# @activity = current_club.activities.joins(:timeslots).where('DATE(timeslots.schedule) = ?', date_find).includes(:timeslots)
 		@activity = current_club.activities.joins(:timeslots).where('timeslots.day = ? AND activities.active = ? AND DATE(activities.created_at) <= ?', day_find,true,@date_find).includes(:timeslots)
+
 		
 	end
 

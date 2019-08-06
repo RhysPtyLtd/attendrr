@@ -12,7 +12,7 @@ def activity_name
 end
 
 def num_of_ranks_in_activity
-	self.activity.ranks.count
+	self.activity.ranks.where(active: true).count
 end
 
 	private
