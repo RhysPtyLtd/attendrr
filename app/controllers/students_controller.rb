@@ -16,7 +16,7 @@ class StudentsController < ApplicationController
 
 	def show
 		@student = current_club.students.find_by(id: params[:id])
-		@student_activities = @student.student_activities
+		@student_activities = @student.unique_activities
 		@first_ranks_of_activities = @student.first_ranks_of_activities
 		redirect_to root_url if @student.nil?
 	end
@@ -24,7 +24,12 @@ class StudentsController < ApplicationController
 	def new
 		@student = Student.new
 		@student_ranks = @student.student_ranks.build
-		@first_ranks = current_club.first_ranks_of_activities
+		# Gets an array of every rank in the club to pass to @active_ranks
+		@ranks = current_club.activities.map { |a| a.ranks}.flatten
+		# Filters out everything but the ranks that are active to pass to @first_ranks
+		@active_ranks = @ranks.select { |r| r.active = true }
+		# Filters put every rank but the first one
+		@first_ranks = @active_ranks.select { |ar| ar.position == 1 }
 	end
 
 	def create
@@ -122,6 +127,7 @@ class StudentsController < ApplicationController
 	    	format.json { render json: AttendanceDatatable.new(view_context) }
 	  	end
 	end
+
 	def prospects
 		if @club = current_club
 			@students = @club.students.includes(:payment_plan).where(payment_plans: {name: 'Prospect'})
@@ -129,6 +135,7 @@ class StudentsController < ApplicationController
 			redirect_to root_url
 		end
 	end
+
 	private
 
 		def student_params
