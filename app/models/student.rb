@@ -27,25 +27,30 @@ class Student < ApplicationRecord
 
   scope :student_for_attendance, -> (rank_ids) { includes(:ranks).where(:ranks => {id: rank_ids}).distinct }
   scope :last_month,  -> (timeslot_id,date_find) { joins(sanitize_sql_array(['left outer join attendances on attendances.student_id = students.id'])).where('attendances.id is null OR (attendances.timeslot_id != ? AND attendances.attended_on != ?)',timeslot_id,date_find)}
-  def student_activities
-    activitys.map(&:name).uniq
+  
+  def unique_activities
+   student_activities.map(&:name).uniq
   end
 
-  def all_acitivities
-    activitys
-  end
+  #def all_acitivities # SPELLING ERROR
+   # activitys
+  #end
 
   def club_ranks
     club_activities.map{ |a| a.ranks}.flatten
+  end
+
+  def all_ranks
+    self.club.activities.map { |a| a.ranks}.flatten
   end
 
   def first_ranks_of_activities
     club_activities.map { |a| a.ranks.select{ |r| r.position == 0  }}.flatten
   end
 
-  def current_ranks
+  #def current_ranks
     # all ranks where active == true
-  end
+  #end
 
   private
 
@@ -53,8 +58,8 @@ class Student < ApplicationRecord
       self.club.activities
     end
  
-    def activitys
-      self.ranks.map(&:activity)
+    def student_activities
+     self.ranks.map(&:activity)
     end
 
     def assign_prospect

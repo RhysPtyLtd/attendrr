@@ -48,11 +48,13 @@
 	<%= f.text_field :notes, class: 'form-control' %>
 	
 	<%= collection_select :rank_ids, :id, @first_ranks, :id, :activity_name,{:multiple => true},{:multiple => true,id: "activity-display"} %>
+	
 	<span class="picture">
 		<%= f.label :picture, "Attach student picture" %>
 		<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
 	</span>
 	</div>
+
 	<%= f.submit "Submit student details", class: "btn btn-primary" %>
 <% end %>
 
@@ -73,5 +75,5 @@
 </script>
 
 <% @first_ranks.each do |fr| %>
-	<%= fr.name %> | <%= fr.activity.name %> | <%= fr.position %><br>
+	<%= fr.position %>. <%= fr.name %> - <%= fr. activity.name %>: <%= fr.active? %><br>
 <% end %>

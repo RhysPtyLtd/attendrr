@@ -28,7 +28,7 @@ Date of birth: <%= @student.dob.strftime("%d/%m/%Y") %> (<%= ((Date.today - @stu
 	Size: <%= @student.size %><br>
 <% end %>
 Classes:
-<% if @student.student_activities.any? %>
+<% if @student.unique_activities.any? %>
 	<% @student.student_ranks.where(:active => true).each do |r| %>
 		<li><%= r.rank.activity.name %> (<%= r.rank.name %>)</li>
 	<% end %>
