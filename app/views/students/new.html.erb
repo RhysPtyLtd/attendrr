@@ -46,7 +46,7 @@
 
 	<%= f.label :notes %>
 	<%= f.text_field :notes, class: 'form-control' %>
-	
+
 	<%= collection_select :rank_ids, :id, @first_ranks, :id, :activity_name,{:multiple => true},{:multiple => true,id: "activity-display"} %>
 	
 	<span class="picture">
