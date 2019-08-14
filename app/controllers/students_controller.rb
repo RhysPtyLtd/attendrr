@@ -27,7 +27,7 @@ class StudentsController < ApplicationController
 		# Gets an array of every rank in the club to pass to @active_ranks
 		@ranks = current_club.activities.map { |a| a.ranks}.flatten
 		# Filters out everything but the ranks that are active to pass to @first_ranks
-		@active_ranks = @ranks.select { |r| r.active = true }
+		@active_ranks = @ranks.select { |r| r.active == true }
 		# Filters put every rank but the first one
 		@first_ranks = @active_ranks.select { |ar| ar.position == 1 }
 	end
