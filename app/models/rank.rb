@@ -5,6 +5,7 @@ class Rank < ApplicationRecord
   has_many :student_ranks
   has_many :students, through: :student_ranks
   before_create :assign_position
+  after_update :check_deactivated
 end
 
 def activity_name
@@ -16,6 +17,15 @@ def num_of_ranks_in_activity
 end
 
 	private
-		def assign_position
+
+		# Assigns position to rank
+    def assign_position
 			self.position = num_of_ranks_in_activity + 1
 		end
+
+    # Ensures positions remain in order
+    def check_deactivated
+      if active_changed? and !active
+        self.activity.ranks.where(active: true).where('position > ?', self.position).update_all('position = position-1')
+      end
+    end
