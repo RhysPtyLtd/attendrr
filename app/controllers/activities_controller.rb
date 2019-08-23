@@ -63,6 +63,13 @@ class ActivitiesController < ApplicationController
 		end
 	end
 
+	def grading
+		@activity = current_club.activities.find_by(id: params[:id])
+		@ranks = @activity.ranks
+		@active_ranks = @ranks.where(active: true)
+		@students = @activity.students
+	end
+
 	def scheduled_classes
 		if params[:search].present?
 			@date_find = params[:search].to_date

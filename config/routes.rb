@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
 	root 'static_pages#home'
     get '/signup', to: 'clubs#new'
     post '/signup', to: 'clubs#create'
@@ -22,6 +23,9 @@ Rails.application.routes.draw do
     resources :activities do
         collection do
             get 'scheduled_classes'
+        end
+        member do
+            get :grading
         end
     end
     resources :timeslots
