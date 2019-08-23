@@ -1,0 +1,22 @@
+<% provide(:title, "Grading") %>
+
+<%= @activity.name %>
+
+<%= form_for(@activity, html: { multipart: true }) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<div class="field">
+
+	<%-# NAROLA - please tidy this and move it out of the view -%>
+	<% @active_ranks.each do |ar| %>
+		<% ar.students.each do |s| %>
+			<ul>
+				<li>
+					<%= link_to s.first_name + " " + s.last_name, student_path(s) %> - <%= ar.name %> 
+					<%= collection_select :rank, :id, @active_ranks, :id, :name %>
+				</li>
+			</ul>
+		<% end %>
+	<% end %>
+
+	<%= f.submit "Update ranks", class: "btn btn-primary" %>
+<% end %>
