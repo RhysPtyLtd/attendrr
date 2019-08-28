@@ -45,11 +45,11 @@ class ActivitiesController < ApplicationController
 			redirect_to root_url
 		elsif !@activity.active?
 			redirect_to activities_path
-		end	
+		end
 	end
 
 	def index
-		@activities = current_club.activities.all 
+		@activities = current_club.activities.all
 	end
 
 	def destroy
@@ -70,6 +70,32 @@ class ActivitiesController < ApplicationController
 		@students = @activity.students
 	end
 
+
+	def update_grading
+		@activity = current_club.activities.find_by(id: params[:id])
+		unless params[:grading].nil?
+			@ranks = @activity.ranks
+			@active_ranks = @ranks.where(active: true)
+
+			@active_ranks.each do |temp|
+				unless temp.student_ranks.blank?
+					temp.student_ranks.where(student_id: params[:student_ids]).find_each do |stud|
+						if params[:grading].include? stud.student_id.to_s
+							index = params[:student_ids].index { |x| x == stud.student_id.to_s }
+							rank = @active_ranks.find_by_position(params[:rank_positions][index])
+							stud.update_attributes(rank_id: rank.id)
+						end
+					end
+				end
+			end
+			flash[:success] = "Grade updated!"
+		  redirect_to activity_path(@activity)
+		else
+			flash[:warning] = "Need to check checkbox to update student's grade"
+			redirect_to grading_activity_path(@activity)
+		end
+	end
+
 	def scheduled_classes
 		if params[:search].present?
 			@date_find = params[:search].to_date
@@ -84,23 +110,23 @@ class ActivitiesController < ApplicationController
 		# @activity = current_club.activities.joins(:timeslots).where('DATE(timeslots.schedule) = ?', date_find).includes(:timeslots)
 		@activity = current_club.activities.joins(:timeslots).where('timeslots.day = ? AND activities.active = ? AND DATE(activities.created_at) <= ?', day_find,true,@date_find).includes(:timeslots)
 
-		
+
 	end
 
 	private
 
 		def activity_params
-			params.require(:activity).permit(:name, :active, 
+			params.require(:activity).permit(:name, :active,
 											 :timeslots_attributes => [:id,
 																	   :time_start,
 																	   :time_end,
 																	   :day,
 																	   :active,
-																	   :schedule],
+																	   :schedule,
+																	 	 :_destroy],
 											 :ranks_attributes => [:id,
 											 					   :name,
 											 					   :position,
 											 					   :active])
 		end
-
 end

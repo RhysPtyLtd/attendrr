@@ -26,6 +26,7 @@ Rails.application.routes.draw do
         end
         member do
             get :grading
+						put :update_grading
         end
     end
     resources :timeslots
