@@ -1,22 +1,36 @@
 <% provide(:title, "Grading") %>
-
-<%= @activity.name %>
-
-<%= form_for(@activity, html: { multipart: true }) do |f| %>
-	<%= render 'shared/error_messages', object: f.object %>
-	<div class="field">
-
-	<%-# NAROLA - please tidy this and move it out of the view -%>
-	<% @active_ranks.each do |ar| %>
-		<% ar.students.each do |s| %>
-			<ul>
-				<li>
-					<%= link_to s.first_name + " " + s.last_name, student_path(s) %> - <%= ar.name %> 
-					<%= collection_select :rank, :id, @active_ranks, :id, :name %>
-				</li>
+<% if @students.present? %>
+	<div class="grade-head">
+		<h4>
+			<%= @activity.name %>
+			<span>Grading?</span>
+		</h4>
+	</div>
+	<%= form_for(@activity, url: update_grading_activity_path, method: 'put') do |f| %>
+		<%= render 'shared/error_messages', object: f.object %>
+		<div class="field">
+			<%-# NAROLA - please tidy this and move it out of the view -%>
+			<ul class="grade-list-bx">
+				<% @active_ranks.each do |ar| %>
+					<% ar.students.each do |s| %>
+						<li>
+							<span class="first">
+								<%= link_to s.first_name + " " + s.last_name, student_path(s) %> - <%= ar.name.strip %>
+							</span>
+							<span class="middle">
+								<%= hidden_field_tag "student_ids[]", s.id %>
+								<%= select_tag "rank_positions[]", options_from_collection_for_select(@active_ranks, :position, :name, @active_ranks.maximum(:position) == ar.position ? { selected: ar.position } : { selected: ar.position + 1 }) %>
+							</span>
+							<span class="chk-bx last">
+								<%= check_box_tag 'grading[]', s.id, false %>
+							</span>
+						</li>
+					<% end %>
+				<% end %>
 			</ul>
-		<% end %>
+		</div>
+		<%= f.submit "Update ranks", class: "btn btn-primary" %>
 	<% end %>
-
-	<%= f.submit "Update ranks", class: "btn btn-primary" %>
+<% else %>
+	<h4>No students</h4>
 <% end %>

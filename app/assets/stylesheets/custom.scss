@@ -229,7 +229,7 @@ input {
     color: $gray-light;
     display: block;
     margin-left: 60px;
-  }  
+  }
 }
 
 aside {
@@ -252,3 +252,18 @@ span.picture {
   border-radius: 4px;
   margin-right: 16px;
 }
+
+
+/**/
+.grade-head {margin: 0 0 25px;}
+.grade-head h4{display: flex;}
+.grade-head h4 span{margin-left: auto;}
+
+ul.grade-list-bx{padding: 0 0 0 50px;}
+ul.grade-list-bx li{display: flex;margin: 0 0 15px;position: relative;}
+ul.grade-list-bx li:before{content: "";width: 6px;height: 6px;border-radius: 100%;position: absolute;background-color: #525151;top: 6px;left: -16px;}
+ul.grade-list-bx li span.first {width: 20%;}
+ul.grade-list-bx li span.middle {width: 73%;}
+ul.grade-list-bx li span.last {width: 7%;}
+ul.grade-list-bx li span.chk-bx input{display: block; width: 20px; margin-left: auto; margin-right: 30px;}
+ul.grade-list-bx li span select{margin: 0;}
