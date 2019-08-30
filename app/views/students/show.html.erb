@@ -41,5 +41,6 @@ Payment plan: <%= @student.payment_plan.name %><br>
 	<i><%= @student.notes %></i><br>
 <% end %>
 <%= link_to "Attendance", student_attendance_students_path(student_id: params[:id]) %><br>
+Student since: <%= @student.created_at.strftime("%d/%m/%Y") %> (<%= distance_of_time_in_words_to_now(@student.created_at) %>) | (Date.today - @student.created_at.to_date).to_i <br>
 <%= link_to "Edit student details", edit_student_path %><br>
 <%= link_to "Delete", @student, method: :delete, data: { confirm: "Please note: only delete students that were entered erroneously. To remove a student that is no longer active follow the 'deactivate' link. Are you sure you want to delete this student?"} %><br>
