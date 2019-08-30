@@ -36,7 +36,6 @@ class StudentsController < ApplicationController
 		@student = current_club.students.build(student_params)
 		if @student.save
 			if params[:rank_ids].present?
-				puts "-------------------"
 				puts params[:rank_ids][:id].count
 				params[:rank_ids][:id].each do |id|
 					student_rank = StudentRank.new(:student_id => @student.id,:rank_id => id)
@@ -122,10 +121,12 @@ class StudentsController < ApplicationController
 		# @attendance.each do |a|
 		# 	puts a.id
 		# end
+		@activity = Activity.find(params[:activity_id]) if params[:activity_id].present?
+		@student = Student.find(params[:student_id]) if params[:student_id].present?
 		respond_to do |format|
-	    	format.html
-	    	format.json { render json: AttendanceDatatable.new(view_context) }
-	  	end
+    	format.html
+    	format.json { render json: AttendanceDatatable.new(view_context) }
+  	end
 	end
 
 	def prospects
