@@ -6,9 +6,13 @@ class StudentsController < ApplicationController
 	def index
 		if @club = current_club
 			@students = @club.students.all
+			@total_attendances = 0
+			@students.each do |s|
+				n = (Date.today - s.created_at.to_date).to_i
+				@total_attendances += n
+			end
+			@average_membership_length = @total_attendances / @students.count
 			# @items = Item.paginate :page => params[:page], :per_page => 5
-
-
 		else
 			redirect_to root_url
 		end
