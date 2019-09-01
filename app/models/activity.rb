@@ -7,4 +7,5 @@ class Activity < ApplicationRecord
   accepts_nested_attributes_for :ranks
   validates :club_id, presence: true
   validates :name, presence: true, length: { maximum: 50 }
+  has_many :students, through: :ranks
 end

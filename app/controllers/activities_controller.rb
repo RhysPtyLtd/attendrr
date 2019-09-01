@@ -41,6 +41,7 @@ class ActivitiesController < ApplicationController
 	def show
 		@activity = current_club.activities.find_by(id: params[:id])
 		@active_ranks = @activity.ranks.where(active: true)
+		@active_students = @activity.students
 		if @activity.nil?
 			redirect_to root_url
 		elsif !@activity.active?
