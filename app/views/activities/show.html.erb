@@ -24,9 +24,9 @@
 
 <%= link_to "Change/add class details", edit_activity_path(@activity) %><br>
 
-Students: <%= @active_students.count %><br>
+Students: <%= @active_students.uniq.count %><br>
 <li>	
-	<% @active_students.each do |s| %>
-		<ul><%= s.first_name %> <%= s.last_name %></ul>
+	<% @active_students.uniq.each do |s| %>
+		<ul> <%= s.first_name %> <%= s.last_name %></ul>
 	<% end %>
 </li>
