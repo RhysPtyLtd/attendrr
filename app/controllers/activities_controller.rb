@@ -41,7 +41,20 @@ class ActivitiesController < ApplicationController
 	def show
 		@activity = current_club.activities.find_by(id: params[:id])
 		@active_ranks = @activity.ranks.where(active: true)
-		@active_students = @activity.students
+		@active_students = @activity.students.uniq
+
+		#Average length of membership
+			@accumulated_memberships_in_days = 0
+			@active_students.each do |s|
+				if s.active?
+					n = (Date.today - s.created_at.to_date).to_i
+					@accumulated_memberships_in_days += n
+				else
+					n = (s.updated_at.to_date - s.created_at.to_date).to_i
+				end
+			end
+			@average_membership_length = @accumulated_memberships_in_days / @active_students.count
+
 		if @activity.nil?
 			redirect_to root_url
 		elsif !@activity.active?
