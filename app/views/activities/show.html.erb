@@ -25,7 +25,8 @@
 <%= link_to "Change/add class details", edit_activity_path(@activity) %><br>
 
 Students: <%= @active_students.count %><br>
-Average length of membership: <%= @average_membership_length %> days
+Average length of membership: <%= pluralize(@average_membership_length, 'day') %><br>
+Average attendance per session: <%= @average_attendance %> <br>
 <li>	
 	<% @active_students.each do |s| %>
 		<ul> <%= s.first_name %> <%= s.last_name %></ul>
