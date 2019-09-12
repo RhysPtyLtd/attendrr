@@ -2,7 +2,7 @@
 		<ul>
 			<li>
 				<%= link_to a.name, activity_path(a) %><br>
-				Students: link_to a.students.count, students_path<br>
+				Students: link_to @students.count, students_path<br>
 				<%= a.club.name %>
 			</li>
 		</ul>

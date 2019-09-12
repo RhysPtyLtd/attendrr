@@ -136,7 +136,8 @@ class StudentsController < ApplicationController
 
 	def prospects
 		if @club = current_club
-			@students = @club.students.includes(:payment_plan).where(payment_plans: {name: 'Prospect'})
+			@prospects = @club.students.includes(:payment_plan).where(payment_plans: {name: 'Prospect'})
+			@active_prospects = @prospects.where(active: true)
 		else
 			redirect_to root_url
 		end
