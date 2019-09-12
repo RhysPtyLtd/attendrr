@@ -44,4 +44,10 @@ Payment plan: <%= @student.payment_plan.name %><br>
 	<i><%= @student.notes %></i><br>
 <% end %>
 <%= link_to "Attendance", student_attendance_students_path(student_id: params[:id]) %><br>
-<%= link_to "Edit student details", edit_student_path %><br>
+<% if @student.active? %>
+	<%= link_to "Edit student details", edit_student_path %><br>
+<% else %>
+<%= link_to "Reactivate this student", student_path(@student, :student => { :active => true }),
+									 :method => :put, data: { :confirm => "Are you sure?" }, class: "btn btn-primary"  %><br>
+<%= link_to "Delete", @student, method: :delete, data: { confirm: "Please note: only delete students that were entered erroneously. This is permanent and removes all associated stadent data & statistics. Are you sure you want to delete this student?"}, class: "btn-danger" %><br>
+<% end %>
