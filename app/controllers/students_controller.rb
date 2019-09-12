@@ -7,8 +7,14 @@ class StudentsController < ApplicationController
 		if @club = current_club
 			@students = @club.students.where(active: true)
 			# @items = Item.paginate :page => params[:page], :per_page => 5
+		else
+			redirect_to root_url
+		end
+	end
 
-
+	def deactivated
+		if @club = current_club
+			@students = @club.students.where(active: false)
 		else
 			redirect_to root_url
 		end
@@ -28,7 +34,7 @@ class StudentsController < ApplicationController
 		@ranks = current_club.activities.map { |a| a.ranks}.flatten
 		# Filters out everything but the ranks that are active to pass to @first_ranks
 		@active_ranks = @ranks.select { |r| r.active == true }
-		# Filters put every rank but the first one
+		# Filters out every rank but the first one
 		@first_ranks = @active_ranks.select { |ar| ar.position == 1 }
 	end
 
