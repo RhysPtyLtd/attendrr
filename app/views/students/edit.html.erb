@@ -67,15 +67,8 @@
 	</div>
 	<%= f.submit "Save student details", class: "btn btn-primary" %>
 <% end %>
-<% if @student.active? %>
-	<%= link_to "Deactivate this student", student_path(@student, :student => { :active => false }),
+<%= link_to "Deactivate this student", student_path(@student, :student => { :active => false }),
 									 :method => :put, data: { :confirm => "Are you sure?" }, class: "btn btn-danger"  %><br> 
-<% else %>
-	<%= link_to "Reactivate this student", student_path(@student, :student => { :active => true }),
-									 :method => :put, data: { :confirm => "Are you sure?" }, class: "btn btn-primary"  %><br>
-	<%= link_to "Delete", @student, method: :delete, data: { confirm: "Please note: only delete students that were entered erroneously. This is permanent and removes all associated data & statistics. Are you sure you want to delete this student?"}, class: "btn-danger" %><br>
-<% end %>
-
 
 <!-- JQuery. Ensures files size is < 5MB client-side -->
 <script type="text/javascript">
