@@ -67,7 +67,7 @@ class ActivitiesController < ApplicationController
 		@activity = current_club.activities.find_by(id: params[:id])
 		@ranks = @activity.ranks
 		@active_ranks = @ranks.where(active: true)
-		@students = @activity.students
+		@students = @activity.students.uniq
 	end
 
 

@@ -6,12 +6,21 @@ class AttendanceDatatable
   end
 
   def as_json(options = {})
-    {
-      sEcho: params[:sEcho].to_i,
-      iTotalRecords: Attendance.where(student_id: params[:student_id]).count,
-      iTotalDisplayRecords: attendance.total_entries,
-      aaData: data
-    }
+    if params[:student_id].present?
+      {
+        sEcho: params[:sEcho].to_i,
+        iTotalRecords: attendance.count,
+        iTotalDisplayRecords: attendance.total_entries,
+        aaData: data
+      } if params[:student_id].present?
+    else
+      {
+        sEcho: params[:sEcho].to_i,
+        iTotalRecords: attendance.count,
+        iTotalDisplayRecords: attendance.total_entries,
+        aaData: data
+      }
+    end
   end
 
 private
@@ -19,8 +28,16 @@ private
   def data
     attendance.map do |atten|
       [
-        ERB::Util.h(atten.activity.name),
-        ERB::Util.h(atten.find_rank),
+        if params[:student_id].present?
+          ERB::Util.h(atten.activity.name)
+        else
+          ERB::Util.h(atten.student.first_name + " " + atten.student.last_name)
+        end,
+        if atten.rank.active?
+          ERB::Util.h(atten.rank.name)
+        else
+          ERB::Util.h('Rank missing')
+        end,
         ERB::Util.h(atten.timeslot.time_start.strftime("%I:%M%P") + " - " + atten.timeslot.time_end.strftime("%I:%M%P")),
         ERB::Util.h(Date::DAYNAMES[atten.timeslot.day]),
         ERB::Util.h(atten.attended_on.strftime('%d/%m/%y'))
@@ -36,29 +53,35 @@ private
     if params[:from_date].present? && params[:to_date].present?
       from_date = Date.parse(params[:from_date])
       to_date = Date.parse(params[:to_date])
-      attendance = Attendance.joins(:activity, :timeslot).where(student_id: params[:student_id],attended_on: from_date..to_date).order("#{sort_column} #{sort_direction}")
+
+      attendance = Attendance.joins(:activity, :timeslot, :rank).where(student_id: params[:student_id], attended_on: from_date..to_date).order("#{sort_column} #{sort_direction}") if params[:student_id].present?
+
+      attendance = Attendance.joins(:student, :timeslot, :rank).where(activity_id: params[:activity_id], attended_on: from_date..to_date).order("#{sort_column} #{sort_direction}") if params[:activity_id].present?
     else
-      attendance = Attendance.joins(:activity, :timeslot).where(student_id: params[:student_id]).order("#{sort_column} #{sort_direction}")
+      attendance = Attendance.joins(:activity, :timeslot, :rank).where(student_id: params[:student_id]).order("#{sort_column} #{sort_direction}") if params[:student_id].present?
+
+      attendance = Attendance.joins(:student, :timeslot, :rank).where(activity_id: params[:activity_id]).order("#{sort_column} #{sort_direction}") if params[:activity_id].present?
     end
     attendance = attendance.page(page).per_page(per_page)
     if params[:sSearch].present?
-      attendance = Attendance.joins(:activity, :timeslot).where(student_id: params[:student_id]).order("#{sort_column} #{sort_direction}")
+      attendance = Attendance.joins(:activity, :timeslot, :rank).where(student_id: params[:student_id]).order("#{sort_column} #{sort_direction}") if params[:student_id].present?
+
+      attendance = Attendance.joins(:student, :timeslot, :rank).where(activity_id: params[:activity_id]).order("#{sort_column} #{sort_direction}") if params[:activity_id].present?
     end
     if params[:sSearch_0].present?
-      attendance = attendance.where("activities.name = (?)", params[:sSearch_0])
+      attendance = attendance.where("activities.name = (?)", params[:sSearch_0]) if params[:student_id].present?
+
+      attendance = attendance.where("students.first_name = (?) and students.last_name = (?)", params[:sSearch_0].split(" ")[0], params[:sSearch_0].split(" ")[1]) if params[:activity_id].present?
     end
     if params[:sSearch_1].present?
-      attendance1 = Attendance.joins(:activity, :timeslot).where(student_id: params[:student_id]).order("#{sort_column} #{sort_direction}")
-      attendance1 = attendance1.select{|a|a.find_rank == params[:sSearch_1]}
-      attendance_id = attendance1.pluck(:id)
-      attendance = attendance.where(id: attendance_id)
+      attendance = attendance.where("ranks.name = (?)", params[:sSearch_1])
     end
     if params[:sSearch_2].present?
       extract_start = params[:sSearch_2].split(//).first(7).join
       extract_end = params[:sSearch_2].split(//).last(7).join
       start_time = extract_start.to_time.strftime('%H:%M:%S')
       end_time = extract_end.to_time.strftime('%H:%M:%S')
-      attendance = attendance.where("timeslots.time_start = (?) AND timeslots.time_end = (?)", start_time,end_time)
+      attendance = attendance.where("timeslots.time_start = (?) AND timeslots.time_end = (?)", start_time, end_time)
     end
     if params[:sSearch_3].present?
       timeslot_day = DateTime.parse(params[:sSearch_3]).wday
@@ -80,7 +103,10 @@ private
   end
 
   def sort_column
-    columns = %w[activities.name timeslots.time_start timeslots.time_end timeslots.day attended_on]
+    columns = %w[activities.name timeslots.time_start timeslots.time_end timeslots.day attended_on] if params[:student_id].present?
+
+    columns = %w[students.first_name timeslots.time_start timeslots.time_end timeslots.day attended_on] if params[:activity_id].present?
+
     columns[params[:iSortCol_0].to_i]
   end
 
