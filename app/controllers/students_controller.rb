@@ -95,6 +95,7 @@ class StudentsController < ApplicationController
 			attendance.activity_id = params[:activity_id]
 			attendance.timeslot_id = params[:timeslot_id]
 			attendance.attended = true
+			attendance.rank_id = attendance.find_rank
 			attendance.save
 		end
 		if params[:remove_attendance].present?
