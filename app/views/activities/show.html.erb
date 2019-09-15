@@ -25,3 +25,5 @@
 <%= link_to "Change/add class details", edit_activity_path(@activity) %><br>
 
 <%= link_to "GRADING", grading_activity_path(@activity) %><br>
+
+<%= link_to "Attendance", student_attendance_students_path(activity_id: params[:id]) %><br>

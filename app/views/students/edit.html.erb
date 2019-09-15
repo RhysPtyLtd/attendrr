@@ -50,16 +50,6 @@
 	<%= f.label :payment_plan_id, "Payment plan" %>
 	<%= f.collection_select(:payment_plan_id, @student.club.payment_plans.where(active: true), :id, :name) %>
 
-	<%= hidden_field_tag "student[rank_ids][]", nil %>
-	<% @activities.each do |activity| %>
-	<label><h2><%= activity.name  if activity.ranks.where(active: true).any? %></h2></label>
-	<% activity.ranks.where(active: true).each do |rank| %>
-		<label class="checkbox">
-		<%= check_box_tag "student[rank_ids][]", rank.id, f.object.ranks.include?(rank) %>
-		<%= rank.name %></label>
-	<% end %>
-	<% end %>
-
 	<span class="picture">
 		<%= f.label :picture, "Attach student picture" %>
 		<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
