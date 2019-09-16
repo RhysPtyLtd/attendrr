@@ -23,6 +23,7 @@
 									<%= select_tag "rank_positions[]", options_from_collection_for_select(@active_ranks, :position, :name, @active_ranks.maximum(:position) == sr.rank.position ? { selected: sr.rank.position } : { selected: sr.rank.position + 1 }) %>
 								</span>
 								<span class="chk-bx last">
+
 								<%= check_box_tag 'grading[]', s.id, false %>
 								</span>
 							</li>

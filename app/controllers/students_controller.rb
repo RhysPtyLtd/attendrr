@@ -5,10 +5,16 @@ class StudentsController < ApplicationController
 
 	def index
 		if @club = current_club
-			@students = @club.students.all
+			@students = @club.students.where(active: true)
 			# @items = Item.paginate :page => params[:page], :per_page => 5
+		else
+			redirect_to root_url
+		end
+	end
 
-
+	def deactivated
+		if @club = current_club
+			@students = @club.students.where(active: false)
 		else
 			redirect_to root_url
 		end
@@ -28,7 +34,7 @@ class StudentsController < ApplicationController
 		@ranks = current_club.activities.map { |a| a.ranks}.flatten
 		# Filters out everything but the ranks that are active to pass to @first_ranks
 		@active_ranks = @ranks.select { |r| r.active == true }
-		# Filters put every rank but the first one
+		# Filters out every rank but the first one
 		@first_ranks = @active_ranks.select { |ar| ar.position == 1 }
 	end
 
@@ -132,7 +138,8 @@ class StudentsController < ApplicationController
 
 	def prospects
 		if @club = current_club
-			@students = @club.students.includes(:payment_plan).where(payment_plans: {name: 'Prospect'})
+			@prospects = @club.students.includes(:payment_plan).where(payment_plans: {name: 'Prospect'})
+			@active_prospects = @prospects.where(active: true)
 		else
 			redirect_to root_url
 		end
@@ -141,7 +148,7 @@ class StudentsController < ApplicationController
 	private
 
 		def student_params
-			params.require(:student).permit(:email, :address_line_1, :address_line_2, :city, :state, :postcode,
+			params.require(:student).permit(:active, :email, :address_line_1, :address_line_2, :city, :state, :postcode,
 											:phone1, :phone2, :first_name, :last_name, :dob, :parent1, :parent2,
 											:size, :picture, :notes, :payment_plan_id, :student_rank, rank_ids: [],
 											student_ranks_attributes: [:student_id, :rank_id, :active])

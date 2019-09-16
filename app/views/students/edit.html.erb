@@ -67,6 +67,8 @@
 	</div>
 	<%= f.submit "Save student details", class: "btn btn-primary" %>
 <% end %>
+<%= link_to "Deactivate this student", student_path(@student, :student => { :active => false }),
+									 :method => :put, data: { :confirm => "Are you sure?" }, class: "btn btn-danger"  %><br> 
 
 <!-- JQuery. Ensures files size is < 5MB client-side -->
 <script type="text/javascript">
