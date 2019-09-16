@@ -1,4 +1,4 @@
-<% @students.each do |s| %>
+<% @active_prospects.each do |s| %>
   <ul>
     <li>
       <%= link_to s.first_name + " " + s.last_name, student_path(s) %><br>
