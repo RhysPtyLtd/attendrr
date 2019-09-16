@@ -2,8 +2,7 @@
 		<ul>
 			<li>
 				<%= link_to a.name, activity_path(a) %><br>
-				Students: link_to a.students.count, students_path<br>
-				<%= a.club.name %>
+				Students: <%= a.students.count %> (add link to <%= a.name %> students here)<br>
 			</li>
 		</ul>
 <% end %>
