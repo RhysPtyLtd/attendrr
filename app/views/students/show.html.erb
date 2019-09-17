@@ -43,6 +43,7 @@ Payment plan: <%= @student.payment_plan.name %><br>
 	<u>Notes:</u> <br>
 	<i><%= @student.notes %></i><br>
 <% end %>
+Student since: <%= @student.created_at.strftime("%d/%m/%Y") %> (<%= distance_of_time_in_words_to_now(@student.created_at) %>) | (Date.today - @student.created_at.to_date).to_i <br>
 <%= link_to "Attendance", student_attendance_students_path(student_id: params[:id]) %><br>
 <% if @student.active? %>
 	<%= link_to "Edit student details", edit_student_path %><br>

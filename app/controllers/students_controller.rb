@@ -5,7 +5,18 @@ class StudentsController < ApplicationController
 
 	def index
 		if @club = current_club
-			@students = @club.students.where(active: true)
+			@students = @club.students.where(active: true)			
+			#Average length of membership
+			@accumulated_memberships_in_days = 0
+			@students.each do |s|
+				if s.active?
+					n = (Date.today - s.created_at.to_date).to_i
+					@accumulated_memberships_in_days += n
+				else
+					n = (s.updated_at.to_date - s.created_at.to_date).to_i
+				end
+			end
+			@average_membership_length = @accumulated_memberships_in_days / @students.count
 			# @items = Item.paginate :page => params[:page], :per_page => 5
 		else
 			redirect_to root_url

@@ -4,7 +4,7 @@
 	Class times:<br>
 	<li>
 	<% @activity.timeslots.where(active: true).each do |t| %>
-			<ul><%= Date::DAYNAMES[t.day] %> <%= t.time_start.strftime("%I:%M") %>-<%= t.time_end.strftime("%I:%M") %></ul>
+		<ul><%= Date::DAYNAMES[t.day] %> <%= t.time_start.strftime("%I:%M") %>-<%= t.time_end.strftime("%I:%M") %></ul>
 	<% end %>
 	</li>
 <% else %>
@@ -22,8 +22,13 @@
 	<%= link_to "(Add ranks for this class)", edit_activity_path(@activity) %><br>
 <% end %>
 
-<%= link_to "Change/add class details", edit_activity_path(@activity) %><br>
 
-<%= link_to "GRADING", grading_activity_path(@activity) %><br>
+
+Students: <%= @active_students.count %><br>
+Average length of membership: <%= pluralize(@average_membership_length, 'day') %><br>
+Average attendance per session: <%= @average_attendance %> <br>
+
+<%= link_to "Grading", grading_activity_path(@activity) %><br>
 
 <%= link_to "Attendance", student_attendance_students_path(activity_id: params[:id]) %><br>
+<%= link_to "Edit class details", edit_activity_path(@activity) %><br>
