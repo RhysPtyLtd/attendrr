@@ -2,7 +2,7 @@
 		<ul>
 			<li>
 				<%= link_to a.name, activity_path(a) %><br>
-				Students: <%= a.students.count %> (add link to <%= a.name %> students here)<br>
+				Students: <%= a.students.uniq.count %> (add link to <%= a.name %> students here)<br>
 			</li>
 		</ul>
 <% end %>
