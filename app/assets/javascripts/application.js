@@ -59,4 +59,46 @@ $(document).on("turbolinks:load",function() {
 	  	dataTable.destroy();
 	  }
 	});
+
+  var dataTable = $('#metrics').DataTable( {
+     sPaginationType: "full_numbers",
+     bJQueryUI: true,
+     bProcessing: true,
+     aoColumnDefs : [
+     {
+       'bSortable' : false,
+       'aTargets' : [ 1, 2, 3, 4, 5 ]
+     }],
+     bServerSide: true,
+        "language": {
+         "infoFiltered": ""
+      },
+
+     sAjaxSource: $('#metrics').data('source'),
+       initComplete: function () {
+           this.api().columns([0]).every( function () {
+               var column = this;
+               var select = $('<select><option value="">All</option></select>')
+                   .appendTo( $(column.footer()).empty() )
+                   .on( 'change', function () {
+                       var val = $.fn.dataTable.util.escapeRegex(
+                           $(this).val()
+                       );
+
+                       column
+                           .search( val ? val : '', true, false )
+                           .draw();
+                   } );
+
+               column.data().unique().sort().each( function ( d, j ) {
+                   select.append( '<option value="'+d+'">'+d+'</option>' )
+               } );
+           } );
+       }
+   } );
+   document.addEventListener("turbolinks:before-cache", function() {
+   if ($('#metrics').length == 1) {
+     dataTable.destroy();
+   }
+ });
 } );

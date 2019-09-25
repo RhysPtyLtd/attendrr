@@ -1,4 +1,5 @@
 class ClubsController < ApplicationController
+  require 'metrics_datable'
   before_action :logged_in_user, only: [:edit, :update, :destroy]
   before_action :correct_club, only: [:edit, :update, :show]
   before_action :admin_club, only: [:destroy]
@@ -45,11 +46,18 @@ class ClubsController < ApplicationController
     redirect_to clubs_url
   end
 
+  def metrics
+		respond_to do |format|
+    	format.html
+    	format.json { render json: MetricsDatatable.new(view_context) }
+  	end
+  end
+
   private
 
   	def club_params
   		params.require(:club).permit(:name, :email, :password, :password_confirmation, :address_line_1, :address_line_2,
-                                   :city, :state, :postcode, :country, :phone1, :phone2, :owner_first_name, 
+                                   :city, :state, :postcode, :country, :phone1, :phone2, :owner_first_name,
                                    :owner_last_name, :picture)
   	end
 
