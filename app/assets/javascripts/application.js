@@ -61,7 +61,7 @@ $(document).on("turbolinks:load",function() {
 	});
 
   var dataTable = $('#metrics').DataTable( {
-     sPaginationType: "full_numbers",
+     bPaginate: false,
      bJQueryUI: true,
      bProcessing: true,
      aoColumnDefs : [
@@ -76,23 +76,15 @@ $(document).on("turbolinks:load",function() {
 
      sAjaxSource: $('#metrics').data('source'),
        initComplete: function () {
-           this.api().columns([0]).every( function () {
-               var column = this;
-               var select = $('<select><option value="">All</option></select>')
-                   .appendTo( $(column.footer()).empty() )
-                   .on( 'change', function () {
-                       var val = $.fn.dataTable.util.escapeRegex(
-                           $(this).val()
-                       );
-
-                       column
-                           .search( val ? val : '', true, false )
-                           .draw();
-                   } );
-
-               column.data().unique().sort().each( function ( d, j ) {
-                   select.append( '<option value="'+d+'">'+d+'</option>' )
-               } );
+           this.api().columns([1,2,3,4]).every( function () {
+              var sum = this
+              .data()
+              .reduce(function(a, b) {
+                var x = parseFloat(a) || 0;
+                var y = parseFloat(b) || 0;
+                return x + y;
+              }, 0);
+            $(this.footer()).html("<b>"+sum+"</b>");
            } );
        }
    } );

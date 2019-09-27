@@ -11,7 +11,7 @@
         <div class="form-group" style="margin-left: 20px;margin-bottom: 15px;margin-top: 10px;">
           <label for="email">From:</label>
            <div class='input-group date' id='datepicker_from'>
-            <%= text_field_tag :from_date,params[:from_date],class: "form-control" %>
+            <%= text_field_tag :from_date, params[:from_date]&.to_date&.strftime("%Y/%m/%d"),class: "form-control" %>
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
             </span>
@@ -20,26 +20,33 @@
         <div class="form-group" style="margin-bottom: 15px;margin-top: 10px;">
           <label for="pwd">To:</label>
           <div class='input-group date' id='datepicker_to'>
-            <%= text_field_tag :to_date,params[:to_date],class: "form-control"%>
+            <%= text_field_tag :to_date, params[:to_date]&.to_date&.strftime("%Y/%m/%d"),class: "form-control"%>
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
             </span>
           </div>
         </div>
+        <% if params["show_all"] == "true" %>
+          <%= hidden_field_tag :show_all , "true" %>
+        <% end %>
         <button type="submit" class="btn btn-default" style="margin-bottom: 15px;margin-top: 10px;">Submit</button>
         <% end %>
         <div class="form-group" style="margin-bottom: 15px;margin-top: 10px;">
-          <%= button_to "Reset", metrics_path(), :class => "btn btn-default", :method => :get, params: { user_id: current_club.id } %>
+          <%= button_to "Reset", metrics_path(), :class => "btn btn-default", method: :get %>
         </div>
       </div>
     </div>
-
+    <% if params[:from_date].present? && params[:to_date].present? %>
+      <h4 style="text-align: center;">
+        <span style="font-family: serif; font-size: x-large;">Metrics for Date-range: <%= params[:from_date] %> - <%= params[:to_date] %></span>
+      </h4>
+    <% end %>
 <div class="table-responsive">
-  <table id="metrics" class="table table-striped table-bordered" cellspacing="0" width="100%" data-source="<%= metrics_path(format: :json, user_id: current_club.id, from_date: params[:from_date], to_date: params[:to_date]) %>">
+  <table id="metrics" class="table table-striped table-bordered" cellspacing="0" width="100%" data-source="<%= metrics_path(format: :json, user_id: current_club.id, from_date: params[:from_date], to_date: params[:to_date], show_all: params[:show_all]) %>">
     <thead>
       <tr>
         <th>Class Name</th>
-        <th>Average no. of students<br> per session</th>
+        <th>Average no. of<br> students per session</th>
         <th>Average length of<br> membership (days)</th>
         <th>Total active<br> students</th>
         <th>Total deactivated<br> students</th>
@@ -48,7 +55,7 @@
     </thead>
     <tfoot>
     	<tr>
-        <th>Class Name</th>
+        <th><b>Total</b></th>
         <th></th>
         <th></th>
         <th></th>
@@ -59,18 +66,31 @@
     <tbody>
     </tbody>
   </table>
+  <br>
+  <% if current_club.activities.where(active: false).count > 0 %>
+    <%= form_tag(metrics_path, :method => "get", class: "form-inline") do %>
+      <%= hidden_field_tag :from_date, params[:from_date]%>
+      <%= hidden_field_tag :to_date, params[:to_date]%>
+      <% if params["show_all"] == "true" %>
+        <%= button_to "Hide Deactivated", metrics_path(), :class => "btn btn-default", method: :get %>
+      <% else %>
+        <%= button_to "Show Deactivated", metrics_path(), :class => "btn btn-default", method: :get, params: { show_all: true } %>
+      <% end %>
+    <% end %>
+  <% end %>
 </div>
 <script type="text/javascript">
   $(function () {
     $('#datepicker_from').datetimepicker({
       format: 'DD/MM/YYYY',
-      minDate: new Date("<%= (current_club.created_at - 1.day).strftime('%Y-%m-%d')%>"),
+      minDate: new Date("<%= current_club.created_at.strftime('%Y/%m/%d')%> 00:00:00"),
       maxDate: new Date()
     });
     $('#datepicker_to').datetimepicker({
       format: 'DD/MM/YYYY',
-      minDate: new Date("<%= current_club.created_at.strftime('%Y-%m-%d')%>"),
+      minDate: new Date("<%= current_club.created_at.strftime('%Y/%m/%d')%> 00:00:00"),
       maxDate: new Date()
     });
   });
+
 </script>

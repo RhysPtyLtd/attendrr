@@ -41,7 +41,12 @@ private
     if params[:from_date].present? && params[:to_date].present?
       from_date = Date.parse(params[:from_date])
       to_date = Date.parse(params[:to_date])
-      @activities = club.activities.where(active: true, created_at: from_date..to_date).order("#{sort_column} #{sort_direction}")
+
+      if params["show_all"] == "true"
+        @activities = club.activities.where(created_at: from_date..to_date).order("#{sort_column} #{sort_direction}")
+      else
+        @activities = club.activities.where(active: true, created_at: from_date..to_date).order("#{sort_column} #{sort_direction}")
+      end
       @activities.each do |activity|
 
         # Average length of membership (days)
@@ -63,8 +68,8 @@ private
         end
 
         # Average no. of students per session
-        @total_attendances = activity.attendances.count
-        @total_sessions = activity.attendances.count("DISTINCT(attended_on, timeslot_id)")
+        @total_attendances = activity.attendances.where(attended_on: from_date..to_date).count
+        @total_sessions = activity.attendances.where(attended_on: from_date..to_date).count("DISTINCT(attended_on, timeslot_id)")
         if @total_attendances.nonzero? && @total_sessions.nonzero?
         	@average_attendance = (@total_attendances.to_f / @total_sessions.to_f).round(2)
         else
@@ -72,10 +77,10 @@ private
         end
 
         # Total active students
-        @average_active_student = activity.students.where(active: true).count
+        @average_active_student = activity.students.where(created_at: from_date..to_date).count
 
         # Total deactivated students
-        @average_deactived_student = activity.students.where(active: false).count
+        @average_deactived_student = activity.students.where(active: false, updated_at: from_date..to_date).count
 
         # Retention rate
         if @average_active_student.nonzero?
@@ -85,7 +90,7 @@ private
         end
 
         metric = []
-        metric << activity.name
+        metric << ((activity.active)?"#{activity.name}" : "#{activity.name}*")
         metric << @average_attendance.to_i
         metric << @average_membership_length.to_i
         metric << @average_active_student.to_i
@@ -95,7 +100,11 @@ private
         metrics << metric
       end
     else
-      @activities = club.activities.where(active: true).order("#{sort_column} #{sort_direction}")
+      if params["show_all"] == "true"
+        @activities = club.activities.order("#{sort_column} #{sort_direction}")
+      else
+        @activities = club.activities.where(active: true).order("#{sort_column} #{sort_direction}")
+      end
       @activities.each do |activity|
         @students = activity.students.distinct
         @accumulated_memberships_in_days = 0
@@ -137,7 +146,7 @@ private
         end
 
         metric = []
-        metric << activity.name
+        metric << ((activity.active)?"#{activity.name}" : "#{activity.name}*")
         metric << @average_attendance.to_i
         metric << @average_membership_length.to_i
         metric << @average_active_student.to_i
@@ -148,9 +157,13 @@ private
       end
     end
     @total_entries = metrics.count
-    metrics.paginate(page: page, per_page: per_page)
+    metrics
     if params[:sSearch].present?
-      @activities = club.activities.where(active: true).order("#{sort_column} #{sort_direction}")
+      if params["show_all"] == "true"
+        @activities = club.activities.order("#{sort_column} #{sort_direction}")
+      else
+        @activities = club.activities.where(active: true).order("#{sort_column} #{sort_direction}")
+      end
       @activities.each do |activity|
         @students = activity.students.distinct
         @accumulated_memberships_in_days = 0
@@ -192,7 +205,7 @@ private
         end
 
         metric = []
-        metric << activity.name
+        metric << ((activity.active)?"#{activity.name}" : "#{activity.name}*")
         metric << @average_attendance.to_i
         metric << @average_membership_length.to_i
         metric << @average_active_student.to_i
@@ -204,7 +217,11 @@ private
     end
     if params[:sSearch_0].present?
       metrics = []
-      @activities = club.activities.where(name: params[:sSearch_0],active: true).order("#{sort_column} #{sort_direction}")
+      if params["show_all"] == "true"
+        @activities = club.activities.where(name: params[:sSearch_0]).order("#{sort_column} #{sort_direction}")
+      else
+        @activities = club.activities.where(name: params[:sSearch_0],active: true).order("#{sort_column} #{sort_direction}")
+      end
       @activities.each do |activity|
         @students = activity.students.distinct
         @accumulated_memberships_in_days = 0
@@ -246,7 +263,7 @@ private
         end
 
         metric = []
-        metric << activity.name
+        metric << ((activity.active)?"#{activity.name}" : "#{activity.name}*")
         metric << @average_attendance.to_i
         metric << @average_membership_length.to_i
         metric << @average_active_student.to_i
@@ -256,18 +273,10 @@ private
         metrics << metric
       end
       @total_entries = metrics.count
-      metrics.paginate(page: page, per_page: per_page)
+      metrics
     end
     @total_entries = metrics.count
     metrics
-  end
-  #
-  def page
-    params[:iDisplayStart].to_i/per_page + 1
-  end
-
-  def per_page
-    params[:iDisplayLength].to_i > 0 ? params[:iDisplayLength].to_i : 10
   end
 
   def sort_column
