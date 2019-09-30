@@ -77,10 +77,19 @@ private
         end
 
         # Total active students
-        @average_active_student = activity.students.where(created_at: from_date..to_date).count
-
         # Total deactivated students
-        @average_deactived_student = activity.students.where(active: false, updated_at: from_date..to_date).count
+        @average_active_student = 0
+        @average_deactived_student = 0
+        @students = activity.students
+        @students.each do |s|
+          if s.created_at.to_date <= to_date.to_date
+            if s.active == false and s.updated_at.to_date < from_date.to_date
+              @average_deactived_student = @average_deactived_student + 1
+            else
+              @average_active_student = @average_active_student + 1
+            end
+          end
+        end
 
         # Retention rate
         if @average_active_student.nonzero?
