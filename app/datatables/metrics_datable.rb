@@ -40,12 +40,12 @@ private
     club = Club.find_by(id: params[:user_id])
     if params[:from_date].present? && params[:to_date].present?
       from_date = Date.parse(params[:from_date])
-      to_date = Date.parse(params[:to_date])
+      to_date = (Date.parse(params[:to_date])+ 1.days)
 
       if params["show_all"] == "true"
-        @activities = club.activities.where(created_at: from_date..to_date).order("#{sort_column} #{sort_direction}")
+        @activities = club.activities.where("created_at < ?",to_date).order("#{sort_column} #{sort_direction}")
       else
-        @activities = club.activities.where(active: true, created_at: from_date..to_date).order("#{sort_column} #{sort_direction}")
+        @activities = club.activities.where("active = true and created_at < ?",to_date).order("#{sort_column} #{sort_direction}")
       end
       @activities.each do |activity|
 
