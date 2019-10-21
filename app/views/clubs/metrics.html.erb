@@ -1,5 +1,5 @@
 <h4 style="text-align: center;">
-  <span style="font-family: serif; font-size: xx-large;">Metrics</span>
+  <span style="font-size: xx-large;">Metrics</span>
 </h4>
 
   <!-- <h2>Inline form</h2>
@@ -37,7 +37,7 @@
       </div>
     </div>
       <h4 style="text-align: center;">
-        <span style="font-family: serif; font-size: x-large;">Metrics for Date-range: <%= (params[:from_date].present?)? params[:from_date] : current_club.created_at.strftime('%d/%m/%Y') %> - <%= (params[:to_date].present?)? params[:to_date] : Date.today.strftime('%d/%m/%Y') %></span>
+        <span style="font-size: x-large;"><%= (params[:from_date].present?)? params[:from_date] : current_club.created_at.strftime('%d/%m/%Y') %> - <%= (params[:to_date].present?)? params[:to_date] : Date.today.strftime('%d/%m/%Y') %></span>
       </h4>
 <div class="table-responsive">
   <table id="metrics" class="table table-striped table-bordered" cellspacing="0" width="100%" data-source="<%= metrics_path(format: :json, user_id: current_club.id, from_date: params[:from_date], to_date: params[:to_date], show_all: params[:show_all]) %>">
@@ -70,9 +70,9 @@
       <%= hidden_field_tag :from_date, params[:from_date]%>
       <%= hidden_field_tag :to_date, params[:to_date]%>
       <% if params["show_all"] == "true" %>
-        <%= button_to "Hide Deactivated", metrics_path(), :class => "btn btn-default", method: :get %>
+        <%= button_to "Hide deactivated classes", metrics_path(), :class => "btn btn-default", method: :get %>
       <% else %>
-        <%= button_to "Show Deactivated", metrics_path(), :class => "btn btn-default", method: :get, params: { show_all: true } %>
+        <%= button_to "Show deactivated classes", metrics_path(), :class => "btn btn-default", method: :get, params: { show_all: true } %>
       <% end %>
     <% end %>
   <% end %>
