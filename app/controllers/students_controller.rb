@@ -16,7 +16,11 @@ class StudentsController < ApplicationController
 					n = (s.updated_at.to_date - s.created_at.to_date).to_i
 				end
 			end
-			@average_membership_length = @accumulated_memberships_in_days / @students.count
+			if @accumulated_memberships_in_days && @students.count != 0
+				@average_membership_length = @accumulated_memberships_in_days / @students.count
+			else
+				@average_membership_length = 0
+			end
 			# @items = Item.paginate :page => params[:page], :per_page => 5
 		else
 			redirect_to root_url
@@ -154,6 +158,12 @@ class StudentsController < ApplicationController
 		else
 			redirect_to root_url
 		end
+	end
+
+	def absents
+    	@students = current_club.students.where(active: true)
+    	@absent_alert = current_club.absent_alert
+     	@absent_alert_activation_date = Date.today - current_club.absent_alert
 	end
 
 	private

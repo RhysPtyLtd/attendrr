@@ -20,6 +20,7 @@ Rails.application.routes.draw do
             get 'student_attendance'
 			get 'prospects'
             get 'deactivated'
+            get 'absents'
         end
     end
     resources :activities do
