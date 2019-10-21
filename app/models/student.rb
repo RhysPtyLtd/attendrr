@@ -29,8 +29,13 @@ class Student < ApplicationRecord
   scope :last_month,  -> (timeslot_id,date_find) { joins(sanitize_sql_array(['left outer join attendances on attendances.student_id = students.id'])).where('attendances.id is null OR (attendances.timeslot_id != ? AND attendances.attended_on != ?)',timeslot_id,date_find)}
   
   def last_attendance
-    self.attendances.order("created_at").last.attended_on.to_date
+    if self.attendances.any?
+      self.attendances.order("created_at").last.attended_on.to_date
+    else
+      self.club.created_at.to_date
+    end
   end
+
 
   def unique_activities
    student_activities.map(&:name).uniq
