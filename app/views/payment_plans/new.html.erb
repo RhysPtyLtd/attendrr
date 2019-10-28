@@ -1,15 +1,18 @@
 <%= form_for(@payment_plan) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 	<div class="field">
-	<%= f.label :name %>*
-	<%= f.text_field :name, class: 'form-control' %>
+		<%= f.label :name, "Plan name" %>*
+		<%= f.text_field :name, class: 'form-control' %>
 
-	<%= f.label :price %>*
-	<%= f.number_field :price, step: "0.01" %>
+		<%= f.label :price %>*
+		<%= f.number_field :price, step: "0.01" %>
 
-	<%= f.label :frequency %>*
-	<%= f.select :frequency, options_for_select([['Weekly'], ['2-weekly'], ['Monthly'], ['6-monthly'], ['Yearly']]), class: 'form-control' %>
+		<%= f.label :frequency, "Frequency of payments" %>*
+		<%= f.select :frequency, options_for_select([['Weekly'], ['2-weekly'], ['Monthly'], ['Quarterly'], ['6-monthly'], ['Yearly']]), class: 'form-control' %>
 
+		
+		<%= f.label :classes_amount, "Classes per package" %>*
+		<%= f.number_field :classes_amount, class: 'form-control' %>
 	</div>
 	<%= f.submit "Create payment plan", class: "btn btn-primary" %>
 <% end %>
