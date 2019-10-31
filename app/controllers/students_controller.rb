@@ -81,6 +81,16 @@ class StudentsController < ApplicationController
 	def update
 		@student = current_club.students.find_by(id: params[:id])
 		@ranks = @student.club_ranks
+		classes_amount = PaymentPlan.find_by(id: params[:student][:payment_plan_id]).classes_amount
+		if classes_amount.present?
+			if @student.classes_remaining.present?
+				@student.classes_remaining = @student.classes_remaining + classes_amount
+			else
+				@student.classes_remaining = classes_amount
+			end
+		else
+			@student.classes_remaining = nil
+		end
 		if @student.update_attributes(student_params)
 			flash[:success] = "Student details updated"
 			redirect_to @student
@@ -110,6 +120,10 @@ class StudentsController < ApplicationController
 			@prev_data = @date_find - 7.days
 			@next_data = @date_find + 7.days
 		end
+		if params[:s_id].present?
+			student = Student.find_by(id: params[:s_id])
+		end
+
 		if params[:s_id].present? && !params[:remove_attendance].present?
 			attendance = current_club.students.find(params[:s_id]).attendances.new
 			attendance.attended_on = @date_find
@@ -118,16 +132,35 @@ class StudentsController < ApplicationController
 			attendance.attended = true
 			attendance.rank_id = attendance.find_rank
 			attendance.save
+
+			if student.classes_remaining.present?
+				student.classes_remaining = student.classes_remaining - 1
+				student.save
+			end
+
 		end
 		if params[:remove_attendance].present?
 			attendance = Attendance.where(timeslot_id: params[:timeslot_id],attended_on: @date_find,student_id: params[:s_id]).first
 			attendance.destroy
+
+			if student.classes_remaining.present?
+				student.classes_remaining = student.classes_remaining + 1
+				student.save
+			end
 		end
+
+		if student.present?
+			@first_name = student.first_name
+			@last_name = student.last_name
+			@classes_remaining = student.classes_remaining
+		end
+
 		activity = Activity.find(params[:activity_id])
 		rank_ids = activity.ranks.all.pluck(:id)
 		student_for_attendance = current_club.students.student_for_attendance(rank_ids)
 		@student_present = student_for_attendance.left_outer_joins(:attendances).where( attendances: { timeslot_id: params[:timeslot_id],attended_on: @date_find } )
 		@student_absent = student_for_attendance - @student_present
+
 		respond_to do |format|
 		  format.html
 		  format.js

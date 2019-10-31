@@ -27,6 +27,11 @@ class PaymentPlansController < ApplicationController
 
 	def update
 		@payment_plan = current_club.payment_plans.find_by(id: params[:id])
+		if params[:plan_type] == "Class package"
+			params[:payment_plan][:frequency] = ""
+		else
+			params[:payment_plan][:classes_amount] = nil
+		end
 		if @payment_plan.update_attributes(payment_plan_params)
 			flash[:success] = "Payment plan updated!"
 			redirect_to action: "index"

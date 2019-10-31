@@ -5,15 +5,23 @@
 		<%= f.text_field :name, class: 'form-control' %>
 
 		<%= f.label :price %>*
-		<%= f.number_field :price, step: "0.01" %>
+		<%= f.number_field :price, step: "0.01", class: 'form-control' %>
 
-		<%= f.label :frequency, "Frequency of payments" %>*
-		<%= f.select :frequency, options_for_select([['Weekly'], ['2-weekly'], ['Monthly'], ['Quarterly'], ['6-monthly'], ['Yearly']]), class: 'form-control' %>
+		<%= label_tag "Plan type" %>*
+		<%= select_tag "plan_type", options_for_select([ "Regular recurring payments", "Class package" ], :selected => if @payment_plan.classes_amount.present? then "Class package" else  "Regular recurring payments" end ) %>
 
-		
-		<%= f.label :classes_amount, "Classes per package" %>*
-		<%= f.number_field :classes_amount, class: 'form-control' %>
-		
+		<div id = "div_frequency" style = "display: none">
+			<br>
+			<p style="line-height: 0.7em;"> Regular recurring payments </p>
+			<%= f.label :frequency, "Frequency of payments" %>*
+			<%= f.select :frequency, options_for_select([['Weekly'], ['2-weekly'], ['Monthly'], ['Quarterly'], ['6-monthly'], ['Yearly']] , selected: if @payment_plan.frequency != "" then @payment_plan.frequency end ), prompt: "Select Frequency", class: 'form-control' %>
+		</div>
+
+		<div id = "div_classes_amount" style = "display: none">
+			<%= f.label :classes_amount, "Classes per package" %>*
+			<%= f.number_field :classes_amount, class: 'form-control' %>
+		</div>
+
 	</div>
-	<%= f.submit "Edit payment plan", class: "btn btn-primary" %>
+	<%= f.submit "Edit payment plan", class: "btn btn-primary", id: "payment_plan_btn" %>
 <% end %>

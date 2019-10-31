@@ -1,2 +1,6 @@
+<% if @classes_remaining.present? %>
+  $('#body').text("<%= @first_name %> <%= @last_name %>: <%= @classes_remaining %> <%= 'class'.pluralize(@classes_remaining) %> remaining");
+  $('#myModal').modal('show');
+<% end %>
 $('#absent').html("<%= j render(:partial => 'absent_student') %>");
 $('#present').html("<%= j render(:partial => 'present_student') %>");
