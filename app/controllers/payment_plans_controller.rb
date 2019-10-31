@@ -8,6 +8,11 @@ class PaymentPlansController < ApplicationController
 	end
 
 	def create
+		if params[:plan_type] == "Class package"
+			params[:payment_plan][:frequency] = ""
+		else
+			params[:payment_plan][:classes_amount] = nil
+		end
 		@payment_plan = current_club.payment_plans.build(payment_plan_params)
 		if @payment_plan.save
 			flash[:success] = "Payment plan created"
@@ -18,7 +23,7 @@ class PaymentPlansController < ApplicationController
 	end
 
 	def index
-		@payment_plans = current_club.payment_plans.all 
+		@payment_plans = current_club.payment_plans.all
 	end
 
 	def edit
