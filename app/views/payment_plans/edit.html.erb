@@ -11,8 +11,6 @@
 		<%= select_tag "plan_type", options_for_select([ "Regular recurring payments", "Class package" ], :selected => if @payment_plan.classes_amount.present? then "Class package" else  "Regular recurring payments" end ) %>
 
 		<div id = "div_frequency" style = "display: none">
-			<br>
-			<p style="line-height: 0.7em;"> Regular recurring payments </p>
 			<%= f.label :frequency, "Frequency of payments" %>*
 			<%= f.select :frequency, options_for_select([['Weekly'], ['2-weekly'], ['Monthly'], ['Quarterly'], ['6-monthly'], ['Yearly']] , selected: if @payment_plan.frequency != "" then @payment_plan.frequency end ), prompt: "Select Frequency", class: 'form-control' %>
 		</div>
