@@ -1,4 +1,4 @@
-<h1>Edit student details</h1>
+<a name="edit_details"><h1>Edit student details</h1></a>
 <%= form_for(@student, html: { multipart: true }) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 	<div class="field">
@@ -46,6 +46,12 @@
 
 	<%= f.label :notes %>
 	<%= f.text_field :notes, class: 'form-control' %>
+
+	<a id="change_payment_plan"><h1>Change or purchase payment plans</h1></a>
+	<% unless @student.payment_plan.classes_amount.blank? %>
+		<%= link_to "Add another #{@student.payment_plan.name} (#{pluralize(@student.payment_plan.classes_amount, 'class')})", student_path(@student, :student => { :classes_remaining => false }),
+									 :method => :put, data: { :confirm => "#{@student.first_name} currently has #{pluralize(@student.classes_remaining, 'class')}. Add #{@student.payment_plan.classes_amount} more?" }, class: "btn btn-primary"  %><br>
+	<% end %> 
 
 	<%= f.label :payment_plan_id, "Payment plan" %>
 	<%= f.collection_select(:payment_plan_id, @student.club.payment_plans.where(active: true), :id, :name) %>

@@ -39,6 +39,11 @@ Classes:
 	<li>None</li>
 <% end %>
 Payment plan: <%= @student.payment_plan.name %><br>
+<% unless @student.payment_plan.classes_amount.blank? %>
+	Classes remaining: 
+	<%= @student.classes_remaining.nil? ? "0" : @student.classes_remaining %><br>
+	<%= link_to "Purchase another #{@student.payment_plan.name}", edit_student_path + "#change_payment_plan" %><br>
+<% end %>
 <% if @student.notes? %>
 	<u>Notes:</u> <br>
 	<i><%= @student.notes %></i><br>
