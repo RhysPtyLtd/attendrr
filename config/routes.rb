@@ -22,6 +22,7 @@ Rails.application.routes.draw do
             get 'deactivated'
             get 'absents'
         end
+        patch :buy_classes, on: :member 
     end
     resources :activities do
         collection do

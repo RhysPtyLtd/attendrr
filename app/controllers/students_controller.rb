@@ -27,6 +27,13 @@ class StudentsController < ApplicationController
 		end
 	end
 
+	# Add more classes to students on class package payment plans
+	def buy_classes
+		@student = Student.find(params[:id])
+		@student.buy_classes!
+		redirect_to student_path(@student)
+	end
+
 	def deactivated
 		if @club = current_club
 			@students = @club.students.where(active: false)
