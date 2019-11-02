@@ -19,12 +19,12 @@ $(document).on("turbolinks:load",function() {
 	$('#payment_plan_btn').unbind().click(function(e){
 		if ($('#plan_type').val() == "Regular recurring payments" && $('#payment_plan_frequency').val() == "")
 		{
-			alert("You must have to select frequency for further process");
+			alert("You must select a frequency to proceed");
 			e.preventDefault();
 		}
 		else if ($('#plan_type').val() == "Class package" && $('#payment_plan_classes_amount').val() == "")
 		{
-			alert("You must have to add classes_amount for further process");
+			alert("You must select a frequency to proceed");
 			e.preventDefault();
 		}
 	});
