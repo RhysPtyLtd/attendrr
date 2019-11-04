@@ -102,7 +102,7 @@ class Club < ApplicationRecord
 
         # Creates default payment plan for new students
         def build_prospect_plan
-            self.payment_plans.create(name: "Prospect", price: 0, frequency: "Per class", classes_amount: 1)
+            self.payment_plans.create(name: "Prospect", price: 0, frequency: "Weekly")
         end
 
 end

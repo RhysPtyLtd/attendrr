@@ -42,7 +42,7 @@ Payment plan: <%= @student.payment_plan.name %><br>
 <% unless @student.payment_plan.classes_amount.blank? %>
 	Classes remaining: 
 	<%= @student.classes_remaining.nil? ? "0" : @student.classes_remaining %><br>
-	<%= link_to "Purchase another #{@student.payment_plan.name}", buy_classes_student_path(@student), method: :patch, data: { confirm: "#{@student.first_name} currently has #{pluralize(@student.classes_remaining, 'class')} remaining. Add #{@student.payment_plan.classes_amount} more?" }, class: "btn btn-primary"  %><br>
+	<%= link_to "Purchase another #{@student.payment_plan.name}", buy_classes_student_path(@student), method: :patch, data: { confirm: "#{@student.first_name} currently has #{pluralize(@student.classes_remaining, 'class')} remaining. Add #{@student.payment_plan.classes_amount} more for $#{@student.payment_plan.price}?" }, class: "btn btn-primary"  %><br>
 <% end %>
 <% if @student.notes? %>
 	<u>Notes:</u> <br>
