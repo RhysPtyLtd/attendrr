@@ -1,14 +1,19 @@
 desc "Test of rake tasks"
-task :rake_tester => :environment do
-  henrys = Club.find_by(name: "Rhys Karate!")
-  	henrys.students.each do |s|
-  		if s.payment_plan.frequency.present?
-  			puts s.first_name.upcase + " " + s.last_name.upcase
-  			puts "1. " + s.payment_plan.name
-  			puts "2. " + s.payment_plan.price.to_s
-  			puts "3. " + s.payment_plan.frequency
-  			puts "4. " + s.payment_plan.daily_value.to_s
+task :generate_daily_financial_report => :environment do
+	clubs = Club.all
+	clubs.each do |c|
+		c.students.each do |s|
+  			if s.payment_plan.frequency.present?
+  				DailyFinancialReport.create(
+  					club_id: s.club.id,
+  					student_id: s.id,
+  					payment_plan_id: s.payment_plan.id,
+  					price: s.payment_plan.price,
+  					regularity: s.payment_plan.frequency,
+  					daily_value: s.payment_plan.daily_value,
+  					reccuring: true
+  				)
+  			end
   		end
   	end
-  
 end

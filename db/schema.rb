@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191028212501) do
+ActiveRecord::Schema.define(version: 20191106084444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,21 @@ ActiveRecord::Schema.define(version: 20191028212501) do
     t.index ["email"], name: "index_clubs_on_email", unique: true, using: :btree
   end
 
+  create_table "daily_financial_reports", force: :cascade do |t|
+    t.integer  "club_id"
+    t.integer  "student_id"
+    t.integer  "payment_plan_id"
+    t.decimal  "price"
+    t.string   "regularity"
+    t.float    "daily_value"
+    t.boolean  "reccuring"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["club_id"], name: "index_daily_financial_reports_on_club_id", using: :btree
+    t.index ["payment_plan_id"], name: "index_daily_financial_reports_on_payment_plan_id", using: :btree
+    t.index ["student_id"], name: "index_daily_financial_reports_on_student_id", using: :btree
+  end
+
   create_table "payment_plans", force: :cascade do |t|
     t.integer  "club_id"
     t.string   "name"
@@ -76,6 +91,7 @@ ActiveRecord::Schema.define(version: 20191028212501) do
     t.integer  "classes_amount"
     t.datetime "created_at",                                            null: false
     t.datetime "updated_at",                                            null: false
+    t.float    "daily_value"
     t.index ["club_id"], name: "index_payment_plans_on_club_id", using: :btree
   end
 
@@ -141,6 +157,9 @@ ActiveRecord::Schema.define(version: 20191028212501) do
   add_foreign_key "attendances", "activities"
   add_foreign_key "attendances", "students"
   add_foreign_key "attendances", "timeslots"
+  add_foreign_key "daily_financial_reports", "clubs"
+  add_foreign_key "daily_financial_reports", "payment_plans"
+  add_foreign_key "daily_financial_reports", "students"
   add_foreign_key "payment_plans", "clubs"
   add_foreign_key "ranks", "activities"
   add_foreign_key "student_ranks", "ranks"
