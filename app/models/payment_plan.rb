@@ -9,11 +9,11 @@ end
 def calculate_daily_value
 	daily_value = 0
 	if self.frequency == "Weekly"
-		daily_value = self.price/52.143
+		daily_value = self.price/7
 	elsif self.frequency == "2-weekly"
-		daily_value = self.price/26.0715
+		daily_value = self.price/14
 	elsif self.frequency == "Monthly"
-		daily_value = self.price/12
+		daily_value = self.price/30.4167
 	elsif self.frequency == "Quarterly"
 		daily_value = self.price/91.25
 	elsif self.frequency == "6-monthly"
