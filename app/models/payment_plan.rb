@@ -3,4 +3,23 @@ class PaymentPlan < ApplicationRecord
   has_many :students
   validates :price, presence: true
   validates :name, presence: true
+  before_save :calculate_daily_value
+end
+
+def calculate_daily_value
+	daily_value = 0
+	if self.frequency == "Weekly"
+		daily_value = self.price/52.143
+	elsif self.frequency == "2-weekly"
+		daily_value = self.price/26.0715
+	elsif self.frequency == "Monthly"
+		daily_value = self.price/12
+	elsif self.frequency == "Quarterly"
+		daily_value = self.price/91.25
+	elsif self.frequency == "6-monthly"
+		daily_value = self.price/182.5
+	elsif self.frequency == "Yearly"
+		daily_value = self.price/365
+	end
+	self.daily_value = daily_value.round(2)
 end
