@@ -1,24 +1,28 @@
-# README
+# Classmaster
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Development
 
-Things you may want to cover:
+### Initial setup
 
-* Ruby version
+  Setup database and start server:
 
-* System dependencies
+  ```
+    rails db:setup
+    rails s
+  ```
 
-* Configuration
+  Specs:
 
-* Database creation
+  ```
+    rails test
+  ```
+  Run specific test:
 
-* Database initialization
+  ```
+    ruby -I test  test/integration/clubs_login_test.rb
+  ```
 
-* How to run the test suite
+### Dependencies
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  Ruby 2.6.5
+  ostgreSQL 11.4
