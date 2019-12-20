@@ -5,8 +5,8 @@ class ClubsLoginTest < ActionDispatch::IntegrationTest
 	def setup
 		@club = clubs(:kapow)
 	end
-  
-	test "login with invalid information" do 
+
+	test "login with invalid information" do
 		get login_path
 		assert_template 'sessions/new'
 		post login_path, params: { session: { email: "", password: "" } }
@@ -21,9 +21,9 @@ class ClubsLoginTest < ActionDispatch::IntegrationTest
 		post login_path, params: { session: { email: @club.email,
 											  password: 'password' } }
 		assert is_logged_in?
-		assert_redirected_to @club
+		assert_redirected_to root_url
 		follow_redirect!
-		assert_template 'clubs/show'
+		assert_template 'shared/_club_info'
 		assert_select "a[href=?]", login_path, count: 0
 		assert_select "a[href=?]", logout_path
 		assert_select "a[href=?]", club_path(@club)
