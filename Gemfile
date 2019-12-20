@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.5'
 
 gem 'rails',        '~> 5.2.4.1'
+gem 'pg', '0.18.4'
 gem 'bcrypt', '3.1.11'
 gem 'carrierwave', '0.11.2'
 gem 'mini_magick', '4.5.1'
@@ -26,8 +27,8 @@ gem "select2-rails"
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
+
 group :development, :test do
-  gem 'pg', '0.18.4'
   gem 'byebug',  '9.0.0', platform: :mri
   gem 'faker', '1.6.3'
 end
@@ -44,10 +45,6 @@ group :test do
   gem 'minitest-reporters',       '1.1.9'
   gem 'guard',                    '2.13.0'
   gem 'guard-minitest',           '2.4.4'
-end
-
-group :production do
-  gem 'pg', '0.18.4'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
