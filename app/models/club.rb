@@ -27,6 +27,7 @@ class Club < ApplicationRecord
     validates :owner_last_name, presence: true, length: { maximum: 200 }
     validate :picture_size
     after_create :build_prospect_plan
+    has_many :daily_metrics
 
     def first_ranks_of_activities
       club_activities.map { |a| a.ranks.select{ |r| r.position == 0  }}.flatten
