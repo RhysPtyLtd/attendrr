@@ -1,7 +1,16 @@
 <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 
 
-
+<div class="row">
+  <h1>Metrics</h1>
+  <div class="pull-right range-query">
+    <%= form_tag metrics_path, method: :get do %>
+      <%= text_field_tag 'search[date_from]', @search.date_from %>
+      <%= text_field_tag 'search[date_to]', @search.date_to %>
+      <%= submit_tag 'Search', class: 'btn search-button' %>
+    <% end %>
+  </div>
+</div>
 
 <h3>Total active students</h3>
 <%= line_chart @club.daily_metrics.group(:created_at).sum(:total_active_students), library: { animation: { easing: 'easeOutQuad'}} %>
