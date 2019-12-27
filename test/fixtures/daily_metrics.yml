@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  total_active_students: 1
+  lost_students: 1
+  new_students: 1
+  club: one
+
+two:
+  total_active_students: 1
+  lost_students: 1
+  new_students: 1
+  club: two

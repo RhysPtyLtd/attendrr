@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_06_084444) do
+ActiveRecord::Schema.define(version: 2019_12_27_080401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,16 @@ ActiveRecord::Schema.define(version: 2019_11_06_084444) do
     t.index ["club_id"], name: "index_daily_financial_reports_on_club_id"
     t.index ["payment_plan_id"], name: "index_daily_financial_reports_on_payment_plan_id"
     t.index ["student_id"], name: "index_daily_financial_reports_on_student_id"
+  end
+
+  create_table "daily_metrics", force: :cascade do |t|
+    t.integer "total_active_students"
+    t.integer "lost_students"
+    t.integer "new_students"
+    t.bigint "club_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_daily_metrics_on_club_id"
   end
 
   create_table "payment_plans", id: :serial, force: :cascade do |t|
@@ -160,6 +170,7 @@ ActiveRecord::Schema.define(version: 2019_11_06_084444) do
   add_foreign_key "daily_financial_reports", "clubs"
   add_foreign_key "daily_financial_reports", "payment_plans"
   add_foreign_key "daily_financial_reports", "students"
+  add_foreign_key "daily_metrics", "clubs"
   add_foreign_key "payment_plans", "clubs"
   add_foreign_key "ranks", "activities"
   add_foreign_key "student_ranks", "ranks"
