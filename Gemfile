@@ -23,6 +23,8 @@ gem "nested_form"
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem "select2-rails"
+gem 'chartkick'
+gem 'groupdate'
 
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'jquery-ui-rails'
