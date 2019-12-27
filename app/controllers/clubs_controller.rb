@@ -52,6 +52,8 @@ class ClubsController < ApplicationController
     	format.json { render json: MetricsDatatable.new(view_context) }
   	end
     @club = current_club
+    @search = MetricSearch.new(params[:search])
+    @metrics = @search.scope
   end
 
   private
