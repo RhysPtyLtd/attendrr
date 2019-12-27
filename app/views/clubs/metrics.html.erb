@@ -1,3 +1,5 @@
+<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+
 <h4 style="text-align: center;">
   <span style="font-size: xx-large;">Metrics</span>
 </h4>
@@ -94,3 +96,8 @@
   });
 
 </script>
+
+<%= line_chart Student.group_by_day(:created_at).count %>
+
+
+<%= pie_chart [["Rhys", 1], ["Greg", 2]]  %>

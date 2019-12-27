@@ -51,6 +51,7 @@ class ClubsController < ApplicationController
     	format.html
     	format.json { render json: MetricsDatatable.new(view_context) }
   	end
+    @students = current_club.students.where(active: true)
   end
 
   private
