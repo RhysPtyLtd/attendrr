@@ -88,7 +88,7 @@ class StudentsController < ApplicationController
 	def update
 		@student = current_club.students.find_by(id: params[:id])
 		@ranks = @student.club_ranks
-		classes_amount = PaymentPlan.find_by(id: params[:student][:payment_plan_id]).classes_amount
+		classes_amount = @student.payment_plan.classes_amount
 		if classes_amount.present?
 			if @student.classes_remaining.present?
 				@student.classes_remaining = @student.classes_remaining + classes_amount

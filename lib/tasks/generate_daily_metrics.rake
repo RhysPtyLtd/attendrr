@@ -8,8 +8,8 @@ task :generate_daily_metrics => :environment do
     churn = 0
     c.students.each do |s|
       total_active_students += 1 if s.active?
-      lost_students += 1 if (s.active == false && s.updated_at == Date.today)
-      new_students += 1 if s.created_at == Date.today
+      lost_students += 1 if (s.active == false && s.updated_at.to_date == Date.today)
+      new_students += 1 if s.created_at.to_date == Date.today
     end
     churn = total_active_students - new_students if lost_students != 0
     DailyMetric.create(
