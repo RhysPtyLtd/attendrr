@@ -88,16 +88,6 @@ class StudentsController < ApplicationController
 	def update
 		@student = current_club.students.find_by(id: params[:id])
 		@ranks = @student.club_ranks
-		classes_amount = @student.payment_plan.classes_amount
-		if classes_amount.present?
-			if @student.classes_remaining.present?
-				@student.classes_remaining = @student.classes_remaining + classes_amount
-			else
-				@student.classes_remaining = classes_amount
-			end
-		else
-			@student.classes_remaining = nil
-		end
 		if @student.update_attributes(student_params)
 			flash[:success] = "Student details updated"
 			redirect_to @student
@@ -211,7 +201,7 @@ class StudentsController < ApplicationController
 		def student_params
 			params.require(:student).permit(:active, :email, :address_line_1, :address_line_2, :city, :state, :postcode,
 											:phone1, :phone2, :first_name, :last_name, :dob, :parent1, :parent2,
-											:size, :picture, :notes, :payment_plan_id, :student_rank, rank_ids: [],
+											:size, :picture, :notes, :payment_plan_id, :classes_remaining, :student_rank, rank_ids: [],
 											student_ranks_attributes: [:student_id, :rank_id, :active])
 		end
 
