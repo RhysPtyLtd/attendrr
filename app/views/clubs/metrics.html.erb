@@ -18,3 +18,5 @@
 <%= line_chart @club.daily_metrics.group(:created_at).sum(:lost_students), library: { animation: { easing: 'easeOutQuad'}} %>
 <h3>New students</h3>
 <%= line_chart @club.daily_metrics.group(:created_at).sum(:new_students), library: { animation: { easing: 'easeOutQuad'}} %>
+<h3>Revenue</h3>
+<%= line_chart @club.daily_metrics.group(:created_at).sum(:revenue), library: { animation: { easing: 'easeOutQuad'}} %>

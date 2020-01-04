@@ -1,11 +1,11 @@
 <% if params[:student_id].present?  %>
   <h4 style="text-align: center;">
-    <span style="font-family: serif; font-size: xx-large;"><%= @student.first_name.upcase %>-<%= @student.last_name.upcase %> ATTENDANCE SHEET
+    <span style="font-size: xx-large;"><%= @student.first_name.upcase %>-<%= @student.last_name.upcase %> ATTENDANCE SHEET
     </span>
   </h4>
 <% else %>
   <h4 style="text-align: center;">
-    <span style="font-family: serif; font-size: xx-large;">
+    <span style="font-size: xx-large;">
       <%= @activity.name.upcase %> ATTENDANCE SHEET
     </span>
   </h4>

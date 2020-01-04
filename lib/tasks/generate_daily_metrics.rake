@@ -6,17 +6,20 @@ task :generate_daily_metrics => :environment do
     lost_students = 0
     new_students = 0
     churn = 0
+    revenue = 0
     c.students.each do |s|
       total_active_students += 1 if s.active?
       lost_students += 1 if (s.active == false && s.updated_at.to_date == Date.today)
       new_students += 1 if s.created_at.to_date == Date.today
+      revenue += s.payment_plan.daily_value
     end
     churn = total_active_students - new_students if lost_students != 0
     DailyMetric.create(
       club_id: c.id,
       total_active_students: total_active_students,
       lost_students: lost_students,
-      new_students: new_students
+      new_students: new_students,
+      revenue: revenue
     )
   end
   puts "Reporting completed at " + Time.now.to_s
