@@ -54,6 +54,14 @@ class ClubsController < ApplicationController
     @club = current_club
     @search = MetricSearch.new(params[:search])
     @metrics = @search.scope
+    @params = params[:search]
+    if @params.nil?
+      @from = @club.created_at
+      @to = Date.today
+    else
+      @from = params[:search][:date_from]
+      @to = params[:search][:date_to]
+    end
   end
 
   private
