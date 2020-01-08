@@ -1,7 +1,7 @@
-<h1>Class Master</h1>
+<h1>Attendrr</h1>
 
 <p>Hi <%= @club.owner_first_name %>,</p>
 
-<p>Welcome to Class Master! Click the link below to activate the account for <%= @club.name %></p>
+<p>Welcome to Attendrr! Click the link below to activate the account for <%= @club.name %></p>
 
 <%= link_to "Activate", edit_account_activation_url(@club.activation_token, email: @club.email) %>

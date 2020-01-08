@@ -20,7 +20,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     get signup_path
     assert_select "title", full_title("Sign up")
     get root_path
-    assert_select "title", "Class Master"
+    assert_select "title", "Attendrr"
     get help_path
     assert_select "title", full_title("Help")
     get about_path
@@ -45,7 +45,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     get signup_path
     assert_select "title", full_title("Sign up")
     get root_path
-    assert_select "title", "Class Master"
+    assert_select "title", "Attendrr"
     get help_path
     assert_select "title", full_title("Help")
     get about_path
@@ -69,7 +69,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     get signup_path
     assert_select "title", full_title("Sign up")
     get root_path
-    assert_select "title", "Class Master"
+    assert_select "title", "Attendrr"
     get help_path
     assert_select "title", full_title("Help")
     get about_path
