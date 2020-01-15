@@ -29,3 +29,7 @@
 /config/database.yml
 #Ignore puma.rb
 /config/puma.rb
+#Ignore gemfile
+Gemfile
+#Ignore gemfile
+Gemfile.lock
