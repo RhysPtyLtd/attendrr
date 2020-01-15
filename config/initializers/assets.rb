@@ -9,3 +9,5 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 Rails.application.config.assets.precompile += %w( payment_plan.js )
+Rails.application.config.assets.precompile += %w( landing_page.css )
+Rails.application.config.assets.precompile += %w( landing_page.js )

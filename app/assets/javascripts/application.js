@@ -20,7 +20,7 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require select2
-//= require chartkick 
+//= require chartkick
 //= require_tree .
 
 $(document).on("turbolinks:load",function() {
