@@ -25,3 +25,12 @@
 
 # Ignore uploaded test images.
 /public/uploads
+
+#Ignore database.yml
+/config/database.yml
+#Ignore puma.rb
+/config/puma.rb
+#Ignore gemfile
+Gemfile
+#Ignore gemfile
+Gemfile.lock
