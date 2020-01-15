@@ -1,4 +1,4 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<!-- <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
     <%= link_to "Attendrr", root_path, id: "logo" %>
     <nav>
@@ -26,4 +26,58 @@
       </ul>
     </nav>
   </div>
-</header>
+</header> -->
+
+  <section class="navigation">
+    <nav class="navbar navbar-expand-lg navbar-white fixed-top bottom-border">
+      <%= link_to image_tag("attendrr-master.png", :alt => 'attendrr', :class => 'logo'), root_path, :class => 'navbar-brand animated  heartBeat' %>
+      <button class="navbar-toggler navbar-toggler-left x collapsed" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div class="collapse navbar-collapse float-right  mt-5 mt-md-0" id="navbarText">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active mx-2 animated fadeInDown">
+            <%= link_to "Home", root_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item mx-2 animated fadeInDown">
+            <%= link_to "Help",   help_path ,class: 'nav-link' %>
+          </li>
+        </ul>
+        <!-- <div class="d-flex flex-column d-md-block flex-wrap"> -->
+
+          <!-- <button class="loginbox mx-2 animated fadeInDown"> Login </button> -->
+          <% if logged_in? %>
+            <% if current_club && current_club.admin? %>
+            <%= link_to "Clubs", clubs_path,class:'m-2' %>
+            <% end %>
+            <div style="display:inline" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Account
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Profile", current_club %></li>
+                <li><%= link_to "Settings", edit_club_path(current_club) %></li>
+                <li class="divider"></li>
+                <li>
+                  <%= link_to "Log out", logout_path, method: "delete" %>
+                </li>
+              </ul>
+            </div>
+          <% else %>
+
+
+          <%= link_to "Sign up ", signup_path, class: "signupbox mr-md-3 ml-md-5  animated fadeInDown" %>
+          <%= link_to "Login", login_path, class: 'loginbox mx-2 animated fadeInDown' %>
+          <% end %>
+
+
+
+
+        <!-- </div> -->
+
+      </div>
+    </nav>
+  </section>
