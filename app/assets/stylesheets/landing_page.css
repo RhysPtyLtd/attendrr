@@ -382,11 +382,7 @@ i {
     -ms-flex-align: center!important;
     align-items: center!important;
 }
-.d-flex {
-    display: -webkit-box!important;
-    display: -ms-flexbox!important;
-    display: flex!important;
-}
+
 .row {
     display: -webkit-box;
     display: -ms-flexbox;
