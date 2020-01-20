@@ -5,7 +5,6 @@ ruby '2.6.5'
 
 gem 'rails',        '~> 5.2.4.1'
 gem 'pg', '>= 0.19.0.beta'
-gem 'wdm', '>= 0.1.0'
 gem 'bcrypt-ruby', '3.1.0'
 gem 'carrierwave', '0.11.2'
 gem 'mini_magick', '4.5.1'
