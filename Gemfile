@@ -11,24 +11,22 @@ gem 'mini_magick', '4.5.1'
 gem 'fog', '1.38.0'
 gem 'will_paginate',           '~> 3.1'
 gem 'bootstrap-will_paginate', '0.0.10'
-gem 'bootstrap-sass', '3.3.6'
+gem 'bootstrap', '~> 4.4.1'
 gem 'puma',         '~> 4.3.1'
-gem 'sass-rails',   '5.0.6'
+gem 'sass-rails',   '~> 6.0.0'
 gem 'uglifier',     '3.0.0'
-gem 'coffee-rails', '~> 4.2.2'
-gem 'jquery-rails', '4.1.1'
+gem 'jquery-rails', '4.3.5'
 gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '~> 2.9.1'
 gem "nested_form"
 gem 'momentjs-rails', '>= 2.9.0'
-gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem "select2-rails"
 gem 'chartkick'
 gem 'groupdate'
 
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'jquery-ui-rails'
-gem 'jquery-turbolinks'
+gem 'bootstrap4-datetime-picker-rails'
 
 group :development, :test do
   gem 'byebug',  '9.0.0', platform: :mri

@@ -1,9 +1,13 @@
-@import "bootstrap-sprockets";
 @import "bootstrap";
 
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
+// $gray-light: #eaeaea;
+// $gray-lighter: #eaeaea;
+// $gray: #eaeaea;
+// $gray-darker: #eaeaea;
+// $state-danger-text: #eaeaea;
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
