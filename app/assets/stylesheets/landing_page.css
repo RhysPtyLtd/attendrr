@@ -8,7 +8,8 @@ nav>a {
 	color: #ff0000!important;
 	text-decoration: none!important;
 }
-nav>a:hover {
+
+.signupbox:hover,.loginbox:hover  {
 	color: #000;
 	text-decoration: none!important;
 }
