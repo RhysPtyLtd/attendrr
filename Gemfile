@@ -20,6 +20,7 @@ gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '~> 2.9.1'
 gem "nested_form"
 gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem "select2-rails"
 gem 'chartkick'
 gem 'groupdate'

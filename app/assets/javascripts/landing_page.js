@@ -34,6 +34,8 @@ function scrollFunction() {
     mybutton.style.display = "block";
   } else {
     mybutton.style.display = "none";
+     mybutton.style.display = "none";
+     // $("#scrollTop").delay(2500).hide();
   }
 }
 
@@ -41,4 +43,6 @@ function scrollFunction() {
 function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
+
+
 }
