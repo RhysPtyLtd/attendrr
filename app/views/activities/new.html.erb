@@ -21,10 +21,10 @@
                         	<span class="glyphicon glyphicon-time"></span>
                     	</span>
 					</div>
-					
+
 					<%= timeslots_form.label :day %>
 					<%= timeslots_form.select :day, (0..6).map {|d| [Date::DAYNAMES[d], d]}, {}, { :class => 'form-control' } %>
-					
+
 					<%= timeslots_form.link_to_remove "Remove this timeslot" %>
 			<% end %>
 			<%= f.link_to_add "Add another timeslot", :timeslots%><br>
@@ -45,7 +45,7 @@
                	$(this).datetimepicker({
         			format: 'HH:mm'
                 }).datetimepicker( "show" );
-				}); 
+				});
                $("#new_activity").on("click", ".datetimepicker4", function(event){
                	$(this).datetimepicker({
                		format: 'DD/MM/YYYY'
