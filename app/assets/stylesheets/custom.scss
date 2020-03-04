@@ -275,13 +275,12 @@ ul.grade-list-bx li span select{margin: 0;}
   margin-top: 36px;
 }
 .club_name_box{
-  box-shadow:0px 3px 6px rgba(0, 0, 0, .5);
   height: 100px;
   margin-top: auto;
   margin-bottom: auto;
 }
 .club_name{
-  padding: 16px;
+
   font-size: 24px;
   margin-bottom: 0;
 
@@ -306,15 +305,25 @@ ul.grade-list-bx li span select{margin: 0;}
   text-decoration: none;
   color:#ff0000;
 }
-.schedule_class_box{
-  box-shadow:0px 3px 6px rgba(0, 0, 0, .5);
+.div_box{
+  border: 1px solid #c5c5c5;
   height: 200px;
   margin-top: auto;
   margin-bottom: auto;
 }
 .custom_icons{
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
+}
+.container,.container-fluid{
+  margin-top: 24px;
+}
+.redirect_link>a {
+  color: #000;
+}
+.redirect_link>a:hover {
+  color: #ff0000;
+  text-decoration: none;
 }
 @media (max-width: 768px) {
   .club_info{
@@ -324,32 +333,19 @@ ul.grade-list-bx li span select{margin: 0;}
     margin-top: 18px;
   }
   .club_name_box{
-    box-shadow:0px 3px 6px rgba(0, 0, 0, .5);
     height: 50px;
-    margin-top: auto;
-    margin-bottom: auto;
   }
-  .schedule_class_box{
-    box-shadow:0px 3px 6px rgba(0, 0, 0, .5);
+  .div_box{
     height: 16vh;
-    margin-top: auto;
-    margin-bottom: auto;
   }
   .custom_icons{
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
   }
   .add_new_student>a {
       padding: 6px;
       margin: 8px 20px;
-      border: none;
-      border-radius: 5px;
-      background-color: #000;
-      color: #fff;
-      text-align: center;
-      cursor: pointer;
-      -webkit-transition: all .4s ease-out;
-      transition: all .4s ease-out;
+
   }
 
 }
