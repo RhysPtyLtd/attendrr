@@ -275,7 +275,9 @@ nav>a {
 .navbar-brand {
   font-size: 1rem;
 }
-
+.navbar{
+	background: #fff;
+}
 
 /*---Custom AnimateCSS mobile menu items---*/
 
