@@ -12,7 +12,7 @@ if (this.hasAnimateOnScrollElements && !this.aosRefreshed && AOS !== undefined) 
     AOS.refresh();
 }
 
-ScrollReveal().reveal('.banner-text,.section-2-text,.section-3-text,.section-4-text,.section-5', { delay: 500, distance: '50px',easing: 'ease-in',interval: 300 });
+ScrollReveal().reveal('.banner-text,.section-2-text,.section-3-text,.section-4-text', { delay: 500, distance: '50px',easing: 'ease-in',interval: 300 });
 function mailboxAnime (el) {
     $('.mailbox').addClass('animated flipInX');
 }

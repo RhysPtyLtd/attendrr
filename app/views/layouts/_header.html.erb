@@ -12,7 +12,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <%= link_to image_tag("attendrr-master.png", :alt => 'attendrr', :class => 'logo'), root_path, :class => 'navbar-brand animated  heartBeat' %>
+          <%= link_to image_tag("attendrr-master.png", :alt => 'attendrr', :class => 'logo'), root_path, :class => 'navbar-brand ' %>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -22,15 +22,15 @@
 
           </ul>
           <ul class="nav navbar-nav  navbar-right">
-            <li class="nav-item active mr-2 animated fadeInDown">
-              <%= link_to "Home", root_path, class: "signupbox mr-md-3 ml-md-5  animated fadeInDown" %>
+            <li class="nav-item active mr-2 ">
+              <%= link_to "Home", root_path, class: "signupbox  " %>
             </li>
-            <li class="nav-item mr-2 animated fadeInDown">
-              <%= link_to "Help",   help_path , class: "signupbox mr-md-3 ml-md-5  animated fadeInDown" %>
+            <li class="nav-item  mr-2">
+              <%= link_to "Help",   help_path , class: "signupbox  " %>
             </li>
             <% if logged_in? %>
               <% if current_club && current_club.admin? %>
-              <li><%= link_to "Clubs", clubs_path, class: "signupbox mr-md-3 ml-md-5  animated fadeInDown" %></li>
+              <li><%= link_to "Clubs", clubs_path, class: "signupbox " %></li>
               <% end %>
               <div style="display:inline" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -47,10 +47,10 @@
               </div>
             <% else %>
             <li>
-              <%= link_to "Sign up ", signup_path, class: "signupbox mr-md-3 ml-md-5  animated fadeInDown" %>
+              <%= link_to "Sign up ", signup_path, class: "signupbox mr-md-2 " %>
             </li>
             <li>
-              <%= link_to "Login", login_path, class: 'loginbox mx-2 animated fadeInDown' %>
+              <%= link_to "Login", login_path, class: 'loginbox mx-2 ' %>
             </li>
               <% end %>
 
