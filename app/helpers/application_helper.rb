@@ -10,6 +10,9 @@ module ApplicationHelper
 		end
 	end
 
+	def link_to_image(image_path, target_link,options={})
+  	link_to(image_tag(image_path, :border => "0",:class => "custom_icons align-self-center"), target_link, options)
+	end
 	# Formats names correctly  	THIS DOESN'T WORK
 	#class String
 	    # def capitalize_name

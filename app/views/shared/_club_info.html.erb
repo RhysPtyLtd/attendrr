@@ -1,3 +1,101 @@
+<div class="row">
+
+		<div class="col-md-4 offset-md-4  col-sm-12">
+			<div class="club_name_box d-flex justify-content-start">
+				<div class="">
+					<img class="club_logo" src=<%=image_url('cm_logo.png') %>  alt="" >
+				</div>
+				<div class="align-self-center">
+					<span class="club_name "><%= current_club.name %></span>
+				</div>
+
+			</div>
+
+		</div>
+		<div class="col-md-4 col-12 d-flex justify-content-end add_new_student_div">
+			<span class="add_new_student align-self-end"><%= link_to("Add new student", new_student_path) %></span>
+		</div>
+
+</div>
+<div class="row mt-md-5 mt-4 ml-2 mr-2">
+
+<%# <%= link_to scheduled_classes_activities_path do %>
+<!-- schedule class -->
+	<div class="col-6 col-md-3">
+			<div class="schedule_class_box d-flex justify-content-center flex-column">
+				<img class="custom_icons align-self-center" src=<%=image_url('calendar.png') %>  alt="" >
+				<%# <%= link_to_image("calendar.png", scheduled_classes_activities_path) %> 
+				<span class="align-self-center text-center"><%= link_to("Scheduled classes", scheduled_classes_activities_path) %></span>
+			</div>
+	</div>
+	<%# <% end %>
+	<!-- Student -->
+	<div class="col-6 col-md-3">
+			<div class="schedule_class_box d-flex justify-content-center flex-column">
+				<img class="custom_icons align-self-center" src=<%=image_url('sport.png') %>  alt="" >
+				<span class="align-self-center text-center"><%= link_to("Students", students_path) %></span>
+				<span class="align-self-center text-center"><%= link_to @students.count, students_path %></span>
+			</div>
+	</div>
+	<% absent_students = 0 %>
+	<% @students.each do |s| %>
+		<!-- <ul> -->
+			<% if s.last_attendance < @absent_alert_activation_date %>
+				<% absent_students += 1 %>
+			<% end %>
+		<!-- </ul> -->
+	<% end %>
+	<!-- absent student -->
+	<div class="col-6 col-md-3 mt-2 mt-md-0">
+			<div class="schedule_class_box d-flex justify-content-center flex-column">
+				<img class="custom_icons align-self-center" src=<%=image_url('absent.png') %>  alt="" >
+				<span class="align-self-center text-center"><%= link_to("Absents", absents_students_path) %></span>
+				<span class="align-self-center text-center"><%= link_to link_to absent_students, absents_students_path %></span>
+			</div>
+	</div>
+	<!-- Prospects  -->
+	<div class="col-6 col-md-3 mt-2 mt-md-0">
+			<div class="schedule_class_box d-flex justify-content-center flex-column">
+				<img class="custom_icons align-self-center" src=<%=image_url('prospect.png') %>  alt="" >
+				<span class="align-self-center text-center"><%= link_to("Prospect", prospects_students_path) %></span>
+				<span class="align-self-center text-center"><%= link_to @active_prospects.count, students_path %></span>
+			</div>
+	</div>
+</div>
+<div class="row mt-md-5 mt-2 ml-2 mr-2">
+	<%# <%= link_to scheduled_classes_activities_path do %>
+	<!-- Class-->
+		<div class="col-6 col-md-3">
+				<div class="schedule_class_box d-flex justify-content-center flex-column">
+					<img class="custom_icons align-self-center" src=<%=image_url('class.png') %>  alt="" >
+					<span class="align-self-center text-center"><%= link_to("Classes", activities_path) %></span>
+					<span class="align-self-center text-center"> <%= link_to current_club.activities.where(active: true).count, activities_path %></span>
+				</div>
+		</div>
+		<%# <% end %>
+		<!-- Payment -->
+		<div class="col-6 col-md-3">
+				<div class="schedule_class_box d-flex justify-content-center flex-column">
+					<img class="custom_icons align-self-center" src=<%=image_url('payment.png') %>  alt="" >
+					<span class="align-self-center text-center"><%= link_to("Payment plans", payment_plans_path) %></span>
+					<span class="align-self-center text-center">	<%= link_to current_club.payment_plans.where(active: true).count-1, payment_plans_path %></span>
+				</div>
+		</div>
+		<!-- matrics -->
+		<div class="col-6 col-md-3 mt-2 mt-md-0">
+				<div class="schedule_class_box d-flex justify-content-center flex-column">
+					<img class="custom_icons align-self-center" src=<%=image_url('metrics.png') %>  alt="" >
+					<span class="align-self-center text-center"><%= link_to("Metrics", metrics_path) %></span>
+				</div>
+		</div>
+		<!-- View Club details  -->
+		<div class="col-6 col-md-3 mt-2 mt-md-0">
+				<div class="schedule_class_box d-flex justify-content-center flex-column">
+					<img class="custom_icons align-self-center" src=<%=image_url('eye.png') %>  alt="" >
+					<span class="align-self-center text-center"><%= link_to("View Club Details", current_club) %></span>
+				</div>
+		</div>
+</div>
 <h1><%= current_club.name %></h1>
 <%= image_tag current_club.picture.url if current_club.picture? %>
 <span><%= link_to "View club details", current_club %></span>
@@ -19,4 +117,4 @@
 		<% end %>
 	</ul>
 <% end %>
-Absent students: <%= link_to absent_students, absents_students_path %> 
+Absent students: <%= link_to absent_students, absents_students_path %>
