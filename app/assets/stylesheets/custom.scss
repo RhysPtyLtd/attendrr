@@ -318,12 +318,15 @@ ul.grade-list-bx li span select{margin: 0;}
 .container,.container-fluid{
   margin-top: 24px;
 }
-.redirect_link>a {
+.club_info>div>div>a{
+  text-decoration: none;
+}
+.redirect_link {
   color: #000;
 }
-.redirect_link>a:hover {
+.redirect_link:hover {
   color: #ff0000;
-  text-decoration: none;
+  text-decoration: none!important;
 }
 .redirect_div {
   display: block;
