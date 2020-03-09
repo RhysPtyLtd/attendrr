@@ -290,16 +290,16 @@ ul.grade-list-bx li span select{margin: 0;}
   width: auto;
 }
 .add_new_student>a {
-    padding: 10px 8px;
-    margin: 8px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #ff0000;
-    color: #fff;
-    text-align: center;
-    cursor: pointer;
-    -webkit-transition: all .4s ease-out;
-    transition: all .4s ease-out;
+  padding: 10px 8px;
+  margin: 8px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff0000;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  -webkit-transition: all .4s ease-out;
+  transition: all .4s ease-out;
 }
 .add_new_student>a:hover{
   text-decoration: none;
@@ -318,12 +318,15 @@ ul.grade-list-bx li span select{margin: 0;}
 .container,.container-fluid{
   margin-top: 24px;
 }
-.redirect_link>a {
+.club_info>div>div>a{
+  text-decoration: none;
+}
+.redirect_link {
   color: #000;
 }
-.redirect_link>a:hover {
+.redirect_link:hover {
   color: #ff0000;
-  text-decoration: none;
+  text-decoration: none!important;
 }
 .redirect_div {
   display: block;
@@ -334,13 +337,67 @@ ul.grade-list-bx li span select{margin: 0;}
 .dropdown-item>a{
   color: #ff0000;
 }
-.dropdown-item>a:hover,.dropdown-item:hover{
+
+.dropdown-item>a:hover,.dropdown-item:hover,.previous>a:hover{
   color: #fff;
   text-decoration: none;
   background-color: #000;
+  transition: all .4s ease-out;
 }
 .dropdown-item_anchor{
   color: #fff!important;
+}
+.go_button{
+  border: 1px solid #c5c5c5;
+}
+.attendance_class{
+  border: 1px solid #c5c5c5;
+}
+
+.row {
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.previous>a ,.next>a{
+  border: 1px solid #c5c5c5;
+  border-radius: 24px;
+  padding: 8px;
+  color: #000;
+}
+.previous>a:hover,.next>a:hover{
+  color: #fff;
+  text-decoration: none;
+  background-color: #000;
+  transition: all .4s ease-out;
+}
+.schedule_time{
+  font-size: 24px;
+}
+.schedule_time,.schedule_name{
+  text-transform: uppercase;
+}
+.schedule_name{
+  text-align: center;
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.attendance_btn{
+  color: #fff;
+  background-color: #F65858;
+  text-transform: uppercase;
+  border: none;
+  padding: 12px;
+}
+.scheduled_class_div>a{
+  color: #000;
+}
+.scheduled_class_div>a:hover{
+  text-decoration: none;
+  color: #ff0000;
 }
 @media (max-width: 768px) {
   .club_info{
@@ -360,9 +417,29 @@ ul.grade-list-bx li span select{margin: 0;}
     height: 35px;
   }
   .add_new_student>a {
-      padding: 6px;
-      margin: 8px 20px;
+    padding: 6px;
+    margin: 8px 20px;
 
+  }
+  .previous>a ,.next>a{
+    font-size: 16px;
+  }
+  .previous,.next{
+    padding-right:0;
+    padding-left: 0;
+  }
+  .scheduled_class_div>a>.row{
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+  .schedule_time{
+    font-size: 16px;
+  }
+  .schedule_name{
+    font-size: 12px;
+  }
+  h4{
+    font-size: 1.25rem;
   }
 
 }
