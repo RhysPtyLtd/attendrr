@@ -53,52 +53,64 @@
 	<% end %>
 	<!-- absent student -->
 <div class="col-6 col-md-3 mt-2 mt-md-0">
+	<%= link_to (absents_students_path) do %>
 			<div class="div_box d-flex justify-content-center flex-column">
 				<img class="custom_icons align-self-center" src=<%=image_url('absent.png') %>  alt="" >
-				<span class="align-self-center text-center redirect_link"><%= link_to("Absents", absents_students_path) %></span>
-				<span class="align-self-center text-center redirect_link"><%= link_to link_to absent_students, absents_students_path %></span>
+				<span class="align-self-center text-center redirect_link">Absents</span>
+				<span class="align-self-center text-center redirect_link"><%= absent_students %></span>
 			</div>
+	<% end %>
 </div>
 	<!-- Prospects  -->
 	<div class="col-6 col-md-3 mt-2 mt-md-0">
+		<%= link_to (prospects_students_path) do %>
 			<div class="div_box d-flex justify-content-center flex-column">
 				<img class="custom_icons align-self-center" src=<%=image_url('prospect.png') %>  alt="" >
-				<span class="align-self-center text-center redirect_link"><%= link_to("Prospect", prospects_students_path) %></span>
-				<span class="align-self-center text-center redirect_link"><%= link_to @active_prospects.count, students_path %></span>
+				<span class="align-self-center text-center redirect_link">Prospects</span>
+				<span class="align-self-center text-center redirect_link"><%= @active_prospects.count %></span>
 			</div>
+		<% end %>
 	</div>
 </div>
 <div class="row mt-md-5 mt-2 ml-2 mr-2">
 	<%# <%= link_to scheduled_classes_activities_path do %>
 	<!-- Class-->
 		<div class="col-6 col-md-3">
+			<%= link_to (activities_path) do %>
 				<div class="div_box d-flex justify-content-center flex-column">
 					<img class="custom_icons align-self-center" src=<%=image_url('class.png') %>  alt="" >
-					<span class="align-self-center text-center redirect_link"><%= link_to("Classes", activities_path) %></span>
-					<span class="align-self-center text-center redirect_link"> <%= link_to current_club.activities.where(active: true).count, activities_path %></span>
+					<span class="align-self-center text-center redirect_link">Classes</span>
+					<span class="align-self-center text-center redirect_link"> <%= current_club.activities.where(active: true).count %></span>
 				</div>
+			<% end %>
 		</div>
 		<%# <% end %>
 		<!-- Payment -->
 		<div class="col-6 col-md-3">
+			<%= link_to(payment_plans_path) do %>
 				<div class="div_box d-flex justify-content-center flex-column">
 					<img class="custom_icons align-self-center" src=<%=image_url('payment.png') %>  alt="" >
-					<span class="align-self-center text-center redirect_link"><%= link_to("Payment plans", payment_plans_path) %></span>
-					<span class="align-self-center text-center redirect_link">	<%= link_to current_club.payment_plans.where(active: true).count-1, payment_plans_path %></span>
+					<span class="align-self-center text-center redirect_link">Payment plans</span>
+					<span class="align-self-center text-center redirect_link">	<%= current_club.payment_plans.where(active: true).count-1 %></span>
 				</div>
+			<% end %>
 		</div>
-		<!-- matrics -->
+		<!-- metrics -->
 		<div class="col-6 col-md-3 mt-2 mt-md-0">
+			<%= link_to (metrics_path) do %>
 				<div class="div_box d-flex justify-content-center flex-column">
 					<img class="custom_icons align-self-center" src=<%=image_url('metrics.png') %>  alt="" >
-					<span class="align-self-center text-center redirect_link"><%= link_to("Metrics", metrics_path) %></span>
+					<span class="align-self-center text-center redirect_link">Metrics</span>
 				</div>
+			<% end %>
 		</div>
 		<!-- View Club details  -->
 		<div class="col-6 col-md-3 mt-2 mt-md-0">
+			<%= link_to(current_club) do %>
 				<div class="div_box d-flex justify-content-center flex-column">
 					<img class="custom_icons align-self-center" src=<%=image_url('eye.png') %>  alt="" >
-					<span class="align-self-center text-center redirect_link"><%= link_to("View Club Details", current_club) %></span>
+					<span class="align-self-center text-center redirect_link">View Club Details</span>
 				</div>
+			<% end %>
 		</div>
 </div>

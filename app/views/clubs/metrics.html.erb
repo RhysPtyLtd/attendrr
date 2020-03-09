@@ -19,6 +19,6 @@
 <%= line_chart @club.daily_metrics.group_by_week(:created_at, range: @from..@to).sum(:new_students), library: { animation: { easing: 'easeOutQuad'}} %>
 <h3>Revenue</h3>
 <%= line_chart @club.daily_metrics.group_by_week(:created_at, range: @from..@to).sum(:revenue), library: { animation: { easing: 'easeOutQuad'}} %>
-<h3>Average no. of students per session</h3>
+<%# <h3>Average no. of students per session</h3>
 <h3>Average length of membership (days)</h3>
-<h3>Retention rate/churn</h3>
+<h3>Retention rate/churn</h3> %>
