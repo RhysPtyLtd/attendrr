@@ -1,23 +1,22 @@
 <div class="row">
-	<div class="col-md-4 offset-md-4  col-sm-12">
-		<div class="club_name_box d-flex justify-content-md-start justify-content-center">
-			<div class="">
-				<img class="club_logo" src=<%=image_url('cm_logo.png') %>  alt="" >
-			</div>
-			<div class="align-self-center">
-				<span class="club_name "><%= current_club.name %></span>
+		<div class="col-md-4 offset-md-4  col-sm-12">
+			<div class="club_name_box d-flex justify-content-md-start justify-content-center">
+				<div class="">
+					<img class="club_logo" src=<%=image_url('cm_logo.png') %>  alt="" >
+				</div>
+				<div class="align-self-center">
+					<span class="club_name "><%= current_club.name %></span>
+				</div>
+
 			</div>
 
 		</div>
-
-	</div>
-	<div class="col-md-4 col-12 d-flex justify-content-end add_new_student_div">
-		<span class="add_new_student align-self-end"><%= link_to("Add new student", new_student_path) %></span>
-	</div>
+		<div class="col-md-4 col-12 d-flex justify-content-end add_new_student_div">
+			<span class="add_new_student align-self-end"><%= link_to("Add new student", new_student_path) %></span>
+		</div>
 </div>
 <div class="row mt-md-5 mt-4 ml-2 mr-2">
 
-<<<<<<< HEAD
  <%# <%= link_to scheduled_classes_activities_path , :class => "redirect_div" do %> 
 <!-- schedule class -->
 <div class="col-6 col-md-3">
@@ -44,40 +43,15 @@
 </div>
 
 	
-=======
-	<%# <%= link_to scheduled_classes_activities_path , :class => "redirect_div" do %>
-	<!-- schedule class -->
-	<div class="col-6 col-md-3">
-		<%= link_to(scheduled_classes_activities_path) do %>
-		<div class="div_box d-flex justify-content-center flex-column">
-			<img class="custom_icons align-self-center" src=<%=image_url('calendar.png') %>  alt="" >
-			<%# <%= link_to_image("calendar.png", scheduled_classes_activities_path) %>
-			<span class="align-self-center text-center redirect_link">Scheduled classes</span>
-		</div>
-		<% end %>
-	</div>
-	<%# <% end %>
-	<!-- Student -->
-	<div class="col-6 col-md-3">
-		<%= link_to(students_path) do %>
-		<div class="div_box d-flex justify-content-center flex-column">
-			<img class="custom_icons align-self-center" src=<%=image_url('sport.png') %>  alt="" >
-			<span class="align-self-center text-center redirect_link">Students </span>
-			<span class="align-self-center text-center redirect_link"><%=  @students.count %></span>
-		</div>
-		<% end %>
-	</div>
->>>>>>> cf551c35af7ea30376cc358b5bd6ebf0ec0dd434
 	<% absent_students = 0 %>
 	<% @students.each do |s| %>
-	<!-- <ul> -->
-	<% if s.last_attendance < @absent_alert_activation_date %>
-	<% absent_students += 1 %>
-	<% end %>
-	<!-- </ul> -->
+		<!-- <ul> -->
+			<% if s.last_attendance < @absent_alert_activation_date %>
+				<% absent_students += 1 %>
+			<% end %>
+		<!-- </ul> -->
 	<% end %>
 	<!-- absent student -->
-<<<<<<< HEAD
 <div class="col-6 col-md-3 mt-2 mt-md-0">
 	<%= link_to (absents_students_path) do %>
 			<div class="div_box d-flex justify-content-center flex-column">
@@ -95,32 +69,12 @@
 				<span class="align-self-center text-center redirect_link">Prospects</span>
 				<span class="align-self-center text-center redirect_link"><%= @active_prospects.count %></span>
 			</div>
-=======
-	<div class="col-6 col-md-3 mt-2 mt-md-0">
-		<%= link_to(absents_students_path) do %>
-		<div class="div_box d-flex justify-content-center flex-column">
-			<img class="custom_icons align-self-center" src=<%=image_url('absent.png') %>  alt="" >
-			<span class="align-self-center text-center redirect_link">Absents</span>
-			<span class="align-self-center text-center redirect_link"><%=  absent_students %></span>
-		</div>
-		<% end %>
-	</div>
-	<!-- Prospects  -->
-	<div class="col-6 col-md-3 mt-2 mt-md-0">
-		<%= link_to(prospects_students_path) do %>
-		<div class="div_box d-flex justify-content-center flex-column">
-			<img class="custom_icons align-self-center" src=<%=image_url('prospect.png') %>  alt="" >
-			<span class="align-self-center text-center redirect_link">Prospect</span>
-			<span class="align-self-center text-center redirect_link"><%=  @active_prospects.count %></span>
-		</div>
->>>>>>> cf551c35af7ea30376cc358b5bd6ebf0ec0dd434
 		<% end %>
 	</div>
 </div>
 <div class="row mt-md-5 mt-2 ml-2 mr-2">
 	<%# <%= link_to scheduled_classes_activities_path do %>
 	<!-- Class-->
-<<<<<<< HEAD
 		<div class="col-6 col-md-3">
 			<%= link_to (activities_path) do %>
 				<div class="div_box d-flex justify-content-center flex-column">
@@ -158,44 +112,6 @@
 					<span class="align-self-center text-center redirect_link">View Club Details</span>
 				</div>
 			<% end %>
-=======
-	<div class="col-6 col-md-3">
-		<%= link_to(activities_path) do %>
-		<div class="div_box d-flex justify-content-center flex-column">
-			<img class="custom_icons align-self-center" src=<%=image_url('class.png') %>  alt="" >
-			<span class="align-self-center text-center redirect_link">Classes</span>
-			<span class="align-self-center text-center redirect_link"> <%= current_club.activities.where(active: true).count %></span>
 		</div>
-		<% end %>
-	</div>
-	<%# <% end %>
-	<!-- Payment -->
-	<div class="col-6 col-md-3">
-		<%= link_to(payment_plans_path) do %>
-		<div class="div_box d-flex justify-content-center flex-column">
-			<img class="custom_icons align-self-center" src=<%=image_url('payment.png') %>  alt="" >
-			<span class="align-self-center text-center redirect_link">Payment plans</span>
-			<span class="align-self-center text-center redirect_link">	<%=  current_club.payment_plans.where(active: true).count-1 %></span>
-		</div>
-		<% end %>
-	</div>
-	<!-- matrics -->
-	<div class="col-6 col-md-3 mt-2 mt-md-0">
-		<%= link_to(metrics_path) do %>
-		<div class="div_box d-flex justify-content-center flex-column">
-			<img class="custom_icons align-self-center" src=<%=image_url('metrics.png') %>  alt="" >
-			<span class="align-self-center text-center redirect_link">Metrics</span>
-		</div>
-		<% end %>
-	</div>
-	<!-- View Club details  -->
-	<div class="col-6 col-md-3 mt-2 mt-md-0">
-		<%= link_to(current_club) do %>
-		<div class="div_box d-flex justify-content-center flex-column">
-			<img class="custom_icons align-self-center" src=<%=image_url('eye.png') %>  alt="" >
-			<span class="align-self-center text-center redirect_link">View Club Details</span>
->>>>>>> cf551c35af7ea30376cc358b5bd6ebf0ec0dd434
-		</div>
-		<% end %>
-	</div>
 </div>
+
