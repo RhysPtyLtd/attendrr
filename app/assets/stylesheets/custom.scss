@@ -352,6 +352,7 @@ ul.grade-list-bx li span select{margin: 0;}
 }
 .attendance_class{
   border: 1px solid #c5c5c5;
+  height: 15vh;
 }
 
 .row {
@@ -377,21 +378,8 @@ ul.grade-list-bx li span select{margin: 0;}
 .schedule_time,.schedule_name{
   text-transform: uppercase;
 }
-.schedule_name{
-  text-align: center;
-  position: relative;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-.attendance_btn{
-  color: #fff;
-  background-color: #F65858;
-  text-transform: uppercase;
-  border: none;
-  padding: 12px;
-}
+
+
 .scheduled_class_div>a{
   color: #000;
 }
