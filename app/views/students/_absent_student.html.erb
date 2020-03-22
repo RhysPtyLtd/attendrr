@@ -1,7 +1,7 @@
 <div class="thumbnail">
     <div class="scroll-area" id="tasks">
     <% @student_absent.each do |student| %>
-      <p><strong><%= link_to(student.first_name + " " + student.last_name, attendance_students_path(s_id: student.id,date_slot: params[:date_slot],activity_id: params[:activity_id],timeslot_id: params[:timeslot_id]), :remote => true) %></strong></p>
+      <p ><strong class="attendance-absent-student"><%= link_to(student.first_name + " " + student.last_name, attendance_students_path(s_id: student.id,date_slot: params[:date_slot],activity_id: params[:activity_id],timeslot_id: params[:timeslot_id]), :remote => true) %></strong></p>
     <% end %>
-    </div> 
+    </div>
     </div>

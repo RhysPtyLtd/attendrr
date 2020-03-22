@@ -1,27 +1,37 @@
-<div class="row text-center center-block">
-	<h4><%= link_to(@date_find.strftime("%A, #{@date_find.day.ordinalize} %B %Y"), scheduled_classes_activities_path(search: @date_find)) %></h4>
-  <div class="col-sm-4 col-sm-offset-2" id="absent">
-    <%= render 'absent_student' %>
-  </div>
-  <div class="col-sm-4" id="present">
-    <%= render 'present_student' %>
-  </div>
 
-</div>
+<section class="attandance-page ">
+	<div class="container">
+			<div class="row text-center center-block mt-5">
+				<div class="col-12 d-flex justify-content-center">
+					<h4 class="attandance-date"><%= link_to(@date_find.strftime("%A, #{@date_find.day.ordinalize} %B %Y"), scheduled_classes_activities_path(search: @date_find)) %></h4>
+				</div>
+			</div>
+			<div class="row mt-3">
+				<div class=" offset-md-2 col-sm-4 col-sm-offset-2" id="absent">
+					<%= render 'absent_student' %>
+				</div>
+				<div class="offset-md-2 col-sm-4" id="present">
+					<%= render 'present_student' %>
+				</div>
+			</div>
 
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-      </div>
-      <div class="modal-body" id = "body" style = "text-align: center;font-size: large;">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
-      </div>
-    </div>
-  </div>
-</div>
+			<div id="myModal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+						</div>
+						<div class="modal-body" id = "body" style = "text-align: center;font-size: large;">
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+
+</section>
+
 
 <script type="text/javascript">
     $(function () {

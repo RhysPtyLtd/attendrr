@@ -387,6 +387,27 @@ ul.grade-list-bx li span select{margin: 0;}
   text-decoration: none;
   color: #ff0000;
 }
+#absent{
+  background-color: #ff7675;
+}
+#present{
+  background-color:#74b9ff;
+}
+.attandance-date>a,.attendance-absent-student>a{
+  color:#000!important;
+}
+.attandance-date>a:hover{
+  color:#007bff!important;
+  text-decoration: none;
+}
+.attendance-absent-student>a:hover{
+  text-decoration: none;
+  color: #fff!important;
+}
+.attendance-present-student>a:hover{
+  text-decoration: none;
+  color: #000!important;
+}
 @media (max-width: 768px) {
   .club_info{
     margin-top: 24px;
