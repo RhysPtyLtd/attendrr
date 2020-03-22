@@ -17,29 +17,29 @@
 </div>
 <div class="row mt-md-5 mt-4 ml-2 mr-2">
 
- <%# <%= link_to scheduled_classes_activities_path , :class => "redirect_div" do %> 
+ <%# <%= link_to scheduled_classes_activities_path , :class => "redirect_div" do %>
 <!-- schedule class -->
 <div class="col-6 col-md-3">
-	<%= link_to(scheduled_classes_activities_path) do %>	
+	<%= link_to(scheduled_classes_activities_path) do %>
 			<div class="div_box d-flex justify-content-center flex-column">
 				<img class="custom_icons align-self-center" src=<%=image_url('calendar.png') %>  alt="" >
 				<%# <%= link_to_image("calendar.png", scheduled_classes_activities_path) %>
 				<span class="align-self-center text-center redirect_link">Scheduled classes</span>
 			</div>
-	<% end %>	
+	<% end %>
 </div>
-	
+
 <%# <% end %>
 	<!-- Student -->
 <div class="col-6 col-md-3">
-	<%= link_to(students_path) do %>	
+	<%= link_to(students_path) do %>
 			<div class="div_box d-flex justify-content-center flex-column">
 				<img class="custom_icons align-self-center" src=<%=image_url('sport.png') %>  alt="" >
 				<%# <%= link_to_image("calendar.png", scheduled_classes_activities_path) %>
-				<span class="align-self-center text-center redirect_link">Students</span><br>
+				<span class="align-self-center text-center redirect_link">Students</span>
 				<span class="align-self-center text-center redirect_link"><%= @students.count %></span>
 			</div>
-	<% end %>	
+	<% end %>
 </div>
 
 	<% absent_students = 0 %>
@@ -113,4 +113,3 @@
 		<% end %>
 	</div>
 </div>
-
