@@ -106,3 +106,6 @@
 	</div>
 </div>
 
+<% if current_club.activities.where(active: true).count == 0 %>
+	<%= link_to("Welcome to Attendrr! First, click here to add a class", new_activity_path) %>
+<% end %>
