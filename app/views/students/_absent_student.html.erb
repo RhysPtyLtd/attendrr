@@ -5,8 +5,7 @@
       <%= link_to( attendance_students_path(s_id: student.id,date_slot: params[:date_slot],activity_id: params[:activity_id],timeslot_id: params[:timeslot_id]), :remote => true,:class=>"student_attance_div") do %>
       <div class="absent_student d-flex justify-content-start align-content-center mt-2 mb-2">
           <div class="align-self-center m-2">
-            <img class="student_img align-self-center" src=<%=image_url('demo.png') %>  alt="" >
-            <% if student.picture? %><%= image_tag student.picture.url %><% end %>
+            <% if student.picture? %><img class="student_img align-self-center" <%= image_tag student.picture.url %><% end %>
           </div>
           <div class="align-self-center pl-2">
             <span class="student_name"> <%= student.first_name + " " + student.last_name%></span>
