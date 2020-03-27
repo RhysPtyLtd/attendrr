@@ -1,5 +1,5 @@
 class Attendance < ApplicationRecord
-  belongs_to :student
+  belongs_to :student, touch: true
   belongs_to :activity
   belongs_to :timeslot
   belongs_to :rank
