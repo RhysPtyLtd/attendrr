@@ -1,7 +1,7 @@
 <h1><%= @activity.name %></h1>
 
 <% unless @active_ranks.any? %>
-	<%= link_to "Click here to add ranks. All classes need at least one rank", edit_activity_path(@activity) %><br>
+	<%= link_to "All classes need at least one rank. Click here to add ranks.", edit_activity_path(@activity) %><br>
 <% end %>
 <% if @activity.timeslots.where(active: true).any? %>
 	Class times:<br>

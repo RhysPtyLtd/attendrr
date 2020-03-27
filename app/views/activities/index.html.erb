@@ -3,7 +3,7 @@
 			<li>
 				<%= link_to a.name, activity_path(a) %><br>
 				Students: <%= a.students.uniq.count %> (add link to <%= a.name %> students here)<br>
-				<% unless a.ranks.any? %> <%= link_to "This class has no ranks! Add ranks here", edit_activity_path(a) %> <% end %>
+				<% unless a.ranks.where(active: true).any? %> <%= link_to "This class has no ranks! Add ranks here", edit_activity_path(a) %> <% end %>
 			</li>
 		</ul>
 <% end %>
