@@ -1,4 +1,5 @@
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css"/>
+<script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
 <section class="attandance-page ">
 	<div class="container">
 			<div class="row text-center center-block mt-5">
@@ -7,10 +8,10 @@
 				</div>
 			</div>
 			<div class="row mt-3">
-				<div class=" offset-md-1 col-sm-5 col-sm-offset-1 scroll-area" id="absent">
+				<div class=" offset-md-1 col-sm-5 col-sm-offset-1 scroll-area" data-simplebar id="absent">
 					<%= render 'absent_student' %>
 				</div>
-				<div class="offset-md-1 col-sm-5 scroll-area2 mt-md-0 mt-3" id="present">
+				<div class="offset-md-1 col-sm-5 scroll-area2 mt-md-0 mt-3" data-simplebar id="present">
 					<%= render 'present_student' %>
 				</div>
 			</div>
@@ -39,4 +40,10 @@
         	format: 'DD/MM/YYYY'
         });
     });
+</script>
+<script>
+  // var el = document.querySelector('.scroll-area');
+  // SimpleScrollbar.initEl(el);
+	// var el2 = document.querySelector('.scroll-area2');
+  // SimpleScrollbar.initEl(el2);
 </script>
