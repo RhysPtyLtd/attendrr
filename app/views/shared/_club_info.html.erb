@@ -106,6 +106,13 @@
 	</div>
 </div>
 
-<% unless current_club.activities.where(active: true).any? %>
+<% if current_club.activities.where(active: true).count == 0 %>
 	<%= link_to("Welcome to Attendrr! First, click here to add a class", new_activity_path) %>
+<% elsif current_club.activities.where(active: true).any? %>
+	<% current_club.activities.where(active: true).each do |a| %>
+		<% unless a.ranks.any? %>
+			<%= link_to("There are classes without ranks! Click here to add ranks", activities_path) %>
+			<% break %>
+		<% end %>
+	<% end %>
 <% end %>
