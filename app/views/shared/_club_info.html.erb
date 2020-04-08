@@ -1,15 +1,26 @@
-<div class="row">
-	<div class="col-md-4 offset-md-4  col-sm-12">
-	
+<%# Notifications %>
+<% rank_notification_required = false %>
+<% current_club.activities.where(active: true).each do |a| %>
+	<% unless a.ranks.any? %>
+		<% rank_notification_required = true %>
+		<% break %>
+	<% end %>
+<% end %>
 
-	</div>
-	<div class="col-md-4 col-12 d-flex justify-content-end add_new_student_div">
-		<span class="add_new_student align-self-end"><%= link_to("Add new student", new_student_path) %></span>
-	</div>
-</div>
+<% if current_club.activities.where(active: true).none? %>
+	<%= link_to("Welcome to Attendrr! First, click here to add a class", new_activity_path) %>
+<% elsif rank_notification_required %>
+	<%= link_to("There are classes without ranks! Click here to add ranks", activities_path) %>
+<% elsif current_club.payment_plans.where(active: true).count-1 == 0 %>
+	<%= link_to("Now you need to add at least one payment plan! Click here", new_payment_plan_path) %>
+<% elsif current_club.students.where(active: true).none? %>
+	<%= link_to("It's time to grow your club! Add your first student here", new_student_path) %>
+<% elsif @students.count - @active_prospects.count == 0 %>
+	<%= link_to("You convert Prospects into Students by upgrading their payment plan. You can do it!", prospects_students_path) %>	
+<% end %>
+
 <div class="row mt-md-5 mt-4 ml-2 mr-2">
-
- <%# <%= link_to scheduled_classes_activities_path , :class => "redirect_div" do %>
+<%# <%= link_to scheduled_classes_activities_path , :class => "redirect_div" do %>
 <!-- schedule class -->
 <div class="col-6 col-md-3">
 	<%= link_to(scheduled_classes_activities_path) do %>
@@ -86,7 +97,7 @@
 		</div>
 		<% end %>
 	</div>
-	<!-- matrics -->
+	<!-- metrics -->
 	<div class="col-6 col-md-3 mt-2 mt-md-0">
 		<%= link_to(metrics_path) do %>
 		<div class="div_box d-flex justify-content-center flex-column">
@@ -106,22 +117,12 @@
 	</div>
 </div>
 
-<% rank_notification_required = false %>
-<% current_club.activities.where(active: true).each do |a| %>
-	<% unless a.ranks.any? %>
-		<% rank_notification_required = true %>
-		<% break %>
-	<% end %>
-<% end %>
+<div class="row">
+	<div class="col-md-4 offset-md-4  col-sm-12">
+	
 
-<% if current_club.activities.where(active: true).none? %>
-	<%= link_to("Welcome to Attendrr! First, click here to add a class", new_activity_path) %>
-<% elsif rank_notification_required %>
-	<%= link_to("There are classes without ranks! Click here to add ranks", activities_path) %>
-<% elsif current_club.payment_plans.where(active: true).count-1 == 0 %>
-	<%= link_to("Now you need to add at least one payment plan! Click here", new_payment_plan_path) %>
-<% elsif current_club.students.where(active: true).none? %>
-	<%= link_to("It's time to grow your club! Add your first student here", new_student_path) %>
-<% elsif @students.count - @active_prospects.count == 0 %>
-	<%= link_to("You convert Prospects into Students by upgrading their payment plan. You can do it!", prospects_students_path) %>	
-<% end %>
+	</div>
+	<div class="col-md-4 col-12 d-flex justify-content-end add_new_student_div">
+		<span class="add_new_student align-self-end"><%= link_to("Add new student", new_student_path) %></span>
+	</div>
+</div>
