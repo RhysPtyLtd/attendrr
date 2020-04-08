@@ -50,15 +50,16 @@
 	<%= f.label :payment_plan_id, "Payment plan" %>
 	<%= f.collection_select(:payment_plan_id, @student.club.payment_plans.where(active: true), :id, :name) %>
 
+	Ranks:<br>
 	<%= hidden_field_tag "student[rank_ids][]", nil %>
 	<% @activities.each do |activity| %>
-		<label><h2><%= activity.name  if activity.ranks.where(active: true).any? %></h2></label>
+		<%= activity.name  if activity.ranks.where(active: true).any? %><br>
 		<% activity.ranks.where(active: true).each do |rank| %>
 			<label class="checkbox">
 			<%= check_box_tag "student[rank_ids][]", rank.id, f.object.ranks.include?(rank) %>
 			<%= rank.name %></label>
 		<% end %>
-	<% end %>
+	<% end %><br>
 
 	<span class="picture">
 		<%= f.label :picture, "Attach student picture" %>
