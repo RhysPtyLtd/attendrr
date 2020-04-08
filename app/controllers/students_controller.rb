@@ -5,7 +5,8 @@ class StudentsController < ApplicationController
 
 	def index
 		if @club = current_club
-			@students = @club.students.where(active: true)			
+			prospect = @club.payment_plans.where(name: 'Prospect')
+			@students = @club.students.where(active: true).where.not(payment_plan: prospect)
 			#Average length of membership
 			@accumulated_memberships_in_days = 0
 			@students.each do |s|
