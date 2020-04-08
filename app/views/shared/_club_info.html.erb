@@ -116,9 +116,6 @@
 
 <% if current_club.activities.where(active: true).none? %>
 	<%= link_to("Welcome to Attendrr! First, click here to add a class", new_activity_path) %>
-<<<<<<< HEAD
-<% end %>
-=======
 <% elsif rank_notification_required %>
 	<%= link_to("There are classes without ranks! Click here to add ranks", activities_path) %>
 <% elsif current_club.payment_plans.where(active: true).count-1 == 0 %>
@@ -128,4 +125,3 @@
 <% elsif @students.count - @active_prospects.count == 0 %>
 	<%= link_to("You convert Prospects into Students by upgrading their payment plan. You can do it!", prospects_students_path) %>	
 <% end %>
->>>>>>> guidance
