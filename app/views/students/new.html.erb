@@ -73,3 +73,11 @@
 	    placeholder: 'Select class',
 	});
 </script>
+
+<% @first_ranks.each do |s| %>
+	<ul>
+		<li>
+			<%= s.name %>
+		</li>
+	</ul>
+<% end %>

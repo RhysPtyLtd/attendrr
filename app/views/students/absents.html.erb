@@ -1,9 +1,12 @@
+<% i = true %>
 <% @students.each do |s| %>
 	<ul>
 		<% if s.last_attendance < @absent_alert_activation_date %>
 			<li>
 				<%= link_to s.first_name + " " + s.last_name, student_path(s) %> has not trained since <%= s.last_attendance.strftime("%d/%m/%Y") %><br>
 			</li>
+			<% i = false %>
 		<% end %>
 	</ul>
 <% end %>
+<% if i %><%= "None of your students have been absent in more than #{@absent_alert_activation_date} days! Well done!" %><% end %>
