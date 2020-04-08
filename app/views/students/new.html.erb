@@ -47,8 +47,12 @@
 	<%= f.label :notes %>
 	<%= f.text_field :notes, class: 'form-control' %>
 
-	<%= collection_select :rank_ids, :id, @first_ranks, :id, :activity_name,{:multiple => true},{:multiple => true,id: "activity-display"} %>
-	
+    <%= f.label :classes %>
+    <% @first_ranks.each do |rank| %>
+      <%= check_box_tag "student[rank_ids][]", rank.id, f.object.ranks.include?(rank) %>
+      <%= rank.activity.name %><br>
+    <% end %>
+
 	<span class="picture">
 		<%= f.label :picture, "Attach student picture" %>
 		<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
@@ -73,11 +77,3 @@
 	    placeholder: 'Select class',
 	});
 </script>
-
-<% @first_ranks.each do |s| %>
-	<ul>
-		<li>
-			<%= s.name %>
-		</li>
-	</ul>
-<% end %>
