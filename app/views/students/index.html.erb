@@ -1,4 +1,7 @@
 <% provide(:title, "Students") %>
+<% if @students.none? %>
+	<%= link_to("You haven't got students yet! Add your first student here", new_student_path) %><br>
+<% end %>
 <% @students.each do |s| %>
 	<ul>
 		<li>

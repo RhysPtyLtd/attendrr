@@ -28,8 +28,8 @@
 			<div class="div_box d-flex justify-content-center flex-column">
 				<img class="custom_icons align-self-center" src=<%=image_url('sport.png') %>  alt="" >
 				<%# <%= link_to_image("calendar.png", scheduled_classes_activities_path) %>
-				<span class="align-self-center text-center redirect_link">Students</span>
-				<span class="align-self-center text-center redirect_link"><%= @students.count %></span>
+				<span class="align-self-center text-center redirect_link">Students</span><br>
+				<span class="align-self-center text-center redirect_link"><%= @students.count - @active_prospects.count %></span>
 			</div>
 	<% end %>
 </div>
@@ -106,6 +106,26 @@
 	</div>
 </div>
 
-<% if current_club.activities.where(active: true).count == 0 %>
-	<%= link_to("Welcome to Attendrr! First, click here to add a class", new_activity_path) %>
+<% rank_notification_required = false %>
+<% current_club.activities.where(active: true).each do |a| %>
+	<% unless a.ranks.any? %>
+		<% rank_notification_required = true %>
+		<% break %>
+	<% end %>
 <% end %>
+
+<% if current_club.activities.where(active: true).none? %>
+	<%= link_to("Welcome to Attendrr! First, click here to add a class", new_activity_path) %>
+<<<<<<< HEAD
+<% end %>
+=======
+<% elsif rank_notification_required %>
+	<%= link_to("There are classes without ranks! Click here to add ranks", activities_path) %>
+<% elsif current_club.payment_plans.where(active: true).count-1 == 0 %>
+	<%= link_to("Now you need to add at least one payment plan! Click here", new_payment_plan_path) %>
+<% elsif current_club.students.where(active: true).none? %>
+	<%= link_to("It's time to grow your club! Add your first student here", new_student_path) %>
+<% elsif @students.count - @active_prospects.count == 0 %>
+	<%= link_to("You convert Prospects into Students by upgrading their payment plan. You can do it!", prospects_students_path) %>	
+<% end %>
+>>>>>>> guidance
