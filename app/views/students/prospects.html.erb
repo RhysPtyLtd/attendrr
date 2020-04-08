@@ -1,9 +1,14 @@
+<% i = true %>
 <% @active_prospects.each do |s| %>
   <ul>
     <li>
       <%= link_to s.first_name + " " + s.last_name, student_path(s) %><br>
       <%= image_tag s.picture.url if s.picture? %>
       <%= s.club.name %>
+      <% i = false %>
     </li>
   </ul>
+<% end %>
+<% if i %>
+	<%= link_to("You haven't got students yet! Add your first student here", new_student_path) %><br>
 <% end %>
