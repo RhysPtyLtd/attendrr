@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :subscriptions
   root 'static_pages#home'
   get '/signup', to: 'clubs#new'
   post '/signup', to: 'clubs#create'
