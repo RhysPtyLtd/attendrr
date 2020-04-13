@@ -411,6 +411,8 @@ ul.grade-list-bx li span select{margin: 0;}
 .scroll-area,.scroll-area2{
   height: 50vh;
   overflow-y: scroll;
+  scrollbar-color: #7f7f7f transparent; /* thumb and track color */
+  scrollbar-width: thin;
 }
 .thumbnail{
 
