@@ -411,7 +411,7 @@ ul.grade-list-bx li span select{margin: 0;}
 .scroll-area,.scroll-area2{
   height: 50vh;
   overflow-y: scroll;
-  scrollbar-color: #7f7f7f transparent; /* thumb and track color */
+  scrollbar-color: #7f7f7f3d transparent; /* thumb and track color */
   scrollbar-width: thin;
 }
 .thumbnail{
@@ -461,7 +461,7 @@ ul.grade-list-bx li span select{margin: 0;}
   border-radius: 4px;
 }
 .scroll-area::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,.2);
+  background: #7f7f7f3d;
 }
 
  }
