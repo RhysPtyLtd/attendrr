@@ -450,6 +450,31 @@ ul.grade-list-bx li span select{margin: 0;}
 .student_attance_div:hover .student_name,.student_div:hover .student_name{
   color: #007bff;
  }
+ .staight-line{
+
+ }
+ .nav_link:hover{
+   text-decoration: none;
+ }
+ .single_student_name{
+   font-size: 24px;
+   font-weight:bold;
+   white-space: nowrap;
+ }
+ .single_student_img{
+   border-radius: 12px;
+   width: 100%;
+   height: auto;
+ }
+ .studentpage p{
+   line-height: 16px;
+ }
+ .single_student_class{
+   font-size: 24px;
+ }
+ .btn-pay{
+   font-size: 15px;
+ }
  @media (min-width: 768px) {
 
 .scroll-area::-webkit-scrollbar {
