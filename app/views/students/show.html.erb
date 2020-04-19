@@ -20,7 +20,7 @@
 				<img class="single_student_img align-self-center" <%= image_tag("no_picture.jpg") %>
 				<% end %>
 			</div>
-			<div class="col-lg-3 col-sm-6 col-12 mt-3 mt-lg-0">
+			<div class="col-lg-4 col-sm-6 col-12 mt-3 mt-lg-0">
 				<p class="single_student_name mt-1"><%= @student.first_name %> <%= @student.last_name %></p>
 				<p><% if @student.active == false %>
 					<u>INACTIVE</u><br>
@@ -41,7 +41,7 @@
 						<% end %>
 					</p>
 				</div>
-				<div class="col-lg-3 col-sm-6 col-12">
+				<div class="col-lg-2 col-sm-6 col-12">
 					Address:<br>
 					<% if @student.address_line_2? %>
 					<%= @student.address_line_2 %> /
@@ -86,7 +86,7 @@
 					<% end %>
 
 				</div>
-				<div class="col-lg-4 col-sm-12 col-12 d-flex  justify-content-between mt-sm-4 mt-lg-0 mb-3">
+				<div class="col-lg-4 col-sm-12 col-12 d-flex  justify-content-between flex-wrap align-items-baseline align-content-start mt-sm-4 mt-lg-0 mb-3">
 					<%= link_to "Attendance", student_attendance_students_path(student_id: params[:id]), class: "nav_link"   %><br>
 					<% if @student.active? %>
 					<%= link_to "Edit student details", edit_student_path, class: "nav_link"   %><br>

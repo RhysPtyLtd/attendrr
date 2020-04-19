@@ -475,6 +475,18 @@ ul.grade-list-bx li span select{margin: 0;}
  .btn-pay{
    font-size: 15px;
  }
+ .btn-danger {
+    padding: 10px 8px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff0000;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition: all .4s ease-out;
+    transition: all .4s ease-out;
+ }
  @media (min-width: 768px) {
 
 .scroll-area::-webkit-scrollbar {
