@@ -52,7 +52,7 @@
 					<%= @student.postcode %><br>
 				</div>
 			</div>
-			<div class="row mt-5 d-flex flex-column-reverse flex-sm-row">
+			<div class="row mt-5  ">
 				<div class="col-lg-3 col-sm-6 col-12 pt-4 pt-sm-0">
 					<hr class="staight-line">
 					<p>Payment plan: <%= @student.payment_plan.name %></p>
@@ -86,7 +86,7 @@
 					<% end %>
 
 				</div>
-				<div class="col-lg-4 col-sm-12 col-12 d-flex  justify-content-between flex-wrap align-items-baseline align-content-start mt-sm-4 mt-lg-0 mb-3">
+				<div class="col-lg-4 col-sm-12 col-12 d-flex  justify-content-between flex-wrap align-items-baseline align-content-start mt-4 mt-lg-0 ">
 					<%= link_to "Attendance", student_attendance_students_path(student_id: params[:id]), class: "nav_link"   %><br>
 					<% if @student.active? %>
 					<%= link_to "Edit student details", edit_student_path, class: "nav_link"   %><br>
