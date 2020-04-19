@@ -16,7 +16,7 @@
 <% elsif current_club.students.where(active: true).none? %>
 	<%= link_to("It's time to grow your club! Add your first student here", new_student_path) %>
 <% elsif @students.count - @active_prospects.count == 0 %>
-	<%= link_to("You convert Prospects into Students by upgrading their payment plan. You can do it!", prospects_students_path) %>	
+	<%= link_to("You convert Prospects into Students by upgrading their payment plan. You can do it!", prospects_students_path) %>
 <% end %>
 
 <div class="row mt-md-5 mt-4 ml-2 mr-2">
@@ -39,7 +39,7 @@
 			<div class="div_box d-flex justify-content-center flex-column">
 				<img class="custom_icons align-self-center" src=<%=image_url('sport.png') %>  alt="" >
 				<%# <%= link_to_image("calendar.png", scheduled_classes_activities_path) %>
-				<span class="align-self-center text-center redirect_link">Students</span><br>
+				<span class="align-self-center text-center redirect_link">Students</span>
 				<span class="align-self-center text-center redirect_link"><%= @students.count - @active_prospects.count %></span>
 			</div>
 	<% end %>
@@ -119,7 +119,7 @@
 
 <div class="row">
 	<div class="col-md-4 offset-md-4  col-sm-12">
-	
+
 
 	</div>
 	<div class="col-md-4 col-12 d-flex justify-content-end add_new_student_div">

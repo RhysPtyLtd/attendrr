@@ -2,6 +2,7 @@ $(document).on("turbolinks:load",function() {
    var dataTable = $('#products').DataTable( {
       sPaginationType: "full_numbers",
       bJQueryUI: true,
+      searching: false,
       bProcessing: true,
       bServerSide: true,
          "language": {
