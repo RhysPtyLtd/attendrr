@@ -1,9 +1,32 @@
-<% provide(:title, "Students") %>
-<% @students.each do |s| %>
-	<ul>
-		<li>
-			<%= link_to s.last_name + ", " + s.first_name, student_path(s) %><br>
-			<%= image_tag s.picture.url if s.picture? %>
-		</li>
-	</ul>
-<% end %>
+<section class="studentList">
+	<% provide(:title, "Deactivated") %>
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col-12 d-flex justify-content-start  mt-2 mb-2">
+				<h1 style="margin-bottom:0px;">Deactivated students</h1>
+			</div>
+		</div>
+		<% if @students.none? %>
+			All of your students are active!<br>
+		<% end %>
+		<% @students.each do |s| %>
+		<div class="row">
+			<div class="col-md-6 col-12 ">
+				<%= link_to( student_path(s ),:class=>"student_div") do %>
+				<div class="student d-flex justify-content-start align-content-center mt-2 mb-2">
+					<div class="align-self-center m-2">
+						<% if s.picture? %>
+							<img class="student_img align-self-center" <%= image_tag s.picture.url  %>
+						<% else %>
+							<img class="student_img align-self-center" <%= image_tag("no_picture.jpg") %>
+						<% end %>
+					</div>
+					<div class="align-self-center pl-2">
+						<span class="student_name"> <%= s.last_name + ", " + s.first_name %></span>
+					</div>
+				</div>
+				<% end %>
+			</div>
+		</div>
+		<% end %>
+</section>
