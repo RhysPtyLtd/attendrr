@@ -30,6 +30,9 @@ if Rails.env.production?
                owner_last_name: "Lin",
                activated: true,
                activated_at: Time.zone.now)
+
+  Subscription.create!(name: "Free",
+                       cost: 0)
 else
   Club.create!(name: "Kapow Karate!",
                email: "tester@classmaster.com",
@@ -47,6 +50,9 @@ else
                activated: true,
                activated_at: Time.now-1.year+1.hour,
                created_at: Time.now-1.year)
+
+  Subscription.create!(name: "Free",
+                       cost: 0)
 
   #Club.create!(name: "Henry's Kungfu",
                #email: "henry@kungfu.com",

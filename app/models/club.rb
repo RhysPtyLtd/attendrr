@@ -1,4 +1,5 @@
 class Club < ApplicationRecord
+    belongs_to :subscription
     has_many :payment_plans, dependent: :destroy
     has_many :students, dependent: :destroy
     has_many :activities, dependent: :destroy
@@ -28,6 +29,7 @@ class Club < ApplicationRecord
     validate :picture_size
     after_create :build_prospect_plan
     has_many :daily_metrics
+    before_create :assign_subscription
 
     def first_ranks_of_activities
       club_activities.map { |a| a.ranks.select{ |r| r.position == 0  }}.flatten
@@ -104,6 +106,10 @@ class Club < ApplicationRecord
         # Creates default payment plan for new students
         def build_prospect_plan
             self.payment_plans.create(name: "Prospect", price: 0, frequency: "Weekly")
+        end
+
+        def assign_subscription
+            self.subscription = Subscription.first
         end
 
 end

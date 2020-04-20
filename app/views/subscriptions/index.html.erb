@@ -20,18 +20,3 @@ For large clubs with 50 or more students<br><br>
 
 <b>PLATINUM</b> - $100/month<br>
 Have as many students as you like on the platinum subscription<br><br>
-
-  <tbody>
-    <% @subscriptions.each do |subscription| %>
-      <tr>
-        <td><%= link_to 'Show', subscription %></td>
-        <td><%= link_to 'Edit', edit_subscription_path(subscription) %></td>
-        <td><%= link_to 'Destroy', subscription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Subscription', new_subscription_path %>
