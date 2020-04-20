@@ -1,4 +1,7 @@
 if Rails.env.production?
+  Subscription.create!(name: "Free",
+                       cost: 0)
+  
   Club.create!(name: "ADMIN",
                email: "rphillips1@live.com.au",
                password: "password",
@@ -34,6 +37,9 @@ if Rails.env.production?
   Subscription.create!(name: "Free",
                        cost: 0)
 else
+  Subscription.create!(name: "Free",
+                       cost: 0)
+
   Club.create!(name: "Kapow Karate!",
                email: "tester@classmaster.com",
                password: "password",
@@ -51,8 +57,7 @@ else
                activated_at: Time.now-1.year+1.hour,
                created_at: Time.now-1.year)
 
-  Subscription.create!(name: "Free",
-                       cost: 0)
+
 
   #Club.create!(name: "Henry's Kungfu",
                #email: "henry@kungfu.com",
