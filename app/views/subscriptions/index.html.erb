@@ -1,22 +1,9 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Pricing</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-<b>FREE FOREVER</b><br>
-Free forever for clubs with less than 20 students<br><br>
-
-<b>SILVER</b> - $30/month<br>
-For clubs with 20 students or more<br><br>
-
-<b>GOLD</b> - $50/month<br>
-For large clubs with 50 or more students<br><br>
-
-<b>PLATINUM</b> - $100/month<br>
-Have as many students as you like on the platinum subscription<br><br>
+<% provide(:title, "Pricing") %>
+<% @subscriptions.each do |s| %>
+	<ul>
+		<li>
+			<b><%= s.name %></b><br>
+			<%= "For clubs of up to #{s.student_limit} students" %>
+		</li>
+	</ul>
+<% end %>
