@@ -28,6 +28,7 @@ gem 'groupdate'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'jquery-ui-rails'
 gem 'bootstrap4-datetime-picker-rails'
+gem 'stripe'
 
 group :development, :test do
   gem 'byebug',  '9.0.0', platform: :mri

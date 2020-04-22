@@ -3,7 +3,8 @@
 	<ul>
 		<li>
 			<b><%= s.name + " "%></b><%= number_to_currency(s.cost, unit: "$") + "/month" %><br>
-			<%= "For clubs of up to #{s.student_limit} students" %>
+			<%= "For clubs of up to #{s.student_limit} students" %><br>
+			<%= link_to "GO!", subscription_path(s) %>
 		</li>
 	</ul>
 <% end %>

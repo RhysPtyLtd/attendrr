@@ -10,6 +10,7 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/1
   # GET /subscriptions/1.json
   def show
+    @subscription = Subscription.find(params[:id])
   end
 
   # GET /subscriptions/new
