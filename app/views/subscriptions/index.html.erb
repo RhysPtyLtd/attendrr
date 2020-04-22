@@ -2,7 +2,7 @@
 <% @subscriptions.each do |s| %>
 	<ul>
 		<li>
-			<b><%= s.name %></b><br>
+			<b><%= s.name + " "%></b><%= number_to_currency(s.cost, unit: "$") + "/month" %><br>
 			<%= "For clubs of up to #{s.student_limit} students" %>
 		</li>
 	</ul>
