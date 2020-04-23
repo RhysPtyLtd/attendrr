@@ -487,6 +487,14 @@ ul.grade-list-bx li span select{margin: 0;}
     -webkit-transition: all .4s ease-out;
     transition: all .4s ease-out;
  }
+ #student_payment_plan_id{
+   padding: 8px;
+ }
+ .chk-box{
+   display: none;
+ }
+
+
  @media (min-width: 768px) {
 
 .scroll-area::-webkit-scrollbar {
