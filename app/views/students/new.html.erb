@@ -1,79 +1,127 @@
-<h1>Create new student</h1>
-<%= form_for(@student, html: { multipart: true }) do |f| %>
-	<%= render 'shared/error_messages', object: f.object %>
-	<div class="field">
-	<%= f.label :first_name %>*
-	<%= f.text_field :first_name, class: 'form-control' %>
+<section class="add-new-student">
+	<div class="container">
+		<div class="row mt-5">
+			<div class="col-12 d-flex justify-content-center">
+				<h1>Create new student</h1>
+			</div>
+		</div>
+		<%= form_for(@student, html: { multipart: true }) do |f| %>
+		<%= render 'shared/error_messages', object: f.object %>
+		<div class="row">
+			<div class="col-12 col-sm-6">
 
-	<%= f.label :last_name %>*
-	<%= f.text_field :last_name, class: 'form-control' %>
+				<%= f.label :first_name %>*
+				<%= f.text_field :first_name, class: 'form-control' %>
+			</div>
+			<div class="col-12 col-sm-6">
+				<%= f.label :last_name %>*
+				<%= f.text_field :last_name, class: 'form-control' %>
+			</div>
+			<div class="col-12">
+				<%= f.label :dob, "Date of birth" %>*
+			</div>
+			<div class="col-12 d-flex ">
+				<%= f.date_select :dob, {order: [:day, :month, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year, end_year: Date.today.year - 90}, class: 'form-control col-4 ml-1' %>
+			</div>
+			<div class="col-12 col-md-6">
+				<%= f.label :email %>*
+				<%= f.email_field :email, class: 'form-control' %>
+			</div>
+			<div class="w-100">
 
-	<%= f.label :dob, "Date of birth" %>*
-	<%= f.date_select :dob, {order: [:day, :month, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year, end_year: Date.today.year - 90}, class: 'form-control' %>
+			</div>
+			<div class="col-12 col-md-6">
+				<%= f.label :address_line_1 %>* Street address, P.O. box, company name, etc.
+				<%= f.text_field :address_line_1, class: 'form-control' %>
+			</div>
+			<div class="col-12 col-md-6">
+				<%= f.label :address_line_2 %> Apartment, suite, unit, building, floor, etc.
+				<%= f.text_field :address_line_2, class: 'form-control' %>
+			</div>
+			<div class="col-12 d-flex flex-wrap" style="padding-left:0px!important">
+				<div class="col-12 col-sm-4" >
+					<%= f.label :city %>*
+					<%= f.text_field :city, class: 'form-control' %>
+				</div>
+				<div class="col-12 col-sm-4">
+					<%= f.label :state %>*
+					<%= f.text_field :state, class: 'form-control ' %>
+				</div>
+				<div class="col-12 col-sm-4">
 
-	<%= f.label :email %>*
-	<%= f.email_field :email, class: 'form-control' %>
+					<%= f.label :postcode, class: '' %>*
+					<%= f.number_field :postcode, class: 'form-control ' %>
+				</div>
+			</div>
+			<div class="col-12 col-sm-6">
+				<%= f.label :phone1, "Primary phone" %>*
+				<%= f.phone_field :phone1, class: 'form-control' %>
+			</div>
+			<div class="col-12 col-sm-6">
+				<%= f.label :phone2, "Secondary phone" %>
+				<%= f.phone_field :phone2, class: 'form-control' %>
+			</div>
+			<div class="col-12 col-sm-6">
+				<%= f.label :parent1, "Parent/guardian 1" %>
+				<%= f.text_field :parent1, class: 'form-control' %>
+			</div>
+			<div class="col-12 col-sm-6">
+				<%= f.label :parent2, "Parent/guardian 2" %>
+				<%= f.text_field :parent2, class: 'form-control' %>
+			</div>
+			<div class="col-12 col-sm-6">
+				<%= f.label :size %>
+				<%= f.text_field :size, class: 'form-control' %>
+			</div>
+			<div class="col-12 col-sm-6">
+				<%= f.label :notes %>
+				<%= f.text_field :notes, class: 'form-control' %>
 
-	<%= f.label :address_line_1 %>* Street address, P.O. box, company name, etc.
-	<%= f.text_field :address_line_1, class: 'form-control' %>
+			</div>
+			<div class="w-100"></div>
+			<div class="col-12 ">
+				<!--Classic checkbox buttons-->
+				<%= f.label :classes %>
+				<div class="d-flex flex-wrap" data-toggle="buttons">
+					<% @first_ranks.each do |rank| %>
+					<div class="btn btn-outline-primary btn-rounded   form-check-label m-2" style="border-radius:24px;">
+						<%= check_box_tag "student[rank_ids][]", rank.id, f.object.ranks.include?(rank),class:'form-check-input chk-box'  %>
+						<%= rank.activity.name %>
+					</div>
+					<% end %>
 
-	<%= f.label :address_line_2 %> Apartment, suite, unit, building, floor, etc.
-	<%= f.text_field :address_line_2, class: 'form-control' %>
+				</div>
 
-	<%= f.label :city %>*
-	<%= f.text_field :city, class: 'form-control' %>
+				<!--Classic checkbox buttons-->
+			</div>
 
-	<%= f.label :state %>*
-	<%= f.text_field :state, class: 'form-control' %>
-
-	<%= f.label :postcode %>*
-	<%= f.number_field :postcode, class: 'form-control' %>
-
-	<%= f.label :phone1, "Primary phone" %>*
-	<%= f.phone_field :phone1, class: 'form-control' %>
-
-	<%= f.label :phone2, "Secondary phone" %>
-	<%= f.phone_field :phone2, class: 'form-control' %>
-
-	<%= f.label :parent1, "Parent/guardian 1" %>
-	<%= f.text_field :parent1, class: 'form-control' %>
-
-	<%= f.label :parent2, "Parent/guardian 2" %>
-	<%= f.text_field :parent2, class: 'form-control' %>
-
-	<%= f.label :size %>
-	<%= f.text_field :size, class: 'form-control' %>
-
-	<%= f.label :notes %>
-	<%= f.text_field :notes, class: 'form-control' %>
-
-    <%= f.label :classes %>
-    <% @first_ranks.each do |rank| %>
-      <%= check_box_tag "student[rank_ids][]", rank.id, f.object.ranks.include?(rank) %>
-      <%= rank.activity.name %><br>
-    <% end %>
-
-	<span class="picture">
-		<%= f.label :picture, "Attach student picture" %>
-		<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
-	</span>
+			<div class="col-12 col-sm-6">
+				<span class="picture">
+					<%= f.label :picture, "Attach student picture" %>
+					<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+				</span>
+			</div>
+			<div class="w-100">	</div>
+			<div class="col-12 col-md-4">
+				<%= f.submit "Submit student details", class: "btn btn-primary" %>
+				<% end %>
+			</div>
+		</div>
 	</div>
 
-	<%= f.submit "Submit student details", class: "btn btn-primary" %>
-<% end %>
-
+</section>
 <!-- JQuery. Ensures files size is < 5MB client-side -->
 <script type="text/javascript">
-  $('#student_picture').bind('change', function() {
-    var size_in_megabytes = this.files[0].size/1024/1024;
-    if (size_in_megabytes > 5) {
-      alert('Maximum file size is 5MB. Please choose a smaller file.');
-    }
-  });
-  $( "#activity-display" ).select2({
-	    theme: "bootstrap",
-	    tags: true,
-	    tokenSeparators: [','],
-	    placeholder: 'Select class',
+	$('#student_picture').bind('change', function() {
+		var size_in_megabytes = this.files[0].size/1024/1024;
+		if (size_in_megabytes > 5) {
+			alert('Maximum file size is 5MB. Please choose a smaller file.');
+		}
+	});
+	$( "#activity-display" ).select2({
+		theme: "bootstrap",
+		tags: true,
+		tokenSeparators: [','],
+		placeholder: 'Select class',
 	});
 </script>
