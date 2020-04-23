@@ -110,13 +110,13 @@
 				</span>
 			</div>
 <div class="w-100"></div>
-			<div class="col-6 col-md-4">
+			<div class="col-12 col-md-4">
 				<%= f.submit "Save student details", class: "btn btn-primary" %>
 				<% end %>
 			</div>
-			<div class="col-6 col-md-4 ">
+			<div class="col-12 col-md-4 ">
 				<%= link_to "Deactivate this student", student_path(@student, :student => { :active => false }),
-				:method => :put, data: { :confirm => "Are you sure?" }, class: "btn btn-danger"  %>
+				:method => :put, data: { :confirm => "Are you sure?" }, class: "btn btn-danger w-100"  %>
 
 			</div>
 		</div>
