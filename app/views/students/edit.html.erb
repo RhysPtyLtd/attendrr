@@ -34,7 +34,7 @@
 				<%= f.label :address_line_1 %>* Street address, P.O. box, company name, etc.
 				<%= f.text_field :address_line_1, class: 'form-control' %>
 			</div>
-			<div class="col-12 col-sm-6">
+			<div class="col-12 col-md-6">
 				<%= f.label :address_line_2 %> Apartment, suite, unit, building, floor, etc.
 				<%= f.text_field :address_line_2, class: 'form-control' %>
 			</div>
@@ -83,14 +83,14 @@
 				<%= f.collection_select(:payment_plan_id, @student.club.payment_plans.where(active: true), :id, :name,class:'custom-select') %>
 			</div>
 			<div class="w-100"></div>
-			<div class="col-12 col-sm-6">
+			<div class="col-12 ">
 				<!--Classic checkbox buttons-->
 				Ranks:<br>
 				<div class="d-flex flex-wrap" data-toggle="buttons">
 					<%= hidden_field_tag "student[rank_ids][]", nil %>
 					<% @activities.each do |activity| %>
 					<% activity.ranks.where(active: true).each do |rank| %>
-					<div class="btn btn-outline-primary btn-rounded custom-check-box active form-check-label m-2" style="border-radius:24px;">
+					<div class="btn btn-outline-primary btn-rounded   form-check-label m-2" style="border-radius:24px;">
 						<%= activity.name  if activity.ranks.where(active: true).any? %>
 						<%= check_box_tag "student[rank_ids][]", rank.id, f.object.ranks.include?(rank),class:'form-check-input chk-box' %>
 						<%= rank.name %>
@@ -110,12 +110,11 @@
 				</span>
 			</div>
 <div class="w-100"></div>
-			<div class="col-12 col-sm-4">
+			<div class="col-6 col-md-4">
 				<%= f.submit "Save student details", class: "btn btn-primary" %>
 				<% end %>
 			</div>
-			<div class="w-100"></div>
-			<div class="col-12 col-sm-4 ">
+			<div class="col-6 col-md-4 ">
 				<%= link_to "Deactivate this student", student_path(@student, :student => { :active => false }),
 				:method => :put, data: { :confirm => "Are you sure?" }, class: "btn btn-danger"  %>
 
