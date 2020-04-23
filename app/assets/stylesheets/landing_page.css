@@ -192,7 +192,7 @@ nav>a {
 	background-color: red;
 	color: white;
 	cursor: pointer;
-	padding: 15px;
+	padding: 10px 14px 5px 14px;
 	border-radius: 4px;
 	transition: all .6s ease-in;
 }
