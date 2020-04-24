@@ -9,7 +9,6 @@
 		<%= render 'shared/error_messages', object: f.object %>
 		<div class="row">
 			<div class="col-12 col-sm-6">
-
 				<%= f.label :first_name %>*
 				<%= f.text_field :first_name, class: 'form-control' %>
 			</div>
@@ -27,9 +26,7 @@
 				<%= f.label :email %>*
 				<%= f.email_field :email, class: 'form-control' %>
 			</div>
-			<div class="w-100">
-
-			</div>
+			<div class="w-100"></div>
 			<div class="col-12 col-md-6">
 				<%= f.label :address_line_1 %>* Street address, P.O. box, company name, etc.
 				<%= f.text_field :address_line_1, class: 'form-control' %>
@@ -48,7 +45,6 @@
 					<%= f.text_field :state, class: 'form-control ' %>
 				</div>
 				<div class="col-12 col-sm-4">
-
 					<%= f.label :postcode, class: '' %>*
 					<%= f.number_field :postcode, class: 'form-control ' %>
 				</div>
@@ -76,7 +72,6 @@
 			<div class="col-12 col-sm-6">
 				<%= f.label :notes %>
 				<%= f.text_field :notes, class: 'form-control' %>
-
 			</div>
 			<div class="w-100"></div>
 			<div class="col-12 ">
@@ -89,12 +84,9 @@
 						<%= rank.activity.name %>
 					</div>
 					<% end %>
-
 				</div>
-
 				<!--Classic checkbox buttons-->
 			</div>
-
 			<div class="col-12 col-sm-6">
 				<span class="picture">
 					<%= f.label :picture, "Attach student picture" %>
@@ -108,7 +100,6 @@
 			</div>
 		</div>
 	</div>
-
 </section>
 <!-- JQuery. Ensures files size is < 5MB client-side -->
 <script type="text/javascript">
