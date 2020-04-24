@@ -18,58 +18,43 @@
 		</div>
 		<div class="row">
 			<div class="col-12 p-2 ">
-					<h5>Students: <%= @active_students.count %></h5>
-					<h5>Average length of membership: <%= pluralize(@average_membership_length, 'day') %></h5>
-					<h5>Average attendance per session: <%= @average_attendance %> </h5>
+				<h5>Students: <%= @active_students.count %></h5>
+				<h5>Average length of membership: <%= pluralize(@average_membership_length, 'day') %></h5>
+				<h5>Average attendance per session: <%= @average_attendance %> </h5>
 			</div>
-
 		</div>
 		<div class="row mt-2">
 			<div class="col-12 col-md-6 pl-0">
-					<% unless @active_ranks.any? %>
-					<div class="col-12 pl-0">
-
-						<h4><%= link_to "All classes need at least one rank. Click here to add ranks.", edit_activity_path(@activity) %></h4>
-					</div>
+				<% unless @active_ranks.any? %>
+				<div class="col-12 pl-0">
+					<h4><%= link_to "All classes need at least one rank. Click here to add ranks.", edit_activity_path(@activity) %></h4>
+				</div>
+				<% end %>
+				<% if @activity.timeslots.where(active: true).any? %>
+				<div class="col-12 pl-0">
+					<h3>Class times:</h3>
+				</div>
+				<div class=" col-12 ">
+					<% @activity.timeslots.where(active: true).each do |t| %>
+					<div class=" col-12 d-flex  class-time"><%= Date::DAYNAMES[t.day] %> <%= t.time_start.strftime("%I:%M") %>-<%= t.time_end.strftime("%I:%M") %></div>
 					<% end %>
-					<% if @activity.timeslots.where(active: true).any? %>
-					<div class="col-12 pl-0">
-						<h3>Class times:</h3>
-					</div>
-
-					<div class=" col-12 ">
-						<% @activity.timeslots.where(active: true).each do |t| %>
-						<div class=" col-12 d-flex  class-time"><%= Date::DAYNAMES[t.day] %> <%= t.time_start.strftime("%I:%M") %>-<%= t.time_end.strftime("%I:%M") %></div>
-						<% end %>
-					</div>
-					<% else %>
-					<%= link_to "This class has no timeslots! Click here to assign timeslots", edit_activity_path(@activity) %><br>
-					<% end %>
+				</div>
+				<% else %>
+				<%= link_to "This class has no timeslots! Click here to assign timeslots", edit_activity_path(@activity) %><br>
+				<% end %>
 			</div>
 			<div class="col-12 col-md-6 pl-0 mt-md-0 mt-2">
-
-					<% if @active_ranks.any? %>
-					<div class="col-12 pl-0">
-						<h3>Ranks:</h3>
-					</div>
-
-					<div class=" col-12 ">
-						<% @active_ranks.each do |r| %>
-						<div class=" col-12 d-flex  class-time"><%= r.position %>. <%= r.name %></div>
-						<% end %>
-					</div>
+				<% if @active_ranks.any? %>
+				<div class="col-12 pl-0">
+					<h3>Ranks:</h3>
+				</div>
+				<div class=" col-12 ">
+					<% @active_ranks.each do |r| %>
+					<div class=" col-12 d-flex  class-time"><%= r.position %>. <%= r.name %></div>
 					<% end %>
+				</div>
+				<% end %>
 			</div>
-
 		</div>
-
-
-
-
-
-
-
-
 	</div>
-
 </section>
