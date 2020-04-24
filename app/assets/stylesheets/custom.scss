@@ -494,7 +494,24 @@ ul.grade-list-bx li span select{margin: 0;}
    display: none;
  }
 
+ .btn-outline-primary:hover {
+     color: #fff;
+     background-color: #06090c;
+     border-color: #06090c;
+ }
+ .class-name{
+   font-size: 24px;
+   text-transform: uppercase;
 
+ }
+ .class-name:hover,.rank-link:hover{
+   text-decoration: none;
+  color: #ff0000;
+
+ }
+ .class-box{
+   border: 1px solid #c5c5c5;
+ }
  @media (min-width: 768px) {
 
 .scroll-area::-webkit-scrollbar {
