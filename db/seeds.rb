@@ -158,15 +158,16 @@ else
   # Create student ranks
   99.times do |n|
     # first and second randoms ensure a student isn't given the multiple same ranks
-    first_random = rand(1..6)
-    second_random = rand(1..6)
+    first_random = rand(1..3)
+    second_random = rand(1..3)
+    third_random = rand(4..6)
     StudentRank.create!(student_id: n+1,
                         rank_id: first_random,
                         active: true)
     if first_random != second_random
       StudentRank.create!(student_id: n+1,
-                          rank_id: second_random,
-                          active: [true, false].sample)
+                          rank_id: third_random,
+                          active: true)
     end
   end
 
