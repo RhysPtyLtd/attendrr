@@ -1,26 +1,22 @@
 
-<section class="class-list">
+<section class="acivities-list">
 	<div class="container">
 		<div class="row mt-5">
-			<div class="col-12 col-md-4 offset-md-4 ">
-				<h1>Class List</h1>
+			<div class="col-12 col-md-4">
+				<h1 class="text-md-left text-center">Class List</h1>
 			</div>
-			<div class="col-md-4  col-12 d-flex justify-content-end add_new_student_div">
+			<div class=" offset-md-4  col-md-4  col-12 d-flex justify-content-end add_new_student_div">
 				<span class="add_new_student align-self-center"><%= link_to("Add new class", new_activity_path) %></span>
 			</div>
-
 		</div>
-		<div class="row mt-4">
 			<% @activities.where(active: true).each do |a| %>
-			<div class="col-12  p-3 class-box mt-1">
+			<div class="row mt-4">
+			<div class="col-12 col-md-6  p-3 class-box  mt-1">
 				<span><%= link_to a.name, activity_path(a),class:'class-name' %></span>
 				<p>Students: <%= a.students.uniq.count %> (add link to <%= a.name %> students here)</p>
-
 				<% unless a.ranks.where(active: true).any? %> <%= link_to "This class has no ranks! Add ranks here", edit_activity_path(a) ,class:'rank-link'%> <% end %>
 			</div>
+			</div>
 			<% end %>
-		</div>
-
 	</div>
-
 </section>
