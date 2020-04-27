@@ -1,33 +1,60 @@
-<h1><%= @activity.name %></h1>
-
-<% unless @active_ranks.any? %>
-	<%= link_to "All classes need at least one rank. Click here to add ranks.", edit_activity_path(@activity) %><br>
-<% end %>
-<% if @activity.timeslots.where(active: true).any? %>
-	Class times:<br>
-	<li>
-	<% @activity.timeslots.where(active: true).each do |t| %>
-		<ul><%= Date::DAYNAMES[t.day] %> <%= t.time_start.strftime("%I:%M") %>-<%= t.time_end.strftime("%I:%M") %></ul>
-	<% end %>
-	</li>
-<% else %>
-	<%= link_to "This class has no timeslots! Click here to assign timeslots", edit_activity_path(@activity) %><br>
-<% end %>
-
-<% if @active_ranks.any? %>
-	Ranks:<br>
-	<li>
-	<% @active_ranks.each do |r| %>
-			<ul><%= r.position %>. <%= r.name %></ul>
-	<% end %>
-	</li>
-<% end %>
-
-Students: <%= @active_students.count %><br>
-Average length of membership: <%= pluralize(@average_membership_length, 'day') %><br>
-Average attendance per session: <%= @average_attendance %> <br>
-
-<%= link_to "Grading", grading_activity_path(@activity) %><br>
-
-<%= link_to "Attendance", student_attendance_students_path(activity_id: params[:id]) %><br>
-<%= link_to "Edit class details", edit_activity_path(@activity) %><br>
+<section class="single-activies">
+	<div class="container">
+		<div class="row mt-5">
+			<div class="col-12 col-md-4">
+				<h1 class="single-activies-title text-center text-md-left"><%= @activity.name %></h1>
+			</div>
+			<div class="col-12 col-md-8 d-flex justify-content-md-end justify-content-start align-self-start flex-wrap">
+				<div class="p-2 m-1">
+					<%= link_to "Grading", grading_activity_path(@activity),class:"nav_link custom-link" %>
+				</div>
+				<div class="p-2 m-1">
+					<%= link_to "Attendance", student_attendance_students_path(activity_id: params[:id]),class:"nav_link custom-link"  %>
+				</div>
+				<div class="p-2 m-1">
+					<%= link_to "Edit class details", edit_activity_path(@activity),class:"nav_link custom-link"  %>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12 p-2 ">
+				<h5>Students: <%= @active_students.count %></h5>
+				<h5>Average length of membership: <%= pluralize(@average_membership_length, 'day') %></h5>
+				<h5>Average attendance per session: <%= @average_attendance %> </h5>
+			</div>
+		</div>
+		<div class="row mt-2">
+			<div class="col-12 col-md-6 pl-0">
+				<% unless @active_ranks.any? %>
+				<div class="col-12 pl-0">
+					<h4><%= link_to "All classes need at least one rank. Click here to add ranks.", edit_activity_path(@activity) %></h4>
+				</div>
+				<% end %>
+				<% if @activity.timeslots.where(active: true).any? %>
+				<div class="col-12 pl-0">
+					<h3>Class times:</h3>
+				</div>
+				<div class=" col-12 ">
+					<% @activity.timeslots.where(active: true).each do |t| %>
+					<div class=" col-12 d-flex  class-time"><%= Date::DAYNAMES[t.day] %> <%= t.time_start.strftime("%I:%M") %>-<%= t.time_end.strftime("%I:%M") %></div>
+					<% end %>
+				</div>
+				<% else %>
+				<%= link_to "This class has no timeslots! Click here to assign timeslots", edit_activity_path(@activity) %><br>
+				<% end %>
+			</div>
+			<div class="col-12 col-md-6 pl-0 mt-md-0 mt-2">
+				<% if @active_ranks.any? %>
+				<div class="col-12 pl-0">
+					<h3>Ranks:</h3>
+				</div>
+				<div class=" col-12 ">
+					<% @active_ranks.each do |r| %>
+					<div class=" col-12 d-flex  class-time"><%= r.position %>. <%= r.name %></div>
+					<% end %>
+				</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</section>
