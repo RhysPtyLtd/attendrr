@@ -23,8 +23,8 @@
 
 		</div>
 		<div class="row mt-md-5 mb-md-5 mt-3 mb-3 d-flex justify-content-between">
-			<div class=" previous"><%= link_to(@prev_data.strftime("<< Previous Day  "), scheduled_classes_activities_path(search: @prev_data)) %></div>
-			<div class=" next "><%= link_to(@next_data.strftime(" Next Day >>"), scheduled_classes_activities_path(search: @next_data)) %></div>
+			<div class=" previous"><%= link_to(@prev_data.strftime(" Previous Day  "), scheduled_classes_activities_path(search: @prev_data)) %></div>
+			<div class=" next "><%= link_to(@next_data.strftime(" Next Day "), scheduled_classes_activities_path(search: @next_data)) %></div>
 
 		</div>
 		<% if @activity.present? %>
@@ -34,7 +34,7 @@
 
 			<div class="col-12 col-md-4 scheduled_class_div">
 				<%= link_to attendance_students_path(date_slot: @date_find,activity_id: activity.id,timeslot_id: timeslot.id) do %>
-				<div class=" row thumbnail hoverDiv attendance_class mt-2 mb-2 p-md-2 p-1">
+				<div class=" row thumbnail hoverDiv attendance_class-remove-test attendance-box  mt-2 mb-2 p-md-2 p-1">
 					<div class="col-12"><p class="schedule_time"><%= timeslot.time_start.strftime("%I:%M%P")%> - <%= timeslot.time_end.strftime("%I:%M%P")%></p></div>
 					<div class="col-12 align-self-center" ><p class="schedule_name" ><strong><%= activity.name %></strong></p></div>
 
