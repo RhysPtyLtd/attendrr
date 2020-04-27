@@ -1,45 +1,51 @@
-<h1><%= link_to @activity.name, @activity %></h1>
+<section class="activity-edit-page">
+	<div class="container">
+		<div class="row mt-5 d-block">
+			<h1><%= link_to @activity.name, @activity,class:'link-text-decoration-none' %></h1>
 
-<% @activity.timeslots.where(active: true).each do |t| %>
-	<%= Date::DAYNAMES[t.day] %> <%= t.time_start.strftime("%I:%M") %>-<%= t.time_end.strftime("%I:%M") %> 
-	<%= link_to "Delete this time slot", timeslot_path(t, timeslot: { active: false }), method: :put, data: { confirm: "Are you sure?" } %><br>
-<% end %>
+			<% @activity.timeslots.where(active: true).each do |t| %>
+				<%= Date::DAYNAMES[t.day] %> <%= t.time_start.strftime("%I:%M") %>-<%= t.time_end.strftime("%I:%M") %>
+				<%= link_to "Delete this time slot", timeslot_path(t, timeslot: { active: false }), method: :put, data: { confirm: "Are you sure?" } %><br>
+			<% end %>
 
-<%= form_for(@activity) do |f| %>
-	<%= render 'shared/error_messages', object: f.object %>
-	<div class="field">
-		<%= f.fields_for :timeslots, @activity.timeslots.build do |timeslots_form| %>
-			<%= timeslots_form.label :time_start, "Start time" %>
-			<%= timeslots_form.time_select :time_start %>
+			<%= form_for(@activity) do |f| %>
+				<%= render 'shared/error_messages', object: f.object %>
+				<div class="field">
+					<%= f.fields_for :timeslots, @activity.timeslots.build do |timeslots_form| %>
+						<%= timeslots_form.label :time_start, "Start time" %>
+						<%= timeslots_form.time_select :time_start %>
 
-			<%= timeslots_form.label :time_end, "End time" %>
-			<%= timeslots_form.time_select :time_end %>
+						<%= timeslots_form.label :time_end, "End time" %>
+						<%= timeslots_form.time_select :time_end %>
 
-			<%= timeslots_form.label :day %>
-			<%= timeslots_form.select :day, (0..6).map {|d| [Date::DAYNAMES[d], d]} %>
-			<%= timeslots_form.label :year %>
-					<%= timeslots_form.select :year, ((Time.zone.now.year - 30)..(Time.zone.now.year + 10)).to_a.reverse, {:selected => Time.zone.now.year},{ :class => 'form-control' } %>
-		<% end %>
+						<%= timeslots_form.label :day %>
+						<%= timeslots_form.select :day, (0..6).map {|d| [Date::DAYNAMES[d], d]} %>
+						<%= timeslots_form.label :year %>
+								<%= timeslots_form.select :year, ((Time.zone.now.year - 30)..(Time.zone.now.year + 10)).to_a.reverse, {:selected => Time.zone.now.year},{ :class => 'form-control' } %>
+					<% end %>
+				</div>
+				<%= f.submit "Add this timeslot", class: "btn btn-primary" %>
+			<% end %>
+
+			<% @active_ranks.each do |r| %>
+				<%= r.position %>. <%= r.name %> <%= link_to "Delete this rank", rank_path(r, rank: {active: false}), method: :put, data: { confirm: "Are you sure?" } %><br>
+			<% end %>
+
+			<%= form_for(@activity) do |f| %>
+				<%= render 'shared/error_messages', object: f.object %>
+				<div class="field">
+					<%= f.fields_for :ranks, @activity.ranks.build do |ranks_form| %>
+						<%= ranks_form.label :name, "Rank" %>
+						<%= ranks_form.text_field :name %>
+					<% end %>
+				</div>
+				<%= f.submit "Add new rank", class: "btn btn-primary" %>
+			<% end %>
+
+			<%= link_to "Deactivate this class", activity_path(@activity, :activity => { :active => false }),
+												 :method => :put, data: { :confirm => "Are you sure?" }, class: "btn btn-primary"  %><br>
+
+			<%= link_to "Delete this class", @activity, method: :delete, data: { confirm: "Please note: only delete classes that were entered erroneously. To remove a class that is no longer active select the 'deactivate' button. Are you sure you want to delete this class?" }, class: "btn btn-danger" %>
+		</div>
 	</div>
-	<%= f.submit "Add this timeslot", class: "btn btn-primary" %>
-<% end %>
-
-<% @active_ranks.each do |r| %>
-	<%= r.position %>. <%= r.name %> <%= link_to "Delete this rank", rank_path(r, rank: {active: false}), method: :put, data: { confirm: "Are you sure?" } %><br>
-<% end %>
-
-<%= form_for(@activity) do |f| %>
-	<%= render 'shared/error_messages', object: f.object %>
-	<div class="field">
-		<%= f.fields_for :ranks, @activity.ranks.build do |ranks_form| %>
-			<%= ranks_form.label :name, "Rank" %>
-			<%= ranks_form.text_field :name %>
-		<% end %>
-	</div>
-	<%= f.submit "Add new rank", class: "btn btn-primary" %>
-<% end %>
-
-<%= link_to "Deactivate this class", activity_path(@activity, :activity => { :active => false }),
-									 :method => :put, data: { :confirm => "Are you sure?" }, class: "btn btn-primary"  %><br> 
-
-<%= link_to "Delete this class", @activity, method: :delete, data: { confirm: "Please note: only delete classes that were entered erroneously. To remove a class that is no longer active select the 'deactivate' button. Are you sure you want to delete this class?" }, class: "btn btn-danger" %>
+</section>

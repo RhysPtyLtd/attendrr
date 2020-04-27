@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row mt-5">
 			<div class="col-12 col-md-4">
-				<h1 class="single-activies-title text-center text-md-left"><%= @activity.name %></h1>
+				<h1 class="text-center text-md-left"><%= @activity.name %></h1>
 			</div>
 			<div class="col-12 col-md-8 d-flex justify-content-md-end justify-content-start align-self-start flex-wrap">
 				<div class="p-2 m-1">
@@ -27,7 +27,7 @@
 			<div class="col-12 col-md-6 pl-0">
 				<% unless @active_ranks.any? %>
 				<div class="col-12 pl-0">
-					<h4><%= link_to "All classes need at least one rank. Click here to add ranks.", edit_activity_path(@activity) %></h4>
+					<h5><%= link_to "All classes need at least one rank. Click here to add ranks.", edit_activity_path(@activity),class:'add-rank-link' %></h5>
 				</div>
 				<% end %>
 				<% if @activity.timeslots.where(active: true).any? %>
