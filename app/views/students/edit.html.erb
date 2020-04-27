@@ -81,7 +81,7 @@
 			<div class="w-100"></div>
 			<div class="col-12 ">
 				<!--Classic checkbox buttons-->
-				Ranks:<br>
+				Ranks held:<br>
 				<div class="d-flex flex-wrap" data-toggle="buttons">
 					<%= hidden_field_tag "student[rank_ids][]", nil %>
 					<% @activities.each do |activity| %>
@@ -91,7 +91,7 @@
 						<%= check_box_tag "student[rank_ids][]", rank.id, f.object.ranks.include?(rank),class:'form-check-input chk-box' %>
 						<%= rank.name %>
 					</div>
-					<% end %>
+					<% end %><div class="break"></div>
 					<% end %>
 				</div>
 				<!--Classic checkbox buttons-->

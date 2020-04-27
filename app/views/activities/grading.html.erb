@@ -5,6 +5,9 @@
 			<%= @activity.name %>
 			<span>Grading?</span>
 		</h4>
+
+	<a href="javascript:;" onclick="selectAll()">Select all</a>
+
 	</div>
 	<%= form_for(@activity, url: update_grading_activity_path, method: 'put') do |f| %>
 		<%= render 'shared/error_messages', object: f.object %>
@@ -15,6 +18,11 @@
 					<% s.student_ranks.each do |sr| %>
 						<% if sr.rank.activity == @activity && sr.active? %>
 							<li>
+								<% if s.picture? %>
+									<img class="student_img align-self-center" <%= image_tag s.picture.url  %>
+								<% else %>
+									<img class="student_img align-self-center" <%= image_tag("no_picture.jpg") %>
+								<% end %>
 								<span class="first">
 									<%= link_to s.first_name + " " + s.last_name, student_path(s) %> - <%= sr.rank.name %>
 								</span>
@@ -37,3 +45,13 @@
 <% else %>
 	<h4>No students</h4>
 <% end %>
+
+<script type="text/javascript">
+      function selectAll(){
+        $("input:checkbox").each(function(){
+          $(this).attr('checked', true);
+        });
+
+        return false;
+      }
+</script>
