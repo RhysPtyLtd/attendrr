@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'charges/new'
+  get 'charges/create'
   resources :subscriptions
   root 'static_pages#home'
   get '/signup', to: 'clubs#new'
@@ -38,4 +40,5 @@ Rails.application.routes.draw do
   resources :ranks
   resources :payment_plans
   resource :demo, only: :show, controller: :demo
+  resources :charges, only: [:new, :create]
 end
