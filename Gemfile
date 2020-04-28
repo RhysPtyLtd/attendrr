@@ -24,6 +24,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem "select2-rails"
 gem 'chartkick'
 gem 'groupdate'
+gem 'dotenv-rails', :groups => [:development, :test]
 
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'jquery-ui-rails'
