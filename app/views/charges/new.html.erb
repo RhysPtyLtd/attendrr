@@ -18,6 +18,7 @@
         data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
         data-description="<%= @description %>"
         data-amount="<%= @amount %>"
+        data-email="<%= current_club.email %>"
         data-locale="auto">
     </script>
 <% end %>

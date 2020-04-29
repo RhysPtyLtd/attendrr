@@ -33,6 +33,6 @@ class ChargesController < ApplicationController
     end
 
     def logged_in?
-    	redirect_to (root_url) unless current_club
+    	redirect_to (login_path) unless current_club
     end
 end
