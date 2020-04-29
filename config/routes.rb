@@ -41,4 +41,5 @@ Rails.application.routes.draw do
   resources :payment_plans
   resource :demo, only: :show, controller: :demo
   resources :charges, only: [:new, :create]
+  get 'thanks', to: 'charges#thanks', as: 'thanks'
 end
