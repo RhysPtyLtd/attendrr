@@ -5,6 +5,7 @@ class ChargesController < ApplicationController
   before_action :set_plan
 
   def new
+    @subscription = Subscription.find(params[:subscription])
   end
 
   def create

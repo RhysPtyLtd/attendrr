@@ -1,10 +1,11 @@
+<br><br><br>
 <% provide(:title, "Pricing") %>
 <% @subscriptions.each do |s| %>
 	<ul>
 		<li>
 			<b><%= s.name + " "%></b><%= number_to_currency(s.cost, unit: "$") + "/month" %><br>
 			<%= "For clubs of up to #{s.student_limit} students" %><br>
-			<%= link_to "GO!", subscription_path(s) %>
+			<%= link_to "GO!", new_charge_path(subscription: s.id) %>
 		</li>
 	</ul>
 <% end %>
