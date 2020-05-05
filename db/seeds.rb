@@ -35,13 +35,17 @@ if Rails.env.production?
                activated_at: Time.zone.now)
 else
   Subscription.create!(name: "Free",
-                       cost: 0)
+                       cost: 0,
+                       stripe_id: "")
   Subscription.create!(name: "Silver",
-                       cost: 2990)
+                       cost: 3000,
+                       stripe_id: "plan_H8vl5wUWxyUubB")
   Subscription.create!(name: "Gold",
-                       cost: 4990)
+                       cost: 5000,
+                       stripe_id: "plan_H8vm73Ow5Aff22")
   Subscription.create!(name: "Platinum",
-                       cost: 9990)
+                       cost: 10000,
+                       stripe_id: "plan_H8vmNO1zUmFL3U")
 
   Club.create!(name: "Kapow Karate!",
                email: "tester@classmaster.com",
