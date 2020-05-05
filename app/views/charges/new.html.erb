@@ -7,11 +7,11 @@
         <p><%= flash[:error] %></p>
       </div>
     <% end %>
-  <%= @subscription.name %><br>
+  <h1><%= @subscription.name %></h1><br>
   Student limit: <%= @subscription.student_limit %><br>
   <%= @subscription.description %><br>
     <label class="amount">
-      <span>Amount: <%= pretty_amount(@cost) %></span>
+      <span>Amount: <%= pretty_amount(@cost) %>/month</span>
     </label>
   </article>
 

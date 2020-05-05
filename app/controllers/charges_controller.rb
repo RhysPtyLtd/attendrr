@@ -8,6 +8,11 @@ class ChargesController < ApplicationController
     @cost = @subscription.cost
     @plan = @subscription.stripe_id
     session[:plan] = @plan
+
+    if @subscription.student_limit < current_club.students.where(active: true).count
+      flash[:error] = "The amount of students you have exceeds the limit for that plan"
+      redirect_to subscriptions_path
+    end
   end
 
   def create
@@ -30,7 +35,8 @@ class ChargesController < ApplicationController
   private
 
   	def set_description
-  		@description = "Really amazing product babey yeah!"
+      @subscription = Subscription.find(params[:subscription])
+  		@description = "#{@subscription.name} plan subscription"
   	end
 
     def amount_to_be_charged
