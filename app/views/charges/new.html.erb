@@ -7,12 +7,15 @@
         <p><%= flash[:error] %></p>
       </div>
     <% end %>
+  <%= @subscription.name %><br>
+  Student limit: <%= @subscription.student_limit %><br>
+  <%= @subscription.description %><br>
     <label class="amount">
       <span>Amount: <%= pretty_amount(@cost) %></span>
     </label>
   </article>
 
-  <%= @subscription.name %>
+  
 
   <%= hidden_field_tag :subscription, value: params[:subscription] %>
 

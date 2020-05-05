@@ -34,18 +34,26 @@ if Rails.env.production?
                activated: true,
                activated_at: Time.zone.now)
 else
-  Subscription.create!(name: "Free",
+  Subscription.create!(name: "Free Forever",
                        cost: 0,
-                       stripe_id: "")
+                       stripe_id: "",
+                       student_limit: 20,
+                       description: "Whether you're just starting out, or you run a smaller club by choice, this plan will accomodate 20 students. And it's free, forever!")
   Subscription.create!(name: "Silver",
                        cost: 3000,
-                       stripe_id: "plan_H8vl5wUWxyUubB")
+                       stripe_id: "plan_H8vl5wUWxyUubB",
+                       student_limit: 30,
+                       description: "You're onto something here. For medium-sized clubs of up to 30 students")
   Subscription.create!(name: "Gold",
                        cost: 5000,
-                       stripe_id: "plan_H8vm73Ow5Aff22")
+                       stripe_id: "plan_H8vm73Ow5Aff22",
+                       student_limit: 50,
+                       description: "Now you're formidable! For clubs of up to 50 students")
   Subscription.create!(name: "Platinum",
                        cost: 10000,
-                       stripe_id: "plan_H8vmNO1zUmFL3U")
+                       stripe_id: "plan_H8vmNO1zUmFL3U",
+                       student_limit: 999,
+                       description: "Woah! It's huge! Have unlimited students on the Platinum plan!")
 
   Club.create!(name: "Kapow Karate!",
                email: "tester@classmaster.com",

@@ -4,7 +4,7 @@
 	<ul>
 		<li>
 			<b><%= s.name + " "%></b><%= pretty_amount(s.cost) + "/month" %><br>
-			<%= "For clubs of up to #{s.student_limit} students" %><br>
+			<%= s.description %><br>
 			<%= link_to "GO!", new_charge_path(subscription: s.id) %>
 		</li>
 	</ul>
