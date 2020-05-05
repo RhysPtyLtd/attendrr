@@ -6,9 +6,12 @@ class ChargesController < ApplicationController
 
   def new
     @subscription = Subscription.find(params[:subscription])
+    @cost = @subscription.cost
+    session[:cost] = @cost
   end
 
   def create
+    @cost = session[:cost]
     if params[:subscription].include? 'yes'
       StripeTool.create_membership(email: params[:stripeEmail],
                                    stripe_token: params[:stripeToken],
@@ -18,13 +21,15 @@ class ChargesController < ApplicationController
                                             stripe_token: params[:stripeToken])
 
       charge = StripeTool.create_charge(customer_id: customer.id, 
-                                        amount: @amount,
+                                        amount: @cost,
                                         description: @description)
     end
     redirect_to thanks_path
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to new_charge_path
+
+    session.delete[:price]
   end
 
   def thanks
@@ -37,7 +42,7 @@ class ChargesController < ApplicationController
   	end
 
     def amount_to_be_charged
-      @amount = 5000
+      @amount = @cost
     end
 
     def logged_in?
