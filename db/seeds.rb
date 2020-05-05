@@ -33,12 +33,15 @@ if Rails.env.production?
                owner_last_name: "Lin",
                activated: true,
                activated_at: Time.zone.now)
-
-  Subscription.create!(name: "Free",
-                       cost: 0)
 else
   Subscription.create!(name: "Free",
                        cost: 0)
+  Subscription.create!(name: "Silver",
+                       cost: 2990)
+  Subscription.create!(name: "Gold",
+                       cost: 4990)
+  Subscription.create!(name: "Platinum",
+                       cost: 9990)
 
   Club.create!(name: "Kapow Karate!",
                email: "tester@classmaster.com",
