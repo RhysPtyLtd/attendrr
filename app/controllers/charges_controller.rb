@@ -16,7 +16,8 @@ class ChargesController < ApplicationController
     StripeTool.create_membership(email: params[:stripeEmail],
                                   stripe_token: params[:stripeToken],
                                   plan: @plan)
-    redirect_to thanks_path
+    flash[:success] = "Subscription created successfully!"
+    redirect_to root_url
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to new_charge_path
