@@ -3,7 +3,7 @@
 <% @subscriptions.each do |s| %>
 	<ul>
 		<li>
-			<b><%= s.name + " "%></b><%= number_to_currency(s.cost, unit: "$") + "/month" %><br>
+			<b><%= s.name + " "%></b><%= pretty_amount(s.cost) + "/month" %><br>
 			<%= "For clubs of up to #{s.student_limit} students" %><br>
 			<%= link_to "GO!", new_charge_path(subscription: s.id) %>
 		</li>
