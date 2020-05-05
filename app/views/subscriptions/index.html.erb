@@ -1,12 +1,20 @@
 <br><br><br>
-<% provide(:title, "Pricing") %>
+<% provide(:title, "Subscriptions") %>
 <h1>Choose a subscription</h1>
 <% @subscriptions.each do |s| %>
 	<ul>
 		<li>
 			<b><%= s.name + " "%></b><%= pretty_amount(s.cost) + "/month" %><br>
 			<%= s.description %><br>
-			<%= link_to "GO!", new_charge_path(subscription: s.id) %>
+			<% if current_club %>
+				<% unless s == current_club.subscription %>
+					<%= link_to "GO!", new_charge_path(subscription: s.id) %>
+				<% else %>
+					SUBSCRIBED
+				<% end %>
+    		<% else %>
+      			<%= link_to "GO!", signup_path %>
+    		<% end %>
 		</li>
 	</ul>
 <% end %>

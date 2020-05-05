@@ -11,7 +11,6 @@ class ChargesController < ApplicationController
   end
 
   def create
-    @cost = session[:cost]
     @plan = session[:plan]
     StripeTool.create_membership(email: params[:stripeEmail],
                                   stripe_token: params[:stripeToken],
@@ -22,7 +21,6 @@ class ChargesController < ApplicationController
     flash[:error] = e.message
     redirect_to new_charge_path
 
-    session.delete[:cost]
     session.delete[:plan]
   end
 

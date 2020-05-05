@@ -22,6 +22,10 @@ module StripeTool
 			source: stripe_token,
 			plan: plan
 		)
+		#updates Club subscription
+		current_club = Club.find_by(email: email)
+		current_club.subscription = Subscription.find_by(stripe_id: plan)
+		current_club.save!
 	end
 
 end
