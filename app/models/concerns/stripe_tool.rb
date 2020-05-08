@@ -17,7 +17,7 @@ module StripeTool
 	end
 
 	def self.create_membership(email: email, stripe_token: stripe_token, plan: plan)
-		Stripe::Customer.create(
+		customer = Stripe::Customer.create(
 			email: email,
 			source: stripe_token,
 			plan: plan
@@ -25,7 +25,10 @@ module StripeTool
 		#updates Club subscription
 		current_club = Club.find_by(email: email)
 		current_club.subscription = Subscription.find_by(stripe_id: plan)
-		current_club.save!
+		#saves Stripe subscription ID to clubs database
+		current_club.stripe_subscription_id = customer.subscriptions['data'][0].id
+
+		current_club.save
 	end
 
 end

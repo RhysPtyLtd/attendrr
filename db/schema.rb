@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_05_035401) do
+ActiveRecord::Schema.define(version: 2020_05_08_064523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2020_05_05_035401) do
     t.string "picture"
     t.integer "absent_alert", default: 14
     t.bigint "subscription_id"
+    t.string "stripe_subscription_id"
     t.index ["email"], name: "index_clubs_on_email", unique: true
     t.index ["subscription_id"], name: "index_clubs_on_subscription_id"
   end
