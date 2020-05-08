@@ -1,6 +1,5 @@
 class ChargesController < ApplicationController
   before_action :amount_to_be_charged
-  before_action :set_description
   before_action :logged_in?
 
   def new
@@ -8,6 +7,8 @@ class ChargesController < ApplicationController
     @cost = @subscription.cost
     @plan = @subscription.stripe_id
     session[:plan] = @plan
+    session[:subscription] = @subscription
+    @description = "#{@subscription.name} plan subscription"
 
     if @subscription.student_limit < current_club.students.where(active: true).count
       flash[:error] = "The amount of students you have exceeds the limit for that plan"
@@ -17,6 +18,7 @@ class ChargesController < ApplicationController
 
   def create
     @plan = session[:plan]
+    @subscription = session[:subscription]
     StripeTool.create_membership(email: params[:stripeEmail],
                                   stripe_token: params[:stripeToken],
                                   plan: @plan)
@@ -27,17 +29,13 @@ class ChargesController < ApplicationController
     redirect_to new_charge_path
 
     session.delete[:plan]
+    session.delete[:subscription]
   end
 
   def thanks
   end
 
   private
-
-  	def set_description
-      @subscription = Subscription.find(params[:subscription])
-  		@description = "#{@subscription.name} plan subscription"
-  	end
 
     def amount_to_be_charged
       @amount = @cost
