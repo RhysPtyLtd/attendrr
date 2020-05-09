@@ -19,4 +19,7 @@
 	</ul>
 <% end %>
 
-<% if current_club %> DELETE BUTTON <% end %>
+<% if current_club %> DELETE BUTTON 
+	<%#= link_to "Cancel subscription", delete_charge_path(@subscription, :activity => { :active => false }),
+#									 :method => :put, data: { :confirm => "This will cancel future payments and revert you to the free plan. Note: if your student amount exceeds the free limit some functions will not be available to you." }, class: "btn btn-primary"  %>
+<% end %>

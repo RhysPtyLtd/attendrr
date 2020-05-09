@@ -35,6 +35,10 @@ class ChargesController < ApplicationController
   def thanks
   end
 
+  def delete
+    StripeTool.delete_membership()
+  end
+
   private
 
     def amount_to_be_charged

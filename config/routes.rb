@@ -40,6 +40,6 @@ Rails.application.routes.draw do
   resources :ranks
   resources :payment_plans
   resource :demo, only: :show, controller: :demo
-  resources :charges, only: [:new, :create]
+  resources :charges, only: [:new, :create, :delete]
   get 'thanks', to: 'charges#thanks', as: 'thanks'
 end

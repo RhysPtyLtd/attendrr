@@ -27,8 +27,13 @@ module StripeTool
 		current_club.subscription = Subscription.find_by(stripe_id: plan)
 		#saves Stripe subscription ID to clubs database
 		current_club.stripe_subscription_id = customer.subscriptions['data'][0].id
+		current_club.stripe_customer_id = customer.id
 
 		current_club.save
+	end
+
+	def self.delete_membership
+		customer = Stripe::Customer.retrieve()
 	end
 
 end
