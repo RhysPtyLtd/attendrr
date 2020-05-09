@@ -2,7 +2,11 @@ Rails.application.routes.draw do
 
   get 'charges/new'
   get 'charges/create'
-  resources :subscriptions
+  resources :subscriptions do
+    collection do
+      get :cancel
+    end
+  end
   root 'static_pages#home'
   get '/signup', to: 'clubs#new'
   post '/signup', to: 'clubs#create'

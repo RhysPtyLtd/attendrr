@@ -32,8 +32,12 @@ module StripeTool
 		current_club.save
 	end
 
-	def self.delete_membership
-		customer = Stripe::Customer.retrieve()
+	def self.cancel_subscription(club)
+		Stripe::Subscription.delete(club.stripe_subscription_id)
+		club.stripe_subscription_id = nil
+		club.stripe_customer_id = nil
+		club.subscription = Subscription.find(1)
+		club.save
 	end
 
 end

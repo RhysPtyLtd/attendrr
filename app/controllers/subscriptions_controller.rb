@@ -62,6 +62,15 @@ class SubscriptionsController < ApplicationController
     end
   end
 
+  def cancel
+    StripeTool.cancel_subscription(current_club)
+    flash[:success] = "Subscription successfully cancelled"
+    redirect_to root_url
+  rescue
+    flash[:error] = "Something went wrong. Please contact rhys@attendrr.com"
+    redirect_to subscriptions_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_subscription
