@@ -5,6 +5,7 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions.json
   def index
     @subscriptions = Subscription.all
+    @active_students = current_club.students.where(active: true).count
   end
 
   # GET /subscriptions/1
@@ -63,12 +64,18 @@ class SubscriptionsController < ApplicationController
   end
 
   def cancel
+    @subscription = Subscription.find(params[:subscription])
+    if @subscription.student_limit < current_club.students.where(active: true).count
+      flash[:error] = "The amount of students you have exceeds the limit for that plan"
+      redirect_to subscriptions_path
+    end
+
     StripeTool.cancel_subscription(current_club)
     flash[:success] = "Subscription successfully cancelled"
     redirect_to root_url
-  rescue
-    flash[:error] = "Something went wrong. Please contact rhys@attendrr.com"
-    redirect_to subscriptions_path
+#  rescue
+ #   flash[:error] = "Something went wrong. Please contact rhys@attendrr.com"
+  #  redirect_to subscriptions_path
   end
 
   private
