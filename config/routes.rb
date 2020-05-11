@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :subscriptions do
     collection do
       get :cancel
+      get :change
     end
   end
   root 'static_pages#home'

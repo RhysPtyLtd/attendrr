@@ -40,4 +40,25 @@ module StripeTool
 		club.save
 	end
 
+	def self.change_subscription(club, plan_changing_to)
+		subscription = Stripe::Subscription.retrieve(club.stripe_subscription_id)
+
+		Stripe::Subscription.update(
+			subscription.id,
+			{
+				cancel_at_period_end: false,
+				proration_behavior: 'create_prorations',
+				items: 
+					[{
+						id: subscription.items.data[0].id,
+						plan: plan_changing_to.stripe_id
+					}]
+			}
+		)
+
+		#club.stripe_subscription_id = nil
+		club.subscription = plan_changing_to
+		club.save
+	end
+
 end

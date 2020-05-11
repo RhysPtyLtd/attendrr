@@ -73,9 +73,19 @@ class SubscriptionsController < ApplicationController
     StripeTool.cancel_subscription(current_club)
     flash[:success] = "Subscription successfully cancelled"
     redirect_to root_url
-#  rescue
- #   flash[:error] = "Something went wrong. Please contact rhys@attendrr.com"
-  #  redirect_to subscriptions_path
+  rescue
+    flash[:error] = "Something went wrong. Please contact rhys@attendrr.com"
+    redirect_to subscriptions_path
+  end
+
+  def change
+    plan_changing_to = Subscription.find(params[:subscription])
+    StripeTool.change_subscription(current_club, plan_changing_to)
+    flash[:success] = "Subscription successfully changed"
+    redirect_to root_url
+  #rescue
+    #flash[:error] = "Something went wrong. Please contact rhys@attendrr.com"
+    #redirect_to subscriptions_path
   end
 
   private
