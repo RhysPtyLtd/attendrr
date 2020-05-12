@@ -81,11 +81,16 @@ class SubscriptionsController < ApplicationController
   def change
     plan_changing_to = Subscription.find(params[:subscription])
     StripeTool.change_subscription(current_club, plan_changing_to)
-    flash[:success] = "Subscription successfully changed"
+    flash[:success] = "Subscription successfully changed to #{plan_changing_to.name}"
     redirect_to root_url
   #rescue
-    #flash[:error] = "Something went wrong. Please contact rhys@attendrr.com"
+   # flash[:error] = "Something went wrong. Please contact rhys@attendrr.com"
     #redirect_to subscriptions_path
+  end
+
+  def confirm_plan_change
+    @plan_changing_to = Subscription.find(params[:subscription])
+    @proration = StripeTool.calculate_proration(current_club, @plan_changing_to)
   end
 
   private

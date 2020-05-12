@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     collection do
       get :cancel
       get :change
+      get :confirm_plan_change
     end
   end
   root 'static_pages#home'

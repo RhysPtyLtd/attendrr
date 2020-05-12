@@ -17,8 +17,8 @@
 					<% end %>
 				<% else %>
 					<%= link_to "GO!", new_charge_path(subscription: s.id) %>
+					<%= link_to "PRORATE!", confirm_plan_change_subscriptions_path(subscription: s.id) %> 
 				<% end %>
-				<%= link_to "CHANGE", { action: :change, subscription: s.id }, data: { confirm: 'This will change your plan.' } %>
     		<% else %>
       			<%= link_to "GO!", signup_path %>
     		<% end %>

@@ -1,0 +1,7 @@
+<br><br><br>
+New subscription: <%= @plan_changing_to.name %><br>
+Proration amount: <%= pretty_amount(@proration[1].amount) %><br>
+New monthly payment: <%= pretty_amount(@plan_changing_to.cost) %><br>
+<br>
+Your next invoice will contain a prorated charge of <%= pretty_amount(@proration[1].amount) %> for use of the <%= @plan_changing_to.name %> subscription for the remainder of this billing period. You will be charged <%= pretty_amount(@plan_changing_to.cost) %> per month thereafter.<br>
+<%= link_to "Change plan", { action: :change, subscription: @plan_changing_to.id } %><br>
