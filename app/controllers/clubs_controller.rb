@@ -69,7 +69,7 @@ class ClubsController < ApplicationController
   	def club_params
   		params.require(:club).permit(:name, :email, :password, :password_confirmation, :address_line_1, :address_line_2,
                                    :city, :state, :postcode, :country, :phone1, :phone2, :owner_first_name, 
-                                   :owner_last_name, :picture, :absent_alert)
+                                   :owner_last_name, :picture, :absent_alert, :subscription_id)
   	end
 
     # Before filters

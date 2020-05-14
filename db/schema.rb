@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_04_080222) do
+ActiveRecord::Schema.define(version: 2020_05_09_074531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,7 +64,11 @@ ActiveRecord::Schema.define(version: 2020_01_04_080222) do
     t.datetime "reset_sent_at"
     t.string "picture"
     t.integer "absent_alert", default: 14
+    t.bigint "subscription_id"
+    t.string "stripe_subscription_id"
+    t.string "stripe_customer_id"
     t.index ["email"], name: "index_clubs_on_email", unique: true
+    t.index ["subscription_id"], name: "index_clubs_on_subscription_id"
   end
 
   create_table "daily_financial_reports", id: :serial, force: :cascade do |t|
@@ -152,6 +156,16 @@ ActiveRecord::Schema.define(version: 2020_01_04_080222) do
     t.index ["club_id"], name: "index_students_on_club_id"
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.integer "cost"
+    t.integer "student_limit"
+    t.string "stripe_id"
+    t.string "description"
+  end
+
   create_table "timeslots", id: :serial, force: :cascade do |t|
     t.time "time_start"
     t.time "time_end"
@@ -168,6 +182,7 @@ ActiveRecord::Schema.define(version: 2020_01_04_080222) do
   add_foreign_key "attendances", "activities"
   add_foreign_key "attendances", "students"
   add_foreign_key "attendances", "timeslots"
+  add_foreign_key "clubs", "subscriptions"
   add_foreign_key "daily_financial_reports", "clubs"
   add_foreign_key "daily_financial_reports", "payment_plans"
   add_foreign_key "daily_financial_reports", "students"

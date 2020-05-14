@@ -37,8 +37,11 @@
 	<%= f.label :phone2, "Secondary phone" %>
 	<%= f.phone_field :phone2, class: 'form-control' %>
 
-	<%= f.label :absent_alert%> Notification when a student hasn't trained for more than this many days
+	<%= f.label :absent_alert %> Notification when a student hasn't trained for more than this many days
 	<%= f.number_field :absent_alert, class: 'form-control' %>
+
+	<%= f.label :subscription %>
+	<%= f.collection_select(:subscription_id, Subscription.all, :id, :name) %>
 
 	<%= f.label :password %>*
 	<%= f.password_field :password, class: 'form-control' %>
