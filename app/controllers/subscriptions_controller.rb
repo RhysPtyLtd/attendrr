@@ -6,6 +6,7 @@ class SubscriptionsController < ApplicationController
   def index
     @subscriptions = Subscription.all
     @active_students = current_club.students.where(active: true).count
+    @no_stripe_subscription = current_club.stripe_customer_id.nil?
   end
 
   # GET /subscriptions/1
@@ -89,6 +90,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def confirm_plan_change
+    @current_subscription_cost = current_club.subscription.cost
     @plan_changing_to = Subscription.find(params[:subscription])
     @proration = StripeTool.calculate_proration(current_club, @plan_changing_to)
   end
