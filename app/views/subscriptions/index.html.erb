@@ -12,7 +12,7 @@
 					SUBSCRIBED!
 				<!-- Free Forever subscription -->
 				<% elsif s.id == 1 %>
-					<% if @active_students > s.student_limit %>
+					<% if @students > s.student_limit %>
 						<%= link_to "GO!", new_charge_path(subscription: s.id) %>
 					<% else %>
 						<%= link_to s.name, { action: :cancel, subscription: s.id }, data: { confirm: 'This will cancel future payments and revert you to the free plan.' } %>

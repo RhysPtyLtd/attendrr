@@ -5,8 +5,7 @@ class StudentsController < ApplicationController
 
 	def index
 		if @club = current_club
-			prospect = @club.payment_plans.where(name: 'Prospect')
-			@students = @club.students.where(active: true).where.not(payment_plan: prospect)
+			@students = TypeOfStudent.active_enrolled(current_club)
 			#Average length of membership
 			@accumulated_memberships_in_days = 0
 			@students.each do |s|
@@ -37,7 +36,7 @@ class StudentsController < ApplicationController
 
 	def deactivated
 		if @club = current_club
-			@students = @club.students.where(active: false)
+			@students = TypeOfStudent.deactivated_enrolled(current_club)
 		else
 			redirect_to root_url
 		end
@@ -184,15 +183,14 @@ class StudentsController < ApplicationController
 
 	def prospects
 		if @club = current_club
-			@prospects = @club.students.includes(:payment_plan).where(payment_plans: {name: 'Prospect'})
-			@active_prospects = @prospects.where(active: true)
+			@prospects = TypeOfStudent.active_prospects(current_club)
 		else
 			redirect_to root_url
 		end
 	end
 
 	def absents
-    	@students = current_club.students.where(active: true)
+    	@students = TypeOfStudent.active_enrolled(current_club)
     	@absent_alert = current_club.absent_alert
      	@absent_alert_activation_date = Date.today - current_club.absent_alert
 	end

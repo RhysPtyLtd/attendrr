@@ -5,7 +5,7 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions.json
   def index
     @subscriptions = Subscription.all
-    @active_students = current_club.students.where(active: true).count if current_club
+    @students = TypeOfStudent.active_enrolled(current_club).count if current_club
     @no_stripe_subscription = current_club.stripe_customer_id.nil? if current_club
   end
 

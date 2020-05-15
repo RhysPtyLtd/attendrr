@@ -25,7 +25,6 @@ class ClubsController < ApplicationController
 
   def show
   	@club = Club.find(params[:id])
-    @students = @club.students.paginate(page: params[:page])
   end
 
   def edit
