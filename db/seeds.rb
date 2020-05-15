@@ -17,6 +17,7 @@ if Rails.env.production?
                owner_last_name: "Phillips",
                admin: true,
                activated: true,
+               subscription_id: 1,
                activated_at: Time.zone.now)
 
   Club.create!(name: "Henry's Kungfu",
@@ -32,6 +33,7 @@ if Rails.env.production?
                owner_first_name: "Henry", 
                owner_last_name: "Lin",
                activated: true,
+               subscription_id: 1,
                activated_at: Time.zone.now)
 else
   Subscription.create!(name: "Free Forever",
@@ -69,6 +71,7 @@ else
                owner_last_name: "Egg",
                admin: true,
                activated: true,
+               subscription_id: 1,
                activated_at: Time.now-1.year+1.hour,
                created_at: Time.now-1.year)
 
