@@ -1,6 +1,10 @@
 if Rails.env.production?
   Subscription.create!(name: "Free",
-                       cost: 0)
+                       cost: 0,
+                       student_limit: 20,
+                       stripe_id: "",
+                       description: "Whether you're just starting out, or you run a smaller club by choice, this plan will accomodate 20 students. And it's free, forever!"
+                       )
   
   Club.create!(name: "ADMIN",
                email: "rphillips1@live.com.au",
