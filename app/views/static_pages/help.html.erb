@@ -1,22 +1,3 @@
 <% provide(:title, "Help") %>
 <h1>Help</h1>
 <p>Contact us or view the FAQ for help topics</p>
-
-Active students:
-<%= TypeOfStudent.active(current_club).count %><br>
-
-Active enrolled students:
-<%= TypeOfStudent.active_enrolled(current_club).count %><br>
-
-Deactivated enrolled students:
-<%= TypeOfStudent.deactivated_enrolled(current_club).count %><br>
-
-Prospects:
-<%= TypeOfStudent.all_prospects(current_club).count %><br>
-
-Active prospects:
-<%= TypeOfStudent.active_prospects(current_club).count %><br>
-
-Deactivated prospects:
-<%= TypeOfStudent.deactivated_prospects(current_club).count %><br>
-
