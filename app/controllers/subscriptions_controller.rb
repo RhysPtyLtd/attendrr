@@ -18,6 +18,9 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/new
   def new
     @subscription = Subscription.new
+    unless admin?
+      redirect_to root_url 
+    end
   end
 
   # GET /subscriptions/1/edit
@@ -84,9 +87,9 @@ class SubscriptionsController < ApplicationController
     StripeTool.change_subscription(current_club, plan_changing_to)
     flash[:success] = "Subscription successfully changed to #{plan_changing_to.name}"
     redirect_to root_url
-  #rescue
-   # flash[:error] = "Something went wrong. Please contact rhys@attendrr.com"
-    #redirect_to subscriptions_path
+  rescue
+    flash[:error] = "Something went wrong. Please contact rhys@attendrr.com"
+    redirect_to subscriptions_path
   end
 
   def confirm_plan_change
@@ -99,6 +102,14 @@ class SubscriptionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_subscription
       @subscription = Subscription.find(params[:id])
+    end
+
+    def admin?
+      if current_club
+        if current_club.admin?
+          true
+        end
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
