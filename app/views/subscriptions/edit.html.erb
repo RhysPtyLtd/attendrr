@@ -1,6 +1,39 @@
-<h1>Editing Subscription</h1>
-
-<%= render 'form', subscription: @subscription %>
-
-<%= link_to 'Show', @subscription %> |
-<%= link_to 'Back', subscriptions_path %>
+<section class="add-new-student">
+	<div class="container">
+		<div class="row mt-5">
+			<div class="col-12 d-flex justify-content-center">
+				<h1>Change subscription</h1>
+			</div>
+		</div>
+		<%= form_for(@subscription, html: { multipart: true }) do |f| %>
+		<%= render 'shared/error_messages', object: f.object %>
+		<div class="row">
+			<div class="col-12 col-sm-6">
+				<%= f.label :name %>
+				<%= f.text_field :name, class: 'form-control' %>
+			</div>
+			<div class="col-12 col-sm-6">
+				<%= f.label :cost %>/month in cents
+				<%= f.number_field :cost, class: 'form-control' %>
+			</div>
+			<div class="col-12 col-sm-6">
+				<%= f.label :student_limit %>
+				<%= f.number_field :student_limit, class: 'form-control' %>
+			</div>
+			<div class="col-12 col-md-6">
+				<%= f.label :stripe_id %> ID
+				<%= f.text_field :stripe_id, class: 'form-control' %>
+			</div>
+			<div class="col-12 col-sm-6">
+				<%= f.label :description %>
+				<%= f.text_field :description, class: 'form-control' %>
+			</div>
+			<div class="w-100"></div>
+			<div class="w-100">	</div>
+			<div class="col-12 col-md-4">
+				<%= f.submit "Change subscription", class: "btn btn-primary" %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</section>

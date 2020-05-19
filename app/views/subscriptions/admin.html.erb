@@ -10,11 +10,10 @@
 			<% if s.active? %> 
 				ACTIVE<br>
 				<% unless s.id == 1 %>
-					<div class="col-12 col-md-4 ">
-					<%= link_to "Deactivate this subscription", subscription_path(s, :subscription => { :active => false }),
-					:method => :put, data: { :confirm => "Are you sure?" }, class: "btn btn-danger w-100"  %>
+					<%= link_to "Deactivate", subscription_path(s, :subscription => { :active => false }),
+					:method => :put, data: { :confirm => "Are you sure?" } %><br>
+					<%= link_to "Edit", edit_subscription_path(s) %>
 				<% end %>
-			</div>
 			<% else %> 
 				DEACTIVATED<br>
 				<% unless s.id == 1 %>
