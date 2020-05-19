@@ -25,6 +25,9 @@ class SubscriptionsController < ApplicationController
 
   # GET /subscriptions/1/edit
   def edit
+    unless admin?
+      redirect_to root_url 
+    end
   end
 
   # POST /subscriptions
