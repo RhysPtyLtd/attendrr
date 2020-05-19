@@ -4,7 +4,7 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions
   # GET /subscriptions.json
   def index
-    @subscriptions = Subscription.all
+    @subscriptions = Subscription.where(active: true)
     @students = TypeOfStudent.active_enrolled(current_club).count if current_club
     @no_stripe_subscription = current_club.stripe_customer_id.nil? if current_club
   end
@@ -98,6 +98,13 @@ class SubscriptionsController < ApplicationController
     @proration = StripeTool.calculate_proration(current_club, @plan_changing_to)
   end
 
+  def admin
+    unless admin?
+      redirect_to root_url
+    end
+    @subscriptions = Subscription.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_subscription
@@ -114,6 +121,6 @@ class SubscriptionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subscription_params
-      params.require(:subscription).permit(:name, :cost, :student_limit, :stripe_id, :description)
+      params.require(:subscription).permit(:name, :cost, :student_limit, :stripe_id, :description, :active)
     end
 end

@@ -1,0 +1,36 @@
+<br><br><br>
+<% provide(:title, "Subscriptions") %>
+<h1>Choose a subscription</h1>
+<% @subscriptions.each do |s| %>
+	<ul>
+		<li>
+			<b><%= s.name + " "%></b><%= pretty_amount(s.cost) + "/month" %><br>
+			<%= s.description %><br>
+			<!-- Helps prevent accidentally deleting free plan (must stay id 1) -->
+			<% if s.active? %> 
+				ACTIVE<br>
+				<% unless s.id == 1 %>
+					<div class="col-12 col-md-4 ">
+					<%= link_to "Deactivate this subscription", subscription_path(s, :subscription => { :active => false }),
+					:method => :put, data: { :confirm => "Are you sure?" }, class: "btn btn-danger w-100"  %>
+				<% end %>
+			</div>
+			<% else %> 
+				DEACTIVATED<br>
+				<% unless s.id == 1 %>
+					<div class="col-12 col-md-4 ">
+					<%= link_to "Reactivate this subscription", subscription_path(s, :subscription => { :active => true }),
+					:method => :put, data: { :confirm => "Are you sure?" }, class: "btn btn-danger w-100"  %>
+			<% end %><br>
+			
+			<% end %>
+		</li>
+	</ul>
+<% end %>
+
+<!-- Cancel subscription -->
+<% if current_club %>
+	<% unless current_club.stripe_subscription_id.nil? %>
+		<%= link_to "Cancel subscription", { action: :cancel, subscription: current_club.subscription.id }, data: { confirm: 'This will cancel future payments and revert you to the free plan. Note: if your student amount exceeds the free limit some functions will not be available to you.' } %>
+	<% end %>
+<% end %>

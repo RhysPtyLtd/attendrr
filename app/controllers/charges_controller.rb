@@ -4,6 +4,9 @@ class ChargesController < ApplicationController
 
   def new
     @subscription = Subscription.find(params[:subscription])
+    unless @subscription.active
+      redirect_to subscriptions_path
+    end
     @cost = @subscription.cost
     @plan = @subscription.stripe_id
     session[:plan] = @plan
