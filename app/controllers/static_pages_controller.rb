@@ -19,4 +19,20 @@ class StaticPagesController < ApplicationController
   def contact
   end
 
+  def admin
+    unless admin?
+      redirect_to root_url
+    end
+  end
+
+    private
+
+    def admin?
+      if current_club
+        if current_club.admin?
+          true
+        end
+      end
+    end
+
 end

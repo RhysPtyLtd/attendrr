@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post '/signup', to: 'clubs#create'
   get '/metrics', to: 'clubs#metrics'
   get  '/help',    to: 'static_pages#help'
+  get '/admin', to: 'static_pages#admin'
   get  '/about',   to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
   get '/login', to: 'sessions#new'
