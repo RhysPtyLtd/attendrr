@@ -1,6 +1,7 @@
 class ActivitiesController < ApplicationController
 	before_action :logged_in_user, only: [:create, :destroy, :new, :edit, :update]
 	before_action :correct_club, only: [:index, :show, :destroy] # Currently does nothing??
+	before_action :exceed_student_limit, only: [:scheduled_classes, :grading]
 
 	def new
 		@activity = Activity.new
@@ -144,6 +145,13 @@ class ActivitiesController < ApplicationController
 	end
 
 	private
+
+		def exceed_student_limit
+			if StudentLimit.over?(current_club)
+				flash[:success] = "Woah! You have more students than this plan allows! Upgrade to reaccess this function"
+				redirect_to subscriptions_path
+			end
+		end
 
 		def activity_params
 			params.require(:activity).permit(:name, :active,

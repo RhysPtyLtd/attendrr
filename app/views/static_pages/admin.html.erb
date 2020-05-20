@@ -11,4 +11,6 @@
 		<%= link_to "Add subscription", new_subscription_path %>
 	</div>
 
+	<%= StudentLimit.over?(current_club) %>
+
 </section>

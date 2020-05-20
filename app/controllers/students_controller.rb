@@ -2,6 +2,7 @@ class StudentsController < ApplicationController
 	require 'students_datable'
 	before_action :logged_in_user, only: [:create, :destroy, :new, :edit, :update]
 	before_action :correct_club, only: [:index, :show, :destroy,:prospectplan] # Currently does nothing??
+	before_action :exceed_student_limit, only: [:create, :new, :student_attendance]
 
 	def index
 		if @club = current_club
@@ -185,6 +186,7 @@ class StudentsController < ApplicationController
 		if @club = current_club
 			@prospects = TypeOfStudent.active_prospects(current_club)
 		else
+			flash[:success] = "Student details updated"
 			redirect_to root_url
 		end
 	end
@@ -196,6 +198,13 @@ class StudentsController < ApplicationController
 	end
 
 	private
+
+		def exceed_student_limit
+			if StudentLimit.over?(current_club)
+				flash[:success] = "You've grown to the limit of this plan, well done! Upgrade and keep going!"
+				redirect_to subscriptions_path
+			end
+		end
 
 		def student_params
 			params.require(:student).permit(:active, :email, :address_line_1, :address_line_2, :city, :state, :postcode,
