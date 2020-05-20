@@ -63,11 +63,11 @@ class SubscriptionsController < ApplicationController
   # DELETE /subscriptions/1
   # DELETE /subscriptions/1.json
   def destroy
-    @subscription.destroy
-    respond_to do |format|
-      format.html { redirect_to subscriptions_url, notice: 'Subscription was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    #@subscription.destroy
+    #respond_to do |format|
+      #format.html { redirect_to subscriptions_url, notice: 'Subscription was successfully destroyed.' }
+      #format.json { head :no_content }
+    #end
   end
 
   def cancel

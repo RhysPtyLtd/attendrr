@@ -12,14 +12,13 @@
 				<% unless s.id == 1 %>
 					<%= link_to "Deactivate", subscription_path(s, :subscription => { :active => false }),
 					:method => :put, data: { :confirm => "Are you sure?" } %><br>
-					<%= link_to "Edit", edit_subscription_path(s) %>
+					<%= link_to "Edit", edit_subscription_path(s), data: { :confirm => "Remeber this is only if you need to edit description because it won't change Stripe backend" } %>
 				<% end %>
 			<% else %> 
 				DEACTIVATED<br>
 				<% unless s.id == 1 %>
-					<div class="col-12 col-md-4 ">
 					<%= link_to "Reactivate this subscription", subscription_path(s, :subscription => { :active => true }),
-					:method => :put, data: { :confirm => "Are you sure?" }, class: "btn btn-danger w-100"  %>
+					:method => :put, data: { :confirm => "Are you sure?" }  %>
 			<% end %><br>
 			
 			<% end %>
