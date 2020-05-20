@@ -99,6 +99,10 @@ class SubscriptionsController < ApplicationController
     @current_subscription_cost = current_club.subscription.cost
     @plan_changing_to = Subscription.find(params[:subscription])
     @proration = StripeTool.calculate_proration(current_club, @plan_changing_to)
+    if @plan_changing_to.student_limit < TypeOfStudent.active_enrolled(current_club).count
+      flash[:error] = "The amount of students you have exceeds the limit for that plan"
+      redirect_to subscriptions_path
+    end
   end
 
   def admin
