@@ -51,6 +51,8 @@ class StudentsController < ApplicationController
 	end
 
 	def new
+		@payment_plans = current_club.payment_plans.where(active: true)
+		@prospect = current_club.payment_plans.first
 		@student = Student.new
 		@student_ranks = @student.student_ranks.build
 		# Gets an array of every rank in the club to pass to @active_ranks
@@ -207,7 +209,7 @@ class StudentsController < ApplicationController
 		end
 
 		def student_params
-			params.require(:student).permit(:active, :email, :address_line_1, :address_line_2, :city, :state, :postcode,
+			params.require(:student).permit(:payment_plan_id, :active, :email, :address_line_1, :address_line_2, :city, :state, :postcode,
 											:phone1, :phone2, :first_name, :last_name, :dob, :parent1, :parent2,
 											:size, :picture, :notes, :payment_plan_id, :classes_remaining, :student_rank, rank_ids: [],
 											student_ranks_attributes: [:student_id, :rank_id, :active])

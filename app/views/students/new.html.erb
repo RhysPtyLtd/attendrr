@@ -87,6 +87,22 @@
 				</div>
 				<!--Classic checkbox buttons-->
 			</div>
+			<div class="w-100"></div>
+			<div class="col-12">
+				<%= f.label :payment_plan %>
+				<div class="d-flex flex-wrap" data-toggle="buttons">
+					<% @payment_plans.each do |pp| %>
+					<div class="btn btn-outline-primary btn-rounded   form-check-label m-2" style="border-radius:24px;">
+					<% if pp.id == @prospect.id %>
+						<%= f.radio_button :payment_plan_id, pp.id, :checked => "checked" %> 
+					<% else %>
+						<%= f.radio_button :payment_plan_id, pp.id %>
+					<% end %>
+					<%= f.label :payment_plan_id, pp.name %>
+					</div %>
+					<% end %>
+				</div>
+			</div>
 			<div class="col-12 col-sm-6">
 				<span class="picture">
 					<%= f.label :picture, "Attach student picture" %>
