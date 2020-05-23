@@ -1,0 +1,17 @@
+<section class="acivities-list">
+	<div class="container">
+		<div class="row mt-5">
+			<div class="col-12 col-md-4">
+				<h1 class="text-md-left text-center">Blog posts</h1>
+			</div>
+		</div>
+			<% @blog_posts.each do |bp| %>
+				<div class="row mt-4">
+					<div class="col-12 col-md-6  p-3 class-box  mt-1">
+						<span><%= link_to bp.title, blog_post_path(bp),class:'class-name' %></span>
+						<p><%= bp.subtitle %></p>
+					</div>
+				</div>
+			<% end %>
+	</div>
+</section>

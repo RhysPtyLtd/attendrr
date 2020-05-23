@@ -50,4 +50,5 @@ Rails.application.routes.draw do
   resource :demo, only: :show, controller: :demo
   resources :charges, only: [:new, :create, :delete]
   get 'thanks', to: 'charges#thanks', as: 'thanks'
+  resources :blog_posts
 end
