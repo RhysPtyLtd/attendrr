@@ -30,6 +30,9 @@
         <li class="nav-item  mr-2 mt-2 mb-2 mt-md-0 mb-md-0 align-self-md-center">
           <%= link_to "Help",   help_path , class: "signupbox  " %>
         </li>
+        <li class="nav-item  mr-2 mt-2 mb-2 mt-md-0 mb-md-0 align-self-md-center">
+          <%= link_to "Blog",   blog_posts_path , class: "signupbox  " %>
+        </li>
         <% if logged_in? %>
         <% if current_club && current_club.admin? %>
         <li class="mr-2 mt-2 mb-2 mt-md-0 mb-md-0 align-self-md-center"><%= link_to "Admin", admin_path, class: "signupbox " %></li>
