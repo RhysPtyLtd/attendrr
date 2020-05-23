@@ -1,7 +1,14 @@
-<br><br><br>
 
-<%= @blog_post.title %><br><br>
-
-<%= @blog_post.subtitle %><br><br>
-
-<%= @blog_post.content %><br><br>
+<section class="acivities-list">
+	<% provide(:title, "Blog") %>
+	<div class="container">
+		<div class="row mt-5">
+			<div class="col-12 col-md-4">
+				<h1 class="text-md-left text-center"><%= @blog_post.title %></h1>
+				<h3 class="text-md-left text-center"><%= @blog_post.subtitle %></h3>
+			</div>
+			Posted on <%= @posting_date %>
+		</div>
+			<%= @blog_post.content %>
+	</div>
+</section>
