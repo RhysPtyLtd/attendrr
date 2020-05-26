@@ -4,6 +4,13 @@ class BlogPostsController < ApplicationController
 		@blog_posts = BlogPost.all.order("created_at DESC")
 	end
 
+  def admin
+    unless admin?
+          redirect_to root_url 
+      end
+    @blog_posts = BlogPost.all.order("created_at DESC")
+  end
+
 	def show
   		@blog_post = BlogPost.find(params[:id])
       @posting_date = @blog_post.created_at.to_date.to_formatted_s(:long)
@@ -32,6 +39,7 @@ class BlogPostsController < ApplicationController
     	end
         @blog_post = BlogPost.find(params[:id])
         if @blog_post.update(blog_post_params)
+          flash[:success] = "Post edited"
             redirect_to @blog_post
         else
             render 'edit'
@@ -52,7 +60,8 @@ class BlogPostsController < ApplicationController
         @blog_post = BlogPost.find(params[:id])
         @blog_post.destroy
 
-        redirect_to blog_posts_path
+        flash[:success] = "Post deleted"
+        redirect_to admin_blog_posts_path
     end
 
     private
