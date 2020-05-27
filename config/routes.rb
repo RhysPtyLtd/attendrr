@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   resources :activities do
     collection do
       get 'scheduled_classes'
+      get 'students'
     end
     member do
       get :grading

@@ -24,6 +24,7 @@ class Student < ApplicationRecord
   #before_create :assign_prospect
   has_many :student_ranks, dependent: :destroy
   has_many :ranks, through: :student_ranks
+  has_many :activities, through: :ranks
   accepts_nested_attributes_for :student_ranks
   has_many :attendances, dependent: :destroy
   around_save :update_daily_revenue

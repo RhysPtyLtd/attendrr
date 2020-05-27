@@ -9,6 +9,11 @@ class ActivitiesController < ApplicationController
 		@activity.ranks.build
 	end
 
+	def students
+		@activity = Activity.find(params[:activity])
+		@activity_students = @activity.students.includes(:payment_plan).where.not(payment_plans: {name: 'Prospect'}).where(active: true)
+	end
+
 	def create
 		@activity = current_club.activities.new(activity_params)
 		if @activity.save
@@ -140,8 +145,6 @@ class ActivitiesController < ApplicationController
 		day_find = @date_find.strftime('%w').to_i
 		# @activity = current_club.activities.joins(:timeslots).where('DATE(timeslots.schedule) = ?', date_find).includes(:timeslots)
 		@activity = current_club.activities.joins(:timeslots).where('timeslots.day = ? AND activities.active = ? AND DATE(activities.created_at) <= ?', day_find,true,@date_find).includes(:timeslots)
-
-
 	end
 
 	private
