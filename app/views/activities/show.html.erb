@@ -18,7 +18,7 @@
 		</div>
 		<div class="row">
 			<div class="col-12 p-2 ">
-				<h5>Students: <%= @active_students.count %></h5>
+				<h5>Students: <%= link_to @activity_students.count, students_activities_path(activity: @activity.id) %></h5>
 				<h5>Average length of membership: <%= pluralize(@average_membership_length, 'day') %></h5>
 				<h5>Average attendance per session: <%= @average_attendance %> </h5>
 			</div>

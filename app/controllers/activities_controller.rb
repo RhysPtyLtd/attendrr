@@ -46,7 +46,10 @@ class ActivitiesController < ApplicationController
 
 	def show
 		@activity = current_club.activities.find_by(id: params[:id])
+		# To calculate students for activity_student#index
+		@activity_students = @activity.students.includes(:payment_plan).where.not(payment_plans: {name: 'Prospect'}).where(active: true)
 		@active_ranks = @activity.ranks.where(active: true)
+		# To calculate average membership length CHANGE THIS
 		@students = @activity.students.where(active: true)
 		@active_students = @students.uniq
 		#Average length of membership
