@@ -29,7 +29,7 @@
           <div class="col-12">
             <%= form_tag(student_attendance_students_path, :method => "get", id: "search-form",class: "form-inline") do %>
             <div class="col-12">
-                <h6><span style=" font-size: larger;font-weight: bold;"><br/>Filter between dates (dd/mm/yyy)</span></h6>
+                <h6><span style=" font-size: larger;font-weight: bold;"><br/>Filter between dates</span></h6>
             </div>
           </div>
         </div>
@@ -38,7 +38,7 @@
             <div class="form-group">
               <label for="email">From:</label>
                <div class='input-group date' id='datepicker_from'>
-                <%= text_field_tag :from_date,params[:from_date],class: "form-control" %>
+                <%= date_field_tag :from_date,params[:from_date],class: "form-control" %>
                 <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -49,7 +49,7 @@
             <div class="form-group " >
               <label for="pwd">To:</label>
               <div class='input-group date' id='datepicker_to'>
-                <%= text_field_tag :to_date,params[:to_date],class: "form-control"%>
+                <%= date_field_tag :to_date,params[:to_date],class: "form-control"%>
                 <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span>
                 </span>
