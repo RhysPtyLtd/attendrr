@@ -24,11 +24,13 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem "select2-rails"
 gem 'chartkick'
 gem 'groupdate'
+gem 'dotenv-rails', :groups => [:development, :test]
 
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'jquery-ui-rails'
 gem 'bootstrap4-datetime-picker-rails'
-
+gem 'stripe'
+gem 'font-awesome-sass', '~> 5.12.0'
 group :development, :test do
   gem 'byebug',  '9.0.0', platform: :mri
   gem 'faker', '1.6.3'
