@@ -1,8 +1,8 @@
 <section class="single-activies">
 	<div class="container">
-		<div class="row mt-5">
+		<div class="row mt-5 mb-4">
 			<div class="col-12 col-md-4">
-				<h1 class="text-center text-md-left"><%= @activity.name %></h1>
+				<h4 class="text-center text-md-left"><%= @activity.name %></h4>
 			</div>
 			<div class="col-12 col-md-8 d-flex justify-content-md-end justify-content-start align-self-start flex-wrap">
 				<div class="p-2 m-1">
@@ -16,11 +16,59 @@
 				</div>
 			</div>
 		</div>
+<<<<<<< HEAD
 		<div class="row">
 			<div class="col-12 p-2 ">
 				<h5>Students: <%= link_to @activity_students.count, students_activities_path(activity: @activity.id) %></h5>
 				<h5>Average length of membership: <%= pluralize(@average_membership_length, 'day') %></h5>
 				<h5>Average attendance per session: <%= @average_attendance %> </h5>
+=======
+		<div class="row front-dashboard">
+			<div class="col-md-4 col-sm-6">
+				<div class="white-box">
+					<div class="row  justify-content-between">
+						<div class="col-xs-3">
+							<div>
+								<span class="bg-success-gradient"><%= icon('fas', 'users') %></span>
+							</div>
+						</div>
+						<div class="col-xs-9 text-right">
+							<span class="widget-title"> Total Students</span><br>
+							<span class="counter"><%= @active_students.count %></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<div class="white-box">
+					<div class="row justify-content-between ">
+						<div class="col-xs-3">
+							<div>
+								<span class="bg-success-gradient"><%= icon('fas', 'users') %></span>
+							</div>
+						</div>
+						<div class="col-xs-9 text-right">
+							<span class="widget-title"> Avg.  membership</span><br>
+							<span class="counter"><%= pluralize(@average_membership_length, 'day') %></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<div class="white-box">
+					<div class="row justify-content-between">
+						<div class="col-xs-3">
+							<div>
+								<span class="bg-warning-gradient"><%= icon('fas', 'percentage') %></span>
+							</div>
+						</div>
+						<div class="col-xs-9 text-right">
+							<span class="widget-title"> Avg. attendance </span><br>
+							<span class="counter"><%= @average_attendance %></span>
+						</div>
+					</div>
+				</div>
+>>>>>>> 5b6d10c7d66f79d390ddc3e01d3d527792a3a9c0
 			</div>
 		</div>
 		<div class="row mt-2">
@@ -32,7 +80,7 @@
 				<% end %>
 				<% if @activity.timeslots.where(active: true).any? %>
 				<div class="col-12 pl-0">
-					<h3>Class times:</h3>
+					<h4>Class times:</h4>
 				</div>
 				<div class=" col-12 ">
 					<% @activity.timeslots.where(active: true).each do |t| %>
@@ -46,7 +94,7 @@
 			<div class="col-12 col-md-6 pl-0 mt-md-0 mt-2">
 				<% if @active_ranks.any? %>
 				<div class="col-12 pl-0">
-					<h3>Ranks:</h3>
+					<h4>Ranks:</h4>
 				</div>
 				<div class=" col-12 ">
 					<% @active_ranks.each do |r| %>

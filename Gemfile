@@ -31,7 +31,7 @@ gem 'jquery-ui-rails'
 gem 'bootstrap4-datetime-picker-rails'
 gem 'stripe'
 gem 'kramdown'
-
+gem 'font-awesome-sass', '~> 5.12.0'
 group :development, :test do
   gem 'byebug',  '9.0.0', platform: :mri
   gem 'faker', '1.6.3'
