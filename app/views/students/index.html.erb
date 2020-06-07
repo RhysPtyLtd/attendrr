@@ -9,7 +9,7 @@
 				</h4>
 			</div>
 			<div class="col-3  ml-auto">
-				<%= link_to '<i class="fa fa-power-off"></i> Deactive Student'.html_safe, deactivated_students_path(@students),:class=>"deactive-student-link" %> <br>
+				<%= link_to '<i class="fa fa-power-off"></i> Show Deactivated Students'.html_safe, deactivated_students_path(@students),:class=>"deactive-student-link" %> <br>
 			</div>
 		</div>
 		<% if @students.none? %>

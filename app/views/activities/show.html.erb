@@ -16,13 +16,6 @@
 				</div>
 			</div>
 		</div>
-<<<<<<< HEAD
-		<div class="row">
-			<div class="col-12 p-2 ">
-				<h5>Students: <%= link_to @activity_students.count, students_activities_path(activity: @activity.id) %></h5>
-				<h5>Average length of membership: <%= pluralize(@average_membership_length, 'day') %></h5>
-				<h5>Average attendance per session: <%= @average_attendance %> </h5>
-=======
 		<div class="row front-dashboard">
 			<div class="col-md-4 col-sm-6">
 				<div class="white-box">
@@ -34,7 +27,7 @@
 						</div>
 						<div class="col-xs-9 text-right">
 							<span class="widget-title"> Total Students</span><br>
-							<span class="counter"><%= @active_students.count %></span>
+							<span class="counter"><%= link_to @activity_students.count, students_activities_path(activity: @activity.id) %></span>
 						</div>
 					</div>
 				</div>
@@ -68,7 +61,6 @@
 						</div>
 					</div>
 				</div>
->>>>>>> 5b6d10c7d66f79d390ddc3e01d3d527792a3a9c0
 			</div>
 		</div>
 		<div class="row mt-2">

@@ -86,11 +86,8 @@ GEM
     concurrent-ruby (1.1.6)
     crass (1.0.6)
     debug_inspector (0.0.3)
-<<<<<<< HEAD
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-=======
->>>>>>> 5b6d10c7d66f79d390ddc3e01d3d527792a3a9c0
     dotenv (2.7.5)
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
@@ -399,11 +396,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-<<<<<<< HEAD
     stripe (5.22.0)
-=======
-    stripe (5.17.0)
->>>>>>> 5b6d10c7d66f79d390ddc3e01d3d527792a3a9c0
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.10)
