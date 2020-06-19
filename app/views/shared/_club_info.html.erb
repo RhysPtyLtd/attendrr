@@ -15,9 +15,10 @@
 	<%= link_to("Now you need to add at least one payment plan! Click here", new_payment_plan_path) %>
 <% elsif current_club.students.where(active: true).none? %>
 	<%= link_to("It's time to grow your club! Add your first student here", new_student_path) %>
-<% elsif @students.count - @active_prospects.count == 0 %>
+<% elsif @students.count - @prospects.count == 0 %>
 	<%= link_to("You convert Prospects into Students by upgrading their payment plan. You can do it!", prospects_students_path) %>
 <% end %>
+<%# End notification %>
 
 <div class="row mt-md-5 mt-4 ml-2 mr-2">
 <%# <%= link_to scheduled_classes_activities_path , :class => "redirect_div" do %>
@@ -40,7 +41,7 @@
 				<img class="custom_icons align-self-center" src=<%=image_url('sport.png') %>  alt="" >
 				<%# <%= link_to_image("calendar.png", scheduled_classes_activities_path) %>
 				<span class="align-self-center text-center redirect_link">Students</span>
-				<span class="align-self-center text-center redirect_link"><%= @students.count - @active_prospects.count %></span>
+				<span class="align-self-center text-center redirect_link"><%= @students.count %></span>
 			</div>
 	<% end %>
 </div>
@@ -69,7 +70,7 @@
 			<div class="div_box d-flex justify-content-center flex-column">
 				<img class="custom_icons align-self-center" src=<%=image_url('prospect.png') %>  alt="" >
 				<span class="align-self-center text-center redirect_link">Prospects</span>
-				<span class="align-self-center text-center redirect_link"><%= @active_prospects.count %></span>
+				<span class="align-self-center text-center redirect_link"><%= @prospects.count %></span>
 			</div>
 		<% end %>
 	</div>

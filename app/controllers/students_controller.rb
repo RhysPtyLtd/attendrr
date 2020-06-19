@@ -2,11 +2,11 @@ class StudentsController < ApplicationController
 	require 'students_datable'
 	before_action :logged_in_user, only: [:create, :destroy, :new, :edit, :update]
 	before_action :correct_club, only: [:index, :show, :destroy,:prospectplan] # Currently does nothing??
+	before_action :exceed_student_limit, only: [:create, :new, :student_attendance]
 
 	def index
 		if @club = current_club
-			prospect = @club.payment_plans.where(name: 'Prospect')
-			@students = @club.students.where(active: true).where.not(payment_plan: prospect)
+			@students = TypeOfStudent.active_enrolled(current_club)
 			#Average length of membership
 			@accumulated_memberships_in_days = 0
 			@students.each do |s|
@@ -37,7 +37,7 @@ class StudentsController < ApplicationController
 
 	def deactivated
 		if @club = current_club
-			@students = @club.students.where(active: false)
+			@students = TypeOfStudent.deactivated_enrolled(current_club)
 		else
 			redirect_to root_url
 		end
@@ -51,6 +51,8 @@ class StudentsController < ApplicationController
 	end
 
 	def new
+		@payment_plans = current_club.payment_plans.where(active: true)
+		@prospect = current_club.payment_plans.first
 		@student = Student.new
 		@student_ranks = @student.student_ranks.build
 		# Gets an array of every rank in the club to pass to @active_ranks
@@ -184,23 +186,30 @@ class StudentsController < ApplicationController
 
 	def prospects
 		if @club = current_club
-			@prospects = @club.students.includes(:payment_plan).where(payment_plans: {name: 'Prospect'})
-			@active_prospects = @prospects.where(active: true)
+			@prospects = TypeOfStudent.active_prospects(current_club)
 		else
+			flash[:success] = "Student details updated"
 			redirect_to root_url
 		end
 	end
 
 	def absents
-    	@students = current_club.students.where(active: true)
+    	@students = TypeOfStudent.active_enrolled(current_club)
     	@absent_alert = current_club.absent_alert
      	@absent_alert_activation_date = Date.today - current_club.absent_alert
 	end
 
 	private
 
+		def exceed_student_limit
+			if StudentLimit.over?(current_club)
+				flash[:success] = "You've grown to the limit of this plan, well done! Upgrade and keep going!"
+				redirect_to subscriptions_path
+			end
+		end
+
 		def student_params
-			params.require(:student).permit(:active, :email, :address_line_1, :address_line_2, :city, :state, :postcode,
+			params.require(:student).permit(:payment_plan_id, :active, :email, :address_line_1, :address_line_2, :city, :state, :postcode,
 											:phone1, :phone2, :first_name, :last_name, :dob, :parent1, :parent2,
 											:size, :picture, :notes, :payment_plan_id, :classes_remaining, :student_rank, rank_ids: [],
 											student_ranks_attributes: [:student_id, :rank_id, :active])

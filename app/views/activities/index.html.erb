@@ -13,7 +13,6 @@
 			<div class="row mt-4">
 			<div class="col-12 col-md-6  p-3 class-box  mt-1">
 				<span><%= link_to a.name, activity_path(a),class:'class-name' %></span>
-				<p>Students: <%= a.students.uniq.count %> (add link to <%= a.name %> students here)</p>
 				<% unless a.ranks.where(active: true).any? %> <%= link_to "This class has no ranks! Add ranks here", edit_activity_path(a) ,class:'add-rank-link'%> <% end %>
 			</div>
 			</div>

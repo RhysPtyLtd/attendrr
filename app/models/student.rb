@@ -21,9 +21,10 @@ class Student < ApplicationRecord
   validate :picture_size
   before_save { email.downcase! }
   before_save { state.upcase! }
-  before_create :assign_prospect
+  #before_create :assign_prospect
   has_many :student_ranks, dependent: :destroy
   has_many :ranks, through: :student_ranks
+  has_many :activities, through: :ranks
   accepts_nested_attributes_for :student_ranks
   has_many :attendances, dependent: :destroy
   around_save :update_daily_revenue
@@ -94,6 +95,7 @@ class Student < ApplicationRecord
     end
 
     def handle_payment_plan_changes!
+      return unless self.nil?
       return unless payment_plan_id_changed?
       changes = self.changes
       original_and_updated_payment_plans = changes.select {|s| s.include? 'payment_plan_id'}

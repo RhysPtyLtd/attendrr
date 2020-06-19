@@ -1,0 +1,43 @@
+<br><br><br>
+<% provide(:title, "Subscriptions") %>
+<h1>Choose a subscription</h1>
+<% @subscriptions.each do |s| %>
+	<ul>
+		<li>
+			<b><%= s.name + " "%></b><%= pretty_amount(s.cost) + "/month" %><br>
+			<%= s.description %><br>
+			<% if current_club %>
+				<!-- if this is the club's current subscription, shows no links, just "SUBSCRIBED!" -->
+				<% if s == current_club.subscription %>
+					SUBSCRIBED!
+				<!-- Free Forever subscription -->
+				<% elsif s.id == 1 %>
+					<% if @students > s.student_limit %>
+						<%= link_to "GO!", new_charge_path(subscription: s.id) %>
+					<% else %>
+						<%= link_to s.name, { action: :cancel, subscription: s.id }, data: { confirm: 'This will cancel future payments and revert you to the free plan.' } %>
+					<% end %>
+				<!-- Subscriptions that cost a monthly fee -->
+				<% else %>
+					<% if @no_stripe_subscription %>
+						<!-- Link for clubs who're not current Stripe customers (creates new Stripe customer) -->
+						<%= link_to "GO!", new_charge_path(subscription: s.id) %>
+					<% else %>
+						<!-- Link for clubs who are current Stripe customers (updates Stripe subscription) -->
+						<%= link_to "GO!", confirm_plan_change_subscriptions_path(subscription: s.id) %> 
+					<% end %>
+				<% end %>
+    		<% else %>
+    			<!-- Link for clubs who're not Attendrr members -->
+      			<%= link_to "GO!", signup_path %>
+    		<% end %>
+		</li>
+	</ul>
+<% end %>
+
+<!-- Cancel subscription -->
+<% if current_club %>
+	<% unless current_club.stripe_subscription_id.nil? %>
+		<%= link_to "Cancel subscription", { action: :cancel, subscription: current_club.subscription.id }, data: { confirm: 'This will cancel future payments and revert you to the free plan. Note: if your student amount exceeds the free limit some functions will not be available to you.' } %>
+	<% end %>
+<% end %>

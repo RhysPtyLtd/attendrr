@@ -1,11 +1,17 @@
 class ActivitiesController < ApplicationController
 	before_action :logged_in_user, only: [:create, :destroy, :new, :edit, :update]
 	before_action :correct_club, only: [:index, :show, :destroy] # Currently does nothing??
+	before_action :exceed_student_limit, only: [:scheduled_classes, :grading]
 
 	def new
 		@activity = Activity.new
 		@activity.timeslots.build
 		@activity.ranks.build
+	end
+
+	def students
+		@activity = Activity.find(params[:activity])
+		@activity_students = @activity.students.includes(:payment_plan).where.not(payment_plans: {name: 'Prospect'}).where(active: true)
 	end
 
 	def create
@@ -40,7 +46,10 @@ class ActivitiesController < ApplicationController
 
 	def show
 		@activity = current_club.activities.find_by(id: params[:id])
+		# To calculate students for activity_student#index
+		@activity_students = @activity.students.includes(:payment_plan).where.not(payment_plans: {name: 'Prospect'}).where(active: true)
 		@active_ranks = @activity.ranks.where(active: true)
+		# To calculate average membership length CHANGE THIS
 		@students = @activity.students.where(active: true)
 		@active_students = @students.uniq
 		#Average length of membership
@@ -139,11 +148,16 @@ class ActivitiesController < ApplicationController
 		day_find = @date_find.strftime('%w').to_i
 		# @activity = current_club.activities.joins(:timeslots).where('DATE(timeslots.schedule) = ?', date_find).includes(:timeslots)
 		@activity = current_club.activities.joins(:timeslots).where('timeslots.day = ? AND activities.active = ? AND DATE(activities.created_at) <= ?', day_find,true,@date_find).includes(:timeslots)
-
-
 	end
 
 	private
+
+		def exceed_student_limit
+			if StudentLimit.over?(current_club)
+				flash[:success] = "Woah! You have more students than this plan allows! Upgrade to reaccess this function"
+				redirect_to subscriptions_path
+			end
+		end
 
 		def activity_params
 			params.require(:activity).permit(:name, :active,

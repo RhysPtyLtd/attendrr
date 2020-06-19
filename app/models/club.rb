@@ -1,4 +1,5 @@
 class Club < ApplicationRecord
+    belongs_to :subscription, optional: true   
     has_many :payment_plans, dependent: :destroy
     has_many :students, dependent: :destroy
     has_many :activities, dependent: :destroy
@@ -26,6 +27,7 @@ class Club < ApplicationRecord
     validates :owner_first_name, presence: true, length: { maximum: 200 }
     validates :owner_last_name, presence: true, length: { maximum: 200 }
     validate :picture_size
+    after_create :assign_subscription
     after_create :build_prospect_plan
     has_many :daily_metrics
 
@@ -104,6 +106,11 @@ class Club < ApplicationRecord
         # Creates default payment plan for new students
         def build_prospect_plan
             self.payment_plans.create(name: "Prospect", price: 0, frequency: "Weekly")
+        end
+
+        def assign_subscription
+            self.subscription = Subscription.first
+            self.save!
         end
 
 end
