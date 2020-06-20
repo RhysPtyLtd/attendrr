@@ -1,129 +1,138 @@
 <%# Notifications %>
 <% rank_notification_required = false %>
 <% current_club.activities.where(active: true).each do |a| %>
-	<% unless a.ranks.any? %>
-		<% rank_notification_required = true %>
-		<% break %>
-	<% end %>
+  <% unless a.ranks.any? %>
+    <% rank_notification_required = true %>
+    <% break %>
+  <% end %>
 <% end %>
-
 <% if current_club.activities.where(active: true).none? %>
-	<%= link_to("Welcome to Attendrr! First, click here to add a class", new_activity_path) %>
+  <%= link_to("Welcome to Attendrr! First, click here to add a class", new_activity_path) %>
 <% elsif rank_notification_required %>
-	<%= link_to("There are classes without ranks! Click here to add ranks", activities_path) %>
+  <%= link_to("There are classes without ranks! Click here to add ranks", activities_path) %>
 <% elsif current_club.payment_plans.where(active: true).count-1 == 0 %>
-	<%= link_to("Now you need to add at least one payment plan! Click here", new_payment_plan_path) %>
+  <%= link_to("Now you need to add at least one payment plan! Click here", new_payment_plan_path) %>
 <% elsif current_club.students.where(active: true).none? %>
-	<%= link_to("It's time to grow your club! Add your first student here", new_student_path) %>
+  <%= link_to("It's time to grow your club! Add your first student here", new_student_path) %>
 <% elsif @students.count - @prospects.count == 0 %>
-	<%= link_to("You convert Prospects into Students by upgrading their payment plan. You can do it!", prospects_students_path) %>
+  <%= link_to("You convert Prospects into Students by upgrading their payment plan. You can do it!", prospects_students_path) %>
 <% end %>
 <%# End notification %>
-
 <div class="row mt-md-5 mt-4 ml-2 mr-2">
-<%# <%= link_to scheduled_classes_activities_path , :class => "redirect_div" do %>
-<!-- schedule class -->
-<div class="col-6 col-md-3">
-	<%= link_to(scheduled_classes_activities_path) do %>
-			<div class="div_box d-flex justify-content-center flex-column">
-				<img class="custom_icons align-self-center" src=<%=image_url('calendar.png') %>  alt="" >
-				<%# <%= link_to_image("calendar.png", scheduled_classes_activities_path) %>
-				<span class="align-self-center text-center redirect_link">Scheduled classes</span>
-			</div>
-	<% end %>
-</div>
-
-<%# <% end %>
-	<!-- Student -->
-<div class="col-6 col-md-3">
-	<%= link_to(students_path) do %>
-			<div class="div_box d-flex justify-content-center flex-column">
-				<img class="custom_icons align-self-center" src=<%=image_url('sport.png') %>  alt="" >
-				<%# <%= link_to_image("calendar.png", scheduled_classes_activities_path) %>
-				<span class="align-self-center text-center redirect_link">Students</span>
-				<span class="align-self-center text-center redirect_link"><%= @students.count %></span>
-			</div>
-	<% end %>
-</div>
-
-	<% absent_students = 0 %>
-	<% @students.each do |s| %>
-	<!-- <ul> -->
-	<% if s.last_attendance < @absent_alert_activation_date %>
-	<% absent_students += 1 %>
-	<% end %>
-	<!-- </ul> -->
-	<% end %>
-	<!-- absent student -->
-<div class="col-6 col-md-3 mt-2 mt-md-0">
-	<%= link_to (absents_students_path) do %>
-			<div class="div_box d-flex justify-content-center flex-column">
-				<img class="custom_icons align-self-center" src=<%=image_url('absent.png') %>  alt="" >
-				<span class="align-self-center text-center redirect_link">Absents</span>
-				<span class="align-self-center text-center redirect_link"><%= absent_students %></span>
-			</div>
-	<% end %>
-</div>
-	<!-- Prospects  -->
-	<div class="col-6 col-md-3 mt-2 mt-md-0">
-		<%= link_to (prospects_students_path) do %>
-			<div class="div_box d-flex justify-content-center flex-column">
-				<img class="custom_icons align-self-center" src=<%=image_url('prospect.png') %>  alt="" >
-				<span class="align-self-center text-center redirect_link">Prospects</span>
-				<span class="align-self-center text-center redirect_link"><%= @prospects.count %></span>
-			</div>
-		<% end %>
-	</div>
-</div>
-<div class="row mt-md-5 mt-2 ml-2 mr-2">
-	<%# <%= link_to scheduled_classes_activities_path do %>
-	<!-- Class-->
-	<div class="col-6 col-md-3">
-		<%= link_to(activities_path) do %>
-		<div class="div_box d-flex justify-content-center flex-column">
-			<img class="custom_icons align-self-center" src=<%=image_url('class.png') %>  alt="" >
-			<span class="align-self-center text-center redirect_link">Classes</span>
-			<span class="align-self-center text-center redirect_link"> <%= current_club.activities.where(active: true).count %></span>
-		</div>
-		<% end %>
-	</div>
-	<%# <% end %>
-	<!-- Payment -->
-	<div class="col-6 col-md-3">
-		<%= link_to(payment_plans_path) do %>
-		<div class="div_box d-flex justify-content-center flex-column">
-			<img class="custom_icons align-self-center" src=<%=image_url('payment.png') %>  alt="" >
-			<span class="align-self-center text-center redirect_link">Payment plans</span>
-			<span class="align-self-center text-center redirect_link">	<%=  current_club.payment_plans.where(active: true).count-1 %></span>
-		</div>
-		<% end %>
-	</div>
-	<!-- metrics -->
-	<div class="col-6 col-md-3 mt-2 mt-md-0">
-		<%= link_to(metrics_path) do %>
-		<div class="div_box d-flex justify-content-center flex-column">
-			<img class="custom_icons align-self-center" src=<%=image_url('metrics.png') %>  alt="" >
-			<span class="align-self-center text-center redirect_link">Metrics</span>
-		</div>
-		<% end %>
-	</div>
-	<!-- View Club details  -->
-	<div class="col-6 col-md-3 mt-2 mt-md-0">
-		<%= link_to(current_club) do %>
-		<div class="div_box d-flex justify-content-center flex-column">
-			<img class="custom_icons align-self-center" src=<%=image_url('eye.png') %>  alt="" >
-			<span class="align-self-center text-center redirect_link">View Club Details</span>
-		</div>
-		<% end %>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-4 offset-md-4  col-sm-12">
-
-
-	</div>
-	<div class="col-md-4 col-12 d-flex justify-content-end add_new_student_div">
-		<span class="add_new_student align-self-end"><%= link_to("Add new student", new_student_path) %></span>
-	</div>
-</div>
+  <%# <%= link_to scheduled_classes_activities_path , :class => "redirect_div" do %>
+    <!-- schedule class -->
+    <div class="col-6 col-md-3">
+      <%= link_to scheduled_classes_activities_path,class:"homepage-nav" do %>
+        <div class="row">
+          <div class="div_box col-12 d-flex justify-content-center flex-column">
+            <img class="custom_icons align-self-center" src=<%=image_url('calendar.png') %>  alt="" >
+            <%# <%= link_to_image("calendar.png", scheduled_classes_activities_path) %>
+            <span class="align-self-center text-center redirect_link">Scheduled classes</span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <%# <% end %>
+    <!-- Student -->
+    <div class="col-6 col-md-3">
+      <%= link_to students_path,class:"homepage-nav" do %>
+        <div class="row">
+          <div class="div_box col-12 d-flex justify-content-center flex-column">
+            <img class="custom_icons align-self-center" src=<%=image_url('sport.png') %>  alt="" >
+            <%# <%= link_to_image("calendar.png", scheduled_classes_activities_path) %>
+            <span class="align-self-center text-center redirect_link">Students</span>
+            <span class="align-self-center text-center redirect_link"><%= @students.count %></span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <% absent_students = 0 %>
+    <% @students.each do |s| %>
+      <!-- <ul> -->
+      <% if s.last_attendance < @absent_alert_activation_date %>
+        <% absent_students += 1 %>
+      <% end %>
+      <!-- </ul> -->
+    <% end %>
+    <!-- absent student -->
+    <div class="col-6 col-md-3 mt-2 mt-md-0">
+      <%= link_to absents_students_path,class:"homepage-nav" do %>
+        <div class="row">
+          <div class="div_box col-12 d-flex justify-content-center flex-column">
+            <img class="custom_icons align-self-center" src=<%=image_url('absent.png') %>  alt="" >
+            <span class="align-self-center text-center redirect_link">Absents</span>
+            <span class="align-self-center text-center redirect_link"><%= absent_students %></span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <!-- Prospects  -->
+    <div class="col-6 col-md-3 mt-2 mt-md-0">
+      <%= link_to prospects_students_path,class:"homepage-nav" do %>
+        <div class="row">
+          <div class="div_box col-12 d-flex justify-content-center flex-column">
+            <img class="custom_icons align-self-center" src=<%=image_url('prospect.png') %>  alt="" >
+            <span class="align-self-center text-center redirect_link">Prospects</span>
+            <span class="align-self-center text-center redirect_link"><%= @prospects.count %></span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row mt-md-5 mt-2 ml-2 mr-2">
+    <%# <%= link_to scheduled_classes_activities_path do %>
+      <!-- Class-->
+      <div class="col-6 col-md-3">
+        <%= link_to activities_path,class:"homepage-nav" do %>
+          <div class="row">
+            <div class="div_box col-12 d-flex justify-content-center flex-column">
+              <img class="custom_icons align-self-center" src=<%=image_url('class.png') %>  alt="" >
+              <span class="align-self-center text-center redirect_link">Classes</span>
+              <span class="align-self-center text-center redirect_link"> <%= current_club.activities.where(active: true).count %></span>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <%# <% end %>
+      <!-- Payment -->
+      <div class="col-6 col-md-3">
+        <%= link_to payment_plans_path,class:"homepage-nav" do %>
+          <div class="row">
+            <div class="div_box col-12 d-flex justify-content-center flex-column">
+              <img class="custom_icons align-self-center" src=<%=image_url('payment.png') %>  alt="" >
+              <span class="align-self-center text-center redirect_link">Payment plans</span>
+              <span class="align-self-center text-center redirect_link">	<%=  current_club.payment_plans.where(active: true).count-1 %></span>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <!-- metrics -->
+      <div class="col-6 col-md-3 mt-2 mt-md-0">
+        <%= link_to metrics_path,class:"homepage-nav" do %>
+          <div class="row">
+            <div class="div_box col-12 d-flex justify-content-center flex-column">
+              <img class="custom_icons align-self-center" src=<%=image_url('metrics.png') %>  alt="" >
+              <span class="align-self-center text-center redirect_link">Metrics</span>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <!-- View Club details  -->
+      <div class="col-6 col-md-3 mt-2 mt-md-0">
+        <%= link_to current_club,class:"homepage-nav" do %>
+          <div class="row">
+            <div class="div_box col-12  d-flex justify-content-center flex-column">
+              <img class="custom_icons align-self-center" src=<%=image_url('eye.png') %>  alt="" >
+              <span class="align-self-center text-center redirect_link">View Club Details</span>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 offset-md-4  col-sm-12">
+      </div>
+      <div class="col-md-4 col-12 d-flex justify-content-end add_new_student_div">
+        <span class="add_new_student align-self-end"><%= link_to("Add new student", new_student_path) %></span>
+      </div>
+    </div>

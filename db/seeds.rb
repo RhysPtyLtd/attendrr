@@ -46,17 +46,17 @@ else
   Subscription.create!(name: "Free Forever",
                        cost: 0,
                        stripe_id: "",
-                       student_limit: 20,
+                       student_limit: 200,
                        description: "Whether you're just starting out, or you run a smaller club by choice, this plan will accomodate 20 students. And it's free, forever!")
   Subscription.create!(name: "Silver",
                        cost: 3000,
                        stripe_id: "plan_H8vl5wUWxyUubB",
-                       student_limit: 30,
+                       student_limit: 300,
                        description: "You're onto something here. For medium-sized clubs of up to 30 students")
   Subscription.create!(name: "Gold",
                        cost: 5000,
                        stripe_id: "plan_H8vm73Ow5Aff22",
-                       student_limit: 50,
+                       student_limit: 500,
                        description: "Now you're formidable! For clubs of up to 50 students")
   Subscription.create!(name: "Platinum",
                        cost: 10000,

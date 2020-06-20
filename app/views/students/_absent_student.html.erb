@@ -1,22 +1,21 @@
 <div class="thumbnail scroll-area">
-    <div class="absent_div" id="tasks">
-      <h3 class="text-center mt-3 mb-3">Absent</h3>
+  <div class="absent_div" id="tasks">
+    <h3 class="text-center mt-3 mb-3">Absent</h3>
     <% @student_absent.each do |student| %>
       <%= link_to( attendance_students_path(s_id: student.id,date_slot: params[:date_slot],activity_id: params[:activity_id],timeslot_id: params[:timeslot_id]), :remote => true,:class=>"student_attance_div") do %>
-      <div class="absent_student d-flex justify-content-start align-content-center mt-2 mb-2">
+        <div class="absent_student d-flex justify-content-start align-content-center mt-2 mb-2">
           <div class="align-self-center m-2">
             <% if student.picture? %>
-              <img class="student_img align-self-center" <%= image_tag student.picture.url %>
+              <img class="attadance-student-img align-self-center" <%= image_tag student.picture.url %>
             <% else %>
-              <img class="student_img align-self-center" <%= image_tag("no_picture.jpg") %>
+              <img class="attadance-student-img align-self-center" <%= image_tag("no_picture.jpg") %>
             <% end %>
           </div>
-          <div class="align-self-center pl-2">
-            <span class="student_name"> <%= student.first_name + " " + student.last_name%></span>
-          </div>
-
-       </div>
-       <% end %>
-    <% end %>
-    </div>
+              <div class="align-self-center pl-2">
+                <span class="student_name"> <%= student.first_name + " " + student.last_name%></span>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
     </div>

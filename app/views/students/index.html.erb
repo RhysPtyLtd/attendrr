@@ -1,52 +1,49 @@
 <section class="studentList">
-	<% provide(:title, "Students") %>
-	<div class="container mt-5">
-		<div class="row">
-			<div class="col-5 offset-2 d-flex justify-content-start  mt-2 mb-2">
-				<h4 style="margin-bottom:0px;">
-					<span class="bg-success-gradient r-50 custom-shadow"><i class="fa fa-users" title="students"></i></span>
-					Students
-				</h4>
-			</div>
-			<div class="col-3  ml-auto">
-				<%= link_to '<i class="fa fa-power-off"></i> Show Deactivated Students'.html_safe, deactivated_students_path(@students),:class=>"deactive-student-link" %> <br>
-			</div>
-		</div>
-		<% if @students.none? %>
-			<%= link_to("You haven't got students yet! Add your first student here", new_student_path) %><br>
-		<% end %>
-		<div class="row d-flex justify-content-center align-content-center">
-		<% @students.each do |s| %>	
-		<div class="col-md-6 col-lg-4 col-xl-3 col-12   m-3  ">
-		<%= link_to( student_path(s ),:class=>"student-link") do %>
-			
-				<div class=" student_div d-flex  flex-column justify-content-center">
-					<div class="align-self-center  m-2">
-						<% if s.picture? %>
-							<img class="student_img align-self-center " <%= image_tag s.picture.url  %>
+  <% provide(:title, "Students") %>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-5 offset-2 d-flex justify-content-start  mt-2 mb-2">
+        <h4 style="margin-bottom:0px;">
+          <span class="bg-success-gradient r-50 custom-shadow"><i class="fa fa-users" title="students"></i></span>
+          Students
+        </h4>
+      </div>
+    </div>
+    <% if @students.none? %>
+      <%= link_to("You haven't got students yet! Add your first student here", new_student_path) %><br>
+    <% end %>
+    <div class="row d-flex justify-content-center align-content-center">
+      <% @students.each do |s| %>
+        <div class="col-md-6 col-lg-4 col-xl-3 col-12   m-3  ">
+          <%= link_to( student_path(s ),:class=>"student-link") do %>
+            <div class=" student_div d-flex  flex-column justify-content-center">
+              <div class="align-self-center  m-2">
+                <% if s.picture? %>
+                  <img class="student_img align-self-center " <%= image_tag s.picture.url  %>
 						<% else %>
 							<img class="student_img align-self-center " <%= image_tag("no_picture.jpg") %>
 						<% end %>
 					</div>
-					<div class="align-self-center pl-2">
-						<p class="student_name"> <%= s.last_name + ", " + s.first_name %></p>
-					</div>
-				</div>
-				<%# <div class="student  mt-2 mb-2"> %>
-					
-				<%# </div> %>
-				
-			<% end %>	
-			</div>
-		<% end %>
-		</div>
-		<%#
+                  <div class="text-center">
+                    <p class="student_name"> <%= s.last_name + ", " + s.first_name %></p>
+                  </div>
+                </div>
+                <%# <div class="student  mt-2 mb-2"> %>
+                <%# </div> %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <%#
 		<div class="row">
 			<div class="col-12 col-md-6 mt-3 mb-3">
 				Average length of membership: <%= @average_membership_length %> <%# days<br>
 			</div>
 		</div> #%>
-		
-	</div>
-
-</section>
+        <div class="row d-flex justify-content-center align-content-center mt-4">
+          <div class=" text-center">
+            <h4><%= link_to '<i class="fa fa-power-off"></i> Show Deactivated Students'.html_safe, deactivated_students_path(@students),:class=>"deactive-student-link" %></h4>
+          </div>
+        </div>
+      </div>
+    </section>

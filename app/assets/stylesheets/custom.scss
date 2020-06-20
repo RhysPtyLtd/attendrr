@@ -16,15 +16,17 @@ $state-danger-text: #eaeaea;
 }
 
 /* universal */
-body{
+body {
   background-color: #F5F7FB;
 }
-i{
-  border:none!important;
+
+i {
+  border: none !important;
 }
+
 .break {
-flex-basis: 100%;
-height: 0;
+  flex-basis: 100%;
+  height: 0;
 }
 
 body {
@@ -41,6 +43,7 @@ textarea {
 
 .center {
   text-align: center;
+
   h1 {
     margin-bottom: 10px;
   }
@@ -48,7 +51,12 @@ textarea {
 
 /* typography */
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   line-height: 1;
 }
 
@@ -85,6 +93,7 @@ p {
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
+
   &:hover {
     color: white;
     text-decoration: none;
@@ -98,18 +107,23 @@ footer {
   padding-top: 5px;
   border-top: 1px solid $gray-medium-light;
   color: $gray-light;
+
   a {
     color: $gray;
+
     &:hover {
       color: $gray-darker;
     }
   }
+
   small {
     float: left;
   }
+
   ul {
     float: right;
     list-style: none;
+
     li {
       float: left;
       margin-left: 15px;
@@ -133,18 +147,22 @@ aside {
   section.club_info {
     margin-top: 20px;
   }
+
   section {
     padding: 10px 0;
     margin-top: 20px;
+
     &:first-child {
       border: 0;
       padding-top: 0;
     }
+
     span {
       display: block;
       margin-bottom: 3px;
       line-height: 1;
     }
+
     h1 {
       font-size: 1.4em;
       text-align: left;
@@ -166,7 +184,10 @@ aside {
 
 /* forms */
 
-input, textarea, select, .uneditable-input {
+input,
+textarea,
+select,
+.uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   margin-bottom: 15px;
@@ -179,6 +200,7 @@ input {
 
 #error_explanation {
   color: red;
+
   ul {
     color: red;
     margin: 0 0 30px 0;
@@ -195,6 +217,7 @@ input {
 .checkbox {
   margin-top: -10px;
   margin-bottom: 10px;
+
   span {
     margin-left: 20px;
     font-weight: normal;
@@ -211,6 +234,7 @@ input {
 .clubs {
   list-style: none;
   margin: 0;
+
   li {
     overflow: auto;
     padding: 10px 0;
@@ -223,22 +247,27 @@ input {
 .students {
   list-style: none;
   padding: 0;
+
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
   }
+
   .user {
     margin-top: 5em;
     padding-top: 0;
   }
+
   .content {
     display: block;
     margin-left: 60px;
+
     img {
       display: block;
       padding: 5px 0;
     }
   }
+
   .timestamp {
     color: $gray-light;
     display: block;
@@ -255,6 +284,7 @@ aside {
 
 span.picture {
   margin-top: 10px;
+
   input {
     border: 0;
   }
@@ -269,36 +299,84 @@ span.picture {
 
 
 /**/
-.grade-head {margin: 0 0 25px;}
-.grade-head h4{display: flex;}
-.grade-head h4 span{margin-left: auto;}
+.grade-head {
+  margin: 0 0 25px;
+}
 
-ul.grade-list-bx{padding: 0 0 0 50px;}
-ul.grade-list-bx li{display: flex;margin: 0 0 15px;position: relative;}
-ul.grade-list-bx li:before{content: "";width: 6px;height: 6px;border-radius: 100%;position: absolute;background-color: #525151;top: 6px;left: -16px;}
-ul.grade-list-bx li span.first {width: 20%;}
-ul.grade-list-bx li span.middle {width: 73%;}
-ul.grade-list-bx li span.last {width: 7%;}
-ul.grade-list-bx li span.chk-bx input{display: block; width: 20px; margin-left: auto; margin-right: 30px;}
-ul.grade-list-bx li span select{margin: 0;}
-.club_info{
+.grade-head h4 {
+  display: flex;
+}
+
+.grade-head h4 span {
+  margin-left: auto;
+}
+
+ul.grade-list-bx {
+  padding: 0 0 0 50px;
+}
+
+ul.grade-list-bx li {
+  display: flex;
+  margin: 0 0 15px;
+  position: relative;
+}
+
+ul.grade-list-bx li:before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 100%;
+  position: absolute;
+  background-color: #525151;
+  top: 6px;
+  left: -16px;
+}
+
+ul.grade-list-bx li span.first {
+  width: 20%;
+}
+
+ul.grade-list-bx li span.middle {
+  width: 73%;
+}
+
+ul.grade-list-bx li span.last {
+  width: 7%;
+}
+
+ul.grade-list-bx li span.chk-bx input {
+  display: block;
+  width: 20px;
+  margin-left: auto;
+  margin-right: 30px;
+}
+
+ul.grade-list-bx li span select {
+  margin: 0;
+}
+
+.club_info {
   margin-top: 36px;
 }
-.club_name_box{
+
+.club_name_box {
   height: 100px;
   margin-top: auto;
   margin-bottom: auto;
 }
-.club_name{
+
+.club_name {
 
   font-size: 24px;
   margin-bottom: 0;
   padding-left: 8px;
 }
-.club_logo{
+
+.club_logo {
   height: 100%;
   width: auto;
 }
+
 .add_new_student>a {
   padding: 10px 8px;
   margin: 8px 20px;
@@ -311,11 +389,13 @@ ul.grade-list-bx li span select{margin: 0;}
   -webkit-transition: all .4s ease-out;
   transition: all .4s ease-out;
 }
-.add_new_student>a:hover{
+
+.add_new_student>a:hover {
   text-decoration: none;
-  background-color:#000;
+  background-color: #000;
 }
-.div_box{
+
+.div_box {
   height: 200px;
   margin-top: auto;
   margin-bottom: auto;
@@ -325,55 +405,71 @@ ul.grade-list-bx li span select{margin: 0;}
   -webkit-transition: all .4s ease-out;
   transition: all .4s ease-out;
 }
-.div_box:hover{
+
+.div_box:hover {
   box-shadow: 2px 2px 24px #e8e8e8;
   -webkit-transition: all .64s ease-in;
   transition: all .64s ease-in;
 }
-.custom_icons{
+
+.custom_icons {
   width: 60px;
   height: 60px;
 }
-.container,.container-fluid{
+
+.container,
+.container-fluid {
   margin-top: 24px;
 }
-.club_info>div>div>a{
+
+.club_info>div>div>a {
   text-decoration: none;
 }
+
 .redirect_link {
   color: #000;
 }
+
 .redirect_link:hover {
   color: #ff0000;
-  text-decoration: none!important;
+  text-decoration: none !important;
 }
+
 .redirect_div {
   display: block;
 }
-.dropdown-menu{
+
+.dropdown-menu {
   left: -56px;
 }
-.dropdown-item>a{
+
+.dropdown-item>a {
   color: #ff0000;
 }
 
-.dropdown-item>a:hover,.dropdown-item:hover,.previous>a:hover{
+.dropdown-item>a:hover,
+.dropdown-item:hover,
+.previous>a:hover {
   color: #fff;
   text-decoration: none;
   background-color: #000;
   transition: all .4s ease-out;
 }
-.dropdown-item_anchor{
-  color: #fff!important;
+
+.dropdown-item_anchor {
+  color: #fff !important;
 }
-.go_button{
+
+.go_button {
   border: 1px solid #c5c5c5;
 }
-.attendance_class{
+
+.attendance_class {
   border: 1px solid #c5c5c5;
   height: 15vh;
 }
-.attendance-box{
+
+.attendance-box {
   height: 15vh;
   margin-top: auto;
   margin-bottom: auto;
@@ -383,89 +479,115 @@ ul.grade-list-bx li span select{margin: 0;}
   -webkit-transition: all .4s ease-out;
   transition: all .4s ease-out;
 }
-.attendance-box:hover{
+
+.attendance-box:hover {
   box-shadow: 2px 2px 24px #e8e8e8;
   -webkit-transition: all .64s ease-in;
   transition: all .64s ease-in;
 }
+
 .row {
   margin-right: 15px;
   margin-left: 15px;
 }
 
-.previous>a ,.next>a{
+.previous>a,
+.next>a {
   border: 1px solid #c5c5c5;
   border-radius: 24px;
   padding: 8px;
   color: #000;
 }
-.previous>a:hover,.next>a:hover{
+
+.previous>a:hover,
+.next>a:hover {
   color: #fff;
   text-decoration: none;
   background-color: #000;
   transition: all .4s ease-out;
 }
-.schedule_time{
+
+.schedule_time {
   font-size: 24px;
 }
-.schedule_time,.schedule_name{
+
+.schedule_time,
+.schedule_name {
   text-transform: uppercase;
 }
 
 
-.scheduled_class_div>a{
+.scheduled_class_div>a {
   color: #000;
 }
-.scheduled_class_div>a:hover{
+
+.scheduled_class_div>a:hover {
   text-decoration: none;
   color: #ff0000;
 }
-#absent{
+
+#absent {
   background-color: #ff7675;
 }
-#present{
-  background-color:#74b9ff;
+
+#present {
+  background-color: #74b9ff;
 }
-.attandance-date>a,.attendance-absent-student>a{
-  color:#000!important;
+
+.attandance-date>a,
+.attendance-absent-student>a {
+  color: #000 !important;
 }
-.attandance-date>a:hover{
-  color:#007bff!important;
+
+.attandance-date>a:hover {
+  color: #007bff !important;
   text-decoration: none;
 }
-.attendance-absent-student>a:hover{
+
+.attendance-absent-student>a:hover {
   text-decoration: none;
-  color: #fff!important;
+  color: #fff !important;
 }
-.attendance-present-student>a:hover{
+
+.attendance-present-student>a:hover {
   text-decoration: none;
-  color: #000!important;
+  color: #000 !important;
 }
-.scroll-area,.scroll-area2{
+
+.scroll-area,
+.scroll-area2 {
   height: 50vh;
   overflow-y: scroll;
-  scrollbar-color: #7f7f7f3d transparent; /* thumb and track color */
+  scrollbar-color: #7f7f7f3d transparent;
+  /* thumb and track color */
   scrollbar-width: thin;
 }
 
-#absent,#present{
+#absent,
+#present {
   border-radius: 20px;
 }
-.absent_div,.present_div{
+
+.absent_div,
+.present_div {
   border-radius: 35px;
   width: calc(100% - 18px);
 }
-.student_img{
-  width:auto;
+
+.student_img {
+  width: auto;
   height: 100px;
   border-radius: 50%;
 }
-.absent_student,.present_student{
+
+.absent_student,
+.present_student {
   background-color: #fff;
   border-radius: 16px;
   height: 65px;
 }
-.student_div{
+
+.student_div {
   height: 200px;
   margin-top: auto;
   margin-bottom: auto;
@@ -475,14 +597,17 @@ ul.grade-list-bx li span select{margin: 0;}
   -webkit-transition: all .4s ease-out;
   transition: all .4s ease-out;
 }
-.student_div:hover{
+
+.student_div:hover {
   box-shadow: 2px 2px 24px #e8e8e8;
   -webkit-transition: all .64s ease-in;
   transition: all .64s ease-in;
 }
-.student-link:hover{
+
+.student-link:hover {
   text-decoration: none;
 }
+
 // .student_div>.student:nth-child(odd){
 //   background-color: #f3dfdf;
 //   border-radius: 16px;
@@ -496,212 +621,323 @@ ul.grade-list-bx li span select{margin: 0;}
 //   background-color: #fff5f5;
 // }
 
-.student_name{
-  color:#000;
+.student_name {
+  color: #000;
 }
-.student_attance_div:hover,.student_div:hover{
-  text-decoration: none!important;
+
+.student_attance_div:hover,
+.student_div:hover {
+  text-decoration: none !important;
 }
-.student_attance_div:hover .student_name,.student_div:hover .student_name{
+
+.student_attance_div:hover .student_name,
+.student_div:hover .student_name {
   color: #007bff;
- }
- .staight-line{
-
- }
- .nav_link:hover{
-   text-decoration: none;
- }
- .single_student_name{
-   font-size: 24px;
-   font-weight:bold;
-   white-space: nowrap;
- }
- .single_student_img{
-   border-radius: 12px;
-   width: 100%;
-   height: auto;
- }
- .studentpage p{
-   line-height: 16px;
- }
- .single_student_class{
-   font-size: 24px;
- }
- .btn-pay{
-   font-size: 15px;
- }
- .btn-danger {
-    // padding: 10px 8px;
-    // margin: 8px 0;
-    // border: none;
-    // border-radius: 5px;
-    background-color: #ff0000;
-    color: #fff;
-    text-align: center;
-    cursor: pointer;
-    -webkit-transition: all .4s ease-out;
-    transition: all .4s ease-out;
- }
- #student_payment_plan_id{
-   padding: 8px;
- }
- .chk-box{
-   display: none;
- }
-
- .btn-outline-primary:hover {
-     color: #fff;
-     background-color: #06090c;
-     border-color: #06090c;
- }
- .class-name{
-   font-size: 24px;
-   text-transform: uppercase;
-
- }
- .class-name:hover{
-   text-decoration: none;
-  color: #ff0000;
-
- }
- .class-box,.single-class-box{
-   background-color: #f9f9f9;
-    border-radius: 16px;
- }
- .custom-link{
-   border: 1px solid #007bff;
-    padding: 8px;
-    border-radius: 24px;
- }
- .custom-link:hover{
-   background-color: #007bff;
-   color: #fff;
-   border-color: #007bff;
- }
- .btn-delete{
-   border: 1px solid #ff0000;
-   padding: 8px;
-  border-radius: 24px;
-  color: #ff0000;
- }
- .btn-delete:hover{
-   background-color: #ff0000;
-   color: #fff;
-   border-color: #ff0000;
- }
- .title{
-   text-transform: capitalize;
-   font-size: 2rem;
- }
-h1{
-  text-transform: capitalize;
 }
-.link-text-decoration-none:hover{
+
+.staight-line {}
+
+.nav_link:hover {
   text-decoration: none;
 }
- .add-rank-link{
-   color: #ff0000;
- }
- .add-rank-link:hover{
-   text-decoration: none;
-   color: #007bff;
- }
- .white-box {
-    background: #fff;
-    padding: 13px 12px;
-    background: #fbfbfb;
-    margin-bottom: 15px;
-    border-radius: 8px;
+
+.single_student_name {
+  font-size: 24px;
+  font-weight: bold;
+  white-space: nowrap;
 }
+
+.single_student_img {
+  border-radius: 12px;
+  width: 100%;
+  height: auto;
+}
+
+.studentpage p {
+  line-height: 16px;
+}
+
+.single_student_class {
+  font-size: 24px;
+}
+
+.btn-pay {
+  font-size: 15px;
+}
+
+.btn-danger {
+  // padding: 10px 8px;
+  // margin: 8px 0;
+  // border: none;
+  // border-radius: 5px;
+  background-color: #ff0000;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  -webkit-transition: all .4s ease-out;
+  transition: all .4s ease-out;
+}
+
+#student_payment_plan_id {
+  padding: 8px;
+}
+
+.chk-box {
+  display: none;
+}
+
+.btn-outline-primary:hover {
+  color: #fff;
+  background-color: #06090c;
+  border-color: #06090c;
+}
+
+.class-name {
+  font-size: 24px;
+  text-transform: uppercase;
+
+}
+
+.class-name:hover {
+  text-decoration: none;
+  color: #ff0000;
+
+}
+
+.class-box,
+.single-class-box {
+  background-color: #f9f9f9;
+  border-radius: 16px;
+}
+
+.custom-link {
+  border: 1px solid #007bff;
+  padding: 8px;
+  border-radius: 24px;
+}
+
+.custom-link:hover {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.btn-delete {
+  border: 1px solid #ff0000;
+  padding: 8px;
+  border-radius: 24px;
+  color: #ff0000;
+}
+
+.btn-delete:hover {
+  background-color: #ff0000;
+  color: #fff;
+  border-color: #ff0000;
+}
+
+.title {
+  text-transform: capitalize;
+  font-size: 2rem;
+}
+
+h1 {
+  text-transform: capitalize;
+}
+
+.link-text-decoration-none:hover {
+  text-decoration: none;
+}
+
+.add-rank-link {
+  color: #ff0000;
+}
+
+.add-rank-link:hover {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.white-box {
+  background: #fff;
+  padding: 13px 12px;
+  background: #fbfbfb;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
+
 .bg-warning-gradient {
-    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+  background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 }
+
 .bg-success-gradient {
-    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
+
 .front-dashboard .col-xs-3 div span {
-    padding: 6px 13px;
-    border-radius: 50%;
-    width: 38px;
-    height: 38px;
-    display: inline-block !important;
+  padding: 6px 13px;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: inline-block !important;
 }
+
 .front-dashboard .col-xs-3 i {
-    color: #ffffff;
-    font-size: 12px;
-    border: none;
-    padding: 0;
+  color: #ffffff;
+  font-size: 12px;
+  border: none;
+  padding: 0;
 }
-.r-50{
+
+.r-50 {
   border-radius: 50%;
 }
-.custom-shadow{
+
+.custom-shadow {
   box-shadow: 2px 2px 24px #e8e8e8;
   -webkit-transition: all .64s ease-in;
   transition: all .64s ease-in;
 }
-.deactive-student-link{
+
+.deactive-student-link {
   color: #ff0000;
 }
-.deactive-student-link:hover{
+
+.deactive-student-link:hover {
   text-decoration: none;
-  
-}
- @media (min-width: 768px) {
 
-.scroll-area::-webkit-scrollbar {
-  width: .4em;
-}
-.scroll-area::-webkit-scrollbar,
-.scroll-area::-webkit-scrollbar-thumb {
-  overflow:visible;
-  border-radius: 4px;
-}
-.scroll-area::-webkit-scrollbar-thumb {
-  background: #7f7f7f3d;
 }
 
- }
+.club_info {
+  a {
+    .row {
+      margin-right: 0 !important;
+      margin-left: 0 !important;
+    }
+  }
+
+  a:hover {
+    transition: all .4s ease-out;
+
+    img {
+      filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+    }
+
+    .redirect_link {
+      color: #ff0000 !important;
+    }
+  }
+}
+
+.attadance-student-img {
+  width: auto;
+  height: 50px;
+  border-radius: 50%;
+}
+
+@include media-breakpoint-down(sm) {
+  .club_info {
+    .row {
+      .col-6 {
+        padding-right: 8px !important;
+        padding-left: 0 !important;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+
+  .scroll-area::-webkit-scrollbar {
+    width: .4em;
+  }
+
+  .scroll-area::-webkit-scrollbar,
+  .scroll-area::-webkit-scrollbar-thumb {
+    overflow: visible;
+    border-radius: 4px;
+  }
+
+  .scroll-area::-webkit-scrollbar-thumb {
+    background: #7f7f7f3d;
+  }
+
+}
+
 @media (max-width: 768px) {
-  .club_info{
+  .club_info {
     margin-top: 24px;
   }
-  .add_new_student_div{
+
+  .add_new_student_div {
     margin-top: 18px;
   }
-  .club_name_box{
+
+  .club_name_box {
     height: 50px;
   }
-  .div_box{
+
+  .div_box {
     height: 16vh;
   }
-  .custom_icons{
+
+  .custom_icons {
     width: 35px;
     height: 35px;
   }
+
   .add_new_student>a {
     padding: 6px;
     margin: 8px 20px;
 
   }
-  .previous>a ,.next>a{
+
+  .previous>a,
+  .next>a {
     font-size: 16px;
   }
-  .previous,.next{
-    padding-right:0;
+
+  .previous,
+  .next {
+    padding-right: 0;
     padding-left: 0;
   }
-  .scheduled_class_div>a>.row{
+
+  .scheduled_class_div>a>.row {
     margin-right: -15px;
     margin-left: -15px;
   }
-  .schedule_time{
+
+  .schedule_time {
     font-size: 16px;
   }
-  .schedule_name{
+
+  .schedule_name {
     font-size: 12px;
   }
-  h4{
+
+  h4 {
     font-size: 1.25rem;
+  }
+}
+
+@media (max-height:600px) {
+
+  .div_box,
+  .attendance-box {
+    height: 30vh;
+  }
+
+  .schedule_time {
+    font-size: 18px;
+  }
+
+}
+
+@media (max-height:400px) {
+
+  .div_box,
+  .attendance-box {
+    height: 50vh;
+    ;
   }
 }
