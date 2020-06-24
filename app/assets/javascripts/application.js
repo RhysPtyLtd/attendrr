@@ -8,6 +8,7 @@
 //= require tempusdominus-bootstrap-4
 //= require select2
 //= require chartkick
+//= require trix
 //= require Chart.bundle
 //= require jquery_nested_form
 
