@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_23_053836) do
+ActiveRecord::Schema.define(version: 2020_06_24_105254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,12 +39,19 @@ ActiveRecord::Schema.define(version: 2020_05_23_053836) do
     t.index ["timeslot_id"], name: "index_attendances_on_timeslot_id"
   end
 
+  create_table "blog_pictures", force: :cascade do |t|
+    t.text "image_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "blog_posts", force: :cascade do |t|
     t.string "title"
     t.string "subtitle"
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "picture"
   end
 
   create_table "clubs", id: :serial, force: :cascade do |t|
@@ -105,6 +112,12 @@ ActiveRecord::Schema.define(version: 2020_05_23_053836) do
     t.index ["club_id"], name: "index_daily_metrics_on_club_id"
   end
 
+  create_table "images", force: :cascade do |t|
+    t.text "image_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "payment_plans", id: :serial, force: :cascade do |t|
     t.integer "club_id"
     t.string "name"
@@ -116,6 +129,12 @@ ActiveRecord::Schema.define(version: 2020_05_23_053836) do
     t.datetime "updated_at", null: false
     t.float "daily_value"
     t.index ["club_id"], name: "index_payment_plans_on_club_id"
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.text "image_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ranks", id: :serial, force: :cascade do |t|
