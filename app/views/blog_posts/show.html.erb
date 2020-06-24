@@ -10,6 +10,12 @@
 			Posted on <%= @posting_date %>
 		</div>
 		<%= kramdown(@content) %>
+
+		<% if @picture.nil? %>
+			NO PICTURE!
+		<% else %>
+			<%= image_tag @picture  %>
+		<% end %>
 	</div>
 </section>
 

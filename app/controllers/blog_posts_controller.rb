@@ -15,6 +15,7 @@ class BlogPostsController < ApplicationController
   		@blog_post = BlogPost.find(params[:id])
       @posting_date = @blog_post.created_at.to_date.to_formatted_s(:long)
       @content = @blog_post.content
+      @picture = @blog_post.picture
 	end
 
 	def new
@@ -67,7 +68,7 @@ class BlogPostsController < ApplicationController
     private
 
        	def blog_post_params
-           	params.require(:blog_post).permit(:title, :subtitle, :content)
+           	params.require(:blog_post).permit(:title, :subtitle, :content, :picture)
        	end
 
        	def admin?

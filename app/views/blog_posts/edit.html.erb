@@ -10,6 +10,9 @@
 				<%= f.label :subtitle %>
 				<%= f.text_field :subtitle, class: 'form-control' %>
 
+				<%= f.label :picture, "Change cover image" %>
+          		<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+
 				<%= f.label :content %>*
 				<%= f.text_field :content, id: :blog_content, class: 'form-control' %>
 				<trix-editor input="blog_content"></trix-editor>
