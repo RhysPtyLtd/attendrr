@@ -11,6 +11,7 @@
 					<div class="col-12 col-md-6  p-3 class-box  mt-1">
 						<span><%= link_to bp.title, blog_post_path(bp),class:'class-name' %></span>
 						<p><%= bp.subtitle %></p>
+						<p><%= bp.created_at.to_date.to_formatted_s(:long) %></p>
 						<% if bp.picture.nil? %>
 							<%= image_tag("no_picture.jpg") %>
 						<% else %>
