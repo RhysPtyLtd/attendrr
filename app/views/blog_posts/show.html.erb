@@ -11,10 +11,10 @@
 		</div>
 		<%= kramdown(@content) %>
 
-		<% if @picture.nil? %>
-			<%= image_tag("no_picture.jpg") %>
-		<% else %>
+		<% if @picture.url %>
 			<%= image_tag @picture.url %>
+		<% else %>
+			<%= image_tag("no_picture.jpg") %>
 		<% end %>
 	</div>
 </section>
