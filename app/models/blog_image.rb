@@ -1,0 +1,2 @@
+class BlogImage < ApplicationRecord
+end

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :blog_images
   get 'charges/new'
   get 'charges/create'
   resources :subscriptions do
