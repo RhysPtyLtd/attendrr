@@ -11,6 +11,7 @@ class BlogImagesController < ApplicationController
   # GET /blog_images/1
   # GET /blog_images/1.json
   def show
+    @blog_image = BlogImage.find(params[:id])
   end
 
   # GET /blog_images/new
@@ -76,6 +77,6 @@ class BlogImagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def blog_image_params
-      params.fetch(:blog_image, {})
+      params.require(:blog_image).permit(:image_data)
     end
 end

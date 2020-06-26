@@ -12,6 +12,7 @@
   <tbody>
     <% @blog_images.each do |blog_image| %>
       <tr>
+        <td><%= image_tag blog_image.image_data_url, :height => '300' %></td>
         <td><%= link_to 'Show', blog_image %></td>
         <td><%= link_to 'Edit', edit_blog_image_path(blog_image) %></td>
         <td><%= link_to 'Destroy', blog_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>

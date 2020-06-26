@@ -1,4 +1,14 @@
+<br><br><br><br>
+
 <p id="notice"><%= notice %></p>
+
+<%= image_tag @blog_image.image_data_url, :height => '1000' %>
+
+<% url = image_path @blog_image.image_data_url %>
+
+<p>
+  <%= "<img alt=\"\" src=\"#{url}\" height=\"100\" />" %> 
+</p>
 
 <%= link_to 'Edit', edit_blog_image_path(@blog_image) %> |
 <%= link_to 'Back', blog_images_path %>

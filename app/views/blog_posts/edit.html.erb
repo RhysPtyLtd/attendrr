@@ -13,8 +13,8 @@
 				<%= f.label :picture, "Change cover image" %>
           		<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
 
-				<%= f.label :content %>*
-				<%= f.text_field :content, id: :blog_content, class: 'form-control' %>
+				<%= f.label :content %> (paste images here)
+				<%= f.text_area :content, id: :blog_content, class: 'form-control' %>
 				<trix-editor input="blog_content"></trix-editor>
 
 				<%= f.submit "Submit blog post", class: "btn btn-primary" %>

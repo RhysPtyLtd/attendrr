@@ -11,7 +11,16 @@
     </div>
   <% end %>
 
+  <span class="picture">
+          <%= form.label :image_data, "Attach picture" %>
+          <%= form.file_field :image_data, accept: 'image/jpeg,image/gif,image/png' %>
+        </span>
+
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+
+
+  
