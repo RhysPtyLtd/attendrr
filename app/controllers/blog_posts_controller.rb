@@ -2,6 +2,9 @@ class BlogPostsController < ApplicationController
 
 	def index
 		@blog_posts = BlogPost.all.order("created_at DESC")
+    @most_recent = @blog_posts[0..2]
+    @all_others = @blog_posts[3..-1]
+
 	end
 
   def admin
