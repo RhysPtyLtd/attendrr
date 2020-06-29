@@ -45,12 +45,6 @@ ActiveRecord::Schema.define(version: 2020_06_29_073755) do
     t.text "image_data"
   end
 
-  create_table "blog_pictures", force: :cascade do |t|
-    t.text "image_data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "blog_posts", force: :cascade do |t|
     t.string "title"
     t.string "subtitle"
@@ -122,12 +116,6 @@ ActiveRecord::Schema.define(version: 2020_06_29_073755) do
     t.string "name"
     t.string "email"
     t.boolean "active", default: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "images", force: :cascade do |t|
-    t.text "image_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
