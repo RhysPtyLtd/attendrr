@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_26_113911) do
+ActiveRecord::Schema.define(version: 2020_06_29_073755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,6 +118,14 @@ ActiveRecord::Schema.define(version: 2020_06_26_113911) do
     t.index ["club_id"], name: "index_daily_metrics_on_club_id"
   end
 
+  create_table "followers", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "images", force: :cascade do |t|
     t.text "image_data"
     t.datetime "created_at", null: false
@@ -181,6 +189,14 @@ ActiveRecord::Schema.define(version: 2020_06_26_113911) do
     t.boolean "active", default: true
     t.integer "classes_remaining"
     t.index ["club_id"], name: "index_students_on_club_id"
+  end
+
+  create_table "subscribers", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "subscriptions", force: :cascade do |t|
