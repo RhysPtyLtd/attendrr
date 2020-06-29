@@ -29,6 +29,7 @@ class FollowersController < ApplicationController
     @follower = Follower.new(follower_params)
 
       if @follower.save
+        FollowerMailer.follower_alert.deliver_now
         flash[:success] = "Welcome to the club. You'll now be the first to receive the best martial arts business lessons."
         redirect_to blog_posts_path
       else
