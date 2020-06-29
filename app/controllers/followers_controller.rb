@@ -1,5 +1,7 @@
 class FollowersController < ApplicationController
   before_action :set_follower, only: [:show, :edit, :update, :destroy]
+  before_action :admin_club, only: [:index, :show, :edit, :update, :destroy]
+
 
   # GET /followers
   # GET /followers.json
@@ -59,6 +61,12 @@ class FollowersController < ApplicationController
   end
 
   private
+
+    # Confirms admin
+    def admin_club
+      redirect_to(root_url) unless current_club && current_club.admin?
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_follower
       @follower = Follower.find(params[:id])
