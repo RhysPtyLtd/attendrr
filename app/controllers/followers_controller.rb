@@ -26,15 +26,12 @@ class FollowersController < ApplicationController
   def create
     @follower = Follower.new(follower_params)
 
-    respond_to do |format|
       if @follower.save
-        format.html { redirect_to @follower, notice: 'Follower was successfully created.' }
-        format.json { render :show, status: :created, location: @follower }
+        flash[:success] = "Welcome to the club. You'll now be the first to receive the best martial arts business lessons."
+        redirect_to blog_posts_path
       else
-        format.html { render :new }
-        format.json { render json: @follower.errors, status: :unprocessable_entity }
+        render 'new'
       end
-    end
   end
 
   # PATCH/PUT /followers/1

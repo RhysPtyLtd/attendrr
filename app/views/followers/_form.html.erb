@@ -1,7 +1,7 @@
 <%= form_with(model: follower, local: true) do |form| %>
   <% if follower.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(follower.errors.count, "error") %> prohibited this follower from being saved:</h2>
+      
 
       <ul>
       <% follower.errors.full_messages.each do |message| %>
@@ -21,12 +21,7 @@
     <%= form.text_field :email %>
   </div>
 
-  <div class="field">
-    <%= form.label :active %>
-    <%= form.check_box :active %>
-  </div>
-
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "SUBSCRIBE!" %>
   </div>
 <% end %>
