@@ -1,51 +1,71 @@
-<section class="acivities-list">
+
 	<% provide(:title, "Blog") %>
-	<div class="container">
-		<div class="row mt-5">
-			<div class="col-12 col-md-4">
-				<h1 class="text-md-left text-center">Blog posts</h1>
+	
+		<div class="container-fluid border border-danger border-top-0 border-left-0 border-right-0">
+			<div class="jumbotron jumbotron-fluid text-center">
+				<h1>ATTENDRR BLOG</h1>
+				 <%= image_tag("attendrr_white_no_text.png", :height => '300', :class => "rounded-circle") %> 
+				<p>The #1 resource for ambitious Martial Arts business owners</p>
 			</div>
 		</div>
+	</span>
+		
+	<div class="card-columns">
 			<% @most_recent.each do |bp| %>
-				<div class="row mt-4">
-					<div class="col-12 col-md-6  p-3 class-box  mt-1">
-						<span><%= link_to bp.title, blog_post_path(bp),class:'class-name' %></span>
-						<p><%= bp.subtitle %></p>
-						<p><%= bp.created_at.to_date.to_formatted_s(:long) %></p>
+					<div class="col-md-4">
+
+						<div class="card">
+							<div class="card-body">
+						<div class="card-title"><%= link_to bp.title, blog_post_path(bp),class:'stretched-link' %></div>
+						<p class="card-text"><%= bp.subtitle %></p>
+						
 						<% if bp.picture.nil? %>
-							<%= image_tag("no_picture.jpg") %>
+							<%= image_tag("no_picture.jpg", :class => "card-img-bottom") %>
 						<% else %>
 							<%= image_tag bp.picture.thumbnail.to_s %>
 						<% end %>
-					</div>
-				</div>
-			<% end %>
-
-			TOOLS, TACTICS AND TEMPLATES OF THE MOST SUCCESSFUL MARTIAL ARTS SCHOOLS, DIRECT OT YOUR INBOX
-			<%= form_for Follower.new do |f|  %>
-  				<%= f.label :name, "Name" %>
-    			<%= f.text_field :name %>
-   				<%= f.label :name, "Email" %>
-   				<%= f.text_field :email %>
-    			<%= f.submit "SUBSCRIBE!" %>
-			<% end %>
-
-			<% unless @all_others.nil? %>
-			<% @all_others.each do |bp| %>
-				<div class="row mt-4">
-					<div class="col-12 col-md-6  p-3 class-box  mt-1">
-						<span><%= link_to bp.title, blog_post_path(bp),class:'class-name' %></span>
-						<p><%= bp.subtitle %></p>
 						<p><%= bp.created_at.to_date.to_formatted_s(:long) %></p>
-						<% if bp.picture.nil? %>
-							<%= image_tag("no_picture.jpg") %>
-						<% else %>
-							<%= image_tag bp.picture.thumbnail.to_s %>
-						<% end %>
+							</div>
+						</div>
+
 					</div>
-				</div>
-			<% end %>
 			<% end %>
 	</div>
 
-</section>
+		<div class="container-fluid pt-3 p-3 my-3 bg-danger text-white">
+			<div class="container"
+			<p class="text-center">TOOLS, TACTICS AND TEMPLATES OF THE MOST SUCCESSFUL MARTIAL ARTS SCHOOLS, DIRECT TO YOUR INBOX</p>
+			<%= form_for Follower.new do |f|  %>
+			<div class="row"
+				<div class="col-sm-6">
+  					<%= f.label :name, "Name" %>
+    				<%= f.text_field :name %>
+    			</div>
+    			<div class="col-sm-6">
+   					<%= f.label :name, "Email" %>
+   					<%= f.text_field :email %>
+   				</div>
+    			<%= f.submit "SUBSCRIBE!" %>
+    		</div>
+			<% end %>
+		</div>
+		</div>
+
+			<% unless @all_others.nil? %>
+			<div class="card-columns">
+			<% @all_others.each do |bp| %>
+				<div class="row">
+					<div class="col-12 col-md-4  p-3 class-box  mt-1">
+						<span><%= link_to bp.title, blog_post_path(bp),class:'class-name' %></span>
+						<p><%= bp.subtitle %></p>
+						<p><%= bp.created_at.to_date.to_formatted_s(:long) %></p>
+						<% if bp.picture.nil? %>
+							<%= image_tag("no_picture.jpg") %>
+						<% else %>
+							<%= image_tag bp.picture.thumbnail.to_s %>
+						<% end %>
+					</div>
+				</div>
+			<% end %>
+		</div>
+			<% end %>
