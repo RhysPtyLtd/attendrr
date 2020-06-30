@@ -15,6 +15,7 @@ class ClubsController < ApplicationController
   def create
   	@club = Club.new(club_params)
   	if @club.save
+      NewClubMailer.new_club_alert.deliver_now
       @club.send_activation_email
       flash[:info] = "Success! Please check your email to activate your account."
       redirect_to root_url

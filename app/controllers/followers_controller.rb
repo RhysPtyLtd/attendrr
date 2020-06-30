@@ -30,7 +30,7 @@ class FollowersController < ApplicationController
 
       if @follower.save
         FollowerMailer.follower_alert.deliver_now
-        flash[:success] = "Welcome to the club. You'll now be the first to receive the best martial arts business lessons."
+        flash[:success] = "Subscription successful. Welcome to the club."
         redirect_to blog_posts_path
       else
         render 'new'
