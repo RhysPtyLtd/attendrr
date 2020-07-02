@@ -1073,3 +1073,23 @@ display:block
     -1px 1px 0 #000,
     1px 1px 0 #000;
 }
+
+#blog_card {
+  border-radius: 0;
+  box-shadow: 5px 5px 15px red;
+  transition: all 0.3s ease-in;
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+}
+
+#blog_card:hover {
+  background: red;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 5px 5px 10px gray;
+}
+
+.padding {
+  padding-bottom: 10px;
+}
