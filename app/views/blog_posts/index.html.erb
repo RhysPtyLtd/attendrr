@@ -57,10 +57,10 @@
 </div> -->
 
 <!-- Cards style blog buttons -->
-<div class="container-fluid padding">
-	<div class="row padding">
+<div class="container-fluid">
+	<div class="row">
 		<% @most_recent.each do |blog_post| %>
-			<div class="col-md-4">
+			<div class="col-md-4 padding">
 				<div class="card h-100" id="blog_card">
 				<%= image_tag(blog_post.picture.to_s, :class => "card-img-top") %>
 					<div class="card-body">
@@ -95,85 +95,21 @@
 	</div>
 </section>
 
-
-	<!-- <div class="card-columns">
-			<% @most_recent.each do |bp| %>
-					<div class="col-md-4">
-
-						<div class="card">
-							<div class="card-body">
-						<div class="card-title"><%= link_to bp.title, blog_post_path(bp),class:'stretched-link' %></div>
-						<p class="card-text"><%= bp.subtitle %></p>
-						
-						<% if bp.picture.nil? %>
-							<%= image_tag("no_picture.jpg", :class => "card-img-bottom") %>
-						<% else %>
-							<%= image_tag bp.picture.thumbnail.to_s %>
-						<% end %>
-						<p><%= bp.created_at.to_date.to_formatted_s(:long) %></p>
-							</div>
-						</div>
-
-					</div>
-			<% end %>
-	</div> -->
-	
-
-		<!-- <div class="container-fluid pt-3 p-3 my-3 bg-danger text-white">
-			<div class="container"
-			<p class="text-center">TOOLS, TACTICS AND TEMPLATES OF THE MOST SUCCESSFUL MARTIAL ARTS SCHOOLS, DIRECT TO YOUR INBOX</p>
-			<%= form_for Follower.new do |f|  %>
-			<div class="row"
-				<div class="col-sm-6">
-  					<%= f.label :name, "Name" %>
-    				<%= f.text_field :name %>
-    			</div>
-    			<div class="col-sm-6">
-   					<%= f.label :name, "Email" %>
-   					<%= f.text_field :email %>
-   				</div>
-    			<%= f.submit "SUBSCRIBE!" %>
-    		</div>
-			<% end %>
-		</div>
-		</div> -->
-
-			<% unless @all_others.nil? %>
-			<div class="card-columns">
-			<% @all_others.each do |bp| %>
-				<div class="row">
-					<div class="col-12 col-md-4  p-3 class-box  mt-1">
-						<span><%= link_to bp.title, blog_post_path(bp),class:'class-name' %></span>
-						<p><%= bp.subtitle %></p>
-						<p><%= bp.created_at.to_date.to_formatted_s(:long) %></p>
-						<% if bp.picture.nil? %>
-							<%= image_tag("no_picture.jpg") %>
-						<% else %>
-							<%= image_tag bp.picture.thumbnail.to_s %>
-						<% end %>
+<!-- Cards style blog buttons -->
+<div class="container-fluid padding">
+	<div class="row padding">
+		<% @all_others.each do |blog_post| %>
+			<div class="col-md-4 padding">
+				<div class="card h-100" id="blog_card">
+				<%= image_tag(blog_post.picture.to_s, :class => "card-img-top") %>
+					<div class="card-body">
+						<h4 class="card-title"><%= link_to "", blog_post_path(blog_post), :class => "stretched-link" %></h4>
+						<h4 class="card-title"><%= blog_post.title %></h4>
+						<p class="card-text"><%= blog_post.subtitle %></p>
+						<p class="card-text"><%= blog_post.created_at.to_date.to_formatted_s(:long) %></p>
 					</div>
 				</div>
-			<% end %>
-		</div>
-			<% end %>
-
-
-			<!-- non-card style blog posts -->
-<div class="container-fluid padding" style="card">
-	<div class="row text-centre padding">
-		<% i = 1 %>
-		<% @most_recent.each do |blog_post| %>
-		<% unless i == 3 %>	
-			<div class="col-xs-12 col-sm-6 col-md-4"><% i += 1 %>
-		<% else %>
-			<div class="col-sm-12 col-md-4"><% i = 1 %>
-		<% end %>
-				<h3><%= link_to blog_post.title, blog_post_path(blog_post) %></h3>
-				<p><%= blog_post.subtitle %></p>
-				<%= image_tag blog_post.picture.thumbnail.to_s %>
-				<p><%= blog_post.created_at.to_date.to_formatted_s(:long) %></p>
 			</div>
 		<% end %>
 	</div>
-	<hr class="my-4">
 </div>

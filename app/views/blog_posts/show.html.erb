@@ -1,21 +1,33 @@
 
 <section class="acivities-list">
 	<% provide(:title, "Blog") %>
-	<div class="container">
-		<div class="row mt-5">
-			<div class="col-12 col-md-4">
-				<h1 class="text-md-left text-center"><%= @blog_post.title %></h1>
-				<h3 class="text-md-left text-center"><%= @blog_post.subtitle %></h3>
-			</div>
-			Posted on <%= @posting_date %>
-		</div>
-		<%= kramdown(@content) %>
 
-		<% if @picture.url %>
-			<%= image_tag @picture.url %>
-		<% else %>
-			<%= image_tag("no_picture.jpg") %>
-		<% end %>
-	</div>
+	<!-- Page Header -->
+  <header class="masthead" style="background-image: url(<%= @blog_post.picture %>)">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto">
+          <div class="post-heading">
+            <h1 id="blog-show-title"><%= @blog_post.title %></h1>
+            <h2 class="subheading"><%= @blog_post.subtitle %></h2>
+            <span class="meta"><%= @blog_post.created_at.to_date.to_formatted_s(:long) %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+	<!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <%= kramdown(@content) %>
+        </div>
+      </div>
+    </div>
+  </article>
+
+	
 </section>
-
