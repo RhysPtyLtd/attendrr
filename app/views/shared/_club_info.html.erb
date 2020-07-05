@@ -129,10 +129,14 @@
         <% end %>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-4 offset-md-4  col-sm-12">
-      </div>
-      <div class="col-md-4 col-12 d-flex justify-content-end add_new_student_div">
-        <span class="add_new_student align-self-end"><%= link_to("Add new student", new_student_path) %></span>
+    <div class="row mt-md-5 mt-4 ml-2 mr-2">
+      <div class="offset-md-9  col-md-3 col-12">
+        <%= link_to new_student_path,class:"homepage-nav" do %>
+          <div class="row">
+            <div class=" col-12 d-flex justify-content-center add_new_student_div">
+              <span class="add_new_student  align-self-end">Add new student</span>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
