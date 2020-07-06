@@ -993,7 +993,7 @@ h1 {
 }
 
 #subscribe {
-  background-image: url(blog_subscribe_background.jpg);
+  background-image: image-url('blog_subscribe_background.jpg');
   background-size: cover;
   background-attachment: fixed;
   min-height: 250px;
