@@ -19,43 +19,6 @@
 	<p class="lead text-center" style="font-size:2vw">Brought to you by Attendrr Club Management</p>
 </div>
 
-<!--<div class-"row" >
-	<% @most_recent.each do |blog_post| %>
-		<div class="col-sm-6 col-lg-4">
-			<div class="card" id="blog">
-			<%= image_tag blog_post.picture.thumbnail.to_s, :class => "card-img-top" %>
-				<div class="card-body">
-					<h3><%= blog_post.title %></h3>
-					<h5><%= blog_post.subtitle %></h5>
-					<p><%= blog_post.created_at.to_date.to_formatted_s(:long) %></p>
-				</div>
-			</div>
-		</div>
-	<% end %>
-</div>-->
-
-<!-- non-card style blog posts LATEST
-<div class="container-fluid padding" style="card">
-	<div class="row text-centre padding">
-		<% @most_recent.each do |blog_post| %>
-			<div class="col-sm">
-				<div class="container-fluid">
-					<div class="container-fluid" id="cover_image_container">	
-						<%= image_tag blog_post.picture.thumbnail.to_s, :class => "img-fluid w-100" %>		
-						<div class="overlay">
-							<h3 class="text-wrap" id="blog_thumbnail_text" style="font-size:2vw"><%= blog_post.title %></h3>
-						</div>			
-					</div>
-					<%= link_to "", blog_post_path(blog_post), :class => "stretched-link" %>
-					<p><%= blog_post.subtitle %></p>					
-					<p><%= blog_post.created_at.to_date.to_formatted_s(:long) %></p>
-				</div>
-			</div>
-		<% end %>
-	</div>
-	<hr class="my-4">
-</div> -->
-
 <!-- Cards style blog buttons -->
 <div class="container-fluid">
 	<div class="row">
@@ -98,6 +61,7 @@
 <!-- Cards style blog buttons -->
 <div class="container-fluid padding">
 	<div class="row padding">
+		<% unless @all_others.nil? %>
 		<% @all_others.each do |blog_post| %>
 			<div class="col-md-4 padding">
 				<div class="card h-100" id="blog_card">
@@ -110,6 +74,7 @@
 					</div>
 				</div>
 			</div>
+		<% end %>
 		<% end %>
 	</div>
 </div>
