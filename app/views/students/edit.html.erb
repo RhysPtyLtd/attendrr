@@ -87,7 +87,7 @@
 					<% @activities.each do |activity| %>
 					<% activity.ranks.where(active: true).each do |rank| %>
 					<div class="btn btn-outline-primary btn-rounded   form-check-label m-2" style="border-radius:24px;">
-						<%= activity.name  if activity.ranks.where(active: true).any? %>
+						<%= activity.name  if activity.ranks.where(active: true).any? %> - 
 						<%= check_box_tag "student[rank_ids][]", rank.id, f.object.ranks.include?(rank),class:'form-check-input chk-box' %>
 						<%= rank.name %>
 					</div>

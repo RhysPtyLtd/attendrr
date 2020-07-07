@@ -4,7 +4,10 @@
 		<div class="row mt-md-2 mb-md-2 mt-1 mb-1 ">
 			<!-- <div class="previous"> -->
 			<div class="col-12">
-				<p>	<%= link_to "Student List", students_path , class: "nav_link"  %></p>
+				<p><%= link_to "Student List", students_path , class: "nav_link"  %></p>
+				<% if @student.ranks.count == 0 %>
+					<div>NO RANKS</div>
+				<% end %>
 				<hr class="staight-line">
 			</div>
 			<!-- </div> -->
