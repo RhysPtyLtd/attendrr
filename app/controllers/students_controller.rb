@@ -78,6 +78,15 @@ class StudentsController < ApplicationController
 			flash[:success] = "Student created!"
 			redirect_to student_path(@student)
 		else
+			@payment_plans = current_club.payment_plans.where(active: true)
+			@prospect = current_club.payment_plans.first
+			@student_ranks = @student.student_ranks.build
+			# Gets an array of every rank in the club to pass to @active_ranks
+			@ranks = current_club.activities.map { |a| a.ranks}.flatten
+			# Filters out everything but the ranks that are active to pass to @first_ranks
+			@active_ranks = @ranks.select { |r| r.active == true }
+			# Filters out every rank but the first one
+			@first_ranks = @active_ranks.select { |ar| ar.position == 1 }
 			render 'new'
 		end
 	end
