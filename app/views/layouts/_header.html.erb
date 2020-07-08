@@ -1,5 +1,5 @@
 <section>
-  <nav class="navbar py-2 fixed-top navbar-expand-md preview-bar bottom-border">
+  <nav class="navbar fixed-top navbar-expand-md  bottom-border">
     <%= link_to image_tag("attendrr-master.png", :alt => 'attendrr', :class => 'logo'), root_path, :class => 'navbar-brand ' %>
     <button class="navbar-toggler my-0" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="icon-bar"></span>
@@ -16,20 +16,20 @@
     <div class=" navbar-white d-md-flex justify-content-md-end mt-3 mt-md-0 collapse navbar-collapse" id="navbarNavAltMarkup">
       <ul class="nav navbar-nav  navbar-right">
         <li class="nav-item active mr-2 mt-2 mb-2 mt-md-0 mb-md-0 align-self-md-center">
-          <%= link_to "Home", root_path, class: "btn nav-bar-primary-btn btn-sm mr-2 top-bar-btn" %>
+          <%= link_to "Home", root_path, class: "signupbox  " %>
         </li>
         <li class="nav-item  mr-2 mt-2 mb-2 mt-md-0 mb-md-0 align-self-md-center">
-          <%= link_to "Help",   help_path , class: "btn nav-bar-primary-btn btn-sm mr-2 top-bar-btn" %>
+          <%= link_to "Help",   help_path , class: "signupbox  " %>
         </li>
         <li class="nav-item  mr-2 mt-2 mb-2 mt-md-0 mb-md-0 align-self-md-center">
-          <%= link_to "Blog",   blog_posts_path , class: "btn nav-bar-primary-btn btn-sm mr-2 top-bar-btn" %>
+          <%= link_to "Blog",   blog_posts_path , class: "signupbox  " %>
         </li>
         <% if logged_in? %>
           <% if current_club && current_club.admin? %>
-            <li class="nav-item mr-2 mt-2 mb-2 mt-md-0 mb-md-0 align-self-md-center"><%= link_to "Admin", admin_path, class: "btn nav-bar-primary-btn btn-sm mr-2 top-bar-btn" %></li>
+            <li class="mr-2 mt-2 mb-2 mt-md-0 mb-md-0 align-self-md-center"><%= link_to "Admin", admin_path, class: "signupbox " %></li>
           <% end %>
           <div style="display:inline" class="dropdown mr-2 mt-2 mb-2 mt-md-0 mb-md-0">
-            <a href="#" class="dropdown-toggle btn nav-bar-primary-btn btn-sm mr-2 top-bar-btn" data-toggle="dropdown">
+            <a href="#" class="dropdown-toggle accountbox " data-toggle="dropdown">
               Account
             </a>
             <ul class="dropdown-menu account-menu">
@@ -52,14 +52,14 @@
             </ul>
           </div>
         <% else %>
-          <li class="nav-item mr-2 mt-2 mb-2 mt-md-0 mb-md-0 align-self-md-center">
-            <%= link_to "Pricing", subscriptions_path, class: "btn nav-bar-primary-btn btn-sm mr-2 top-bar-btn" %>
+          <li class="mr-2 mt-2 mb-2 mt-md-0 mb-md-0">
+            <%= link_to "Pricing", subscriptions_path, class: "signupbox  " %>
           </li>
-          <li class="nav-item mr-2 mt-2 mb-2 mt-md-0 mb-md-0 align-self-md-center">
-            <%= link_to "Sign up ", signup_path, class: "btn nav-bar-primary-btn btn-sm mr-2 top-bar-btn" %>
+          <li class="mr-2 mt-2 mb-2 mt-md-0 mb-md-0">
+            <%= link_to "Sign up ", signup_path, class: "signupbox  " %>
           </li>
-          <li class="nav-item mr-2 mt-2 mb-2 mt-md-0 mb-md-0 align-self-md-center">
-            <%= link_to "Login", login_path, class: 'btn btn-sm mr-2 login-border top-bar-btn-login' %>
+          <li class="mr-2 mt-2 mb-2 mt-md-0 mb-md-0">
+            <%= link_to "Login", login_path, class: 'loginbox ' %>
           </li>
         <% end %>
       </ul>
