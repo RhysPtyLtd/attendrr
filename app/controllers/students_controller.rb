@@ -6,7 +6,7 @@ class StudentsController < ApplicationController
 
 	def index
 		if @club = current_club
-			@students = TypeOfStudent.active_enrolled(current_club)
+			@students = TypeOfStudent.active(current_club)
 			#Average length of membership
 			@accumulated_memberships_in_days = 0
 			@students.each do |s|

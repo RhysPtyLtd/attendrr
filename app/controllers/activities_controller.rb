@@ -11,7 +11,7 @@ class ActivitiesController < ApplicationController
 
 	def students
 		@activity = Activity.find(params[:activity])
-		@activity_students = @activity.students.includes(:payment_plan).where.not(payment_plans: {name: 'Prospect'}).where(active: true)
+		@activity_students = @activity.students.where(active: true)
 	end
 
 	def create
