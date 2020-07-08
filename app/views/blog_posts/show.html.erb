@@ -7,7 +7,7 @@
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto">
+        <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
             <h1 id="blog-show-title"><%= @blog_post.title %></h1>
             <h2 class="subheading"><%= @blog_post.subtitle %></h2>
@@ -22,7 +22,7 @@
   <article>
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="col-lg-8 col-md-10 mx-auto ImagesAutoResize">
           <%= kramdown(@content) %> <!-- Replace this line with sample article -->
         </div>
       </div>
