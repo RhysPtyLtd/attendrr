@@ -368,3 +368,14 @@ nav > a {
     height: 90vh;
   }
 }
+
+/* For Blog posts show page image shrink and expand--START--*/
+.ImagesAutoResize img {
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* For Blog posts show page image shrink and expand--END--*/
