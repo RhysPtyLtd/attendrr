@@ -372,6 +372,7 @@ nav > a {
 
 /* For Blog posts show page image shrink and expand--START--*/
 .ImagesAutoResize img {
+  object-fit: contain;
   max-width: 100%;
   max-height: 100%;
   display: block;

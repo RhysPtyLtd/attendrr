@@ -1126,7 +1126,6 @@ display:block
 }
 
 .masthead {
-  padding: 200px;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -1134,6 +1133,8 @@ display:block
 
 header.masthead .post-heading h1 {
   text-align: left;
+  font-weight: 800;
+  font-size: 35px;
 }
 
 header.masthead .post-heading h2 {
@@ -1178,3 +1179,33 @@ header.masthead .post-heading .meta a {
     font-size: 30px;
   }
 }
+/* Blogs Header Title--START */
+
+@media only screen and (min-width: 768px) {
+  header.masthead .post-heading h1 {
+    font-size: 55px;
+  }
+  header.masthead .post-heading{
+    padding: 200px 0;
+  }
+}
+
+header.masthead .post-heading .meta {
+    font-size: 20px;
+    font-weight: 300;
+    font-style: italic;
+    font-family: Lora,'Times New Roman',serif;
+}
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+@media screen and (min-width: 800px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+/* Blogs Header Title--END */
