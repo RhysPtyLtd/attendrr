@@ -6,7 +6,7 @@
 			<div class="col-12">
 				<p><%= link_to "Student List", students_path , class: "nav_link"  %></p>
 				<% if @student.ranks.count == 0 %>
-					<div>NO RANKS</div>
+					<div>THIS STUDENT ISN'T ASSIGNED TO ANY CLASSES</div>
 				<% end %>
 				<hr class="staight-line">
 			</div>
