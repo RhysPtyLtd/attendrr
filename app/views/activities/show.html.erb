@@ -27,7 +27,7 @@
 						</div>
 						<div class="col-xs-9 text-right">
 							<span class="widget-title"> Total Students</span><br>
-							<span class="counter"><%= link_to @activity_students.count, students_activities_path(activity: @activity.id) %></span>
+							<span class="counter"><%= link_to @activity_students.count.to_s + " enrolled | " + @activity_prospects.count.to_s + " prospects", students_activities_path(activity: @activity.id) %></span>
 						</div>
 					</div>
 				</div>
