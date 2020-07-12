@@ -59,7 +59,7 @@
 <script type="text/javascript">
       function selectAll(){
         $("input:checkbox").each(function(){
-          $(this).attr('checked', true);
+          this.checked = !this.checked;
         });
 
         return false;
