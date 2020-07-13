@@ -379,3 +379,117 @@ nav > a {
   margin-right: auto;
 }
 /* For Blog posts show page image shrink and expand--END--*/
+
+ul.grade-list-bx > li.grading-section:nth-child(even) { 
+  background-color: #D9D9D9; 
+}
+ul.grade-list-bx > li.grading-section:nth-child(odd) { 
+  background-color: #dee2e6; 
+}
+.select-gradings { 
+  float: right;
+}
+.grading-section-margin { 
+  padding-top: 25px; 
+}
+.DrodownMargin {
+  margin-right: 1%;
+}
+
+/* custom cross and tick checkbox css--START--*/
+.customcheck {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.customcheck input {
+  display: none;
+}
+
+.customcheck input~.checkmark {
+  background: #ee0b0b;
+  width: 25px;
+  display: inline-block;
+  position: relative;
+  height: 25px;
+  border-radius: 2px;
+  vertical-align:middle;
+  margin-right:10px;
+}
+
+.customcheck input~.checkmark:after,
+.customcheck input~.checkmark:before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 16px;
+  background: #fff;
+  left: 12px;
+  top: 4px;
+}
+
+.customcheck input~.checkmark:after {
+  transform: rotate(-45deg);
+  z-index: 1;
+}
+
+.customcheck input~.checkmark:before {
+  transform: rotate(45deg);
+  z-index: 1;
+}
+
+.customcheck input:checked~.checkmark {
+  background: #3d8a00;
+  width: 25px;
+  display: inline-block;
+  position: relative;
+  height: 25px;
+  border-radius: 2px;
+}
+
+.customcheck input:checked~.checkmark:after {
+  display: none;
+}
+
+.customcheck input:checked~.checkmark:before {
+  background: none;
+  border: 2px solid #fff;
+  width: 6px;
+  top: 2px;
+  left: 9px;
+  border-top: 0;
+  border-left: 0;
+  height: 13px;
+  top: 2px;
+}
+/* custom cross and tick checkbox css--END--*/
+
+/*Student Image Media queries--START--*/
+@media screen and ( max-width: 1024px ) {
+  .student_img { 
+    width: 50px;    
+    margin: 5px; 
+  }
+}
+@media screen and ( min-width:1025px ) and ( max-width: 1280px ) {
+  .student_img { 
+    width: 50px;     
+    margin: 5px;
+  }
+}
+@media screen and ( min-width: 1081px ) {
+  .student_img { 
+    width: 50px;     
+    margin: 5px;
+  }
+}
+/*Student Image Media queries--END--*/
+
+.student_img { 
+  height: auto;     
+  margin: 5px;
+}

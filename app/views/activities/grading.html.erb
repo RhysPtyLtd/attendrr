@@ -18,13 +18,13 @@
 			</div>
 			<%= form_for(@activity, url: update_grading_activity_path, method: 'put') do |f| %>
 				<%= render 'shared/error_messages', object: f.object %>
-				<div class="field">
+				<div class="field grading-section-margin">
 					<%-# NAROLA - please tidy this and move it out of the view -%>
 					<ul class="grade-list-bx">
 						<% @students.each do |s| %>
 							<% s.student_ranks.each do |sr| %>
 								<% if sr.rank.activity == @activity && sr.active? %>
-									<li>
+									<li class="grading-section">
 										<% if s.picture? %>
 											<img class="student_img align-self-center" <%= image_tag s.picture.url  %>
 										<% else %>
@@ -33,14 +33,15 @@
 										<span class="first">
 											<%= link_to s.first_name + " " + s.last_name, student_path(s) %> - <%= sr.rank.name %>
 										</span>
-										<span class="middle">
+										<span class="middle DrodownMargin">
 											<%= hidden_field_tag "student_ids[]", s.id %>
 											<%= select_tag "rank_positions[]", options_from_collection_for_select(@active_ranks, :position, :name, @active_ranks.maximum(:position) == sr.rank.position ? { selected: sr.rank.position } : { selected: sr.rank.position + 1 }) %>
 										</span>
-										<span class="chk-bx last">
+										<label class="customcheck">
+											<%= check_box_tag 'grading[]', s.id, false %>
+										  <span class="checkmark"></span>
+										</label>
 
-										<%= check_box_tag 'grading[]', s.id, false %>
-										</span>
 									</li>
 								<% end %>
 							<% end %>
