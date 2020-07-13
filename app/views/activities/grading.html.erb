@@ -12,8 +12,9 @@
 					<span>Grading?</span>
 				</h4>
 
-			<a href="javascript:;" onclick="selectAll()">Select all</a>
-
+			</div>
+			<div class="select-gradings">
+				<button type=button" class="btn btn-primary checkAll">Select all</button>
 			</div>
 			<%= form_for(@activity, url: update_grading_activity_path, method: 'put') do |f| %>
 				<%= render 'shared/error_messages', object: f.object %>
@@ -57,11 +58,25 @@
 
 
 <script type="text/javascript">
-      function selectAll(){
-        $("input:checkbox").each(function(){
-          this.checked = !this.checked;
-        });
+     
+	(function($) {
+	    $.fn.clickToggle = function(func1, func2) {
+	        var funcs = [func1, func2];
+	        this.data('toggleclicked', 0);
+	        this.click(function() {
+	            var data = $(this).data();
+	            var tc = data.toggleclicked;
+	            $.proxy(funcs[tc], this)();
+	            data.toggleclicked = (tc + 1) % 2;
+	        });
+	        return this;
+	    };
+	}(jQuery)); 
 
-        return false;
-      }
+	$(".checkAll").clickToggle(function() {
+		$("input:checkbox").prop('checked', true);
+	}, function() {
+		$("input:checkbox").prop('checked', false);
+	});
+	
 </script>
