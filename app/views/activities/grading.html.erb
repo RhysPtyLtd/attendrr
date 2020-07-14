@@ -14,7 +14,7 @@
 
 			</div>
 			<div class="select-gradings">
-				<button type=button" class="btn btn-primary checkAll">Select all</button>
+				<button type="button" class="btn btn-primary checkAll">Select all</button>
 			</div>
 			<%= form_for(@activity, url: update_grading_activity_path, method: 'put') do |f| %>
 				<%= render 'shared/error_messages', object: f.object %>
@@ -31,7 +31,7 @@
 											<img class="student_img align-self-center" <%= image_tag("no_picture.jpg") %>
 										<% end %>
 										<span class="first">
-											<%= link_to s.first_name + " " + s.last_name, student_path(s) %> - <%= sr.rank.name %>
+											<%= link_to s.first_name + " " + s.last_name, student_path(s) %> <%= sr.rank.name %>
 										</span>
 										<span class="middle DrodownMargin">
 											<%= hidden_field_tag "student_ids[]", s.id %>
