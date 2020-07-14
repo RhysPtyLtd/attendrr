@@ -493,3 +493,9 @@ ul.grade-list-bx > li.grading-section:nth-child(odd) {
   height: auto;     
   margin: 5px;
 }
+
+/* Hiding BULLETS from gradings page CSS--START--*/
+ul.grade-list-bx li:before {
+  display: none;
+}
+/* Hiding BULLETS from gradings page CSS--START--*/
