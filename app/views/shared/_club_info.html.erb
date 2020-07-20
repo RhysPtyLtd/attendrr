@@ -7,18 +7,38 @@
   <% end %>
 <% end %>
 <% if current_club.activities.where(active: true).none? %>
-  <%= link_to("Welcome to Attendrr! First, click here to add a class", new_activity_path) %>
+
+  <div class="clubInfoNotifications btn btn-success container p-3 my-3 text-white">
+    <%= link_to("Welcome to Attendrr! First, click here to add a class", new_activity_path, class: 'horizontal-line text-white') %>
+  </div>
+  
 <% elsif rank_notification_required %>
-  <%= link_to("There are classes without ranks! Click here to add ranks", activities_path) %>
+  
+  <div class="clubInfoNotifications container btn btn-success p-3 my-3 text-white">
+    <%= link_to("There are classes without ranks! Click here to add ranks", activities_path, class: 'horizontal-line text-white') %>
+  </div>
+  
 <% elsif current_club.payment_plans.where(active: true).count-1 == 0 %>
-  <%= link_to("Now you need to add at least one payment plan! Click here", new_payment_plan_path) %>
+
+  <div class="clubInfoNotifications container btn btn-success p-3 my-3 text-white">
+    <%= link_to("Now you need to add at least one payment plan! Click here", new_payment_plan_path, class: 'horizontal-line text-white') %>
+  </div>
+
 <% elsif current_club.students.where(active: true).none? %>
-  <%= link_to("It's time to grow your club! Add your first student here", new_student_path) %>
+
+  <div class="clubInfoNotifications container btn btn-success p-3 my-3 text-white">
+    <%= link_to("It's time to grow your club! Add your first student here", new_student_path, class: 'horizontal-line text-white') %>
+  </div>
+
 <% elsif @students.count - @prospects.count == 0 %>
-  <%= link_to("You convert Prospects into Students by upgrading their payment plan. You can do it!", prospects_students_path) %>
+
+  <div class="clubInfoNotifications container btn btn-success p-3 my-3 text-white">
+    <%= link_to("You convert Prospects into Students by upgrading their payment plan. You can do it!", prospects_students_path, class: 'horizontal-line text-white') %>
+  </div>
+  
 <% end %>
 <%# End notification %>
-<div class="row mt-md-5 mt-4 ml-2 mr-2">
+<div class="row mt-md-3 mt-4 ml-2 mr-2">
   <%# <%= link_to scheduled_classes_activities_path , :class => "redirect_div" do %>
     <!-- schedule class -->
     <div class="col-6 col-md-3">
@@ -140,3 +160,11 @@
         <% end %>
       </div>
     </div>
+
+<script type="text/javascript">
+  /*Make Entire Club Notifications Clickable*/
+  $(".clubInfoNotifications").click(function() {
+    window.location = $(this).find("a").attr("href"); 
+    return false;
+  });
+</script>

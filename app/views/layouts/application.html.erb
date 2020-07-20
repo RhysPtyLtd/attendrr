@@ -16,7 +16,7 @@
   	<%= render 'layouts/header' %>
     <!-- <div class="container"> -->
       <% flash.each do |message_type, message| %> <!-- Displays flash message -->
-        <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+        <%= content_tag(:div, message, class: "alert flashMessageAlignment alert-#{message_type}") %>
       <% end %>
       <%= yield %>
       <%= render 'layouts/landing_page_footer_script' %>

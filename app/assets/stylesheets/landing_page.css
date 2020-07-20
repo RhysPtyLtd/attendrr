@@ -380,122 +380,89 @@ nav > a {
 }
 /* For Blog posts show page image shrink and expand--END--*/
 
-ul.grade-list-bx > li.grading-section:nth-child(even) { 
-  background-color: #D9D9D9; 
-}
-ul.grade-list-bx > li.grading-section:nth-child(odd) { 
-  background-color: #dee2e6; 
-}
-.select-gradings { 
-  float: right;
-}
-.grading-section-margin { 
-  padding-top: 25px; 
-}
-.DrodownMargin {
-  margin-right: 1%;
+.addNewClassBtn {
+  margin: 10px;
 }
 
-/* custom cross and tick checkbox css--START--*/
-.customcheck {
-  position: relative;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
+.paymentPlansBtns { 
+  visibility: hidden;
 }
 
-.customcheck input {
-  display: none;
+.clubNotificationMessages a { 
+  display: block; 
+  background-color: #00FF00;
+  color: black;
+  font-weight: 700;
 }
 
-.customcheck input~.checkmark {
-  background: #ee0b0b;
-  width: 25px;
-  display: inline-block;
-  position: relative;
-  height: 25px;
-  border-radius: 2px;
-  vertical-align:middle;
-  margin-right:10px;
+.clubNotificationMessages {
+  padding-left: 6%;
 }
 
-.customcheck input~.checkmark:after,
-.customcheck input~.checkmark:before {
-  content: '';
+.flashMessageAlignment {
+  top: 17px;
+}
+
+.clubNameCentered {
   position: absolute;
-  width: 2px;
-  height: 16px;
-  background: #fff;
-  left: 12px;
-  top: 4px;
+  top: 0;
+  left: 50%;
+  margin: 25px 0 0 -55px;
 }
 
-.customcheck input~.checkmark:after {
-  transform: rotate(-45deg);
-  z-index: 1;
+.paymentBtns {
+  width: 140px;
+  height: 44px;
 }
 
-.customcheck input~.checkmark:before {
-  transform: rotate(45deg);
-  z-index: 1;
+label.paymentPlanslabelsText {
+  display: block;
+  text-align: center;
+  line-height: 150%;
+  font-size: 16.85px;
+  margin-top: -25%;
+    
 }
 
-.customcheck input:checked~.checkmark {
-  background: #3d8a00;
-  width: 25px;
-  display: inline-block;
-  position: relative;
-  height: 25px;
-  border-radius: 2px;
+.horizontal-line:before {
+  display: block;
+  color: black;
+  margin: 0;
+  padding: 0;
+  height: 10px;
+  font-size: 10px;
 }
 
-.customcheck input:checked~.checkmark:after {
-  display: none;
+a.horizontal-line {
+  color: black;
+  font-weight: 700;
+  margin-left: 10px;
 }
 
-.customcheck input:checked~.checkmark:before {
-  background: none;
-  border: 2px solid #fff;
-  width: 6px;
-  top: 2px;
-  left: 9px;
-  border-top: 0;
-  border-left: 0;
-  height: 13px;
-  top: 2px;
-}
-/* custom cross and tick checkbox css--END--*/
-
-/*Student Image Media queries--START--*/
-@media screen and ( max-width: 1024px ) {
-  .student_img { 
-    width: 50px;    
-    margin: 5px; 
-  }
-}
-@media screen and ( min-width:1025px ) and ( max-width: 1280px ) {
-  .student_img { 
-    width: 50px;     
-    margin: 5px;
-  }
-}
-@media screen and ( min-width: 1081px ) {
-  .student_img { 
-    width: 50px;     
-    margin: 5px;
-  }
-}
-/*Student Image Media queries--END--*/
-
-.student_img { 
-  height: auto;     
-  margin: 5px;
+.field_with_errors label,
+.field_with_errors .form-control-feedback,
+.field_with_errors .form-control-label,
+.field_with_errors .col-form-label,
+.field_with_errors .form-check-label,
+.field_with_errors .custom-control {
+  color: #d9534f;
 }
 
-/* Hiding BULLETS from gradings page CSS--START--*/
-ul.grade-list-bx li:before {
-  display: none;
+.field_with_errors .form-control {
+  border-color: #d9534f;
 }
-/* Hiding BULLETS from gradings page CSS--START--*/
+
+.field_with_errors .input-group-addon {
+  color: #d9534f;
+  border-color: #d9534f;
+  background-color: #fdf7f7;
+}
+
+.field_with_errors .form-control-danger {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23d9534f' viewBox='-2 -2 7 7'%3E%3Cpath stroke='%23d9534f' d='M0 0l3 3m0-3L0 3'/%3E%3Ccircle r='.5'/%3E%3Ccircle cx='3' r='.5'/%3E%3Ccircle cy='3' r='.5'/%3E%3Ccircle cx='3' cy='3' r='.5'/%3E%3C/svg%3E");
+}
+
+.clubInfoNotifications {
+  text-align: left;
+  display: inline-flex;
+}
