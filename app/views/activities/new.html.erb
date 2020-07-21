@@ -28,8 +28,8 @@
 					<%= timeslots_form.link_to_remove "Remove this timeslot" %>
 			<% end %>
 			<%= f.link_to_add "Add another timeslot", :timeslots%><br>
-<!-- HELLO-->
 
+			<!-- RANKS -->
 			<%= f.fields_for :ranks do |ranks_form| %>
 					<%= ranks_form.label :name, "Add a rank:" %>
 					<%= f.text_field :name, class: 'form-control' %>
@@ -37,7 +37,7 @@
 					<%= ranks_form.link_to_remove "Remove this rank" %>
 			<% end %>
 			<%= f.link_to_add "Add another rank", :ranks%><br>
-
+			<!-- RANKS END -->
 
 	</div>
 	<%= f.submit "Create class", class: "btn btn-primary" %>
