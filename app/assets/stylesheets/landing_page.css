@@ -466,3 +466,17 @@ a.horizontal-line {
   text-align: left;
   display: inline-flex;
 }
+
+/* Below CSS is for Activities Edit Page--START--*/
+.activityActionBtn {
+  display: inline-block;
+}
+/* Below CSS is for Activities Edit Page--END--*/
+
+/* Below media queries is for Activities Edit Page Devices Responsive UI--START--*/
+@media screen and (max-width: 600px), screen and (max-height: 700px) {
+  .editActivityResponsive {
+    display: block !important;
+  }
+}
+/* Below media queries is for Activities Edit Page Devices Responsive UI--END--*/
