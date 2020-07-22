@@ -36,6 +36,7 @@ class ActivitiesController < ApplicationController
 
 	def update
 		@activity = current_club.activities.find_by(id: params[:id])
+		@active_ranks = @activity.ranks.where(active: true)
 		if @activity.update_attributes(activity_params)
 			flash[:success] = "Class updated!"
 			redirect_to edit_activity_path(@activity)
