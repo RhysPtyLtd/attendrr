@@ -471,12 +471,29 @@ a.horizontal-line {
 .activityActionBtn {
   display: inline-block;
 }
+
+.editActivityResponsive > select {
+  width: 12%;
+  margin-right: 5px;
+  margin-left: 5px;
+} 
+
+.editActivityResponsive > label {
+  margin-top: 8px;
+} 
 /* Below CSS is for Activities Edit Page--END--*/
 
 /* Below media queries is for Activities Edit Page Devices Responsive UI--START--*/
 @media screen and (max-width: 600px), screen and (max-height: 700px) {
   .editActivityResponsive {
     display: block !important;
+  }
+  .activityActionBtn {
+    display: block;
+    margin-bottom: 10px;
+  }
+  .editActivityResponsive > select {
+    width: -webkit-fill-available !important;
   }
 }
 /* Below media queries is for Activities Edit Page Devices Responsive UI--END--*/
