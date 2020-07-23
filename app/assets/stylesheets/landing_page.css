@@ -473,13 +473,9 @@ a.horizontal-line {
 }
 
 .editActivityResponsive > select {
-  width: 12%;
-  margin-right: 5px;
-  margin-left: 5px;
-} 
-
-.editActivityResponsive > label {
-  margin-top: 8px;
+  width: 15%;
+  margin-right: 8px;
+  margin-left: 8px;
 } 
 /* Below CSS is for Activities Edit Page--END--*/
 
@@ -489,8 +485,8 @@ a.horizontal-line {
     display: block !important;
   }
   .activityActionBtn {
-    display: block;
-    margin-bottom: 10px;
+    display: inline-grid;
+    width: 100%;
   }
   .editActivityResponsive > select {
     width: -webkit-fill-available !important;

@@ -10,8 +10,7 @@
 			</div>
 			<div class="form-group" style="background-color: #DCDCDC;">
 				<%= form_for(@activity) do |f| %>
-					<%= render 'shared/error_messages', object: f.object %>
-					<div class="field d-flex editActivityResponsive m-2">
+					<div class="field d-flex editActivityResponsive m-2" style="padding-top: 26px;">
 						<%= f.fields_for :timeslots, @activity.timeslots.build do |timeslots_form| %>
 							<%= timeslots_form.label :time_start, "Start time" %>
 							<%= timeslots_form.time_select :time_start %>
@@ -22,8 +21,8 @@
 							<%= timeslots_form.label :day %>
 							<%= timeslots_form.select :day, (0..6).map {|d| [Date::DAYNAMES[d], d]} %>
 							
-							<%= timeslots_form.label :year %>
-							<%= timeslots_form.select :year, ((Time.zone.now.year - 30)..(Time.zone.now.year + 10)).to_a.reverse, {:selected => Time.zone.now.year},{ :class => 'form-control' } %>
+							<div style="display: none;"><%= timeslots_form.label :year %>
+							<%= timeslots_form.select :year, ((Time.zone.now.year - 30)..(Time.zone.now.year + 10)).to_a.reverse, {:selected => Time.zone.now.year},{ :class => 'form-control' } %></div>
 						<% end %>
 					</div>
 					<div class="m-2"><%= f.submit "Add this timeslot", class: "btn btn-primary" %></div>
@@ -49,10 +48,10 @@
 					<div class="m-2"><%= f.submit "Add new rank", class: "btn btn-primary" %></div>
 				<% end %>
 			</div>
-			<div>
+			<div class="activityActionBtn">
 				<%= link_to "Deactivate this class", activity_path(@activity, :activity => { :active => false }),
-												 :method => :put, data: { :confirm => "Are you sure?" }, class: "btn btn-primary activityActionBtn"  %>
-				<%= link_to "Delete this class", @activity, method: :delete, data: { confirm: "Please note: only delete classes that were entered erroneously. To remove a class that is no longer active select the 'deactivate' button. Are you sure you want to delete this class?" }, class: "btn btn-danger activityActionBtn" %>
+												 :method => :put, data: { :confirm => "Are you sure?" }, class: "btn btn-danger ", style: "margin-bottom: 10px;"  %>
+				<%= link_to "Delete this class", @activity, method: :delete, data: { confirm: "Please note: only delete classes that were entered erroneously. To remove a class that is no longer active select the 'deactivate' button. Are you sure you want to delete this class?" }, class: "btn btn-danger " %>
 			</div>
 		</div>
 	</div>
