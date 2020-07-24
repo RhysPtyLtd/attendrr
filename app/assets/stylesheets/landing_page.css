@@ -483,13 +483,14 @@ a.horizontal-line {
 @media screen and (max-width: 600px), screen and (max-height: 700px) {
   .editActivityResponsive {
     display: block !important;
+    padding: 10px;
   }
   .activityActionBtn {
     display: inline-grid;
     width: 100%;
   }
   .editActivityResponsive > select {
-    width: -webkit-fill-available !important;
+    width: 100%;
   }
 }
 /* Below media queries is for Activities Edit Page Devices Responsive UI--END--*/
