@@ -466,3 +466,35 @@ a.horizontal-line {
   text-align: left;
   display: inline-flex;
 }
+
+/* Below CSS is for Activities Edit Page--START--*/
+.activityActionBtn {
+  display: inline-block;
+}
+
+.editActivityResponsive > select {
+  width: 15%;
+  margin-right: 8px;
+  margin-left: 8px;
+} 
+/* Below CSS is for Activities Edit Page--END--*/
+
+/* Below media queries is for Activities Edit Page Devices Responsive UI--START--*/
+@media screen and (max-width:732px) {
+  .editActivityResponsive {
+    display: block !important;
+  }
+  .activityActionBtn {
+    display: inline-grid;
+    width: 100%;
+  }
+  .editActivityResponsive > select {
+    width: 47%;
+    margin: 0px;
+  }
+  .editActivityResponsive > label {
+    width: 100%;
+    padding-left: 2%;
+  }
+}
+/* Below media queries is for Activities Edit Page Devices Responsive UI--END--*/
