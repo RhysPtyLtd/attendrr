@@ -4,11 +4,11 @@
 			<h1><%= link_to @activity.name, @activity,class:'link-text-decoration-none' %></h1>
 			<div class="form-group">	
 				<% @activity.timeslots.where(active: true).each do |t| %>
-					<span style="font-weight: 900;"><%= Date::DAYNAMES[t.day] %> <%= t.time_start.strftime("%I:%M") %>-<%= t.time_end.strftime("%I:%M") %></span>
-					<span style="font-weight: 900;"><%= link_to "Delete this time slot", timeslot_path(t, timeslot: { active: false }), method: :put, data: { confirm: "Are you sure?" } %></span><br>
+					<span><%= Date::DAYNAMES[t.day] %> <%= t.time_start.strftime("%I:%M") %>-<%= t.time_end.strftime("%I:%M") %></span>
+					<span><%= link_to "Delete this time slot", timeslot_path(t, timeslot: { active: false }), method: :put, data: { confirm: "Are you sure?" } %></span><br>
 				<% end %>
 			</div>
-			<div class="form-group" style="background-color: #DCDCDC;">
+			<div class="form-group rounded" style="background-color: #DCDCDC;">
 				<%= form_for(@activity) do |f| %>
 					<div class="field d-flex editActivityResponsive m-2" style="padding-top: 26px;">
 						<%= f.fields_for :timeslots, @activity.timeslots.build do |timeslots_form| %>
@@ -31,12 +31,12 @@
 			
 			<div class="form-group">	
 				<% @active_ranks.each_with_index do |r, i| %>
-					<span style="font-weight: 900;"><% i = i + 1 %>
+					<span><% i = i + 1 %>
 					<%= i %>. <%= r.name %> <%= link_to "Delete this rank", rank_path(r, rank: {active: false}), method: :put, data: { confirm: "Are you sure?" } %></span><br>
 				<% end %>
 			</div>
 
-			<div class="form-group" style="background-color: #DCDCDC;">
+			<div class="form-group rounded" style="background-color: #DCDCDC;">
 				<%= form_for(@activity) do |f| %>
 					<%= render 'shared/error_messages', object: f.object %>
 					<div class="field m-2">
@@ -51,8 +51,10 @@
 			<div class="activityActionBtn">
 				<%= link_to "Deactivate this class", activity_path(@activity, :activity => { :active => false }),
 												 :method => :put, data: { :confirm => "Are you sure?" }, class: "form-group btn btn-danger " %>
+				<!-- DELETE CLASS
 				<%= link_to "Delete this class", @activity, method: :delete, data: { confirm: "Please note: only delete classes that were entered erroneously. To remove a class that is no longer active select the 'deactivate' button. Are you sure you want to delete this class?" }, class: "form-group btn btn-danger " %>
-			</div>
+				-->
+			</div> 
 		</div>
 	</div>
 </section>
