@@ -494,7 +494,7 @@ a.horizontal-line {
   }
   .editActivityResponsive > label {
     width: 100%;
-    padding-left: 2%;
+    padding-left: 1%;
   }
 }
 /* Below media queries is for Activities Edit Page Devices Responsive UI--END--*/
