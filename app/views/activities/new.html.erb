@@ -1,48 +1,61 @@
-
-<%=  nested_form_for(@activity) do |f| %>
-	<%= render 'shared/error_messages', object: f.object %>
-	<div class="field">
-		<%= f.label :name, "Class name" %>
-		<%= f.text_field :name, class: 'form-control' %>
-
-			<%= f.fields_for :timeslots do |timeslots_form| %>
-					<%= timeslots_form.label :time_start, "Start time" %>
-					<div class='input-group date datetimepicker3' id = "testing" >
-						<%= timeslots_form.text_field :time_start,:value => (Time.zone.now).to_time.strftime('%H:%M'),class: 'form-control'  %>
-						<span class="input-group-addon" >
-                        	<span class="glyphicon glyphicon-time"></span>
-                    	</span>
+<section class="activity-edit-page">
+	<div class="container">
+		<div class="row mt-5 d-block">
+			<%=  nested_form_for(@activity) do |f| %>
+				<%= render 'shared/error_messages', object: f.object %>
+					<div class="form-group rounded" style="background-color: #DCDCDC;padding-bottom: 10px;">	
+						<div class="field m-2">
+							<%= f.label :name, "Class name" %>
+							<%= f.text_field :name, class: 'form-control' %>
+						</div>
 					</div>
 
-					<%= timeslots_form.label :time_end, "End time" %>
-					<div class='input-group date datetimepicker3' >
-						<%= timeslots_form.text_field :time_end,:value => (Time.zone.now).to_time.strftime('%H:%M'),class: 'form-control'  %>
-						<span class="input-group-addon">
-                        	<span class="glyphicon glyphicon-time"></span>
-                    	</span>
+					<div class="form-group rounded" style="background-color: #DCDCDC;">
+						<div class="field m-2" style="padding-top: 26px;">
+							<%= f.fields_for :timeslots do |timeslots_form| %>
+								<%= timeslots_form.label :time_start, "Start time" %>
+								<div class='input-group date datetimepicker3' id = "testing" >
+									<%= timeslots_form.text_field :time_start,:value => (Time.zone.now).to_time.strftime('%H:%M'),class: 'form-control'  %>
+									<span class="input-group-addon" >
+			                        	<span class="glyphicon glyphicon-time"></span>
+			                    	</span>
+								</div>
+
+								<%= timeslots_form.label :time_end, "End time" %>
+								<div class='input-group date datetimepicker3' >
+									<%= timeslots_form.text_field :time_end,:value => (Time.zone.now).to_time.strftime('%H:%M'),class: 'form-control'  %>
+									<span class="input-group-addon">
+			                        	<span class="glyphicon glyphicon-time"></span>
+			                    	</span>
+								</div>
+
+								<%= timeslots_form.label :day %>
+								<%= timeslots_form.select :day, (0..6).map {|d| [Date::DAYNAMES[d], d]}, {}, { :class => 'form-control' } %>
+
+								<%= timeslots_form.link_to_remove "Remove this timeslot" %>
+							<% end %>
+							<%= f.link_to_add "Add another timeslot", :timeslots%>
+						</div>
 					</div>
 
-					<%= timeslots_form.label :day %>
-					<%= timeslots_form.select :day, (0..6).map {|d| [Date::DAYNAMES[d], d]}, {}, { :class => 'form-control' } %>
+					<div class="form-group rounded" style="background-color: #DCDCDC;">
+						<!-- RANKS -->
+						<div class="field m-2">
+							<%= f.fields_for :ranks, @activity.ranks.build do |ranks_form| %>
+								<%= ranks_form.label :name, "Add a rank:" %>
+								<%= ranks_form.text_field :name, class: 'form-control' %>
 
-					<%= timeslots_form.link_to_remove "Remove this timeslot" %>
+								<%= ranks_form.link_to_remove "Remove this rank" %>
+							<% end %>
+							<%= f.link_to_add "Add another rank", :ranks%><br></div>
+						<!-- RANKS END -->
+						</div>
+					</div>
+				<%= f.submit "Create class", class: "btn btn-primary" %>
 			<% end %>
-			<%= f.link_to_add "Add another timeslot", :timeslots%><br>
-
-			<!-- RANKS -->
-			<%= f.fields_for :ranks, @activity.ranks.build do |ranks_form| %>
-					<%= ranks_form.label :name, "Add a rank:" %>
-					<%= ranks_form.text_field :name, class: 'form-control' %>
-
-					<%= ranks_form.link_to_remove "Remove this rank" %>
-			<% end %>
-			<%= f.link_to_add "Add another rank", :ranks%><br>
-			<!-- RANKS END -->
-
+		</div>
 	</div>
-	<%= f.submit "Create class", class: "btn btn-primary" %>
-<% end %>
-
+</section>
 <script type="text/javascript">
 	$(function () {
                 $('.datetimepicker3').datetimepicker({
