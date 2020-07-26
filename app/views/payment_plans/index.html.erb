@@ -7,10 +7,10 @@
 		</div>
 			
 		<% @payment_plans.where(active: true).each do |pp| %>
-			<div class="row mt-4">
-				<div class="col-12 col-md-6  p-3 class-box  mt-1">
-					<span><%= pp.name %></span><br>
-					(<%= pp.students.count %> members)<br>
+			<div class="row mt-4"> 
+				<div class="col-12 col-md-6  p-3 class-box  mt-1 form-group rounded" style="background-color: #DCDCDC;">
+					<div class="text-center" style="font-weight: 900;"><%= pp.name %></div>
+					<%= pp.students.count %> members<br>
 					<% if pp.name != 'Prospect' %>
 						<% if pp.frequency == 'Per class' %>
 							<%= number_to_currency(pp.price, unit: "$") %> per <%= pluralize(pp.classes_amount, "class") %><br>
@@ -19,13 +19,14 @@
 						<% end %>
 					<% end %>
 					<% if pp.name != 'Prospect' %>
-						<%= link_to "Delete", payment_plan_path(pp, payment_plan: { active: false }), method: :put, data: { confirm: "Are you sure?" } %> | 
-						<%= link_to "Edit", edit_payment_plan_path(pp) %><br>
-						Daily value: $<%= pp.daily_value %><br>
+						<%= link_to "Edit", edit_payment_plan_path(pp) %> | 
+						<%= link_to "Delete", payment_plan_path(pp, payment_plan: { active: false }), method: :put, data: { confirm: "Are you sure?" } %><br>
+						<!-- Daily value: $<%= pp.daily_value %><br> -->
 					<% end %>
 				</div>
 			</div>
 		<% end %>
+
 
 		<div class="addNewClassBtn">
 			<span class="add_new_student align-self-center"><%= link_to("Add new payment plan", new_payment_plan_path) %></span>
