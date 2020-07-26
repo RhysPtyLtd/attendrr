@@ -10,7 +10,7 @@
 			<div class="row mt-4"> 
 				<div class="col-12 col-md-6  p-3 class-box  mt-1 form-group rounded" style="background-color: #DCDCDC;">
 					<div class="text-center" style="font-weight: 900;"><%= pp.name %></div>
-					<%= pp.students.count %> members<br>
+					<%= pp.students.where(active: true).count %> members<br>
 					<% if pp.name != 'Prospect' %>
 						<% if pp.frequency == 'Per class' %>
 							<%= number_to_currency(pp.price, unit: "$") %> per <%= pluralize(pp.classes_amount, "class") %><br>
