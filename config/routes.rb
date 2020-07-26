@@ -47,6 +47,11 @@ Rails.application.routes.draw do
             put :update_grading
     end
   end
+  resources :payment_plans do
+    collection do
+      get 'students'
+    end
+  end
   resources :timeslots
   resources :ranks
   resources :payment_plans

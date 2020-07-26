@@ -1,17 +1,36 @@
-<% @payment_plans.where(active: true).each do |pp| %>
-	<%= pp.name %> (<%= pp.students.count %> members)<br>
-	<% if pp.name != 'Prospect' %>
-		<% if pp.frequency == 'Per class' %>
-			<%= number_to_currency(pp.price, unit: "$") %> per <%= pluralize(pp.classes_amount, "class") %>
-		<% else %>
-			<%= number_to_currency(pp.price, unit: "$") %> <%= pp.frequency.downcase %>
-		<% end %>
-	<% end %>
-	<% if pp.name != 'Prospect' %>
-		<%= link_to "Delete", payment_plan_path(pp, payment_plan: { active: false }), method: :put, data: { confirm: "Are you sure?" } %> | 
-		<%= link_to "Edit", edit_payment_plan_path(pp) %>
-		Daily value: $<%= pp.daily_value %><br>
-	<% end %>
-<% end %>
+<section class="acivities-list">
+	<div class="container">
+		<div class="row mt-5">
+			<div class="col-12 col-md-4">
+				<h1 class="text-md-left text-center">Payment Plans</h1>
+			</div>			
+		</div>
+			
+		<% @payment_plans.where(active: true).each do |pp| %>
+			<div class="row mt-4"> 
+				<div class="col-12 col-md-6  p-3 class-box  mt-1 form-group rounded" style="background-color: #DCDCDC;">
+					<div class="text-center" style="font-weight: 900;"><%= pp.name %></div>
 
-<span><%= link_to("Add new payment plan", new_payment_plan_path) %></span>
+					<%= link_to pp.students.where(active: true).count.to_s + " members", students_payment_plans_path(activity: pp.id) %><br>
+					<% if pp.name != 'Prospect' %>
+						<% if pp.frequency == 'Per class' %>
+							<%= number_to_currency(pp.price, unit: "$") %> per <%= pluralize(pp.classes_amount, "class") %><br>
+						<% else %>
+							<%= number_to_currency(pp.price, unit: "$") %> <%= pp.frequency.downcase %><br>
+						<% end %>
+					<% end %>
+					<% if pp.name != 'Prospect' %>
+						<%= link_to "Edit", edit_payment_plan_path(pp) %> | 
+						<%= link_to "Delete", payment_plan_path(pp, payment_plan: { active: false }), method: :put, data: { confirm: "Are you sure?" } %><br>
+						<!-- Daily value: $<%= pp.daily_value %><br> -->
+					<% end %>
+				</div>
+			</div>
+		<% end %>
+
+
+		<div class="addNewClassBtn">
+			<span class="add_new_student align-self-center"><%= link_to("Add new payment plan", new_payment_plan_path) %></span>
+		</div>
+	</div>
+</section>

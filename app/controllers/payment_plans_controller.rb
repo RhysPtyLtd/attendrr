@@ -26,6 +26,11 @@ class PaymentPlansController < ApplicationController
 		@payment_plans = current_club.payment_plans.all
 	end
 
+	def students
+		@payment_plan = PaymentPlan.find(params[:activity])
+		@payment_plan_students = @payment_plan.students.where(active: true)
+	end
+
 	def edit
 		@payment_plan = current_club.payment_plans.find_by(id: params[:id])
 	end
