@@ -479,7 +479,13 @@ a.horizontal-line {
 } 
 /* Below CSS is for Activities Edit Page--END--*/
 
-/* Below media queries is for Activities Edit Page Devices Responsive UI--START--*/
+/* Below CSS is for Activities New Page--START--*/
+.activitiesNewSlotsPanel select {
+  width: 11%;
+}
+/* Below CSS is for Activities New Page--END--*/
+
+/* Below media queries is for Activities Edit & New Page Devices Responsive UI--START--*/
 @media screen and (max-width:732px) {
   .editActivityResponsive {
     display: block !important;
@@ -496,5 +502,13 @@ a.horizontal-line {
     width: 100%;
     padding-left: 1%;
   }
+
+
+  /* Below media queries are for Activities New Page--START--*/
+  .activitiesNewSlotsPanel select {
+    width: 100% !important    ;
+  }
+  /* Below media queries are for Activities New Page--END--*/
+
 }
-/* Below media queries is for Activities Edit Page Devices Responsive UI--END--*/
+/* Below media queries is for Activities Edit & New Page Devices Responsive UI--END--*/
