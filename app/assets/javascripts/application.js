@@ -20,3 +20,8 @@
 // require landing_page
 // require payment_page
 
+
+$(document).on('nested:fieldRemoved', function(event){
+  var field = event.field; 
+  field.remove()
+});
