@@ -1,6 +1,7 @@
 <section class="activity-edit-page">
 	<div class="container">
 		<div class="row mt-5 d-block">
+			<h1>Create New Class</h1>
 			<%=  nested_form_for(@activity) do |f| %>
 				<%= render 'shared/error_messages', object: f.object %>
 					<div class="form-group rounded p-2" style="background-color: #DCDCDC;">	
@@ -30,7 +31,7 @@
 
 					<div class="form-group rounded p-2" style="background-color: #DCDCDC;">
 						<!-- RANKS -->
-						<div class="field m-2">
+						<div class="field m-2 rankTextBoxWidth">
 							<%= f.fields_for :ranks, @activity.ranks.build do |ranks_form| %>
 								<%= ranks_form.label :name, "Add a rank:" %>
 								<%= ranks_form.text_field :name %>

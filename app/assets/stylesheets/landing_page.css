@@ -483,6 +483,9 @@ a.horizontal-line {
 .activitiesNewSlotsPanel select {
   width: 11%;
 }
+.rankTextBoxWidth > .fields > input {
+  width: 706px;
+}
 /* Below CSS is for Activities New Page--END--*/
 
 /* Below media queries is for Activities Edit & New Page Devices Responsive UI--START--*/
@@ -505,8 +508,22 @@ a.horizontal-line {
 
 
   /* Below media queries are for Activities New Page--START--*/
-  .activitiesNewSlotsPanel select {
-    width: 100% !important;
+  .activitiesNewSlotsPanel{
+    display: block !important;
+  }
+  .activitiesNewSlotsPanel  > .fields > a.remove_nested_fields {
+    margin-top: 10px;
+  }
+  .activitiesNewSlotsPanel  > .fields > select {
+    width: 47%;
+    margin: 0px;
+  }
+  .activitiesNewSlotsPanel > .fields > label {
+    width: 100%;
+    padding-left: 1%;
+  }
+  .rankTextBoxWidth > .fields > input {
+    width: 100%;
   }
   /* Below media queries are for Activities New Page--END--*/
 
