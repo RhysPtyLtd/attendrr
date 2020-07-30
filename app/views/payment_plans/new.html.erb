@@ -1,25 +1,52 @@
-<%= form_for(@payment_plan) do |f| %>
-	<%= render 'shared/error_messages', object: f.object %>
-	<div class="field">
-		<%= f.label :name, "Plan name" %>*
-		<%= f.text_field :name, class: 'form-control' %>
+<section class="activity-edit-page">
+	<div class="container">
+		<div class="row mt-5">
+			<h1>New payment plan</h1><div class="break"></div>
+			<div class="form-group rounded" style="background-color: #DCDCDC;">
+				<%= form_for(@payment_plan) do |f| %>
+					<%= render 'shared/error_messages', object: f.object %>
+					<div class="field d-flex editActivityResponsive m-2">
+						<div class="form-group row w-75">
+							<%= f.label :name %> 
+							<%= f.text_field :name, class: 'form-control' %>
+						</div>
+					</div>
 
-		<%= f.label :price %>*
-		<%= f.number_field :price, step: "0.01", class: 'form-control' %>
+					<div class="field d-flex editActivityResponsive m-2">
+						<div class="form-group row w-75">
+							<%= f.label :price %>
+							<%= f.number_field :price, step: "0.01", class: 'form-control' %>
+						</div>
+					</div>
 
-		<%= label_tag "Plan type" %>*
-		<%= select_tag "plan_type", options_for_select([ "Regular recurring payments", "Class package" ], selected: if params[:plan_type].present? then params[:plan_type] end) %>
+					<div class="field d-flex editActivityResponsive m-2">
+						<div class="form-group row w-75">
+							<%= label_tag "Plan type" %>
+							<%= select_tag "plan_type", options_for_select([ "Regular recurring payments", "Class package" ], selected: if params[:plan_type].present? then params[:plan_type] end) %>
+						</div>
+						</div>
+	
+						<div class="field d-flex editActivityResponsive m-2">
+							<div class="form-group row w-75">
+								<div id = "div_frequency" style = "display: none">
+									<%= f.label :frequency, "Frequency of payments" %>
+									<%= f.select :frequency, options_for_select([['Weekly'], ['2-weekly'], ['Monthly'],	 ['Quarterly'], ['6-monthly'], ['Yearly']], selected: if @payment_plan.frequency != "" then @payment_plan.frequency end), prompt: "Select Frequency", class: 'form-control' %>
+							</div>
+						</div>
+					</div>
 
-		<div id = "div_frequency" style = "display: none">
-			<%= f.label :frequency, "Frequency of payments" %>*
-			<%= f.select :frequency, options_for_select([['Weekly'], ['2-weekly'], ['Monthly'], ['Quarterly'], ['6-monthly'], ['Yearly']], selected: if @payment_plan.frequency != "" then @payment_plan.frequency end), prompt: "Select Frequency", class: 'form-control' %>
+					<div class="field d-flex editActivityResponsive m-2">
+						<div class="form-group row w-75">
+							<div id="div_classes_amount" style = "display: none">
+								<%= f.label :classes_amount, "Classes per package" %>
+								<%= f.number_field :classes_amount, class: 'form-control' %>
+							</div>
+						</div>
+					</div>
+					
+					<div class="m-2"><%= f.submit "Create payment plan", class: "btn btn-primary", id: "payment_plan_btn" %></div>
+				<% end %>
+			</div>
 		</div>
-
-		<div id = "div_classes_amount" style = "display: none">
-			<%= f.label :classes_amount, "Classes per package" %>*
-			<%= f.number_field :classes_amount, class: 'form-control' %>
-		</div>
-
 	</div>
-	<%= f.submit "Create payment plan", class: "btn btn-primary", id: "payment_plan_btn" %>
-<% end %>
+</section>
