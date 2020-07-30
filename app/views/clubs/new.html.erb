@@ -1,93 +1,93 @@
+<%= stylesheet_link_tag 'signup', media: 'all' %>
 
-<div class="signup-container"> <div class="user">
+<div class="signup-container"> 
+	<div class="signup-child-container">
 
-<header class="user__header">
-    <h1 class="user__title">Sign Up</h1>
-</header>
+		<header class="signup-header">
+		    <h1 class="signup-title">Sign Up</h1>
+		</header>
 
-		<%= form_for(@club, html: {:class => 'SIGNUP-form',  multipart: true }) do |f| %>
+		<%= form_for(@club, html: {:class => 'signup-form',  multipart: true }) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
 		  		
-		  		<div class="input-container">
-    				<i class="fa fa-university icon"></i>
-					<%= f.text_field :name, placeholder: "Club name *" , class: 'form__input input-field' %>
-				</div>
+	  		<div class="signup-input-field">
+				<i class="fa fa-university icon"></i>
+				<%= f.text_field :name, placeholder: "Club name *" , class: 'signup-form-input input-field' %>
+			</div>
 
-			  	<div class="input-container">
-    				<i class="fa fa-user icon"></i>
-					<%= f.text_field :owner_first_name, placeholder: "Owner first name *" , class: 'form__input input-field' %>
-				</div>
+		  	<div class="signup-input-field">
+				<i class="fa fa-user icon"></i>
+				<%= f.text_field :owner_first_name, placeholder: "Owner first name *" , class: 'signup-form-input input-field' %>
+			</div>
 
-				<div class="input-container">
-    				<i class="fa fa-user icon"></i>
-					<%= f.text_field :owner_last_name, placeholder: "Owner last name *" , class: 'form__input input-field' %>
-				</div>
-
-
-				<div class="input-container">
-    				<i class="fa fa-envelope icon"></i>
-					<%= f.email_field :email, placeholder: "Email *" , class: 'form__input input-field' %>
-				</div>
-
-				<span style="color: white;font-weight: bold;">Street address, P.O. box, company name, etc.</span>
-			    <div class="input-container">
-    				<i class="fa fa-address-card icon"></i>
-					<%= f.text_field :address_line_1, placeholder: "Address line 1 *" , class: 'form__input input-field' %>
-				</div>
-
-                <span style="color: white;font-weight: bold;">Apartment, suite, unit, building, floor, etc.</span>
-				<div class="input-container">
-    				<i class="fa fa-address-card icon"></i>
-					<%= f.text_field :address_line_2, placeholder: "Address line 2", class: 'form__input input-field' %>
-				</div>
-
-				<div class="input-container">
-    				<i class="fa fa-map-marker icon"></i>
-					<%= f.text_field :city, placeholder: "City *", class: 'form__input input-field' %>
-				</div>
+			<div class="signup-input-field">
+				<i class="fa fa-user icon"></i>
+				<%= f.text_field :owner_last_name, placeholder: "Owner last name *" , class: 'signup-form-input input-field' %>
+			</div>
 
 
-				<div class="input-container">
-    				<i class="fa fa-map-marker icon"></i>
-					<%= f.text_field :state, placeholder: "State *", class: 'form__input input-field' %>
-				</div>
+			<div class="signup-input-field">
+				<i class="fa fa-envelope icon"></i>
+				<%= f.email_field :email, placeholder: "Email *" , class: 'signup-form-input input-field' %>
+			</div>
 
+			<span style="color: white;font-weight: bold;">Street address, P.O. box, company name, etc.</span>
+		    <div class="signup-input-field">
+				<i class="fa fa-address-card icon"></i>
+				<%= f.text_field :address_line_1, placeholder: "Address line 1 *" , class: 'signup-form-input input-field' %>
+			</div>
 
-				<div class="input-container">
-    				<i class="fa fa-map-marker icon"></i>
-					<%= f.number_field :postcode, placeholder: "Postcode *", class: 'form__input input-field' %>
-				</div>
+	        <span style="color: white;font-weight: bold;">Apartment, suite, unit, building, floor, etc.</span>
+			<div class="signup-input-field">
+				<i class="fa fa-address-card icon"></i>
+				<%= f.text_field :address_line_2, placeholder: "Address line 2", class: 'signup-form-input input-field' %>
+			</div>
 
-				<div class="input-container">
-    				<i class="fa fa-globe icon"></i>
-					<%= f.text_field :country, placeholder: "Country *", class: 'form__input input-field' %>
-				</div>
+			<div class="signup-input-field">
+				<i class="fa fa-map-marker icon"></i>
+				<%= f.text_field :city, placeholder: "City *", class: 'signup-form-input input-field' %>
+			</div>
 
-				<div class="input-container">
-    				<i class="fa fa-phone icon"></i>
-					<%= f.phone_field :phone1, placeholder: "Primary phone *", class: 'form__input input-field' %>
-				</div>
+			<div class="signup-input-field">
+				<i class="fa fa-map-marker icon"></i>
+				<%= f.text_field :state, placeholder: "State *", class: 'signup-form-input input-field' %>
+			</div>
 
-				<div class="input-container">
-    				<i class="fa fa-phone icon"></i>
-					<%= f.phone_field :phone2, placeholder: "Secondary phone", class: 'form__input input-field' %>
-				</div>
+			<div class="signup-input-field">
+				<i class="fa fa-map-marker icon"></i>
+				<%= f.number_field :postcode, placeholder: "Postcode *", class: 'signup-form-input input-field' %>
+			</div>
 
-				<span style="color: white;font-weight: bold;">Notification when a student hasn't trained for more than this many days</span>
-				<div class="input-container">
-    				<i class="fa fa-bell icon"></i>
-					<%= f.number_field :absent_alert, class: 'form__input input-field' %>
-				</div>
+			<div class="signup-input-field">
+				<i class="fa fa-globe icon"></i>
+				<%= f.text_field :country, placeholder: "Country *", class: 'signup-form-input input-field' %>
+			</div>
 
-				<div class="input-container">
-    				<i class="fa fa-key icon"></i>
-					<%= f.password_field :password, placeholder: "Password *", class: 'form__input input-field' %>
-				</div>
+			<div class="signup-input-field">
+				<i class="fa fa-phone icon"></i>
+				<%= f.phone_field :phone1, placeholder: "Primary phone *", class: 'signup-form-input input-field' %>
+			</div>
 
-				<div class="input-container">
-    				<i class="fa fa-key icon"></i>
-					<%= f.password_field :password_confirmation, placeholder: "Confirm password *", class: 'form__input input-field' %>
-				</div>
+			<div class="signup-input-field">
+				<i class="fa fa-phone icon"></i>
+				<%= f.phone_field :phone2, placeholder: "Secondary phone", class: 'signup-form-input input-field' %>
+			</div>
+
+			<span style="color: white;font-weight: bold;">Notification when a student hasn't trained for more than this many days</span>
+			<div class="signup-input-field">
+				<i class="fa fa-bell icon"></i>
+				<%= f.number_field :absent_alert, class: 'signup-form-input input-field' %>
+			</div>
+
+			<div class="signup-input-field">
+				<i class="fa fa-key icon"></i>
+				<%= f.password_field :password, placeholder: "Password *", class: 'signup-form-input input-field' %>
+			</div>
+
+			<div class="signup-input-field">
+				<i class="fa fa-key icon"></i>
+				<%= f.password_field :password_confirmation, placeholder: "Confirm password *", class: 'signup-form-input input-field' %>
+			</div>
 
 
 			<span class="picture" style="color: white;font-weight: bold;">
@@ -95,7 +95,7 @@
 				<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
 			</span>
 
-			<%= f.submit "Register", class: "SIGNUP-btn btn-primary" %>
+			<%= f.submit "Register", class: "signup-register-btn btn-primary" %>
 			
 			<%= f.fields_for :payment_plans do |payment_plans| %>
 				<%= payment_plans.hidden_field :name, value: "Prospect" %>
@@ -117,188 +117,3 @@
 		</script>
 	</div>
 </div>
-
-
-<style>
-	$font-family:   "Roboto";
-$font-size:     14px;
-
-$color-primary: #ABA194;
-
-.SIGNUP-form > section > div.container > #error_explanation {
-    margin-left: 5px;
-    /* display: none; */
-}
-
-.picture > input {
-	background-color: #BA8B00;
-}
-
-.input-field {
-  width: 100%;
-  padding: 10px;
-  outline: none;
-}
-
-.signup-container {
-    width: 95%;
-    max-width: 720px;
-    margin: 50px auto;
-    position: relative;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-        opacity: 0;
-    transform: translate3d(0, 500px, 0);
-    background: #e0a800;
-	animation: arrive 500ms ease-in-out 0.9s forwards;
-
-}
-
-.input-container {
-  display: flex;
-  width: 100%;
-  margin-bottom: 15px;
-  margin-top: 15px;
-}
-.icon {
-  height: 44px;
-  padding: 14px;
-  background: #0056b3;
-  color: white;
-  min-width: 50px;
-  text-align: center;
-}
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: $font-family;
-    font-size: $font-size;
-    background-size: 200% 100% !important;
-    animation: move 10s ease infinite;
-    transform: translate3d(0, 0, 0);
-    background: white;
-    height: 100vh
-}
-
-.user {
-    width: 90%;
-    max-width: 587px;
-    margin: 1vh auto 10vh auto;
-}
-
-.user__header {
-    text-align: center;
-    opacity: 0;
-    transform: translate3d(0, 500px, 0);
-    animation: arrive 500ms ease-in-out 0.7s forwards;
-}
-
-.user__title {
-    font-size: $font-size;
-    margin-bottom: -10px;
-    font-weight: 500;
-    color: white;
-}
-
-.SIGNUP-form {
-    border-radius: 6px;
-    overflow: hidden;
-    opacity: 0;
-    transform: translate3d(0, 500px, 0);
-    animation: arrive 500ms ease-in-out 0.9s forwards;
-}
-
-.form--no {
-    animation: NO 1s ease-in-out;
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-}
-
-.form__input {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    font-family: $font-family;
-    -webkit-appearance: none;
-    border: 0;
-    outline: 0;
-    transition: 0.3s;
-    
-    &:focus {
-        background: darken(#fff, 3%);
-    }
-}
-
-.SIGNUP-btn {
-    display: block;
-    width: 100%;
-    padding: 15px;
-    font-family: $font-family;
-    -webkit-appearance: none;
-    outline: 0;
-    border: 0;
-    color: white;
-    background: #0056b3;
-    transition: 0.3s;
-    
-    &:hover {
-        background: darken($color-primary, 5%);
-    }
-}
-
-@keyframes NO {
-  from, to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-
-  10%, 30%, 50%, 70%, 90% {
-    -webkit-transform: translate3d(-10px, 0, 0);
-    transform: translate3d(-10px, 0, 0);
-  }
-
-  20%, 40%, 60%, 80% {
-    -webkit-transform: translate3d(10px, 0, 0);
-    transform: translate3d(10px, 0, 0);
-  }
-}
-
-@keyframes arrive {
-    0% {
-        opacity: 0;
-        transform: translate3d(0, 50px, 0);
-    }
-    
-    100% {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-@keyframes move {
-    0% {
-        background-position: 0 0
-    }
-
-    50% {
-        background-position: 100% 0
-    }
-
-    100% {
-        background-position: 0 0
-    }
-}
-</style>
-
-<script type="text/javascript">
-		
-</script>
