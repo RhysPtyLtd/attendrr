@@ -1,7 +1,7 @@
 <section class="activity-edit-page">
 	<div class="container">
 		<div class="row mt-5 d-block">
-			<h1><%= link_to @activity.name, @activity,class:'link-text-decoration-none' %></h1>
+			<h1><%= link_to @activity.name, @activity,class:'link-text-decoration-none', style: "color: black;" %></h1>
 			<div class="form-group">	
 				<% @activity.timeslots.where(active: true).each do |t| %>
 					<span><%= Date::DAYNAMES[t.day] %> <%= t.time_start.strftime("%I:%M") %>-<%= t.time_end.strftime("%I:%M") %></span>
