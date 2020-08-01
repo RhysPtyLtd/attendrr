@@ -180,3 +180,40 @@ body {
         background-position: 0 0
     }
 }
+
+.login-img {
+    width: 40px;
+    float: right;
+    margin-top: -18px;
+    margin-right: -60px;
+}
+
+@media only screen and (min-width: 768px) {
+    /* tablets and desktop */
+    .login-img {
+        width: 7%;
+        margin-top: 1%;
+        margin-right: -10%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    /* phones */
+    .login-img {
+        width: 10%;
+        margin-top: 1%;
+        margin-right: -4%;
+    }
+    .signup-container {
+        margin: 65px auto;
+    }
+}
+
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+    /* portrait phones */
+    .login-img {
+        width: 10%;
+        margin-top: 1%;
+        margin-right: -4%;
+    }
+}
