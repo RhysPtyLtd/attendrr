@@ -7,7 +7,7 @@ $color-primary: #ABA194;
 }
 
 .picture > input {
-	background-color: #BA8B00;
+	background-color: #bab6b6;
 }
 
 .input-field {
@@ -30,7 +30,7 @@ $color-primary: #ABA194;
     flex-wrap: wrap;
         opacity: 0;
     transform: translate3d(0, 500px, 0);
-    background: #e0a800;
+    background: #e8e6e6;
 	animation: arrive 500ms ease-in-out 0.9s forwards;
 
 }
@@ -45,7 +45,7 @@ $color-primary: #ABA194;
 .icon {
     height: 44px;
     padding: 14px;
-    background: #0056b3;
+    background: #c20202;
     color: white;
     min-width: 50px;
     text-align: center;
@@ -84,7 +84,7 @@ body {
     font-size: $font-size;
     margin-bottom: -10px;
     font-weight: 500;
-    color: white;
+    color: black;
 }
 
 .signup-form {
