@@ -1,3 +1,124 @@
+<%= stylesheet_link_tag 'signup', media: 'all' %>
+
+<div class="signup-container rounded"> 
+	<div class="signup-child-container">
+  		<header class="signup-header">
+		    <h1 class="signup-title">Edit details</h1>
+		</header>
+
+		<%= form_for(@club, html: {:class => 'signup-form',  multipart: true }) do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
+		  		
+	  		<div class="signup-input-field rounded-right">
+				<i class="fa fa-university icon rounded-left"></i>
+				<%= f.text_field :name, placeholder: "Club name*" , class: 'signup-form-input input-field rounded-right' %>
+			</div>
+
+		  	<div class="signup-input-field rounded-right">
+				<i class="fa fa-user icon rounded-left"></i>
+				<%= f.text_field :owner_first_name, placeholder: "Owner first name*" , class: 'signup-form-input input-field rounded-right' %>
+			</div>
+
+			<div class="signup-input-field rounded-right">
+				<i class="fa fa-user icon rounded-left"></i>
+				<%= f.text_field :owner_last_name, placeholder: "Owner last name*" , class: 'signup-form-input input-field rounded-right' %>
+			</div>
+
+
+			<div class="signup-input-field rounded-right">
+				<i class="fa fa-envelope icon rounded-left"></i>
+				<%= f.email_field :email, placeholder: "Email*" , class: 'signup-form-input input-field rounded-right' %>
+			</div>
+
+			<span style="color: #7d7979;font-weight: bold; ">Street address, P.O. box, company name, etc.</span>
+		    <div class="signup-input-field rounded-right">
+				<i class="fa fa-address-card icon rounded-left"></i>
+				<%= f.text_field :address_line_1, placeholder: "Address line 1*" , class: 'signup-form-input input-field rounded-right' %>
+			</div>
+
+	        <span style="color: #7d7979;font-weight: bold; ">Apartment, suite, unit, building, floor, etc.</span>
+			<div class="signup-input-field rounded-right">
+				<i class="fa fa-address-card icon rounded-left"></i>
+				<%= f.text_field :address_line_2, placeholder: "Address line 2", class: 'signup-form-input input-field rounded-right' %>
+			</div>
+
+			<div class="signup-input-field rounded-right">
+				<i class="fa fa-map-marker icon rounded-left"></i>
+				<%= f.text_field :city, placeholder: "City*", class: 'signup-form-input input-field rounded-right' %>
+			</div>
+
+			<div class="signup-input-field rounded-right">
+				<i class="fa fa-map-marker icon rounded-left"></i>
+				<%= f.text_field :state, placeholder: "State*", class: 'signup-form-input input-field rounded-right' %>
+			</div>
+
+			<div class="signup-input-field rounded-right">
+				<i class="fa fa-map-marker icon rounded-left"></i>
+				<%= f.number_field :postcode, placeholder: "Postcode*", class: 'signup-form-input input-field rounded-right' %>
+			</div>
+
+			<div class="signup-input-field rounded-right">
+				<i class="fa fa-globe icon rounded-left"></i>
+				<%= f.text_field :country, placeholder: "Country*", class: 'signup-form-input input-field rounded-right' %>
+			</div>
+
+			<div class="signup-input-field rounded-right">
+				<i class="fa fa-phone icon rounded-left"></i>
+				<%= f.phone_field :phone1, placeholder: "Primary phone*", class: 'signup-form-input input-field rounded-right' %>
+			</div>
+
+			<div class="signup-input-field rounded-right">
+				<i class="fa fa-phone icon rounded-left"></i>
+				<%= f.phone_field :phone2, placeholder: "Secondary phone", class: 'signup-form-input input-field rounded-right' %>
+			</div>
+
+			<div class="signup-input-field rounded-right">
+				<i class="fa fa-key icon rounded-left"></i>
+				<%= f.password_field :password, placeholder: "Password*", class: 'signup-form-input input-field rounded-right' %>
+			</div>
+
+			<div class="signup-input-field rounded-right">
+				<i class="fa fa-key icon rounded-left"></i>
+				<%= f.password_field :password_confirmation, placeholder: "Confirm password*", class: 'signup-form-input input-field rounded-right' %>
+			</div>
+
+			<span style="color: #7d7979;font-weight: bold; ">Notification when a student hasn't trained for this many days</span>
+			<div class="signup-input-field rounded-right">
+				<i class="fa fa-bell icon rounded-left"></i>
+				<%= f.number_field :absent_alert, class: 'signup-form-input input-field rounded-right' %>
+			</div>
+
+			<span class="picture" style="color: #7d7979;font-weight: bold; " >
+				<%= f.label :picture, "Attach club logo" %>
+				<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', :class => 'rounded' %>
+			</span>
+
+			<%= f.submit "Save changes", class: "signup-register-btn btn-primary rounded" %>
+			
+			<%= f.fields_for :payment_plans do |payment_plans| %>
+				<%= payment_plans.hidden_field :name, value: "Prospect" %>
+				<%= payment_plans.hidden_field :price, value: 0 %>
+				<%= payment_plans.hidden_field :frequency, value: "Per class" %>
+				<%= payment_plans.hidden_field :classes_amount, value: 1 %>
+			<% end %>
+		<% end %>
+
+		<%= link_to "Change subscription", subscriptions_path, class: "nav_link signup-subscription" %>
+
+		<!-- JQuery. Ensures files size is < 5MB client-side -->
+		<script type="text/javascript">
+		  $('#club_picture').bind('change', function() {
+		    var size_in_megabytes = this.files[0].size/1024/1024;
+		    if (size_in_megabytes > 5) {
+		      alert('Maximum file size is 5MB. Please choose a smaller file.');
+		    }
+		  });
+
+		</script>
+	</div>
+</div>
+
+<!-- 
 <% provide(:title, "Edit club") %>
 <% provide(:button_text, 'Save changes') %>
 <h1>Update your profile</h1>
@@ -7,4 +128,3 @@
 		<%= render 'form' %>
 	</div>
 </div>
-<%= link_to "Change subscription", subscriptions_path %> 

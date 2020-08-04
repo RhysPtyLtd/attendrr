@@ -71,6 +71,7 @@ body {
     width: 90%;
     max-width: 587px;
     margin: 1vh auto 10vh auto;
+    text-align: center;
 }
 
 .signup-header {
@@ -136,6 +137,18 @@ body {
 
 .signup-form > section > div > #error_explanation {
     margin-left: 1vh !important;
+}
+
+.signup-subscription {
+  border: 1px solid #007bff;
+  padding: 8px;
+  border-radius: 24px;
+}
+
+.signup-subscription:hover {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
 }
 
 @keyframes NO {
