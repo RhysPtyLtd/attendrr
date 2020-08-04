@@ -1,0 +1,24 @@
+.metrics-container {
+	margin-top:2%;
+}
+
+@media only screen and (min-width: 768px) {
+    /* tablets and desktop */
+    .metrics-container {
+		margin-top:2%;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+    /* phones */
+    .metrics-container {
+	   margin-top:5%;
+    }
+}
+
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+    /* portrait phones */
+    .metrics-container {
+	   margin-top:5%;
+    }
+}

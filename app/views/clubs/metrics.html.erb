@@ -1,24 +1,43 @@
 <script src="https://www.gstatic.com/charts/loader.js"></script>
+<%= stylesheet_link_tag 'metrics', media: 'all' %>
 
-<div class="row">
-  <h1>Metrics</h1>
-  <div class="pull-right range-query">
-    <%= form_tag metrics_path, method: :get do %>
-      <%= date_field_tag 'search[date_from]', @search.date_from %>
-      <%= date_field_tag 'search[date_to]', @search.date_to %>
-      <%= submit_tag 'Search', class: 'btn search-button' %>
-    <% end %>
-  </div>
+<div class="container metrics-container">
+    <h1>Metrics</h1>
+    <div class="row d-flex flex-row justify-content-center align-items-center">
+        <div class="form-inline pull-right range-query"> 	
+		    <%= form_tag metrics_path, method: :get do %>
+		      <%= date_field_tag 'search[date_from]', @search.date_from, class: "form-group form-control" %>
+		      <%= date_field_tag 'search[date_to]', @search.date_to , class: "form-group form-control" %>
+		      <%= submit_tag 'Search', class: 'btn search-button form-group form-control btn-primary' %>
+		    <% end %>
+  		</div>
+    </div>
 </div>
 
-<h3>Total active students</h3>
-<%= line_chart @club.daily_metrics.group_by_week(:created_at, range: @from..@to).maximum(:total_active_students), library: { animation: { easing: 'easeOutQuad'}} %>
-<h3>Lost students</h3>
-<%= line_chart @club.daily_metrics.group_by_week(:created_at, range: @from..@to).sum(:lost_students), library: { animation: { easing: 'easeOutQuad'}} %>
-<h3>New students</h3>
-<%= line_chart @club.daily_metrics.group_by_week(:created_at, range: @from..@to).sum(:new_students), library: { animation: { easing: 'easeOutQuad'}} %>
-<h3>Revenue</h3>
-<%= line_chart @club.daily_metrics.group_by_week(:created_at, range: @from..@to).sum(:revenue), library: { animation: { easing: 'easeOutQuad'}} %>
+<div class="container-fluid">
+    <div class="row justify-content-around">
+        <div class="col-lg-5 text-center shadow-lg p-3 mb-5 bg-white rounded">
+            <h3>Total active students</h3>
+			<%= line_chart @club.daily_metrics.group_by_week(:created_at, range: @from..@to).maximum(:total_active_students), library: { animation: { easing: 'easeOutQuad'}} %>
+        </div>
+        
+        <div class="col-lg-5 text-center shadow-lg p-3 mb-5 bg-white rounded">
+            <h3>Lost students</h3>
+			<%= line_chart @club.daily_metrics.group_by_week(:created_at, range: @from..@to).sum(:lost_students), library: { animation: { easing: 'easeOutQuad'}} %>
+        </div>
+
+        <div class="col-lg-5 text-center shadow-lg p-3 mb-5 bg-white rounded">     
+			<h3>New students</h3>
+			<%= line_chart @club.daily_metrics.group_by_week(:created_at, range: @from..@to).sum(:new_students), library: { animation: { easing: 'easeOutQuad'}} %>
+        </div>
+
+        <div class="col-lg-5 text-center shadow-lg p-3 mb-5 bg-white rounded" >
+            <h3>Revenue</h3>
+			<%= line_chart @club.daily_metrics.group_by_week(:created_at, range: @from..@to).sum(:revenue), library: { animation: { easing: 'easeOutQuad'}} %>
+        </div>
+    </div>
+</div>
+
 <%# <h3>Average no. of students per session</h3>
 <h3>Average length of membership (days)</h3>
 <h3>Retention rate/churn</h3> %>
