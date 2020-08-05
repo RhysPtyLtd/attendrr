@@ -1,0 +1,31 @@
+.club-show-card {
+	margin: 50px;
+}   
+
+@media only screen and (min-width: 768px) {
+    /* tablets and desktop */
+	.club-show-card {
+		margin-top: 40px;
+    	margin-left: 15px;
+    	margin-right: 15px;
+	}   
+}
+
+@media only screen and (max-width: 767px) {
+    /* phones */
+	.club-show-card {
+		margin-top: 40px;
+    	margin-left: 15px;
+    	margin-right: 15px;
+	}
+}
+
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+    /* portrait phones */
+	.club-show-card {
+		margin-top: 40px;
+    	margin-left: 15px;
+    	margin-right: 15px;
+	}
+}
+
