@@ -1,25 +1,43 @@
-<% provide(:title, @club.name) %>
-<div class="row">
-	<aside class="col-md-4">
-		<section class="club_info">
-			<h1>
-				<!-- Can put image with class 'clublogo' here. CSS rules already defined. Replace 'gravatar' with 'clublogo' -->
-				<%= image_tag @club.picture.url if @club.picture? %>
-				<%= @club.name %>
-			</h1>
+<%= stylesheet_link_tag 'clubs', media: 'all' %>
+
+<div class="show-container rounded"> 
+	<div class="show-child-container">
+  		<header class="show-header">
+		    <h1 class="show-title"><%= @club.name %></h1>
+		    <%= image_tag @club.picture.url if @club.picture? %>
+		</header>
+
+	    	<p>
+	    		<b>Owner:</b> <%= @club.owner_first_name  %> <%= @club.owner_last_name %>
+	    	</p>
 			<p>
-				Owner: <%= @club.owner_first_name  %> <%= @club.owner_last_name %><br>
-				Email: <%= @club.email %><br>
-				Address: <% if @club.address_line_2? %><%= @club.address_line_2 %>/<% end %><%= @club.address_line_1 %><br>
-				<%= @club.city %><br>
-				<%= @club.state %> <%= @club.postcode %><br>
-				<%= @club.country %><br>
-				Phone: <%= @club.phone1 %><br>
-				<% if @club.phone2? %>Secondary phone: <%= @club.phone2 %><% end %>
-				Alert me when a student hasn't trained in more than <%= pluralize(@club.absent_alert, 'day') %><br>
-				Subscription: <%= @club.subscription.name %><br>
+				<b>Email:</b> <%= @club.email %>
 			</p>
-			<p><%= link_to "Edit", edit_club_path %></p>
-		</section>
-	</aside>
+			<p>
+				<b>Address:</b> <% if @club.address_line_2? %><%= @club.address_line_2 %>/<% end %><%= @club.address_line_1 %>
+			</p>
+			<p>
+				<b>City: </b><%= @club.city %>
+			</p>
+			<p>
+				<b>State: </b><%= @club.state %> <%= @club.postcode %>
+			</p>
+			<p>
+				<b>Country:</b> <%= @club.country %>
+			</p>
+			<p>
+				<b>Phone: </b><%= @club.phone1 %>
+			</p>
+			<p>
+				<% if @club.phone2? %><b>Secondary phone: <%= @club.phone2 %><% end %>
+			</p>
+			<p>
+				<i class="text-danger">Alert me when a student hasn't trained in more than <%= pluralize(@club.absent_alert, 'day') %></i>
+			</p>
+			<p>
+				<b>Subscription:</b> <%= @club.subscription.name %>
+			</p>
+    	<%= link_to "Edit", edit_club_path, class: "btn btn-primary" %>
+    	<%= link_to 'Back', root_path, class: "btn btn-secondary" %>
+  	</div>
 </div>
