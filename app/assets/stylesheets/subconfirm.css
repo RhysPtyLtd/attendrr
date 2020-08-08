@@ -1,0 +1,128 @@
+$font-family: "Roboto";
+$font-size: 14px;
+$color-primary: #ABA194;
+
+#error_explanation ul {
+    margin: 0 0 30px 16px;
+}
+
+.picture > input {
+	background-color: #bab6b6;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+}
+
+.show-container {
+    width: 95%;
+    max-width: 720px;
+    margin: 50px auto;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+        opacity: 0;
+    transform: translate3d(0, 500px, 0);
+    background: #e8e6e6;
+	animation: arrive 500ms ease-in-out 0.9s forwards;
+
+}
+
+.show-input-field {
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-family;
+    font-size: $font-size;
+    background-size: 200% 100% !important;
+    animation: move 10s ease infinite;
+    transform: translate3d(0, 0, 0);
+    background: white;
+    height: 100vh
+}
+
+.show-child-container {
+    width: 90%;
+    max-width: 587px;
+    margin: 1vh auto 10vh auto;
+}
+
+.show-header {
+    text-align: center;
+    opacity: 0;
+    transform: translate3d(0, 500px, 0);
+    animation: arrive 500ms ease-in-out 0.7s forwards;
+}
+
+.show-title {
+    font-size: $font-size;
+    margin-bottom: -10px;
+    font-weight: 500;
+    color: black;
+}
+
+.form--no {
+    animation: NO 1s ease-in-out;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+@keyframes NO {
+  from, to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+}
+
+@keyframes arrive {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 50px, 0);
+    }
+    
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes move {
+    0% {
+        background-position: 0 0
+    }
+
+    50% {
+        background-position: 100% 0
+    }
+
+    100% {
+        background-position: 0 0
+    }
+}
