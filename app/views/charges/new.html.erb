@@ -1,29 +1,36 @@
-<br><br><br><br>
+<%= stylesheet_link_tag 'subconfirm', media: 'all' %>
 
-<%= form_tag charges_path do %>
-  <article>
-    <% if flash[:error].present? %>
-      <div id="error_explanation">
-        <p><%= flash[:error] %></p>
-      </div>
+<div class="show-container rounded"> 
+  <div class="show-child-container">
+     <header class="show-header">
+        <h1 class="show-title"><%= @subscription.name %> subscription</h1><br>
+    </header>
+
+    <%= form_tag charges_path do %>
+      <article>
+       <% if flash[:error].present? %>
+          <div id="error_explanation">
+           <p><%= flash[:error] %></p>
+         </div>
+        <% end %>
+      Student limit: <%= @subscription.student_limit %><br>
+      <%= @subscription.description %><br>
+       <label class="amount">
+          <span>Amount: <%= pretty_amount(@cost) %>/month</span>
+        </label>
+      </article>
+
+     <%= hidden_field_tag :subscription, value: params[:subscription] %>
+
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-description="<%= @description %>"
+              data-amount="<%= @amount %>"
+             data-email="<%= current_club.email %>"
+              data-locale="auto">
+      </script> <%= link_to 'Back', subscriptions_path, class: "btn btn-secondary" %>
     <% end %>
-  <h1><%= @subscription.name %></h1><br>
-  Student limit: <%= @subscription.student_limit %><br>
-  <%= @subscription.description %><br>
-    <label class="amount">
-      <span>Amount: <%= pretty_amount(@cost) %>/month</span>
-    </label>
-  </article>
-
   
+  </div>
+</div>
 
-  <%= hidden_field_tag :subscription, value: params[:subscription] %>
-
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="<%= @description %>"
-          data-amount="<%= @amount %>"
-          data-email="<%= current_club.email %>"
-          data-locale="auto">
-  </script>
-<% end %>
