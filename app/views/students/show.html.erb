@@ -6,7 +6,10 @@
 			<div class="col-12">
 				<p><%= link_to "Student List", students_path , class: "nav_link"  %></p>
 				<% if @student.ranks.count == 0 %>
-					<div>THIS STUDENT ISN'T ASSIGNED TO ANY CLASSES</div>
+					<i class="text-danger">This student isn't enrolled in any classes. <%= link_to "Enrol here", edit_student_path %></i><br>
+				<% end %>
+				<% if @student.payment_plan.id == 1 %>
+					<i class="text-danger">This student is a prospect. <%= link_to "Upgrade here", edit_student_path %></i>
 				<% end %>
 				<hr class="staight-line">
 			</div>
