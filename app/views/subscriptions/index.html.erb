@@ -15,8 +15,8 @@
         <div class="container">
             <div class="row">
             	<% @subscriptions.each do |s| %>
-	                <div class="col-md-3">
-	                    <div class="generic_content <%= 'active' if s.name == 'Gold' %> clearfix">
+	                <div class="col-md-3" style="padding-bottom: 30px;">
+	                    <div class="generic_content <%= 'active' if s.name == current_club.subscription.name %> clearfix" style="height: 100%;">
 	                        <div class="generic_head_price clearfix">
 	                            <div class="generic_head_content clearfix">
 	                                <div class="head_bg"></div>
@@ -37,7 +37,7 @@
 	                        </div>                            
 	                        
 	                        <!--FEATURE LIST START-->
-	                        <div class="generic_feature_list">
+	                        <div class="generic_feature_list" style="height: 34%;">
 	                        	<ul>
 	                            	<li><span><%= s.description %></span> </li>
 	                            </ul>
@@ -45,7 +45,7 @@
 	                        <!--//FEATURE LIST END-->
 	                        
 	                        <!--BUTTON START-->
-	                        <div class="generic_price_btn clearfix">
+	                        <div class="generic_price_btn clearfix" style="display: inline-flex;">
 	                        	<% if current_club %>
 									<!-- if this is the club's current subscription, shows no links, just "SUBSCRIBED!" -->
 									<% if s == current_club.subscription %>
@@ -75,10 +75,12 @@
 	                    </div>	                        
 	                </div>
                 <% end %>
-            </div>	
+            </div>
+            *Prices are in AUD
         </div>
     </section>
 </div>
+
 
 <!-- Cancel subscription -->
 <% if current_club %>
