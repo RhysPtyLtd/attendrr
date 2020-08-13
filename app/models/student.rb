@@ -34,7 +34,7 @@ class Student < ApplicationRecord
   scope :last_month,  -> (timeslot_id,date_find) { joins(sanitize_sql_array(['left outer join attendances on attendances.student_id = students.id'])).where('attendances.id is null OR (attendances.timeslot_id != ? AND attendances.attended_on != ?)',timeslot_id,date_find)}
   
   def buy_classes!
-    self.classes_remaining += self.payment_plan.classes_amount
+    self.classes_remaining = self.classes_remaining.to_i + self.payment_plan.classes_amount
     save
     create_revenue_record
   end
