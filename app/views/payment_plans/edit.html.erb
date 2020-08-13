@@ -22,7 +22,7 @@
 					<div class="field d-flex editActivityResponsive m-2">
 						<div class="form-group row w-75">
 							<%= label_tag "Plan type" %>
-							<%= select_tag "plan_type", options_for_select([ "Regular recurring payments", "Class package" ], selected: if @payment_plan.frequency.present? then @payment_plan.frequency end) %>
+							<%= select_tag "plan_type", options_for_select([ "Regular recurring payments", "Class package" ], selected: if @payment_plan.frequency.present? && @payment_plan.frequency == "Per class" then "Class package" end) %>
 						</div>
 						</div>
 	
