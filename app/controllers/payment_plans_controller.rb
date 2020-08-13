@@ -9,7 +9,7 @@ class PaymentPlansController < ApplicationController
 
 	def create
 		if params[:plan_type] == "Class package"
-			params[:payment_plan][:frequency] = ""
+			params[:payment_plan][:frequency] = "Per class" 
 		else
 			params[:payment_plan][:classes_amount] = nil
 		end
@@ -38,7 +38,7 @@ class PaymentPlansController < ApplicationController
 	def update
 		@payment_plan = current_club.payment_plans.find_by(id: params[:id])
 		if params[:plan_type] == "Class package"
-			params[:payment_plan][:frequency] = ""
+			params[:payment_plan][:frequency] = "Per class" 
 		else
 			params[:payment_plan][:classes_amount] = nil
 		end
