@@ -94,13 +94,6 @@
 			</span>
 
 			<%= f.submit "Save changes", class: "signup-register-btn btn-primary rounded" %>
-			
-			<%= f.fields_for :payment_plans do |payment_plans| %>
-				<%= payment_plans.hidden_field :name, value: "Prospect" %>
-				<%= payment_plans.hidden_field :price, value: 0 %>
-				<%= payment_plans.hidden_field :frequency, value: "Per class" %>
-				<%= payment_plans.hidden_field :classes_amount, value: 1 %>
-			<% end %>
 		<% end %>
 
 		<%= link_to "Change subscription", subscriptions_path, class: "nav_link signup-subscription" %>
