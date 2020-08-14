@@ -1,0 +1,62 @@
+<p><i class="text-danger">Admin view</i></p>
+<p>
+	<b>Owner:</b> <%= @club.owner_first_name  %> <%= @club.owner_last_name %>
+</p>
+<p>
+	<b>Email:</b> <%= @club.email %>
+</p>
+<p>
+	<b>Address:</b> <% if @club.address_line_2? %><%= @club.address_line_2 %>/<% end %><%= @club.address_line_1 %>
+</p>
+<p>
+	<b>City: </b><%= @club.city %>
+</p>
+<p>
+	<b>State: </b><%= @club.state %> <%= @club.postcode %>
+</p>
+<p>
+	<b>Country:</b> <%= @club.country %>
+</p>
+<p>
+	<b>Phone: </b><%= @club.phone1 %>
+</p>
+<p>
+	<% if @club.phone2? %><b>Secondary phone: <%= @club.phone2 %><% end %>
+</p>
+<p>
+	Alert me when a student hasn't trained in more than <%= pluralize(@club.absent_alert, 'day') %>
+</p>
+<p>
+	<b>Subscription:</b> <%= @club.subscription.name %>
+</p>
+<p>
+	<b>Active students: </b><%= TypeOfStudent.active(@club).count %>
+</p>
+<p>
+	<b>Active non-prospects: </b><%= TypeOfStudent.active_enrolled(@club).count %>
+</p>
+<p>
+	<b>Active prospects: </b><%= TypeOfStudent.active_prospects(@club).count %>
+</p>
+<p>
+	<b>Total students past & present: </b><%= @club.students.count %>
+</p>
+<p>
+	<b>Classes: </b> 
+	<ul>
+		<% @club.activities.where(active: true).each do |a| %>
+			<li><%= a.name %>
+		<% end %>
+	</ul>
+</p>
+<p>
+	<b>Payment plans: </b> 
+	<ul>
+		<% @club.payment_plans.where(active: true).each do |pp| %>
+			<li><%= pp.name %>
+		<% end %>
+	</ul>
+</p>
+<p>
+	<b>Total attendances: </b><%= @club.attendances.count %>
+</p>

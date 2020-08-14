@@ -1,0 +1,32 @@
+	    	<p>
+	    		<b>Owner:</b> <%= @club.owner_first_name  %> <%= @club.owner_last_name %>
+	    	</p>
+			<p>
+				<b>Email:</b> <%= @club.email %>
+			</p>
+			<p>
+				<b>Address:</b> <% if @club.address_line_2? %><%= @club.address_line_2 %>/<% end %><%= @club.address_line_1 %>
+			</p>
+			<p>
+				<b>City: </b><%= @club.city %>
+			</p>
+			<p>
+				<b>State: </b><%= @club.state %> <%= @club.postcode %>
+			</p>
+			<p>
+				<b>Country:</b> <%= @club.country %>
+			</p>
+			<p>
+				<b>Phone: </b><%= @club.phone1 %>
+			</p>
+			<p>
+				<% if @club.phone2? %><b>Secondary phone: <%= @club.phone2 %><% end %>
+			</p>
+			<p>
+				<i class="text-danger">Alert me when a student hasn't trained in more than <%= pluralize(@club.absent_alert, 'day') %></i>
+			</p>
+			<p>
+				<b>Subscription:</b> <%= @club.subscription.name %>
+			</p>
+    	<%= link_to "Edit", edit_club_path, class: "btn btn-primary" %>
+    	<%= link_to 'Back', root_path, class: "btn btn-secondary" %>
