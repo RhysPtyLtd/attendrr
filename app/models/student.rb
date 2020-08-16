@@ -96,7 +96,7 @@ class Student < ApplicationRecord
 
     def handle_payment_plan_changes!
       return unless self.nil?
-      return unless payment_plan_id_changed?
+      return if created_at.nil?
       changes = self.changes
       original_and_updated_payment_plans = changes.select {|s| s.include? 'payment_plan_id'}
       original = PaymentPlan.find(original_and_updated_payment_plans["payment_plan_id"][0])
