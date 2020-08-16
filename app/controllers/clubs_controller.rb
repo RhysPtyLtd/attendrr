@@ -2,7 +2,7 @@ class ClubsController < ApplicationController
   require 'metrics_datable'
   before_action :logged_in_user, only: [:edit, :update, :destroy]
   before_action :correct_club, only: [:edit, :update, :show]
-  before_action :admin_club, only: [:destroy]
+  before_action :admin_club, only: [:destroy, :payment_plans]
   before_action :admin_club_index, only: [:index]
 
   def index
@@ -62,6 +62,10 @@ class ClubsController < ApplicationController
       @from = params[:search][:date_from]
       @to = params[:search][:date_to]
     end
+  end
+
+  def payment_plans
+    @clubs = Club.all
   end
 
   private

@@ -1,0 +1,11 @@
+<br><br><br>
+<ul>
+	<% @clubs.each do |c| %>
+		<li><%= c.name %> | <%= c.subscription.name %></li>
+		<%= form_for(c) do |f| %>
+			<%= f.label :subscription_id, "Subscription" %>
+				<%= f.collection_select(:subscription_id, Subscription.all, :id, :name,class:'custom-select') %>
+				<%= f.submit "Change payment plan" %>
+		<% end %>
+	<% end %>
+</ul>
