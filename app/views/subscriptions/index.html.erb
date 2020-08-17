@@ -16,7 +16,7 @@
             <div class="row">
             	<% @subscriptions.each do |s| %>
 	                <div class="col-md-3" style="padding-bottom: 30px;">
-	                    <div class="generic_content <%= 'active' if s.name == current_club.subscription.name %> clearfix" style="height: 100%;">
+	                    <div class="generic_content <%= 'active' if current_club && s.name == current_club.subscription.name %> clearfix" style="height: 100%;">
 	                        <div class="generic_head_price clearfix">
 	                            <div class="generic_head_content clearfix">
 	                                <div class="head_bg"></div>
