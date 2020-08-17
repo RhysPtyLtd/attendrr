@@ -34,6 +34,6 @@
           <% end %>
         </div>
         <% if i %>
-          <%= "None of your students have been absent in more than #{@absent_alert_activation_date} days! Well done!" %>
+          <%= "None of your students have been absent in more than #{@current_club.absent_alert} days! Well done!" %>
         <% end %>
       </section>
