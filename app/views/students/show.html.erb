@@ -34,20 +34,26 @@
 					Size: <%= @student.size %><br>
 					<% end %>
 				</p>
-				<p>Date of birth: <%= @student.dob.strftime("%d/%m/%Y") %> (<%= ((Date.today - @student.dob) / 365).to_i %> years old)<br></p>
+				<% if @student.dob? %>
+					<p>Date of birth: <%= @student.dob.strftime("%d/%m/%Y") %> (<%= ((Date.today - @student.dob) / 365).to_i %> years old)<br></p>
+				<% end %>
 				</div>
 				<div class="col-lg-3 col-sm-6 col-12 mt-lg-0 mt-sm-3">
+					<% if @student.phone1? %>
 					<p>Primary phone: <br><br><%= @student.phone1 %></p>
 					<p>
 						<% if @student.phone2? %>
 						Secondary phone: <br><br><%= @student.phone2 %>
 						<% end %>
 					</p>
+					<% end %>
 				</div>
 				<div class="col-lg-2 col-sm-6 col-12">
-					Address:<br>
-					<% if @student.address_line_2? %>
-					<%= @student.address_line_2 %> /
+					<% if @student.address_line_1? %>
+						Address:<br>
+						<% if @student.address_line_2? %>
+							<%= @student.address_line_2 %> /
+						<% end %>
 					<% end %>
 					<%=@student.address_line_1 %><br>
 					<%= @student.city %><br>
