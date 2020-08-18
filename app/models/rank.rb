@@ -25,7 +25,8 @@ end
 
     # Ensures positions remain in order
     def check_deactivated
-      if active_changed? and !active
+      puts active_changed?
+      if self.active == false
         self.activity.ranks.where(active: true).where('position > ?', self.position).update_all('position = position-1')
       end
     end
