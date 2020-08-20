@@ -42,6 +42,9 @@
 <section id="subscribe">
 	<div class="container">
 		<h3 class="text-center text-white">Tools, tactics and templates of the most successful martial arts schools, direct to your inbox</h3><br>
+		<% if logged_in? %>
+			<h3 class="text-center text-white"><i>"Ambition is enthusiasm with a purpose"</i></h3>
+		<% else %>
 			<%= form_for Follower.new do |f|  %>
 			<div class="row">
 				<div class="col-12 col-sm-6">
@@ -55,6 +58,7 @@
     			</div>
     		</div>
 			<% end %>
+		<% end %>
 	</div>
 </section>
 
