@@ -15,62 +15,53 @@
           </h4>
         <% end %>
       </div>
-
     </div>
 
+    <div class="row" style="margin-bottom: 7px;">
+      <div class="col-12">
+        <%= form_tag(student_attendance_students_path, :method => "get", id: "search-form",class: "form-inline") do %>
+        <div class="col-12" style="left: -45px;">
+          <h6><span style=" font-size: larger;font-weight: bold;"><br/>Filter between dates</span></h6>
+        </div>
+      </div>
+    </div>
 
-
-      <!-- <h2>Inline form</h2>
-      <p>Make the viewport larger than 768px wide to see that all of the form elements are inline, left aligned, and the labels are alongside.</p> -->
-
-        <div class="row" style="margin-bottom: 7px;">
-
-
-          <div class="col-12">
-            <%= form_tag(student_attendance_students_path, :method => "get", id: "search-form",class: "form-inline") do %>
-            <div class="col-12">
-                <h6><span style=" font-size: larger;font-weight: bold;"><br/>Filter between dates</span></h6>
-            </div>
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-4" style="left: -30px;">
+        <div class="form-group">
+           <div class='input-group date' id='datepicker_from'>
+            <label for="email" style="padding-right: 10px;margin-top: 2%;">From:</label> 
+            <%= date_field_tag :from_date,params[:from_date],class: "form-control" %>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
           </div>
         </div>
-        <div class="row">
-          <div class="col-12 col-sm-6 col-md-4">
-            <div class="form-group">
-              <label for="email">From:</label>
-               <div class='input-group date' id='datepicker_from'>
-                <%= date_field_tag :from_date,params[:from_date],class: "form-control" %>
-                <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-sm-6 col-md-4">
-            <div class="form-group " >
-              <label for="pwd">To:</label>
-              <div class='input-group date' id='datepicker_to'>
-                <%= date_field_tag :to_date,params[:to_date],class: "form-control"%>
-                <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-              </div>
-            </div>
-            <%= hidden_field_tag :student_id,params[:student_id]%>
-            <%= hidden_field_tag :activity_id,params[:activity_id]%>
-
-          </div>
-          <div class="col-12 col-sm-6 col-md-4">
-            <div class="form-group d-flex align-items-baseline mt-4" >
-              <button type="submit" class="btn btn-primary ml-2" >Submit</button>
-              <% end %>
-              <%= button_to "Reset", student_attendance_students_path(), :class => "btn btn-success m-2", :method => :get, params: { student_id: params[:student_id], activity_id: params[:activity_id] } %>
-            </div>
+      </div>
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="form-group " >
+          <div class='input-group date' id='datepicker_to'>
+            <label for="pwd" style="padding-right: 10px;margin-top: 2%;">To:</label> 
+            <%= date_field_tag :to_date,params[:to_date],class: "form-control"%>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
           </div>
         </div>
-            <div class="col-12 ">
+        <%= hidden_field_tag :student_id,params[:student_id]%>
+        <%= hidden_field_tag :activity_id,params[:activity_id]%>
+      </div>
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="form-group d-flex align-items-baseline" style="margin-top: -6px !important;">
+          <button type="submit" class="btn btn-primary ml-2" >Submit</button>
+          <% end %>
+          <%= button_to "Reset", student_attendance_students_path(), :class => "btn btn-success m-2", :method => :get, params: { student_id: params[:student_id], activity_id: params[:activity_id] } %>
+        </div>
+      </div>
+    </div>
 
-
-            </div>
+    <div class="col-12 ">
+    </div>
 
     <div class="table-responsive">
       <table id="products" class="table table-striped table-bordered" cellspacing="0" width="100%" data-source="<%= student_attendance_students_url(student_id: params[:student_id], activity_id: params[:activity_id], format: "json", from_date: params[:from_date], to_date: params[:to_date]) %>">
@@ -104,7 +95,10 @@
         </tbody>
       </table>
     </div>
-    <script type="text/javascript">
+  </div>
+</section>
+
+<script type="text/javascript">
       $(function () {
         $('#datepicker_from').datetimepicker({
           format: 'DD/MM/YYYY'
@@ -116,7 +110,13 @@
           format: 'DD/MM/YYYY'
         });
       });
-    </script>
+</script>
 
-  </div>
-</section>
+<style>
+  div.dataTables_wrapper div.dataTables_length label {
+    font-weight: normal;
+    text-align: left;
+    white-space: nowrap;
+    margin-top: 7%;
+  }
+</style>
