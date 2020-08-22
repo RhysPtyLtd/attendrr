@@ -74,12 +74,12 @@
 
 			<div class="signup-input-field rounded-right">
 				<i class="fa fa-key icon rounded-left"></i>
-				<%= f.password_field :password, placeholder: "Password*", class: 'signup-form-input input-field rounded-right' %>
+				<%= f.password_field :password, placeholder: "Change password", class: 'signup-form-input input-field rounded-right' %>
 			</div>
 
 			<div class="signup-input-field rounded-right">
 				<i class="fa fa-key icon rounded-left"></i>
-				<%= f.password_field :password_confirmation, placeholder: "Confirm password*", class: 'signup-form-input input-field rounded-right' %>
+				<%= f.password_field :password_confirmation, placeholder: "Confirm new password", class: 'signup-form-input input-field rounded-right' %>
 			</div>
 
 			<span style="color: #7d7979;font-weight: bold; ">Notification when a student hasn't trained for this many days</span>
@@ -94,9 +94,15 @@
 			</span>
 
 			<%= f.submit "Save changes", class: "signup-register-btn btn-primary rounded" %>
-		<% end %>
+		<% end %><br>
 
+		<span style="color: #7d7979;font-weight: bold; ">Subscription tier</span>
+		<div class="subscription-field">
+			<%= current_club.subscription.name %>
+		</div>		
+		<div class="subscription-field">
 		<%= link_to "Change subscription", subscriptions_path, class: "nav_link signup-subscription" %>
+		</div>
 
 		<!-- JQuery. Ensures files size is < 5MB client-side -->
 		<script type="text/javascript">

@@ -42,6 +42,12 @@ $color-primary: #ABA194;
     margin-top: 15px;
 }
 
+.subscription-field {
+    width: 100%;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
 .icon {
     height: 44px;
     padding: 14px;
