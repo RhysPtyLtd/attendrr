@@ -76,7 +76,7 @@
 				</div>
 				<div class=" col-12 ">
 					<% @activity.timeslots.where(active: true).each do |t| %>
-					<div class=" col-12 d-flex  "><p><%= Date::DAYNAMES[t.day] %> <%= t.time_start.strftime("%I:%M") %>-<%= t.time_end.strftime("%I:%M") %></p></div>
+					<div class=" col-12 d-flex  "><p><%= Date::DAYNAMES[t.day] %> <%= t.time_start.strftime("%I:%M%P") %> - <%= t.time_end.strftime("%I:%M%P") %></p></div>
 					<% end %>
 				</div>
 				<% else %>

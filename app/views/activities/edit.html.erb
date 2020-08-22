@@ -4,7 +4,7 @@
 			<h1><%= link_to @activity.name, @activity,class:'link-text-decoration-none', style: "color: black;" %></h1>
 			<div class="form-group">	
 				<% @activity.timeslots.where(active: true).each do |t| %>
-					<span><%= Date::DAYNAMES[t.day] %> <%= t.time_start.strftime("%I:%M") %>-<%= t.time_end.strftime("%I:%M") %></span>
+					<span><%= Date::DAYNAMES[t.day] %> <%= t.time_start.strftime("%I:%M%P") %>-<%= t.time_end.strftime("%I:%M%P") %></span>
 					<span><%= link_to "Delete this time slot", timeslot_path(t, timeslot: { active: false }), method: :put, data: { confirm: "Are you sure?" } %></span><br>
 				<% end %>
 			</div>
@@ -13,10 +13,10 @@
 					<div class="field d-flex editActivityResponsive m-2" style="padding-top: 26px;">
 						<%= f.fields_for :timeslots, @activity.timeslots.build do |timeslots_form| %>
 							<%= timeslots_form.label :time_start, "Start time" %>
-							<%= timeslots_form.time_select :time_start %>
+							<%= timeslots_form.time_select :time_start, {ampm: true} %>
 
 							<%= timeslots_form.label :time_end, "End time" %>
-							<%= timeslots_form.time_select :time_end %>
+							<%= timeslots_form.time_select :time_end, {ampm: true} %>
 
 							<%= timeslots_form.label :day %>
 							<%= timeslots_form.select :day, (0..6).map {|d| [Date::DAYNAMES[d], d]} %>
