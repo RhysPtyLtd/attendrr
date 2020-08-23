@@ -48,6 +48,11 @@ class StudentsController < ApplicationController
 		@student_activities = @student.unique_activities
 		@first_ranks_of_activities = @student.first_ranks_of_activities
 		redirect_to root_url if @student.nil?
+		if @student.student_since.nil?
+			@student_since = @student.created_at.strftime("%d/%m/%Y")
+		else
+			@student_since = @student.student_since.strftime("%d/%m/%Y")
+		end
 	end
 
 	def new
