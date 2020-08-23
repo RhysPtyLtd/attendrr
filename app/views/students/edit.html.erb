@@ -16,11 +16,9 @@
 				<%= f.label :last_name %>*
 				<%= f.text_field :last_name, class: 'form-control' %>
 			</div>
-			<div class="col-12">
+			<div class="col-12 col-md-6">
 				<%= f.label :dob, "Date of birth" %>*
-			</div>
-			<div class="col-12 d-flex ">
-				<%= f.date_select :dob, {order: [:day, :month, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year, end_year: Date.today.year - 90}, class: 'form-control col-4 ml-1' %>
+				<%= f.date_field :dob, class: 'form-control' %>
 			</div>
 			<div class="col-12 col-md-6">
 				<%= f.label :email %>*
@@ -68,6 +66,10 @@
 			<div class="col-12 col-sm-6">
 				<%= f.label :size, "Uniform size" %>
 				<%= f.text_field :size, class: 'form-control' %>
+			</div>
+			<div class="col-12 col-sm-6">
+				<%= f.label :student_since, "Student since" %>
+				<%= f.date_field :student_since, class: 'form-control' %>
 			</div>
 			<div class="col-12 col-sm-6">
 				<%= f.label :notes %>
