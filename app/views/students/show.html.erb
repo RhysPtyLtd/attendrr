@@ -69,7 +69,7 @@
 					<p>Classes remaining: <%= @student.classes_remaining.nil? ? "0" : @student.classes_remaining %></p>
 					<%= link_to "Purchase another #{@student.payment_plan.name}", buy_classes_student_path(@student), method: :patch, data: { confirm: "#{@student.first_name} currently has #{pluralize(@student.classes_remaining, 'class')} remaining. Add #{@student.payment_plan.classes_amount} more for $#{@student.payment_plan.price}?" }, class: "btn btn-primary btn-pay"  %><br>
 					<% end %>
-					<p class="mt-2">Student since: <%= @student_since %> (<%= distance_of_time_in_words_to_now(@student.created_at) %>)</p>
+					<p class="mt-2">Student since: <%= @student_since %> (<%= distance_of_time_in_words_to_now(@student_since) %>)</p>
 					<% if @student.parent1? %>
 					<hr class="staight-line">
 					<p>Parent/guardian 1: <%= @student.parent1 %></p>

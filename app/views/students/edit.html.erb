@@ -17,16 +17,16 @@
 				<%= f.text_field :last_name, class: 'form-control' %>
 			</div>
 			<div class="col-12 col-md-6">
-				<%= f.label :dob, "Date of birth" %>*
+				<%= f.label :dob, "Date of birth" %>
 				<%= f.date_field :dob, class: 'form-control' %>
 			</div>
 			<div class="col-12 col-md-6">
-				<%= f.label :email %>*
+				<%= f.label :email %>
 				<%= f.email_field :email, class: 'form-control' %>
 			</div>
 			<div class="w-100"></div>
 			<div class="col-12 col-md-6">
-				<%= f.label :address_line_1 %>* Street address, P.O. box, company name, etc.
+				<%= f.label :address_line_1 %> Street address, P.O. box, company name, etc.
 				<%= f.text_field :address_line_1, class: 'form-control' %>
 			</div>
 			<div class="col-12 col-md-6">
@@ -35,20 +35,20 @@
 			</div>
 			<div class="col-12 d-flex flex-wrap" style="padding-left:0px!important">
 				<div class="col-12 col-sm-4" >
-					<%= f.label :city %>*
+					<%= f.label :city %>
 					<%= f.text_field :city, class: 'form-control' %>
 				</div>
 				<div class="col-12 col-sm-4">
-					<%= f.label :state %>*
+					<%= f.label :state %>
 					<%= f.text_field :state, class: 'form-control ' %>
 				</div>
 				<div class="col-12 col-sm-4">
-					<%= f.label :postcode, class: '' %>*
+					<%= f.label :postcode, class: '' %>
 					<%= f.text_field :postcode, class: 'form-control ' %>
 				</div>
 			</div>
 			<div class="col-12 col-sm-6">
-				<%= f.label :phone1, "Primary phone" %>*
+				<%= f.label :phone1, "Primary phone" %>
 				<%= f.phone_field :phone1, class: 'form-control' %>
 			</div>
 			<div class="col-12 col-sm-6">
@@ -69,9 +69,9 @@
 			</div>
 			<div class="col-12 col-sm-6">
 				<%= f.label :student_since, "Student since" %>
-				<%= f.date_field :student_since, class: 'form-control' %>
+				<%= f.date_field :student_since, max: Date.today, class: 'form-control' %>
 			</div>
-			<div class="col-12 col-sm-6">
+			<div class="col-12">
 				<%= f.label :notes %>
 				<%= f.text_field :notes, class: 'form-control' %>
 
