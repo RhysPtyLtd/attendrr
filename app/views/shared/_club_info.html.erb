@@ -27,13 +27,13 @@
 <% elsif current_club.students.where(active: true).none? %>
 
   <div class="clubInfoNotifications container btn btn-success p-3 my-3 text-white">
-    <%= link_to("It's time to grow your club! Add your first student here", new_student_path, class: 'horizontal-line text-white') %>
+    <%= link_to("It's time to grow your club! Click here to add your first student", new_student_path, class: 'horizontal-line text-white') %>
   </div>
 
 <% elsif (@students.count == 0) && (@prospects.count > 0) %>
 
   <div class="clubInfoNotifications container btn btn-success p-3 my-3 text-white">
-    <%= link_to("You convert Prospects into Students by upgrading their payment plan. You can do it!", prospects_students_path, class: 'horizontal-line text-white') %>
+    <%= link_to("You convert Prospects into Students by upgrading their payment plan. Click here!", prospects_students_path, class: 'horizontal-line text-white') %>
   </div>
   
 <% end %>
