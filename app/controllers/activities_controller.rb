@@ -149,7 +149,7 @@ class ActivitiesController < ApplicationController
 		end
 		day_find = @date_find.strftime('%w').to_i
 		# @activity = current_club.activities.joins(:timeslots).where('DATE(timeslots.schedule) = ?', date_find).includes(:timeslots)
-		@activity = current_club.activities.joins(:timeslots).where('timeslots.day = ? AND activities.active = ? AND DATE(activities.created_at) <= ?', day_find,true,@date_find).includes(:timeslots)
+		@activity = current_club.activities.joins(:timeslots).where('timeslots.active = ? AND timeslots.day = ? AND activities.active = ? AND DATE(activities.created_at) <= ?', true,day_find,true,@date_find).includes(:timeslots)
 	end
 
 	private
