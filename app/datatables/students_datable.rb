@@ -70,8 +70,7 @@ private
     end
     if params[:sSearch_0].present?
       attendance = attendance.where("activities.name = (?)", params[:sSearch_0]) if params[:student_id].present?
-
-      attendance = attendance.where("students.first_name = (?) and students.last_name = (?)", params[:sSearch_0].split(" ")[0], params[:sSearch_0].split(" ")[1]) if params[:activity_id].present?
+      attendance = attendance.where("lower(students.first_name) LIKE lower(:q) OR lower(students.last_name) LIKE lower(:q)", q: "%#{params[:sSearch_0].split.join('%')}%") if params[:activity_id].present?
     end
     if params[:sSearch_1].present?
       attendance = attendance.where("ranks.name = (?)", params[:sSearch_1])
