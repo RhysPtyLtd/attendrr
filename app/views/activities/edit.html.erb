@@ -2,7 +2,8 @@
 	<div class="container">
 		<div class="row mt-5 d-block">
 			<h1><%= link_to @activity.name, @activity,class:'link-text-decoration-none', style: "color: black;" %></h1>
-			<div class="form-group">	
+			<div class="form-group">
+				<div><b>Time slots</b></div>	
 				<% @activity.timeslots.where(active: true).each do |t| %>
 					<span><%= Date::DAYNAMES[t.day] %> <%= t.time_start.strftime("%I:%M%P") %>-<%= t.time_end.strftime("%I:%M%P") %></span>
 					<span><%= link_to "Delete this time slot", timeslot_path(t, timeslot: { active: false }), method: :put, data: { confirm: "Are you sure?" } %></span><br>
@@ -25,11 +26,12 @@
 							<%= timeslots_form.select :year, ((Time.zone.now.year - 30)..(Time.zone.now.year + 10)).to_a.reverse, {:selected => Time.zone.now.year},{ :class => 'form-control' } %></div>
 						<% end %>
 					</div>
-					<div class="m-2"><%= f.submit "Add this timeslot", class: "btn btn-primary" %></div>
+					<div class="m-2"><%= f.submit "Click to add another", class: "btn btn-primary" %></div>
 				<% end %>
 			</div>
 			
-			<div class="form-group">	
+			<div class="form-group">
+				<div><b>Ranks</b> AKA belts, grades or levels</div>	
 				<% @active_ranks.each do |r| %>
 					<%= r.position %>. <%= r.name %> <%= link_to "Delete this rank", rank_path(r, rank: {active: false}), method: :put, data: { confirm: "Are you sure?" } %></span><br>
 				<% end %>
@@ -44,7 +46,7 @@
 							<%= ranks_form.text_field :name, class: "col-12 col-md-6" %>
 						<% end %>
 					</div>
-					<div class="m-2"><%= f.submit "Add new rank", class: "btn btn-primary" %></div>
+					<div class="m-2"><%= f.submit "Click to add another", class: "btn btn-primary" %></div>
 				<% end %>
 			</div>
 			<div class="activityActionBtn">

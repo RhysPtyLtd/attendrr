@@ -6,12 +6,13 @@
 				<%= render 'shared/error_messages', object: f.object %>
 					<div class="form-group rounded p-2" style="background-color: #DCDCDC;">	
 						<div class="field m-2">
-							<%= f.label :name, "Class name" %>
+							<b><%= f.label :name, "Class name" %></b>
 							<%= f.text_field :name %>
 						</div>
 					</div>
 
 					<div class="form-group rounded p-2" style="background-color: #DCDCDC;">
+						<div><b>Time slots</b></div>
 						<div class="field m-2 activitiesNewSlotsPanel" style="padding-top: 15px;">
 							<%= f.fields_for :timeslots do |timeslots_form| %>
 								<%= timeslots_form.label :time_start, "Start time" %>
@@ -25,12 +26,13 @@
 
 								<%= timeslots_form.link_to_remove "Remove this timeslot" , class: "btn btn-danger form-group" %>
 							<% end %>
-							<%= f.link_to_add "Add another timeslot", :timeslots , class: "btn btn-success form-group"  %>
+							<%= f.link_to_add "Click to add another", :timeslots , class: "btn btn-success form-group"  %>
 						</div>
 					</div>
 
 					<div class="form-group rounded p-2" style="background-color: #DCDCDC;">
 						<!-- RANKS -->
+						<div><b>Ranks</b> AKA belts, grades or levels that student achieve in this class</div>
 						<div class="field m-2 rankTextBoxWidth">
 							<%= f.fields_for :ranks, @activity.ranks.build do |ranks_form| %>
 								<%= ranks_form.label :name, "Add a rank:" %>
@@ -38,7 +40,7 @@
 
 								<%= ranks_form.link_to_remove "Remove this rank" , class: "btn btn-danger form-group" %>
 							<% end %>
-							<%= f.link_to_add "Add another rank", :ranks , class: "btn btn-success form-group" %>
+							<%= f.link_to_add "Click to add another", :ranks , class: "btn btn-success form-group" %>
 						<!-- RANKS END -->
 						</div>
 					</div>
