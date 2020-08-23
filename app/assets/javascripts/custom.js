@@ -6,6 +6,7 @@ $(document).on("turbolinks:load",function() {
     sPaginationType: "full_numbers",
     bJQueryUI: true,
     searching: true,
+    responsive: true,
     bProcessing: true,
     bServerSide: true,
        "language": {
