@@ -10,14 +10,14 @@ class AttendanceDatatable
       {
         sEcho: params[:sEcho].to_i,
         iTotalRecords: attendance.count,
-        iTotalDisplayRecords: attendance.total_entries,
+        iTotalDisplayRecords: params[:iDisplayLength] == "-1" ? attendance.count : attendance.total_entries,
         aaData: data
       } if params[:student_id].present?
     else
       {
         sEcho: params[:sEcho].to_i,
         iTotalRecords: attendance.count,
-        iTotalDisplayRecords: attendance.total_entries,
+        iTotalDisplayRecords: params[:iDisplayLength] == "-1" ? attendance.count : attendance.total_entries,
         aaData: data
       }
     end
@@ -62,7 +62,11 @@ private
 
       attendance = Attendance.joins(:student, :timeslot, :rank).where(activity_id: params[:activity_id]).order("#{sort_column} #{sort_direction}") if params[:activity_id].present?
     end
-    attendance = attendance.page(page).per_page(per_page)
+    attendance = if params[:iDisplayLength] == "-1"
+        attendance.all
+      else
+        attendance.page(page).per_page(per_page)
+      end
     if params[:sSearch].present?
       attendance = Attendance.joins(:activity, :timeslot, :rank).where(student_id: params[:student_id]).order("#{sort_column} #{sort_direction}") if params[:student_id].present?
 

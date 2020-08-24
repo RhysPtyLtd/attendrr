@@ -6,6 +6,7 @@ $(document).on("turbolinks:load",function() {
     sPaginationType: "full_numbers",
     bJQueryUI: true,
     searching: true,
+    "lengthMenu": [ [-1, 5, 10, 25, 50], ["All", 5, 10, 25, 50 ]],
     responsive: true,
     bProcessing: true,
     bServerSide: true,
