@@ -2,7 +2,7 @@
   <div class="present_div" >
     <h3 class="text-center mt-3 mb-3">Present</h3>
     <% @student_present.each do |student| %>
-      <%= link_to( attendance_students_path(s_id: student.id,date_slot: params[:date_slot],activity_id: params[:activity_id],timeslot_id: params[:timeslot_id],remove_attendance: true),data: { disable_with: false }, :remote => true,:class=>"student_attance_div") do %>
+      <%= link_to( attendance_students_path(s_id: student.id,date_slot: params[:date_slot],activity_id: params[:activity_id],timeslot_id: params[:timeslot_id],remove_attendance: true), :remote => true,:class=>"student_attance_div") do %>
         <div class="present_student d-flex justify-content-start align-content-center mt-2 mb-2">
           <div class="align-self-center m-2">
             <% if student.picture? %>
