@@ -23,7 +23,12 @@ class Student < ApplicationRecord
 
   scope :student_for_attendance, -> (rank_ids) { includes(:ranks).where(:ranks => {id: rank_ids}).distinct }
   scope :last_month,  -> (timeslot_id,date_find) { joins(sanitize_sql_array(['left outer join attendances on attendances.student_id = students.id'])).where('attendances.id is null OR (attendances.timeslot_id != ? AND attendances.attended_on != ?)',timeslot_id,date_find)}
-  
+
+  #can be used in queries in future by full name
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
+
   def buy_classes!
     self.classes_remaining = self.classes_remaining.to_i + self.payment_plan.classes_amount
     save
