@@ -73,7 +73,7 @@ private
       attendance = Attendance.joins(:student, :timeslot, :rank).where(activity_id: params[:activity_id]).order("#{sort_column} #{sort_direction}") if params[:activity_id].present?
     end
     if params[:sSearch_0].present?
-      attendance = attendance.where("activities.name = (?)", params[:sSearch_0]) if params[:student_id].present?
+      attendance = attendance.where("lower(activities.name) LIKE lower(:q)",q: "%#{params[:sSearch_0]}%") if params[:student_id].present?
       attendance = attendance.where("lower(students.first_name) LIKE lower(:q) OR lower(students.last_name) LIKE lower(:q)", q: "%#{params[:sSearch_0].split.join('%')}%") if params[:activity_id].present?
     end
     if params[:sSearch_1].present?
