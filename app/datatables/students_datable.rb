@@ -82,8 +82,6 @@ private
     if params[:sSearch_2].present?
       extract_start = params[:sSearch_2].gsub(/[\\"]/,"").split(' - ')[0]
       extract_end = params[:sSearch_2].gsub(/[\\"]/,"").split(' - ')[1]
-      #start_time = extract_start.to_time.strftime('%H:%M:%S')
-      #end_time = extract_end.to_time.strftime('%H:%M:%S')
       attendance = attendance.where("Time(timeslots.time_start) = (?) AND Time(timeslots.time_end) =(?)", extract_start.split(' ')[0], extract_end.split(' ')[0])
     end
     if params[:sSearch_3].present?
