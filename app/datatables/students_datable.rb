@@ -38,7 +38,7 @@ private
         else
           ERB::Util.h('Rank missing')
         end,
-        ERB::Util.h(atten.timeslot.time_start.strftime("%I:%M%P") + " - " + atten.timeslot.time_end.strftime("%I:%M%P")),
+        ERB::Util.h(atten.timeslot.time_start.strftime("%H:%M:%S %P") + " - " + atten.timeslot.time_end.strftime("%H:%M:%S %P")),
         ERB::Util.h(Date::DAYNAMES[atten.timeslot.day]),
         ERB::Util.h(atten.attended_on.strftime('%d/%m/%y'))
       ]
@@ -80,11 +80,11 @@ private
       attendance = attendance.where("ranks.name = (?)", params[:sSearch_1])
     end
     if params[:sSearch_2].present?
-      extract_start = params[:sSearch_2].split(//).first(7).join
-      extract_end = params[:sSearch_2].split(//).last(7).join
-      start_time = extract_start.to_time.strftime('%H:%M:%S')
-      end_time = extract_end.to_time.strftime('%H:%M:%S')
-      attendance = attendance.where("timeslots.time_start = (?) AND timeslots.time_end = (?)", start_time, end_time)
+      extract_start = params[:sSearch_2].gsub(/[\\"]/,"").split(' - ')[0]
+      extract_end = params[:sSearch_2].gsub(/[\\"]/,"").split(' - ')[1]
+      #start_time = extract_start.to_time.strftime('%H:%M:%S')
+      #end_time = extract_end.to_time.strftime('%H:%M:%S')
+      attendance = attendance.where("Time(timeslots.time_start) = (?) AND Time(timeslots.time_end) =(?)", extract_start.split(' ')[0], extract_end.split(' ')[0])
     end
     if params[:sSearch_3].present?
       timeslot_day = DateTime.parse(params[:sSearch_3]).wday
