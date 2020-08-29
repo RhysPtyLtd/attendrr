@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag 'student_attendance', media: 'all' %>
+
 <section class="attendance-sheet">
   <div class="container">
     <div class="row mt-5">
@@ -27,7 +29,7 @@
     </div>
 
     <div class="row">
-      <div class="col-12 col-sm-6 col-md-4" >
+      <div class="col-12 col-sm-6 col-md-4" style="margin-left: -31px;">
         <div class="form-group">
            <div class='input-group date' id='datepicker_from'>
             <label for="email" style="padding-right: 10px;margin-top: 2%;">From:</label> 
@@ -38,7 +40,9 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-sm-6 col-md-4">
+      <span style="padding-right: 20px;">
+      </span>
+      <div class="col-12 col-sm-6 col-md-4 DateRangeFilter">
         <div class="form-group " >
           <div class='input-group date' id='datepicker_to'>
             <label for="pwd" style="padding-right: 10px;margin-top: 2%;">To:</label> 
@@ -111,21 +115,3 @@
         });
       });
 </script>
-
-<style>
-  div.dataTables_wrapper div.dataTables_length label {
-    font-weight: normal;
-    text-align: left;
-    white-space: nowrap;
-    margin-top: 7%;
-  }
-  tfoot {
-    display: table-header-group;
-  }
-  .dataTables_filter {
-    display: none;
-  } 
-  tfoot input {
-    margin: auto;
-  }
-</style>

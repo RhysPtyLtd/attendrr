@@ -1,0 +1,39 @@
+  div.dataTables_wrapper div.dataTables_length label {
+    font-weight: normal;
+    text-align: left;
+    white-space: nowrap;
+    margin-top: 7%;
+  }
+  tfoot {
+    display: table-header-group;
+  }
+  .dataTables_filter {
+    display: none;
+  } 
+  tfoot input {
+    margin: auto;
+  }
+  .DateRangeFilter {
+    margin-left: 0px;
+  }
+
+@media only screen and (min-width: 768px) {
+  /* tablets and desktop */
+  .DateRangeFilter {
+    margin-left: -31px !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  /* phones */
+  .DateRangeFilter {
+    margin-left: -31px !important;
+  }
+}
+
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+  /* portrait phones */
+  .DateRangeFilter {
+    margin-left: -31px !important;
+  }
+}
