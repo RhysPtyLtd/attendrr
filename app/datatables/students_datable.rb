@@ -82,7 +82,7 @@ private
     if params[:sSearch_2].present?
       extract_start = params[:sSearch_2].gsub(/[\\"]/,"").split(' - ')[0]
       extract_end = params[:sSearch_2].gsub(/[\\"]/,"").split(' - ')[1]
-      attendance = attendance.where("Time(timeslots.time_start) = (?) AND Time(timeslots.time_end) =(?)", extract_start.split(' ')[0], extract_end.split(' ')[0])
+      attendance = attendance.where("(timeslots.time_start::time >= :start_time) AND (timeslots.time_end::time <= :end_time)",start_time: extract_start.split(' ')[0],end_time:   extract_end.split(' ')[0])
     end
     if params[:sSearch_3].present?
       timeslot_day = DateTime.parse(params[:sSearch_3]).wday
