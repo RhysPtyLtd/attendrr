@@ -12,7 +12,7 @@
 					</div>
 
 					<div class="form-group rounded p-2" style="background-color: #DCDCDC;">
-						<div><b>Time slots</b></div>
+						<div><b>Time slots</b> (what times and days of the week does this class occur):</div>
 						<div class="field m-2 activitiesNewSlotsPanel" style="padding-top: 15px;">
 							<%= f.fields_for :timeslots do |timeslots_form| %>
 								<%= timeslots_form.label :time_start, "Start time" %>
@@ -32,7 +32,7 @@
 
 					<div class="form-group rounded p-2" style="background-color: #DCDCDC;">
 						<!-- RANKS -->
-						<div><b>Ranks</b> AKA belts, grades or levels that students achieve in this class</div>
+						<div>What <b>Ranks</b> (AKA belts, grades or levels) can students achieve in this class:</div>
 						<div class="field m-2 rankTextBoxWidth">
 							<%= f.fields_for :ranks, @activity.ranks.build do |ranks_form| %>
 								<%= ranks_form.label :name, "Add a rank:" %>
