@@ -9,9 +9,9 @@ task :generate_daily_metrics => :environment do
     churn = 0
     revenue = 0
     record.students.each do |stu|
-      total_active_students += 1 if stu.active?
+      total_active_students += 1 if stu.active? && stu.payment_plan.name != 'Prospect'
       lost_students += 1 if (stu.active == false && stu.updated_at.to_date == Date.today)
-      new_students += 1 if stu.created_at.to_date == Date.today
+      new_students += 1 if stu.enrolled_on == Date.today
       revenue += stu.payment_plan.daily_value
     end
     churn = total_active_students - new_students if lost_students != 0
