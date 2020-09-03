@@ -89,21 +89,9 @@
 				</div>
 				<!--Classic checkbox buttons-->
 			</div>
-			<div class="w-100"></div>
-			<div class="col-12">
-				<%= f.label :payment_plan %>
-				<div class="d-flex flex-wrap" data-toggle="buttons">
-					<% @payment_plans.each do |pp| %>
-					<div class="btn btn-outline-primary btn-rounded <%= 'active' if pp.id == @prospect.id %> form-check-label m-2 paymentBtns" style="border-radius:24px;">
-					<% if pp.id == @prospect.id %>
-						<%= f.radio_button :payment_plan_id, pp.id, :checked => "checked", :class => "paymentPlansBtns" %> 
-					<% else %>
-						<%= f.radio_button :payment_plan_id, pp.id , :class => "paymentPlansBtns" %>
-					<% end %>
-					<%= f.label :payment_plan_id, pp.name, :class => "paymentPlanslabelsText" %>
-					</div %>
-					<% end %>
-				</div>
+			<div class="col-12 col-sm-6 ">
+				<%= f.label :payment_plan_id, "Payment plan" %>
+				<%= f.collection_select(:payment_plan_id, current_club.payment_plans.where(active: true), :id, :name,class:'custom-select') %>
 			</div>
 			<div class="col-12 col-sm-6">
 				<span class="picture">
