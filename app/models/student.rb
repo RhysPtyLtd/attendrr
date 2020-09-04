@@ -24,6 +24,8 @@ class Student < ApplicationRecord
   scope :student_for_attendance, -> (rank_ids) { includes(:ranks).where(:ranks => {id: rank_ids}).distinct }
   scope :last_month,  -> (timeslot_id,date_find) { joins(sanitize_sql_array(['left outer join attendances on attendances.student_id = students.id'])).where('attendances.id is null OR (attendances.timeslot_id != ? AND attendances.attended_on != ?)',timeslot_id,date_find)}
 
+  before_update :check_lost_students
+
   #can be used in queries in future by full name
   def full_name
     "#{self.first_name} #{self.last_name}"
@@ -67,6 +69,16 @@ class Student < ApplicationRecord
   #def current_ranks
     # all ranks where active == true
   #end
+
+  def check_lost_students
+    deactivate_status = self.active_changed? && self.active == false
+    if deactivate_status
+      DailyMetric.create(
+        club_id: self.club.id,
+        lost_students: 1
+      )
+    end
+  end
 
   private
 
