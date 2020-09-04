@@ -24,7 +24,7 @@
 									<% end %>
 								</div>
                     <div class="text-center pl-2">
-                      <span class="student_name"> <%= s.first_name + " " + s.last_name %> has not trained since <%= s.last_attendance.strftime("%d/%m/%Y") %></span>
+                      <span class="student_name"> <%= s.first_name + " " + s.last_name %> has not trained since <%= local_time(s.last_attendance,"%d/%m/%Y") %></span>
                     </div>
                   </div>
                 <% end %>

@@ -2,7 +2,7 @@
   <div class="container text-center bg-grey">
     <div class="row">
       <div class="col-12 justify-content-center align-item-center mb-1">
-        <h4><%= @date_find.strftime("%A, #{@date_find.day.ordinalize} %B %Y")%></h4>
+        <h4><%= local_time(@date_find, "%A #{@date_find.day.ordinalize} %B %Y")%></h4>
       </div>
       <!-- <div class="row justify-content-center"> -->
       <div class="col-12 offset-md-3 col-md-6 co justify-content-center align-item-center">
@@ -33,7 +33,7 @@
               <%= link_to attendance_students_path(date_slot: @date_find,activity_id: activity.id,timeslot_id: timeslot.id) do %>
                 <div class=" row thumbnail hoverDiv attendance_class-remove-test attendance-box  mt-2 mb-2 p-md-2 p-1">
                   <div class="col-12">
-                    <p class="schedule_time"><%= timeslot.time_start.strftime("%I:%M%P")%> - <%= timeslot.time_end.strftime("%I:%M%P")%></p>
+                    <p class="schedule_time"><%= local_time(timeslot.time_start,"%I:%M%P")%> - <%= local_time(timeslot.time_end,"%I:%M%P")%></p>
                   </div>
                   <div class="col-12 align-self-center" >
                     <p class="schedule_name" ><strong><%= activity.name %></strong></p>
