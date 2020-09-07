@@ -221,10 +221,18 @@ class StudentsController < ApplicationController
 			paid_plan = PaymentPlan.find_by_id(plan_id).name !=  "Prospect"
 			if paid_plan
 				@student.enrolled_on = Date.today
+				create_new_student_metric_record
 			else
 				@student.enrolled_on = ""
 			end
 		end
+	end
+
+	def create_new_student_metric_record
+      DailyMetric.create(
+        club_id: @student.club.id,
+        new_students: 1
+      )
 	end
 
 	private

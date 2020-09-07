@@ -18,7 +18,6 @@ class Student < ApplicationRecord
   has_many :activities, through: :ranks
   accepts_nested_attributes_for :student_ranks
   has_many :attendances, dependent: :destroy
-  around_save :update_daily_revenue
   before_save :handle_payment_plan_changes!
 
   scope :student_for_attendance, -> (rank_ids) { includes(:ranks).where(:ranks => {id: rank_ids}).distinct }
@@ -94,28 +93,24 @@ class Student < ApplicationRecord
       self.payment_plan = self.club.payment_plans.first
     end
 
-    def update_daily_revenue
-      classes_amount = self.classes_remaining
-      yield
-      if (classes_amount.nil?) && (self.classes_remaining.nil? == false)
-        create_revenue_record
-      end
-    end
-
     def handle_payment_plan_changes!
-      return unless self.nil?
       return if created_at.nil?
       changes = self.changes
-      original_and_updated_payment_plans = changes.select {|s| s.include? 'payment_plan_id'}
-      original = PaymentPlan.find(original_and_updated_payment_plans["payment_plan_id"][0])
-      updated = PaymentPlan.find(original_and_updated_payment_plans["payment_plan_id"][1])
-      if original.classes_amount.nil?
-        self.classes_remaining = updated.classes_amount
-      elsif updated.classes_amount.nil?
+      if self.classes_remaining_changed?
+        original_classes_amount = changes["classes_remaining"][0]
+        updated_classes_amount = changes["classes_remaining"][1]
+        if original_classes_amount.nil?
+          self.classes_remaining = updated_classes_amount
+        elsif updated_classes_amount.nil?
+          self.classes_remaining = nil
+        else
+          self.classes_remaining = updated_classes_amount
+          create_revenue_record
+        end   
+      end 
+      if self.payment_plan_id_changed? && self.payment_plan.classes_amount.nil?
         self.classes_remaining = nil
-      else
-        self.classes_remaining = updated.classes_amount + original.classes_amount
-      end    
+      end
     end
 
     def create_revenue_record
@@ -124,5 +119,4 @@ class Student < ApplicationRecord
           revenue: self.payment_plan.price.to_f
         )
     end
-
 end
