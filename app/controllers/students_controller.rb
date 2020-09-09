@@ -70,6 +70,7 @@ class StudentsController < ApplicationController
 
 	def create
 		@student = current_club.students.build(student_params)
+		student_enrolled_on_paid_plan(student_params[:payment_plan_id])
 		if @student.save
 			if params[:rank_ids].present?
 				puts params[:rank_ids][:id].count
@@ -104,6 +105,7 @@ class StudentsController < ApplicationController
 
 	def update
 		@student = current_club.students.find_by(id: params[:id])
+		student_enrolled_on_paid_plan(params[:student][:payment_plan_id])
 		@ranks = @student.club_ranks
 		if @student.update_attributes(student_params)
 			flash[:success] = "Student details updated"
@@ -211,6 +213,26 @@ class StudentsController < ApplicationController
     	@students = TypeOfStudent.active_enrolled(current_club)
     	@absent_alert = current_club.absent_alert
      	@absent_alert_activation_date = Date.today - current_club.absent_alert
+	end
+
+	#Used for checking whether the student enrolled on paid plan or not
+	def student_enrolled_on_paid_plan(plan_id)
+		if plan_id.present?
+			paid_plan = PaymentPlan.find_by_id(plan_id).name !=  "Prospect"
+			if paid_plan
+				@student.enrolled_on = Date.today
+				create_new_student_metric_record
+			else
+				@student.enrolled_on = ""
+			end
+		end
+	end
+
+	def create_new_student_metric_record
+      DailyMetric.create(
+        club_id: @student.club.id,
+        new_students: 1
+      )
 	end
 
 	private
