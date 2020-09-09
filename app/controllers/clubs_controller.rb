@@ -56,8 +56,8 @@ class ClubsController < ApplicationController
     @metrics = @search.scope
     @params = params[:search]
     if @params.nil?
-      @from = @club.created_at
-      @to = Date.today
+      @from = @club.created_at.in_time_zone(current_club.time_zone)
+      @to = Date.today.in_time_zone(current_club.time_zone).to_date
     else
       @from = params[:search][:date_from]
       @to = params[:search][:date_to]
