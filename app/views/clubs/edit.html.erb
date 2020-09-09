@@ -63,6 +63,11 @@
 			</div>
 
 			<div class="signup-input-field rounded-right">
+				<i class="fa fa-globe icon rounded-left"></i>
+				<%= f.time_zone_select :time_zone, nil, {:default => "UTC"}, {:class => 'signup-form-input input-field rounded-right'} %>
+			</div>
+
+			<div class="signup-input-field rounded-right">
 				<i class="fa fa-phone icon rounded-left"></i>
 				<%= f.phone_field :phone1, placeholder: "Primary phone*", class: 'signup-form-input input-field rounded-right' %>
 			</div>

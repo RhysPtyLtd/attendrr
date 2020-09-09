@@ -38,9 +38,9 @@ private
         else
           ERB::Util.h('Rank missing')
         end,
-        ERB::Util.h(atten.timeslot.time_start.strftime("%H:%M:%S %P") + " - " + atten.timeslot.time_end.strftime("%H:%M:%S %P")),
+        ERB::Util.h(atten.timeslot.time_start.in_time_zone(params[:club_time_zone]).strftime("%H:%M:%S %P") + " - " + atten.timeslot.time_end.in_time_zone(params[:club_time_zone]).strftime("%H:%M:%S %P")),
         ERB::Util.h(Date::DAYNAMES[atten.timeslot.day]),
-        ERB::Util.h(atten.attended_on.strftime('%d/%m/%y'))
+        ERB::Util.h(atten.attended_on.in_time_zone(params[:club_time_zone]).strftime('%d/%m/%y'))
       ]
     end
   end
