@@ -143,7 +143,7 @@ class ActivitiesController < ApplicationController
 			@prev_data = @date_find.prev_day
 			@next_data = @date_find.next_day
 		else
-			@date_find = Date.today.in_time_zone(current_club.time_zone).to_date
+			@date_find = Time.now.in_time_zone(current_club.time_zone).to_date
 			@prev_data = @date_find.prev_day
 			@next_data = @date_find.next_day
 		end
