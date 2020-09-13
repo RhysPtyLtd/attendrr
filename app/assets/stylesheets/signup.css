@@ -123,6 +123,21 @@ body {
     }
 }
 
+.signup-form-timezone-input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-family: $font-family;
+    border: 0;
+    outline: 0;
+    transition: 0.3s;
+    
+    &:focus {
+        background: darken(#fff, 3%);
+    }
+}
+
+
 .signup-register-btn {
 	margin-top: 20px;
     display: block;

@@ -6,8 +6,8 @@
     <div class="row d-flex flex-row justify-content-center align-items-center">
         <div class="form-inline pull-right range-query"> 	
 		    <%= form_tag metrics_path, method: :get do %>
-		      <%= date_field_tag 'search[date_from]', @search.date_from, min: @club.created_at.to_date, max: Date.today, class: "form-group form-control" %>
-		      <%= date_field_tag 'search[date_to]', @search.date_to, min: @club.created_at.to_date, max: Date.today, class: "form-group form-control" %>
+		      <%= date_field_tag 'search[date_from]', @search.date_from.in_time_zone(current_club.time_zone).to_date, min: @club.created_at.in_time_zone(current_club.time_zone).to_date, max: Date.today.in_time_zone(current_club.time_zone).to_date, class: "form-group form-control" %>
+		      <%= date_field_tag 'search[date_to]', @search.date_to.in_time_zone(current_club.time_zone).to_date, min: @club.created_at.in_time_zone(current_club.time_zone).to_date, max:  Date.today.in_time_zone(current_club.time_zone).to_date, class: "form-group form-control" %>
 		      <%= submit_tag 'Search', class: 'btn search-button form-group form-control btn-primary' %>
 		    <% end %>
   		</div>
@@ -37,7 +37,3 @@
         </div>
     </div>
 </div>
-
-<%# <h3>Average no. of students per session</h3>
-<h3>Average length of membership (days)</h3>
-<h3>Retention rate/churn</h3> %>

@@ -49,9 +49,11 @@ class StudentsController < ApplicationController
 		@first_ranks_of_activities = @student.first_ranks_of_activities
 		redirect_to root_url if @student.nil?
 		if @student.student_since.nil?
-			@student_since = @student.created_at.strftime("%d/%m/%Y")
+			@student_since = @student.created_at.in_time_zone(current_club.time_zone).strftime("%d/%m/%Y")
+			@time_ago = @student.created_at
 		else
-			@student_since = @student.student_since.strftime("%d/%m/%Y")
+			@student_since = @student.student_since.in_time_zone(current_club.time_zone).strftime("%d/%m/%Y")
+			@time_ago = @student_since
 		end
 	end
 
@@ -245,7 +247,7 @@ class StudentsController < ApplicationController
 		end
 
 		def student_params
-			params.require(:student).permit(:payment_plan_id, :active, :email, :address_line_1, :address_line_2, :city, :state, :postcode,
+			params.require(:student).permit(:payment_plan_id, :active, :email, :address_line_1, :address_line_2, :city, :state, :postcode,:enrolled_on,
 											:phone1, :phone2, :first_name, :last_name, :dob, :parent1, :parent2,
 											:size, :picture, :student_since, :notes, :payment_plan_id, :classes_remaining, :student_rank, rank_ids: [],
 											student_ranks_attributes: [:student_id, :rank_id, :active])
