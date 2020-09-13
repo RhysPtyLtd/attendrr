@@ -139,11 +139,11 @@ class ActivitiesController < ApplicationController
 
 	def scheduled_classes
 		if params[:search].present?
-			@date_find = params[:search].to_date
-			@prev_data = Date.parse(params[:search]).prev_day
-			@next_data = Date.parse(params[:search]).next_day
+			@date_find = params[:search].in_time_zone(current_club.time_zone).to_date
+			@prev_data = @date_find.prev_day
+			@next_data = @date_find.next_day
 		else
-			@date_find = Date.today
+			@date_find = Time.now.in_time_zone(current_club.time_zone).to_date
 			@prev_data = @date_find.prev_day
 			@next_data = @date_find.next_day
 		end

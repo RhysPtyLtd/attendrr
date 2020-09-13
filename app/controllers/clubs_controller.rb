@@ -56,8 +56,8 @@ class ClubsController < ApplicationController
     @metrics = @search.scope
     @params = params[:search]
     if @params.nil?
-      @from = @club.created_at
-      @to = Date.today
+      @from = @club.created_at.in_time_zone(current_club.time_zone)
+      @to = Date.today.in_time_zone(current_club.time_zone).to_date
     else
       @from = params[:search][:date_from]
       @to = params[:search][:date_to]
@@ -73,7 +73,7 @@ class ClubsController < ApplicationController
   	def club_params
   		params.require(:club).permit(:name, :email, :password, :password_confirmation, :address_line_1, :address_line_2,
                                    :city, :state, :postcode, :country, :phone1, :phone2, :owner_first_name, 
-                                   :owner_last_name, :picture, :absent_alert, :subscription_id)
+                                   :owner_last_name, :picture, :absent_alert, :subscription_id, :time_zone)
   	end
 
     # Before filters
