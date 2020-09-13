@@ -50,8 +50,10 @@ class StudentsController < ApplicationController
 		redirect_to root_url if @student.nil?
 		if @student.student_since.nil?
 			@student_since = @student.created_at.in_time_zone(current_club.time_zone).strftime("%d/%m/%Y")
+			@time_ago = @student.created_at
 		else
 			@student_since = @student.student_since.in_time_zone(current_club.time_zone).strftime("%d/%m/%Y")
+			@time_ago = @student_since
 		end
 	end
 
