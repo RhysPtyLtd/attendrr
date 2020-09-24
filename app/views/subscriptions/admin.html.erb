@@ -6,6 +6,7 @@
 		<li>
 			<b><%= s.name + " "%></b><%= pretty_amount(s.cost) + "/month" %><br>
 			<%= s.description %><br>
+			<% if s.hidden? %>HIDDEN<br><% end %>
 			<!-- Helps prevent accidentally deleting free plan (must stay id 1) -->
 			<% if s.active? %> 
 				ACTIVE<br>
