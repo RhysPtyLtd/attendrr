@@ -14,6 +14,9 @@ class SubscriptionsController < ApplicationController
   def show
     @subscription = Subscription.find(params[:id])
     @subscriptions = Subscription.where(active: true).where(hidden: false)
+    if (@subscription.active = false)
+      redirect_to root_url
+    end
   end
 
   # GET /subscriptions/new
