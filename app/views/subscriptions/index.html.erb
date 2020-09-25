@@ -69,7 +69,7 @@
 									<% end %>
 					    		<% else %>
 					    			<!-- Link for clubs who're not Attendrr members -->
-					      			<%= link_to "GO!", signup_path %>
+					      			<%= link_to "GO!", signup_path(subscription: s.id) %>
 					    		<% end %>
 	                        </div>	                        
 	                    </div>	                        
