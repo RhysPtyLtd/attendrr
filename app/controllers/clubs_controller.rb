@@ -10,15 +10,24 @@ class ClubsController < ApplicationController
 
   def new
   	@club = Club.new(absent_alert: 14)
+    @subscription = Subscription.find(params[:subscription]) if params[:subscription]
+    session[:subscription] = @subscription
   end
 
   def create
   	@club = Club.new(club_params)
+    #@subscription == nil at this point 
+    @subscription = session[:subscription]
   	if @club.save
       NewClubMailer.new_club_alert.deliver_now
       @club.send_activation_email
-      flash[:info] = "Success! Please check your email to activate your account."
-      redirect_to root_url
+      if @subscription
+        flash[:info] = "params exist!"
+        redirect_to new_charge_path(subscription: @subscription["id"])
+      else
+        flash[:info] = "Success! Please check your email to activate your account."
+        redirect_to root_url
+      end  
   	else
   		render 'new'
   	end
