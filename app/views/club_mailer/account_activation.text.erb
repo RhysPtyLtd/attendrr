@@ -1,5 +1,5 @@
 Hi <%= @club.owner_first_name %>,
 
-Welcome to Attendrr! Click on the link below to activate the account for <%= @club.name %>:
+Welcome to Attendrr! Click on the link below to access the account for <%= @club.name %>:
 
 <%= edit_account_activation_url(@club.activation_token, email: @club.email) %>
