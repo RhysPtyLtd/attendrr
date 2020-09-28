@@ -87,7 +87,9 @@
 					<p class="single_student_class">Classes:</p>
 					<% if @student.unique_activities.any? %>
 					<% @student.student_ranks.where(:active => true).each do |r| %>
-					<li><%= r.rank.activity.name %> (<%= r.rank.name %>)</li>
+					<% if r.rank.activity.active? %>
+						<li><%= r.rank.activity.name %> (<%= r.rank.name %>)</li>
+					<% end %>
 					<% end %>
 					<% else %>
 					<li>None</li>

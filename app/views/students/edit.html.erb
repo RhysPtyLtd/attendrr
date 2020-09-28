@@ -86,7 +86,7 @@
 				Ranks held:<br>
 				<div class="d-flex flex-wrap" data-toggle="buttons">
 					<%= hidden_field_tag "student[rank_ids][]", nil %>
-					<% @activities.each do |activity| %>
+					<% @activities.where(active: true).each do |activity| %>
 					<% activity.ranks.where(active: true).each do |rank| %>
 					<div class="btn btn-outline-primary btn-rounded <%= 'active' if active_rank(f.object, rank) %> form-check-label m-2" style="border-radius:24px;">
 						<%= activity.name  if activity.ranks.where(active: true).any? %>
