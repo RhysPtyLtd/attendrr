@@ -12,10 +12,11 @@
             </div>
         </div>
 
-        
-            <div class="row" style="justify-content: center;">
-            	<% @subscriptions.where(hidden: false).each do |s| %>
-	                <div class="col-md-2" style="padding-bottom: 30px;">
+        <div class="container">
+            <div class="row">
+            	<% @subscriptions.each do |s| %>
+            	<% unless s.id == 1 %>
+	                <div class="col-md-3" style="padding-bottom: 30px;">
 	                    <div class="generic_content <%= 'active' if current_club && s.name == current_club.subscription.name %> clearfix" style="height: 100%;">
 	                        <div class="generic_head_price clearfix">
 	                            <div class="generic_head_content clearfix">
@@ -74,10 +75,12 @@
 	                        </div>	                        
 	                    </div>	                        
 	                </div>
+	            <% end %>
                 <% end %>
-                <!-- HIDDEN PLAN -->
-                <div class="col-md-2" style="padding-bottom: 30px;">
-	                    <div class="generic_content clearfix active" style="height: 100%;">
+
+                <!-- EXCLUSIVE SUBSCRIPTION -->
+                <div class="col-md-3" style="padding-bottom: 30px;">
+	                    <div class="generic_content <%= 'active' if current_club && @subscription.name == current_club.subscription.name %> clearfix" style="height: 100%;">
 	                        <div class="generic_head_price clearfix">
 	                            <div class="generic_head_content clearfix">
 	                                <div class="head_bg"></div>
@@ -135,10 +138,9 @@
 	                        </div>	                        
 	                    </div>	                        
 	                </div>
-
             </div>
             *Prices are in AUD
-        
+        </div>
     </section>
 </div>
 
@@ -149,4 +151,6 @@
 		<div class="container text-center">
 		<%= link_to "Cancel subscription", { action: :cancel, subscription: current_club.subscription.id }, data: { confirm: 'This will cancel future payments and revert you to the free plan. Note: if your student amount exceeds the free limit some functions will not be available to you.'}, class: "col-md-4 btn btn-danger w-100"  %></div>
 	<% end %>
+<% else %>
+	<div class="container text-center"><%= link_to "Or try the free plan >", signup_path %></div>
 <% end %>
