@@ -22,10 +22,13 @@ class ClubsController < ApplicationController
       NewClubMailer.new_club_alert.deliver_now
       @club.send_activation_email
       if @subscription
-        flash[:info] = "Success! You'll also find a link to this account in you email inbox"
+        @club.activate
+        log_in @club
+        flash[:success] = "Success! You'll also find a link to this account in you email inbox"
         redirect_to new_charge_path(subscription: @subscription["id"])
       else
-        flash[:info] = "Success! Please check your email to activate your account"
+        @club.activate
+        log_in @club
         redirect_to root_url
       end  
   	else
