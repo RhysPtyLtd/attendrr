@@ -7,7 +7,7 @@ class Club < ApplicationRecord
 	attr_accessor :remember_token, :activation_token, :reset_token
     before_create :create_activation_digest
 	before_save { email.downcase! }
-    before_save { state.upcase! }
+    before_save :upcase_state
     #before_save { owner_first_name.capitalize_name }
     #before_save { owner_last_name.capitalize_name }
 	validates :name, presence: true, length: { maximum: 50 } 
@@ -18,12 +18,6 @@ class Club < ApplicationRecord
 					  uniqueness: { case_sensitive: false }
 	has_secure_password
 	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
-    validates :address_line_1, presence: true, length: { maximum: 200 }
-    validates :city, presence: true, length: { maximum: 200 }
-    validates :state, presence: true, length: { maximum: 200 }
-    validates :postcode, presence: true
-    validates :country, presence: true, length: { maximum: 200 }
-    validates :phone1, presence: true, length: { maximum: 25, minimum: 8 }
     validates :owner_first_name, presence: true, length: { maximum: 200 }
     validates :owner_last_name, presence: true, length: { maximum: 200 }
     validate :picture_size
@@ -113,4 +107,9 @@ class Club < ApplicationRecord
             self.save!
         end
 
+        def upcase_state
+            unless self.state.nil?
+                self.state.upcase!
+            end
+        end
 end

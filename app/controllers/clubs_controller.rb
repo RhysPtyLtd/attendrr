@@ -11,7 +11,7 @@ class ClubsController < ApplicationController
   def new
   	@club = Club.new(absent_alert: 14)
     @subscription = Subscription.find(params[:subscription]) if params[:subscription]
-    @subscription = nil if @subscription.id == 1
+    @subscription = nil if (@subscription.nil?) || (@subscription.id == 1) 
     session[:subscription] = @subscription
   end
 
