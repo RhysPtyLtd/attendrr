@@ -6,8 +6,23 @@
 				<%= render 'shared/error_messages', object: f.object %>
 					<div class="form-group rounded p-2" style="background-color: #DCDCDC;">	
 						<div class="field m-2">
-							<b><%= f.label :name, "Class name" %></b>
+							<b><%= f.label :name, "Class" %></b> (e.g. karate, kung fu, kickboxing, etc..)
 							<%= f.text_field :name %>
+						</div>
+					</div>
+
+					<div class="form-group rounded p-2" style="background-color: #DCDCDC;">
+						<!-- RANKS -->
+						<div>What <b>Ranks</b> (AKA belts, grades or levels) can students achieve in this class:</div>
+						<div class="field m-2 rankTextBoxWidth">
+							<%= f.fields_for :ranks, @activity.ranks.build do |ranks_form| %>
+								<%= ranks_form.label :name, "Add a rank:" %>
+								<%= ranks_form.text_field :name %>
+
+								<%= ranks_form.link_to_remove "Remove this rank" , class: "btn btn-danger form-group" %>
+							<% end %>
+							<%= f.link_to_add "Click to add another", :ranks , class: "btn btn-success form-group" %>
+						<!-- RANKS END -->
 						</div>
 					</div>
 
@@ -30,20 +45,6 @@
 						</div>
 					</div>
 
-					<div class="form-group rounded p-2" style="background-color: #DCDCDC;">
-						<!-- RANKS -->
-						<div>What <b>Ranks</b> (AKA belts, grades or levels) can students achieve in this class:</div>
-						<div class="field m-2 rankTextBoxWidth">
-							<%= f.fields_for :ranks, @activity.ranks.build do |ranks_form| %>
-								<%= ranks_form.label :name, "Add a rank:" %>
-								<%= ranks_form.text_field :name %>
-
-								<%= ranks_form.link_to_remove "Remove this rank" , class: "btn btn-danger form-group" %>
-							<% end %>
-							<%= f.link_to_add "Click to add another", :ranks , class: "btn btn-success form-group" %>
-						<!-- RANKS END -->
-						</div>
-					</div>
 				<%= f.submit "Create class", class: "btn btn-primary" %>
 			<% end %>
 		</div>
