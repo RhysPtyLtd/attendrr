@@ -29,53 +29,10 @@
 				<i class="fa fa-envelope icon rounded-left"></i>
 				<%= f.email_field :email, placeholder: "Email*" , class: 'signup-form-input input-field rounded-right' %>
 			</div>
-
-			<span style="color: #7d7979;font-weight: bold; ">Street address, P.O. box, company name, etc.</span>
-		    <div class="signup-input-field rounded-right">
-				<i class="fa fa-address-card icon rounded-left"></i>
-				<%= f.text_field :address_line_1, placeholder: "Address line 1*" , class: 'signup-form-input input-field rounded-right' %>
-			</div>
-
-	        <span style="color: #7d7979;font-weight: bold; ">Apartment, suite, unit, building, floor, etc.</span>
-			<div class="signup-input-field rounded-right">
-				<i class="fa fa-address-card icon rounded-left"></i>
-				<%= f.text_field :address_line_2, placeholder: "Address line 2", class: 'signup-form-input input-field rounded-right' %>
-			</div>
-
-			<div class="signup-input-field rounded-right">
-				<i class="fa fa-map-marker icon rounded-left"></i>
-				<%= f.text_field :city, placeholder: "City*", class: 'signup-form-input input-field rounded-right' %>
-			</div>
-
-			<div class="signup-input-field rounded-right">
-				<i class="fa fa-map-marker icon rounded-left"></i>
-				<%= f.text_field :state, placeholder: "State*", class: 'signup-form-input input-field rounded-right' %>
-			</div>
-
-			<div class="signup-input-field rounded-right">
-				<i class="fa fa-map-marker icon rounded-left"></i>
-				<%= f.text_field :postcode, placeholder: "Postcode*", class: 'signup-form-input input-field rounded-right' %>
-			</div>
-
-			<div class="signup-input-field rounded-right">
-				<i class="fa fa-globe icon rounded-left"></i>
-				<%= f.text_field :country, placeholder: "Country*", class: 'signup-form-input input-field rounded-right' %>
-			</div>
-
 			
 			<div class="signup-input-field rounded-right">
 				<i class="fa fa-clock icon rounded-left"></i>
 				<%= f.time_zone_select :time_zone, nil, {:default => "UTC"}, {:class => 'signup-form-timezone-input input-field rounded-right'} %>
-			</div>
-
-			<div class="signup-input-field rounded-right">
-				<i class="fa fa-phone icon rounded-left"></i>
-				<%= f.phone_field :phone1, placeholder: "Primary phone*", class: 'signup-form-input input-field rounded-right' %>
-			</div>
-
-			<div class="signup-input-field rounded-right">
-				<i class="fa fa-phone icon rounded-left"></i>
-				<%= f.phone_field :phone2, placeholder: "Secondary phone", class: 'signup-form-input input-field rounded-right' %>
 			</div>
 
 			<div class="signup-input-field rounded-right">

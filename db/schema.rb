@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_03_112324) do
+ActiveRecord::Schema.define(version: 2020_09_24_063741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 2020_09_03_112324) do
     t.bigint "subscription_id"
     t.string "stripe_subscription_id"
     t.string "stripe_customer_id"
+    t.string "time_zone", limit: 255, default: "UTC"
     t.index ["email"], name: "index_clubs_on_email", unique: true
     t.index ["subscription_id"], name: "index_clubs_on_subscription_id"
   end
@@ -198,6 +199,7 @@ ActiveRecord::Schema.define(version: 2020_09_03_112324) do
     t.string "stripe_id"
     t.string "description"
     t.boolean "active", default: true
+    t.boolean "hidden", default: false
   end
 
   create_table "timeslots", id: :serial, force: :cascade do |t|

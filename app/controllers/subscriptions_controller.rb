@@ -4,7 +4,7 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions
   # GET /subscriptions.json
   def index
-    @subscriptions = Subscription.where(active: true)
+    @subscriptions = Subscription.where(active: true).where(hidden: false)
     @students = TypeOfStudent.active_enrolled(current_club).count if current_club
     @no_stripe_subscription = current_club.stripe_customer_id.nil? if current_club
   end
@@ -13,6 +13,10 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/1.json
   def show
     @subscription = Subscription.find(params[:id])
+    @subscriptions = Subscription.where(active: true).where(hidden: false)
+    if (@subscription.active = false)
+      redirect_to root_url
+    end
   end
 
   # GET /subscriptions/new
@@ -128,6 +132,6 @@ class SubscriptionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subscription_params
-      params.require(:subscription).permit(:name, :cost, :student_limit, :stripe_id, :description, :active)
+      params.require(:subscription).permit(:name, :cost, :student_limit, :stripe_id, :description, :active, :hidden)
     end
 end

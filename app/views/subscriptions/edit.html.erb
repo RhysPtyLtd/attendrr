@@ -28,6 +28,12 @@
 				<%= f.label :description %>
 				<%= f.text_field :description, class: 'form-control' %>
 			</div>
+			<div class="col-12 col-sm-6">
+				<%= f.label :hidden, "Hidden", :value => true %>
+				<%= f.radio_button :hidden, true %>
+				<%= f.label :hidden, "Visible", :value => false %>
+				<%= f.radio_button :hidden, false %>
+			</div>
 			<div class="w-100"></div>
 			<div class="w-100">	</div>
 			<div class="col-12 col-md-4">

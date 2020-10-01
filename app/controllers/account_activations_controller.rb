@@ -8,7 +8,7 @@ class AccountActivationsController < ApplicationController
 			flash[:success] = "Account activated!"
 			redirect_to subscriptions_path
 		else
-			flash[:danger] = "Invalid activation link"
+			flash[:danger] = "Invalid activation link" unless club.activated?
 			redirect_to root_url
 		end
 	end
