@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get :change
       get :confirm_plan_change
       get :admin
+      get :change_hidden
     end
   end
   root 'static_pages#home'

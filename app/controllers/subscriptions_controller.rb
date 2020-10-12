@@ -32,6 +32,16 @@ class SubscriptionsController < ApplicationController
     unless admin?
       redirect_to root_url 
     end
+    session[:subscription] = @subscription.id
+  end
+
+  def change_hidden
+    unless admin?
+      redirect_to root_url 
+    end
+    @subscription = Subscription.find(session[:subscription])
+    @subscription.toggle!(:hidden)
+    redirect_to edit_subscription_path(@subscription)
   end
 
   # POST /subscriptions
