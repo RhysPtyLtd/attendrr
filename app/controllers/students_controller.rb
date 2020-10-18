@@ -175,7 +175,7 @@ class StudentsController < ApplicationController
 
 		activity = Activity.find(params[:activity_id])
 		rank_ids = activity.ranks.all.pluck(:id)
-		student_for_attendance = current_club.students.student_for_attendance(rank_ids)
+		student_for_attendance = current_club.students.where(active: true).student_for_attendance(rank_ids)
 		@student_present = student_for_attendance.left_outer_joins(:attendances).where( attendances: { timeslot_id: params[:timeslot_id],attended_on: @date_find } ).reorder(nil).sort_by(&:updated_at).reverse!
 		@student_absent = student_for_attendance - @student_present
 
