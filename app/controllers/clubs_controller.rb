@@ -24,7 +24,7 @@ class ClubsController < ApplicationController
       if @subscription
         @club.activate
         log_in @club
-        flash[:success] = "Success! You'll also find a link to this account in you email inbox"
+        flash[:success] = "Success! You'll also find a link to this account in your email inbox"
         redirect_to new_charge_path(subscription: @subscription["id"])
       else
         @club.activate

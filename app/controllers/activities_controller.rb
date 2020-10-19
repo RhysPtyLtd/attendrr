@@ -130,7 +130,7 @@ class ActivitiesController < ApplicationController
 				end
 			end
 			flash[:success] = "Ranks updated"
-		  redirect_to activity_path(@activity)
+		  redirect_to grading_activity_path(@activity)
 		else
 			flash[:warning] = "Must grade at least 1 student"
 			redirect_to grading_activity_path(@activity)
