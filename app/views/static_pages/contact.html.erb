@@ -1,5 +1,18 @@
 <% provide(:title, "Contact") %>
-<h1>Contact</h1>
-<p>rhys@attendrr.com</p>
-<p>Attendrr still has a lot to improve, so if you have any comments, feel free to email or leave it in our <%= link_to "facebook community", "https://www.facebook.com/attendrr/?view_public_for=101194941347353" %>.</p>
-<!-- add facebook link -->
+
+
+
+<%= stylesheet_link_tag 'clubs', media: 'all' %>
+
+<div class="show-container rounded"> 
+	<div class="show-child-container">
+  		<header class="show-header">
+		    <h1 class="show-title">Contact</h1><br>
+		</header>
+<p>The Attendrr team is constantly looking for ways to improve and features to add, so if you have any comments or questions, feel free to email <%= mail_to("rhys@attendrr.com", "rhys@attendrr.com") %> </p> 
+
+<p>Or join our <%= link_to "facebook community", "https://www.facebook.com/attendrr/?view_public_for=101194941347353" %></p>
+		
+
+  	</div>
+</div>
