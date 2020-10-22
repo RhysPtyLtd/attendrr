@@ -9,6 +9,9 @@
 <% end %>
 <% if current_club.activities.where(active: true).none? %>
 
+<!-- Dwizco youtube pop-up -->
+<script async src="https://dwizco.com/socialproof/pixel/v0r6l8llbfvv6zmdmq5o6o58yp9lmope"></script>
+
   <div class="clubInfoNotifications btn btn-success container p-3 my-3 text-white">
     <%= link_to("Welcome to Attendrr! First, click here to add a class", new_activity_path, class: 'horizontal-line text-white') %>
   </div>
