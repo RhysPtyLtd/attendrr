@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get '/admin', to: 'static_pages#admin'
   get  '/about',   to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
+  get  '/getting_started', to: 'static_pages#getting_started'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
