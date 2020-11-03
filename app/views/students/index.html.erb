@@ -18,7 +18,7 @@
       <% @students.each do |s| %>
         <div class="col-12 ">
           <%= link_to( student_path(s ),:class=>"student-link") do %>
-            <div class="student d-flex justify-content-start align-content-center mt-2 mb-2">
+            <div class="student_div d-flex justify-content-start align-content-center mt-2 mb-2">
               <div class="align-self-center  m-2">
                 <% if s.picture? %>
                   <img class="student_img align-self-center " <%= image_tag s.picture.url  %>
