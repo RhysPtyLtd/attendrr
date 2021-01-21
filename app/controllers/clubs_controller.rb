@@ -6,6 +6,7 @@ class ClubsController < ApplicationController
   before_action :admin_club_index, only: [:index]
 
   def index
+
   end
 
   def new
