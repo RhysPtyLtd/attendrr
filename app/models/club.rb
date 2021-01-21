@@ -23,7 +23,7 @@ class Club < ApplicationRecord
     validate :picture_size
     after_create :assign_subscription
     after_create :build_prospect_plan
-    has_many :daily_metrics
+    has_many :daily_metrics, dependent: :delete_all
 
     def first_ranks_of_activities
       club_activities.map { |a| a.ranks.select{ |r| r.position == 0  }}.flatten
