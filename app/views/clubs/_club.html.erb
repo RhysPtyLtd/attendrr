@@ -1,6 +1,6 @@
 <li>
 	<%= link_to club.name, club %>	
-	<% if club.students.empty? && club.activities.empty? && club.payment_plans.count < 2 && club.subscription.name == "Free Forever" %>
+	<% if club.students.empty? && club.activities.empty? && club.payment_plans.count < 2 && club.subscription.cost < 1 %>
 		| Never onboarded - Created <%= distance_of_time_in_words_to_now(club.created_at.to_date) %> ago
 		<% if current_club.admin? && !current_club?(club) %>
 			| <%= link_to "delete", club , method: :delete, data: { confirm: "Are you sure?" } %>
